@@ -1,0 +1,3 @@
+{
+    "extends": "tsconfig/cloudflare-workers.json"
+}
