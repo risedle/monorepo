@@ -1,0 +1,36 @@
+{
+    "name": "exchange-api",
+    "version": "0.0.0",
+    "private": true,
+    "description": "Find better prices for traders across decentralized exchanges",
+    "type": "module",
+    "module": "./dist/index.mjs",
+    "scripts": {
+        "build": "node build.js",
+        "dev": "miniflare --live-reload --debug --modules dist/index.mjs",
+        "dev:remote": "wrangler dev",
+        "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+        "types:check": "tsc && tsc -p test/tsconfig.json",
+        "deploy": "wrangler publish"
+    },
+    "keywords": [],
+    "author": {
+        "name": "bayu",
+        "email": "bayu@risedle.com",
+        "url": "https://github.com/pyk"
+    },
+    "contributors": [],
+    "license": "MIT",
+    "devDependencies": {
+        "@cloudflare/workers-types": "^3.11.0",
+        "@types/jest": "^27.5.1",
+        "esbuild": "^0.14.41",
+        "jest": "^28.1.0",
+        "jest-environment-miniflare": "^2.5.0",
+        "miniflare": "^2.5.0",
+        "prettier": "^2.6.2",
+        "ts-jest": "^28.0.3",
+        "typescript": "^4.7.2",
+        "wrangler": "^2.0.7"
+    }
+}

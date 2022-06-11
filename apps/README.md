@@ -37,3 +37,17 @@ For example:
 
 The `tsconfig.json` should extends one of the config in
 [packages/tsconfig/](../packages/tsconfig).
+
+### Cloudflare Workers
+
+To create new Cloudflare Workers app, go to `apps/` directory then run the
+following command:
+
+```sh
+cp -r cloudflare-workers-template new-app
+```
+
+Change `new-app` with the app name.
+
+Update the `package.json` and you are ready to go.
+
