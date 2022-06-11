@@ -38,6 +38,18 @@ For example:
 The `tsconfig.json` should extends one of the config in
 [packages/tsconfig/](../packages/tsconfig).
 
+Use the following command to install dependencies for specific app:
+
+```sh
+npm install <package-name> -w=<app-name>
+```
+
+for example:
+
+```sh
+npm install itty-router -w=router-api
+```
+
 ### Cloudflare Workers
 
 To create new Cloudflare Workers app, go to `apps/` directory then run the
