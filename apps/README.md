@@ -51,3 +51,16 @@ Change `new-app` with the app name.
 
 Update the `package.json` and you are ready to go.
 
+### Next.js
+
+To create new Next.js app, go to `apps/` directory then run the
+following command:
+
+```sh
+cp -r nextjs-template new-app
+```
+
+Change `new-app` with the app name.
+
+Update the `package.json` and you are ready to go.
+
