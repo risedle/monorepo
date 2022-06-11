@@ -1,0 +1,46 @@
+name: router-api-stag
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "apps/router-api/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    environment:
+      name: Staging
+      url: https://router-staging.risedle.com
+    name: Deploy
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: "17.8.0"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Lint
+        run: npm run lint
+      - name: Check format
+        run: npm run check
+      - name: Test
+        run: npm run test
+      - name: Publish
+        uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: "apps/router-api"
+          command: "publish --env staging"

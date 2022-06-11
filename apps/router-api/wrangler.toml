@@ -1,21 +1,7 @@
-name = "miniflare-typescript-esbuild-jest"
+name = "risedle-router"
 main = "dist/index.mjs"
-
-account_id = ""
-workers_dev = true
-# route = ""
-
 compatibility_date = "2022-05-28"
 compatibility_flags = []
-
-[durable_objects]
-bindings = [
-  { name = "COUNTER", class_name = "Counter" }
-]
-
-[[migrations]]
-tag = "v1"
-new_classes = ["Counter"]
 
 [build]
 command = "node build.js"
@@ -24,3 +10,10 @@ command = "node build.js"
 kv_persist = true
 cache_persist = true
 durable_objects_persist = true
+port = 8788
+
+[env.staging]
+name = "risedle-router-stag"
+
+[env.production]
+name = "risedle-router-prod"
