@@ -1,3 +1,7 @@
+// ! NOTE:
+// We need to import one of the file in src in order to be able to run
+// the test
+// TODO(pyk): Find out why we need to import one file
 import "../src/index";
 
 const { COUNTER } = getMiniflareBindings();
