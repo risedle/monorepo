@@ -14,7 +14,7 @@ jobs:
       contents: read
       deployments: write
     environment:
-      name: Staging
+      name: router-api-stag
       url: https://router-staging.risedle.com
     name: Deploy
     steps:
