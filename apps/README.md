@@ -37,3 +37,32 @@ For example:
 
 The `tsconfig.json` should extends one of the config in
 [packages/tsconfig/](../packages/tsconfig).
+
+
+### Cloudflare Workers
+
+To create new Cloudflare Workers app, go to `apps/` directory then run the
+following command:
+
+```sh
+npm init cloudflare new-app https://github.com/mrbbot/miniflare-typescript-esbuild-jest
+```
+
+Change `new-app` with the app name.
+
+Then delete the git directory inside new app:
+
+```sh
+rm -rf new-app/.git
+```
+
+Replace `tsconfig.json`:
+
+```sh
+cp exchange-api/tsconfig.json new-app/tsconfig.json
+```
+
+Update the `package.json` title, description and the author and the
+dependencies.
+
+Done. You are ready to develop.
