@@ -14,12 +14,6 @@ port = 8788
 
 [env.staging]
 name = "risedle-router-stag"
-routes = [
-    "router-staging.risedle.com/*"
-]
 
 [env.production]
 name = "risedle-router-prod"
-routes = [
-    "router.risedle.com/*"
-]
