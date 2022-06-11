@@ -44,24 +44,10 @@ To create new Cloudflare Workers app, go to `apps/` directory then run the
 following command:
 
 ```sh
-npm init cloudflare new-app https://github.com/mrbbot/miniflare-typescript-esbuild-jest
+cp -r cloudflare-workers-template new-app
 ```
 
 Change `new-app` with the app name.
 
-Then delete the git directory inside new app:
+Update the `package.json` and you are ready to go.
 
-```sh
-rm -rf new-app/.git
-```
-
-Replace `tsconfig.json`:
-
-```sh
-cp exchange-api/tsconfig.json new-app/tsconfig.json
-```
-
-Update the `package.json` title, description and the author and the
-dependencies.
-
-Done. You are ready to develop.
