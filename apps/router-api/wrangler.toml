@@ -1,6 +1,5 @@
 name = "risedle-router"
 main = "dist/index.mjs"
-
 compatibility_date = "2022-05-28"
 compatibility_flags = []
 
@@ -12,3 +11,15 @@ kv_persist = true
 cache_persist = true
 durable_objects_persist = true
 port = 8788
+
+[env.staging]
+name = "risedle-router-stag"
+routes = [
+    "router-staging.risedle.com/*"
+]
+
+[env.production]
+name = "risedle-router-prod"
+routes = [
+    "router.risedle.com/*"
+]
