@@ -10,7 +10,7 @@ jobs:
       contents: read
       deployments: write
     environment: Staging
-    name: Deploy Router API to Cloudflare
+    name: Deploy
     steps:
       - name: Checkout
         uses: actions/checkout@v3
