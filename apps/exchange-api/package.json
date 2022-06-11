@@ -9,7 +9,7 @@
         "build": "node build.js",
         "dev": "miniflare --live-reload --debug --modules dist/index.mjs",
         "dev:remote": "wrangler dev",
-        "test": "npm run build && node --experimental-vm-modules --no-warnings node_modules/jest/bin/jest.js",
+        "test": "NODE_OPTIONS=--experimental-vm-modules jest",
         "types:check": "tsc && tsc -p test/tsconfig.json",
         "deploy": "wrangler publish"
     },

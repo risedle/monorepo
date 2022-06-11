@@ -38,7 +38,6 @@ For example:
 The `tsconfig.json` should extends one of the config in
 [packages/tsconfig/](../packages/tsconfig).
 
-
 ### Cloudflare Workers
 
 To create new Cloudflare Workers app, go to `apps/` directory then run the

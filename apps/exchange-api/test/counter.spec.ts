@@ -1,3 +1,5 @@
+import "../src/index";
+
 const { COUNTER } = getMiniflareBindings();
 const id = COUNTER.newUniqueId();
 const stub = COUNTER.get(id);
@@ -5,6 +7,7 @@ const stub = COUNTER.get(id);
 // Note this is beforeAll, not beforeEach, yet each test still has isolated storage.
 // See https://v2.miniflare.dev/jest.html#isolated-storage for more details.
 beforeAll(async () => {
+    console.debug("tessssssst");
     const storage = await getMiniflareDurableObjectStorage(id);
     await storage.put("count", 5);
 });
