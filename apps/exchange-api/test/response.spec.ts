@@ -1,4 +1,4 @@
-import { buildResponse } from "@/response";
+import { buildResponse } from "../src/response";
 
 test("should build response", async () => {
     const res = buildResponse("text");
