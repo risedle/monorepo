@@ -9,7 +9,9 @@ jobs:
     permissions:
       contents: read
       deployments: write
-    environment: Staging
+    environment:
+      name: Staging
+      url: https://router-staging.risedle.com
     name: Deploy
     steps:
       - name: Checkout

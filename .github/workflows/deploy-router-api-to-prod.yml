@@ -9,7 +9,9 @@ jobs:
     permissions:
       contents: read
       deployments: write
-    environment: Production
+    environment:
+      name: Production
+      url: https://router.risedle.com
     name: Deploy
     steps:
       - name: Checkout
