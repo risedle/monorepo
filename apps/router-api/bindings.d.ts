@@ -1,3 +1,1 @@
-interface Bindings {
-    COUNTER: DurableObjectNamespace;
-}
+interface Bindings {}

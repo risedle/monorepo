@@ -1,5 +1,5 @@
 {
-    "name": "exchange-api",
+    "name": "router-api",
     "version": "0.0.0",
     "private": true,
     "description": "Find better prices for traders across decentralized exchanges",
