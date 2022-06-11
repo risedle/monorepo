@@ -5,7 +5,6 @@ Welcome to the home of all Risedle Apps!
 Risedle App is a standalone and deployable application that powers the
 functionalities of the Risedle Ecosystem.
 
-
 ### Create new app
 
 The app should written in Typescript and use one of the following stacks:
@@ -15,13 +14,12 @@ The app should written in Typescript and use one of the following stacks:
 3. [Express.js](https://expressjs.com/) App
 
 These basic requirements are used to ensure that we can transfer knowledge
-between engineers easily and it's designed that one-man can handle all the
-apps.
+between engineers easily and it's designed that one-man can handle all the apps.
 
 All app should have `package.json` with the following settings:
 
 1.  `private` is set to `true`
-2. have the following scripts: `dev`, `build`, `start` and `lint`
+2.  have the following scripts: `dev`, `build`, `start` and `lint`
 
 For example:
 
@@ -39,5 +37,3 @@ For example:
 
 The `tsconfig.json` should extends one of the config in
 [packages/tsconfig/](../packages/tsconfig).
-
-
