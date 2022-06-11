@@ -1,10 +1,39 @@
-name: Risedle Router API Production
+name: router-api-prod
+
 on:
   push:
     branches:
       - main
+    paths:
+      - "apps/router-api/**"
+
 jobs:
+  build:
+    name: Build and Test
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: "17.8.0"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Lint
+        run: npm run lint
+      - name: Check format
+        run: npm run check
+      - name: Test
+        run: npm run test
   deploy:
+    needs: [build]
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -20,8 +49,6 @@ jobs:
         with:
           node-version: "17.8.0"
           cache: "npm"
-      - run: npm install
-      - run: npm run build
       - name: Publish
         uses: cloudflare/wrangler-action@2.0.0
         with:
