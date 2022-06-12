@@ -55,12 +55,12 @@ https://router-staging.risedle.com
 Risedle Router API expose the following endpoints:
 
 ```
-GET /chains
-GET /:chainID/dexs
-GET /:chainID/route?:params
+GET /v1/chains
+GET /v1/:chainID/dexs
+GET /v1/:chainID/route?:params
 ```
 
-#### GET /chains
+#### GET /v1/chains
 
 It returns 200 OK and the following JSON object:
 
@@ -70,7 +70,7 @@ It returns 200 OK and the following JSON object:
 }
 ```
 
-#### GET /:chainID/dexs
+#### GET /v1/:chainID/dexs
 
 Example:
 
@@ -100,7 +100,7 @@ object:
 }
 ```
 
-#### GET /:chainID/route?:params
+#### GET /v1/:chainID/route?:params
 
 Params:
 
