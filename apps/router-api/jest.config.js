@@ -4,6 +4,7 @@ export default {
         "ts-jest": {
             tsconfig: "test/tsconfig.json",
             useESM: true,
+            isolatedModules: true,
         },
     },
     moduleNameMapper: {

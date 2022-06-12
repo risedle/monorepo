@@ -1,5 +1,10 @@
 {
     "extends": "tsconfig/cloudflare-workers.json",
-    "include": ["src/**/*", "bindings.d.ts"],
-    "exclude": ["node_modules"]
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "@/*": ["src/*"]
+        }
+    },
+    "include": ["src/**/*", "bindings.d.ts"]
 }

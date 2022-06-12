@@ -6,19 +6,9 @@
     "proseWrap": "always",
     "overrides": [
         {
-            "files": "*.tsx",
+            "files": ["*.tsx", "*ts"],
             "options": {
                 "printWidth": 80,
-                "tabWidth": 4,
-                "useTabs": false,
-                "singleQuote": false,
-                "bracketSpacing": true
-            }
-        },
-        {
-            "files": "*.ts",
-            "options": {
-                "printWidth": 150,
                 "tabWidth": 4,
                 "useTabs": false,
                 "singleQuote": false,

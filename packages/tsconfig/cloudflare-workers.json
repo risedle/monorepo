@@ -1,7 +1,6 @@
 {
     "$schema": "https://json.schemastore.org/tsconfig",
     "display": "Cloudflare Workers",
-    "extends": "./base.json",
     "compilerOptions": {
         "target": "esnext",
         "module": "esnext",
@@ -9,8 +8,7 @@
         "types": ["@cloudflare/workers-types"],
         "strict": true,
         "noEmit": true,
-        "esModuleInterop": true,
-        "baseUrl": "./"
+        "esModuleInterop": true
     },
     "include": ["src/**/*", "bindings.d.ts"]
 }
