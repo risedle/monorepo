@@ -1,7 +1,8 @@
-import { handleRequest } from "../src/index";
+import { worker } from "@/index";
 
-test("should return 200", async () => {
+it("should responds 200 OK", async () => {
     const env = getMiniflareBindings();
-    const res = await handleRequest(new Request("http://localhost"), env);
+    const res = await worker.fetch(new Request("http://localhost"), env);
     expect(res.status).toBe(200);
+    expect(await res.json()).toEqual({ message: "OK" });
 });
