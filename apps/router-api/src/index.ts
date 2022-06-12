@@ -1,6 +1,6 @@
 import { Router } from "itty-router";
 import { error, json, missing } from "itty-router-extras";
-import { Chain } from "./chains";
+import { Chain, getSupportedDexs } from "./chains";
 
 // Create parent router
 const router = Router();
@@ -14,6 +14,16 @@ v1.get("/chains", async () => {
     return json({
         chains: Object.values(Chain).filter((v) => !isNaN(Number(v))),
     });
+});
+
+// GET /v1/:chainID/dexs
+v1.get("/:chainId/dexs", async ({ params }) => {
+    const chainId: string = params.chainId;
+    if (!(chainId in Chain)) {
+        return missing({ message: "Chain not supported" });
+    }
+    const dexs = getSupportedDexs(chainId);
+    return json({ chain: Chain[chainId], dexs: dexs });
 });
 
 // Base router
