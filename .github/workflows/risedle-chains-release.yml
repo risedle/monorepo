@@ -33,6 +33,9 @@ jobs:
       - name: Test
         run: npm test
         working-directory: ./packages/chains
+      - name: Set access to public
+        run: npm config set access public
+        working-directory: ./packages/chains
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
