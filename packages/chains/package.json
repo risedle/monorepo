@@ -12,7 +12,8 @@
     "scripts": {
         "clean": "rm -rf dist",
         "build": "tsc",
-        "lint": "eslint src/*.ts"
+        "lint": "eslint src/*.ts",
+        "test": "jest"
     },
     "prepublish": "tsc",
     "homepage": "https://risedle.com",
@@ -29,12 +30,5 @@
         "url": "https://github.com/pyk"
     },
     "contributors": [],
-    "devDependencies": {
-        "@types/jest": "28.1.1",
-        "eslint": "8.17.0",
-        "eslint-config-custom": "*",
-        "jest": "28.1.1",
-        "ts-jest": "28.0.5",
-        "typescript": "4.7.3"
-    }
+    "devDependencies": {}
 }
