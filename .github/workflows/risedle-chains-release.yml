@@ -7,12 +7,6 @@ on:
     paths:
       - "packages/chains/**"
 
-env:
-  GIT_AUTHOR_NAME: risedle
-  GIT_AUTHOR_EMAIL: github@risedle.com
-  GIT_COMMITTER_NAME: risedle
-  GIT_COMMITTER_EMAIL: github@risedle.com
-
 jobs:
   release:
     name: Release
@@ -40,5 +34,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GIT_AUTHOR_NAME: Risedle
+          GIT_AUTHOR_EMAIL: github@risedle.com
+          GIT_COMMITTER_NAME: Risedle
+          GIT_COMMITTER_EMAIL: github@risedle.com
         run: npx semantic-release
         working-directory: ./packages/chains
