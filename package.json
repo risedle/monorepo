@@ -15,14 +15,35 @@
         "check": "prettier --check \"**/*.{ts,tsx,md,json,js,yml}\""
     },
     "devDependencies": {
+        "@commitlint/cli": "17.0.2",
+        "@commitlint/config-conventional": "17.0.2",
+        "@types/jest": "28.1.1",
+        "eslint": "8.17.0",
         "eslint-config-custom": "latest",
+        "husky": "8.0.1",
+        "jest": "28.1.1",
+        "lint-staged": "13.0.1",
         "prettier": "latest",
-        "turbo": "latest"
+        "ts-jest": "28.0.5",
+        "ts-node": "10.8.1",
+        "turbo": "latest",
+        "typescript": "4.7.3"
     },
     "engines": {
         "npm": ">=7.0.0",
         "node": ">=14.0.0"
     },
-    "dependencies": {},
-    "packageManager": "npm@8.5.5"
+    "packageManager": "npm@8.5.5",
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ]
+    },
+    "lint-staged": {
+        "*.md": "prettier --write",
+        "*.json": "prettier --write",
+        "*.ts": "eslint --fix",
+        "*.yml": "prettier --write",
+        "*.js": "eslint --fix"
+    }
 }

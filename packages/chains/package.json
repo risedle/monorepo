@@ -1,0 +1,59 @@
+{
+    "name": "@risedle/chains",
+    "version": "0.1.0",
+    "license": "MIT",
+    "source": "src/index.ts",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist",
+        "README.md"
+    ],
+    "scripts": {
+        "clean": "rm -rf dist",
+        "build": "tsc",
+        "lint": "eslint src/*.ts",
+        "test": "jest"
+    },
+    "prepublish": "tsc",
+    "homepage": "https://risedle.com",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/risedle/monorepo.git"
+    },
+    "bugs": {
+        "url": "https://github.com/risedle/monorepo/issues"
+    },
+    "author": {
+        "name": "bayu",
+        "email": "bayu@risedle.com",
+        "url": "https://github.com/pyk"
+    },
+    "contributors": [],
+    "devDependencies": {
+        "@semantic-release/git": "10.0.1",
+        "semantic-release": "19.0.3"
+    },
+    "release": {
+        "branches": [
+            "main"
+        ],
+        "plugins": [
+            "@semantic-release/commit-analyzer",
+            "@semantic-release/release-notes-generator",
+            [
+                "@semantic-release/git",
+                {
+                    "assets": [
+                        "dist/**/*.{js,css}",
+                        "README.md",
+                        "package.json"
+                    ],
+                    "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+                }
+            ],
+            "@semantic-release/npm",
+            "@semantic-release/github"
+        ]
+    }
+}
