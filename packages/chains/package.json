@@ -39,7 +39,18 @@
             "main"
         ],
         "plugins": [
-            "@semantic-release/commit-analyzer",
+            [
+                "@semantic-release/commit-analyzer",
+                {
+                    "preset": "conventionalcommits",
+                    "releaseRules": [
+                        {
+                            "scope": "!*@risedle/chains*",
+                            "release": false
+                        }
+                    ]
+                }
+            ],
             "@semantic-release/release-notes-generator",
             [
                 "@semantic-release/git",
@@ -49,7 +60,7 @@
                         "README.md",
                         "package.json"
                     ],
-                    "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+                    "message": "chore(@risedle/chains): release ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
                 }
             ],
             "@semantic-release/npm",
