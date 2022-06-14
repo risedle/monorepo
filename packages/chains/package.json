@@ -35,6 +35,7 @@
         "semantic-release": "19.0.3"
     },
     "release": {
+        "tagFormat": "risedle-chains-v${version}",
         "branches": [
             "main"
         ],
