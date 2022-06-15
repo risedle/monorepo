@@ -31,6 +31,11 @@ server.use(
 // Install routers
 server.use("/v1", router);
 
+// Health checks
+server.get("/health", async function (req, res) {
+    return res.send({ message: "OK" });
+});
+
 // Run server
 console.log("[risedle-api] Listening on :3000 ...");
 server.listen(3000);
