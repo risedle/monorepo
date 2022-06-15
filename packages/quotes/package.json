@@ -64,7 +64,8 @@
                             "path": "*.tar.gz",
                             "label": "@risedle/quotes"
                         }
-                    ]
+                    ],
+                    "labels": false
                 }
             ],
             [
