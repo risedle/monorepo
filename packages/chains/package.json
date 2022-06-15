@@ -64,7 +64,8 @@
                             "path": "*.tar.gz",
                             "label": "@risedle/chains"
                         }
-                    ]
+                    ],
+                    "labels": false
                 }
             ],
             [
