@@ -16,7 +16,7 @@ jobs:
       deployments: write
     environment:
       name: api-stag
-      url: https://api-staging.risedle.exchange
+      url: https://api-stag.risedle.exchange
     steps:
       - name: Check out code
         uses: actions/checkout@v2
@@ -39,3 +39,4 @@ jobs:
       - name: Deploy
         uses: superfly/flyctl-actions/setup-flyctl@master
         run: flyctl deploy --remote-only --app risedle-api-stag
+        working-directory: ./apps/api
