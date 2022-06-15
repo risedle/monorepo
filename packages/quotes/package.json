@@ -61,7 +61,7 @@
                     "failedComment": false,
                     "assets": [
                         {
-                            "path": "*.tar.gz",
+                            "path": "*.tgz",
                             "label": "@risedle/quotes"
                         }
                     ],
