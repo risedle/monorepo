@@ -17,3 +17,12 @@ Risedle API is structured based on the flow of HTTP request:
 
 The `models` is provided by `@risedle/database` package, it handles schema and
 the migrations.
+
+### Deployment
+
+Risedle API is automatically deployed via Github Actions and can be accessed via
+the following URL:
+
+-   **Production** [https://api.risedle.exchange](https://api.risedle.exchange)
+-   **Staging**
+    [https://api-stag.risedle.exchange](https://api-stag.risedle.exchange)
