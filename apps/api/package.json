@@ -5,8 +5,9 @@
     "main": "dist/index.js",
     "scripts": {
         "build": "tsc",
-        "dev": "node dist/server.js",
-        "test": "jest"
+        "lint": "eslint src/**/*.ts",
+        "test": "jest",
+        "dev": "node dist/server.js"
     },
     "author": {
         "name": "bayu",
