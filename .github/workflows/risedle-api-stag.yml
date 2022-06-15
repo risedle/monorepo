@@ -1,0 +1,42 @@
+name: api-stag
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "apps/api/**"
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    environment:
+      name: api-stag
+      url: https://api-stag.risedle.exchange
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: "17.8.0"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+        working-directory: ./apps/api
+      - name: Lint
+        run: npm run lint
+        working-directory: ./apps/api
+      - name: Test
+        run: npm run test
+        working-directory: ./apps/api
+      - name: Deploy
+        uses: superfly/flyctl-actions/setup-flyctl@master
+        run: flyctl deploy --remote-only --app risedle-api-stag
+        working-directory: ./apps/api
