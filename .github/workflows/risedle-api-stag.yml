@@ -1,4 +1,4 @@
-name: router-api-stag
+name: api-stag
 
 on:
   pull_request:

@@ -1,4 +1,4 @@
-name: router-api-prod
+name: api-prod
 
 on:
   push:
