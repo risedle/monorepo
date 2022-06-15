@@ -36,7 +36,8 @@ jobs:
       - name: Test
         run: npm run test
         working-directory: ./apps/api
-      - name: Deploy
+      - name: Setup flyctl
         uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: Deploy
         run: flyctl deploy --remote-only --app risedle-api-prod
         working-directory: ./apps/api
