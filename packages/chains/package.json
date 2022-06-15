@@ -35,7 +35,7 @@
         "semantic-release": "19.0.3"
     },
     "release": {
-        "tagFormat": "risedle-chains-v${version}",
+        "tagFormat": "@risedle/chains-v${version}",
         "branches": [
             "main"
         ],
@@ -53,14 +53,26 @@
                 }
             ],
             "@semantic-release/release-notes-generator",
+            "@semantic-release/npm",
+            [
+                "@semantic-release/github",
+                {
+                    "successComment": false,
+                    "failedComment": false,
+                    "assets": [
+                        {
+                            "path": "*.tar.gz",
+                            "label": "@risedle/chains"
+                        }
+                    ]
+                }
+            ],
             [
                 "@semantic-release/git",
                 {
                     "message": "chore(release): @risedle/chains ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
                 }
-            ],
-            "@semantic-release/npm",
-            "@semantic-release/github"
+            ]
         ]
     }
 }
