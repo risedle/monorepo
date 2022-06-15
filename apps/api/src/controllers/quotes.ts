@@ -8,4 +8,8 @@ async function GetQuotes(req: Request, res: Response) {
     return res.send({ message: "OK" });
 }
 
-export default { GetQuotes };
+const quotes = {
+    GetQuotes,
+};
+
+export default quotes;
