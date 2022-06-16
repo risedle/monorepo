@@ -1,6 +1,8 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
+import swaggerUi from "swagger-ui-express";
+import YAML from "yamljs";
 
 // Import routers
 import { router } from "./routers/index";
@@ -35,6 +37,10 @@ server.use("/v1", router);
 server.get("/health", async function (req, res) {
     return res.send({ message: "OK" });
 });
+
+// Serve OpenAPI viewer
+const swaggerDocument = YAML.load("openapi.yml");
+server.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Run server
 console.log("[risedle-api] Listening on :3000 ...");
