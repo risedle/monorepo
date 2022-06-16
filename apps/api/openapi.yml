@@ -1,0 +1,132 @@
+openapi: 3.0.3
+
+info:
+  title: Risedle API
+  version: 1.0.0
+
+servers:
+  - description: Staging
+    url: https://edge.api.risedle.exchange
+  - description: Production
+    url: https://api.risedle.exchange
+  - description: Local
+    url: http://localhost:3000
+
+tags:
+  - name: Quotes
+    description: Quote for swapping ERC20 token
+
+paths:
+  /v1/quotes:
+    get:
+      tags:
+        - Quotes
+      operationId: getQuotes
+      summary: |
+        Get the fair price, fee and execution cost for swapping ERC20 token
+      parameters:
+        - name: chainId
+          in: query
+          description: |
+            Chain ID. This is used to get the current gas price of the chain
+          required: true
+          schema:
+            type: integer
+            format: int32
+            example: 42161
+        - name: tokenIn
+          in: query
+          description: |
+            ERC20 token address that user want to sell to get `tokenOut`
+          required: true
+          schema:
+            $ref: "#/components/schemas/Address"
+        - name: tokenOut
+          in: query
+          description: |
+            ERC20 token address that user want to buy for `tokenIn`
+          required: true
+          schema:
+            $ref: "#/components/schemas/Address"
+        - name: amountIn
+          in: query
+          description: |
+            The amount of `tokenIn` (in `tokenIn` base units)
+          required: true
+          schema:
+            $ref: "#/components/schemas/BigNumber"
+      responses:
+        200:
+          description: Fair quotes for wapping ERC20 token
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Quotes"
+
+components:
+  schemas:
+    Address:
+      description: 20 byte Ethereum address encoded as a hex with `0x` prefix
+      type: string
+      example: "0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8"
+
+    BigNumber:
+      description: Ethers.js BigNumber
+      type: string
+      example: "1000000000"
+
+    PriceInUSD:
+      description: Price in USD terms
+      type: number
+      format: float
+      example: 12.9879
+
+    FeeBreakdown:
+      description: |
+        This is used to calculate the `amountOutAfterFee`
+      type: object
+      properties:
+        tradingFee:
+          description: |
+            Trading fee in `tokenOut` base units
+          $ref: "#/components/schemas/BigNumber"
+        tradingFeeUSD:
+          $ref: "#/components/schemas/PriceInUSD"
+        tradingFeeDiscount:
+          description: |
+            Trading fee discount in `tokenOut` base units
+          $ref: "#/components/schemas/BigNumber"
+        tradingFeeDiscountUSD:
+          $ref: "#/components/schemas/PriceInUSD"
+        executionCost:
+          description: |
+            The execution cost in `tokenOut` base units
+          $ref: "#/components/schemas/BigNumber"
+        executionCostUSD:
+          $ref: "#/components/schemas/PriceInUSD"
+
+    Quotes:
+      description: Fair quotes for swapping ERC20 token
+      type: object
+      properties:
+        chainId:
+          type: integer
+          example: 42161
+        tokenIn:
+          $ref: "#/components/schemas/Address"
+        tokenOut:
+          $ref: "#/components/schemas/Address"
+        amountIn:
+          $ref: "#/components/schemas/BigNumber"
+        amountInUSD:
+          $ref: "#/components/schemas/PriceInUSD"
+        amountOutBeforeFee:
+          $ref: "#/components/schemas/BigNumber"
+        amountOutBeforeFeeUSD:
+          $ref: "#/components/schemas/PriceInUSD"
+        fees:
+          $ref: "#/components/schemas/FeeBreakdown"
+        amountOutAfterFee:
+          $ref: "#/components/schemas/BigNumber"
+        amountOutAfterFeeUSD:
+          $ref: "#/components/schemas/PriceInUSD"
