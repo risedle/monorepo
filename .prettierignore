@@ -4,3 +4,4 @@ out
 dist
 package-lock.json
 .husky
+storybook-static
