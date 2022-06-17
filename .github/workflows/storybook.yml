@@ -33,10 +33,11 @@ jobs:
       - name: Build
         run: npm run build-storybook
         working-directory: ./apps/storybook
+      - name: Copy build
+        run: mv ./apps/storybook/storybook-static .
       - name: Publish
         uses: cloudflare/pages-action@1
         id: publish
-        working-directory: ./apps/storybook
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
