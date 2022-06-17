@@ -10,7 +10,7 @@ npm run storybook
 
 To create new component:
 
-1. Go to [@risedle/ui](../packages/ui)
+1. Go to [@risedle/ui](../../packages/ui)
 2. Create new `tsx` component file
 3. Create new stories in here
 
