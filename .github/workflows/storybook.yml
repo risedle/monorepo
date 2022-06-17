@@ -21,9 +21,6 @@ jobs:
     permissions:
       contents: read
       deployments: write
-    environment:
-      name: storybook
-      url: https://storybook.risedle.exchange
     steps:
       - name: Checkout
         uses: actions/checkout@v3
