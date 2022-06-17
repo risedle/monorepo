@@ -1,0 +1,30 @@
+{
+    "name": "storybook",
+    "version": "1.0.0",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "storybook": "NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
+        "build-storybook": "NODE_OPTIONS=--openssl-legacy-provider build-storybook"
+    },
+    "author": {
+        "name": "bayu",
+        "email": "bayu@risedle.com",
+        "url": "https://github.com/pyk"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "@babel/core": "^7.18.5",
+        "@storybook/addon-actions": "^6.5.9",
+        "@storybook/addon-essentials": "^6.5.9",
+        "@storybook/addon-interactions": "^6.5.9",
+        "@storybook/addon-links": "^6.5.9",
+        "@storybook/builder-webpack4": "^6.5.9",
+        "@storybook/manager-webpack4": "^6.5.9",
+        "@storybook/react": "^6.5.9",
+        "@storybook/testing-library": "^0.0.13",
+        "babel-loader": "^8.2.5"
+    },
+    "dependencies": {
+        "@risedle/ui": "file:packages/ui"
+    }
+}
