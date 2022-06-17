@@ -7,12 +7,14 @@ on:
     paths:
       - "apps/storybook/**"
       - "packages/ui/**"
+      - ".github/workflows/storybook.yml"
   pull_request:
     branches:
       - main
     paths:
       - "apps/storybook/**"
       - "packages/ui/**"
+      - ".github/workflows/storybook.yml"
 
 jobs:
   deploy:
