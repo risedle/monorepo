@@ -77,6 +77,6 @@
         ]
     },
     "dependencies": {
-        "@risedle/types": "1.0.0"
+        "@risedle/types": "1.0.2"
     }
 }
