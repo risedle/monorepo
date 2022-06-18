@@ -42,6 +42,5 @@ server.get("/health", async function (req, res) {
 const swaggerDocument = YAML.load("openapi.yml");
 server.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-// Run server
-console.log("[risedle-api] Listening on :3000 ...");
-server.listen(3000);
+
+export default server;
