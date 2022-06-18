@@ -15,8 +15,37 @@ servers:
 tags:
   - name: Quotes
     description: Quote for swapping ERC20 token
+  - name: Tokens
+    description: Tokens information
 
 paths:
+  /v1/{chainId}/tokens:
+    get:
+      tags:
+        - Tokens
+      operationId: getTokensByChainId
+      summary: |
+        Get list of tokens and its market information on specific chain.
+      parameters:
+        - in: path
+          name: chainId
+          schema:
+            $ref: "#/components/schemas/ChainId"
+          required: true
+      responses:
+        200:
+          description: |
+            List of tokens and the dex information such as price and volume.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Token"
+        404:
+          description: |
+            Chain ID not supported
+
   /v1/quotes:
     get:
       tags:
@@ -75,11 +104,22 @@ components:
       type: string
       example: "1000000000"
 
-    PriceInUSD:
+    ChainId:
+      description: Chain ID
+      type: number
+      example: 42161
+
+    USD:
       description: Price in USD terms
       type: number
       format: float
       example: 12.9879
+
+    Percentage:
+      description: Percentage
+      type: number
+      format: float
+      example: 99.88888888
 
     FeeBreakdown:
       description: |
@@ -91,19 +131,19 @@ components:
             Trading fee in `tokenOut` base units
           $ref: "#/components/schemas/BigNumber"
         tradingFeeUSD:
-          $ref: "#/components/schemas/PriceInUSD"
+          $ref: "#/components/schemas/USD"
         tradingFeeDiscount:
           description: |
             Trading fee discount in `tokenOut` base units
           $ref: "#/components/schemas/BigNumber"
         tradingFeeDiscountUSD:
-          $ref: "#/components/schemas/PriceInUSD"
+          $ref: "#/components/schemas/USD"
         executionCost:
           description: |
             The execution cost in `tokenOut` base units
           $ref: "#/components/schemas/BigNumber"
         executionCostUSD:
-          $ref: "#/components/schemas/PriceInUSD"
+          $ref: "#/components/schemas/USD"
 
     Quotes:
       description: Fair quotes for swapping ERC20 token
@@ -119,14 +159,56 @@ components:
         amountIn:
           $ref: "#/components/schemas/BigNumber"
         amountInUSD:
-          $ref: "#/components/schemas/PriceInUSD"
+          $ref: "#/components/schemas/USD"
         amountOutBeforeFee:
           $ref: "#/components/schemas/BigNumber"
         amountOutBeforeFeeUSD:
-          $ref: "#/components/schemas/PriceInUSD"
+          $ref: "#/components/schemas/USD"
         fees:
           $ref: "#/components/schemas/FeeBreakdown"
         amountOutAfterFee:
           $ref: "#/components/schemas/BigNumber"
         amountOutAfterFeeUSD:
-          $ref: "#/components/schemas/PriceInUSD"
+          $ref: "#/components/schemas/USD"
+
+    Token:
+      description: ERC20 token metadata & market information
+      type: object
+      properties:
+        name:
+          description: Token's name
+          type: string
+          example: "Ethereum"
+        symbol:
+          description: Token's symbol
+          type: string
+          example: "ETH"
+        decimals:
+          description: Token's decimals
+          type: number
+          example: 18
+        address:
+          description: Token's address
+          $ref: "#/components/schemas/Address"
+        priceUSD:
+          description: Current token price in USD
+          $ref: "#/components/schemas/USD"
+        dailyPriceChangeUSD:
+          description: |
+            Price change (USD) in the last 24 hours. It can be negative.
+          $ref: "#/components/schemas/USD"
+        dailyPriceChangePercentage:
+          description: |
+            Price change (%) in the last 24 hours. It can be negative.
+          $ref: "#/components/schemas/USD"
+        volumeUSD:
+          description: Current token price in USD
+          $ref: "#/components/schemas/USD"
+        dailyVolumeChangeUSD:
+          description: |
+            Price change (USD) in the last 24 hours. It can be negative.
+          $ref: "#/components/schemas/USD"
+        dailyVolumeChangePercentage:
+          description: |
+            Price change (%) in the last 24 hours. It can be negative.
+          $ref: "#/components/schemas/USD"
