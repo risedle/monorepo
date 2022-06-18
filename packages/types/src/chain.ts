@@ -9,4 +9,5 @@ export interface Chain {
     name: string;
     symbol: string;
     currency: string;
+    explorerURL: string;
 }
