@@ -1,0 +1,40 @@
+name: "@risedle/types"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "packages/types/**"
+      - ".github/workflows/risedle-types-release.yml"
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: "17.8.0"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+        working-directory: ./packages/types
+      - name: Set access to public
+        run: npm config set access public
+        working-directory: ./packages/types
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GIT_AUTHOR_NAME: Risedle
+          GIT_AUTHOR_EMAIL: github@risedle.com
+          GIT_COMMITTER_NAME: Risedle
+          GIT_COMMITTER_EMAIL: github@risedle.com
+        run: npx semantic-release
+        working-directory: ./packages/types
