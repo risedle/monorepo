@@ -1,11 +1,11 @@
-name: "@risedle/quotes"
+name: "@risedle/ui"
 
 on:
   push:
     branches:
       - main
     paths:
-      - "packages/quotes/**"
+      - "packages/ui/**"
       - ".github/workflows/risedle-ui-release.yml"
 
 jobs:
