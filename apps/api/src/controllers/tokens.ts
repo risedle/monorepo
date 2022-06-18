@@ -3,12 +3,17 @@ import { Request, Response } from "express";
 import { param, validationResult } from "express-validator";
 
 // TODO(pyk): refactor this if this used by other controllers
+
+enum ChainId {
+    BSC = 56,
+}
+
 const SupportedChains = [
     {
         name: "Binance Smart Chain",
         symbol: "BSC",
         currency: "BNB",
-        id: 56,
+        id: ChainId.BSC,
     },
 ];
 

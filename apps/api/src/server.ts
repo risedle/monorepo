@@ -42,5 +42,4 @@ server.get("/health", async function (req, res) {
 const swaggerDocument = YAML.load("openapi.yml");
 server.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-
 export default server;
