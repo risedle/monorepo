@@ -2,9 +2,9 @@
     "name": "@risedle/types",
     "version": "1.0.0",
     "license": "MIT",
-    "source": "src/index.ts",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "source": "index.ts",
+    "main": "index.js",
+    "types": "index.d.ts",
     "files": [
         "dist",
         "README.md"
