@@ -48,12 +48,25 @@
                         {
                             "scope": "!*@risedle/chains*",
                             "release": false
+                        },
+                        {
+                            "breaking": true,
+                            "release": false
+                        },
+                        {
+                            "scope": "@risedle/chains",
+                            "type": "bump",
+                            "release": "major"
                         }
                     ]
                 }
             ],
-            "@semantic-release/release-notes-generator",
-            "@semantic-release/npm",
+            [
+                "@semantic-release/npm",
+                {
+                    "tarballDir": "."
+                }
+            ],
             [
                 "@semantic-release/github",
                 {
@@ -75,5 +88,11 @@
                 }
             ]
         ]
+    },
+    "dependencies": {
+        "@risedle/types": "1.0.2"
+    },
+    "exports": {
+        "./*": "./dist/*.js"
     }
 }
