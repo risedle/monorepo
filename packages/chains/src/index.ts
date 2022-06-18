@@ -6,7 +6,7 @@ export const ALL_CHAIN_IDS = ALL_CHAINS.map((chain) => chain.id);
 
 // Check wether chain id is supported or not
 export function isChainIdSupported(chainId: ChainId): boolean {
-    return chainId in ALL_CHAIN_IDS;
+    return ALL_CHAIN_IDS.includes(chainId);
 }
 
 // Export all chains
