@@ -28,9 +28,6 @@ jobs:
       - name: Set access to public
         run: npm config set access public
         working-directory: ./packages/types
-      - name: Copy package.json
-        run: cp package.json dist/package.json
-        working-directory: ./packages/types
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

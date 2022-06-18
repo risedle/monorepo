@@ -2,9 +2,9 @@
     "name": "@risedle/types",
     "version": "1.0.0",
     "license": "MIT",
-    "source": "index.ts",
-    "main": "index.js",
-    "types": "index.d.ts",
+    "source": "src/index.ts",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "files": [
         "dist",
         "README.md"
@@ -55,7 +55,6 @@
             [
                 "@semantic-release/npm",
                 {
-                    "pkgRoot": "./dist/",
                     "tarballDir": "."
                 }
             ],
@@ -81,5 +80,8 @@
             ]
         ]
     },
-    "dependencies": {}
+    "dependencies": {},
+    "exports": {
+        "./*": "./dist/*.js"
+    }
 }
