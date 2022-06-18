@@ -16,8 +16,8 @@ To create new component:
 
 ### Preview Deployment
 
-On every pull request that changes `apps/storybook/**` and `packages/ui/**` will
-automatically deploy this app.
+On every pull request that changes `apps/storybook/**` and `packages/ui/**`
+will automatically deploy this app.
 
 To get the preview URL go to
 [GitHub Deployments](https://github.com/risedle/monorepo/deployments).
