@@ -13,8 +13,8 @@ servers:
     url: http://localhost:3000
 
 tags:
-  - name: Quotes
-    description: Quote for swapping ERC20 token
+  #  - name: Quotes
+  #    description: Quote for swapping ERC20 token
   - name: Tokens
     description: Tokens information
 
@@ -46,51 +46,51 @@ paths:
           description: |
             Chain ID not supported
 
-  /v1/quotes:
-    get:
-      tags:
-        - Quotes
-      operationId: getQuotes
-      summary: |
-        Get the fair price, fee and execution cost for swapping ERC20 token
-      parameters:
-        - name: chainId
-          in: query
-          description: |
-            Chain ID. This is used to get the current gas price of the chain
-          required: true
-          schema:
-            type: integer
-            format: int32
-            example: 42161
-        - name: tokenIn
-          in: query
-          description: |
-            ERC20 token address that user want to sell to get `tokenOut`
-          required: true
-          schema:
-            $ref: "#/components/schemas/Address"
-        - name: tokenOut
-          in: query
-          description: |
-            ERC20 token address that user want to buy for `tokenIn`
-          required: true
-          schema:
-            $ref: "#/components/schemas/Address"
-        - name: amountIn
-          in: query
-          description: |
-            The amount of `tokenIn` (in `tokenIn` base units)
-          required: true
-          schema:
-            $ref: "#/components/schemas/BigNumber"
-      responses:
-        200:
-          description: Fair quotes for wapping ERC20 token
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Quotes"
+#  /v1/quotes:
+#    get:
+#      tags:
+#        - Quotes
+#      operationId: getQuotes
+#      summary: |
+#        Get the fair price, fee and execution cost for swapping ERC20 token
+#      parameters:
+#        - name: chainId
+#          in: query
+#          description: |
+#            Chain ID. This is used to get the current gas price of the chain
+#          required: true
+#          schema:
+#            type: integer
+#            format: int32
+#            example: 42161
+#        - name: tokenIn
+#          in: query
+#          description: |
+#            ERC20 token address that user want to sell to get `tokenOut`
+#          required: true
+#          schema:
+#            $ref: "#/components/schemas/Address"
+#        - name: tokenOut
+#          in: query
+#          description: |
+#            ERC20 token address that user want to buy for `tokenIn`
+#          required: true
+#          schema:
+#            $ref: "#/components/schemas/Address"
+#        - name: amountIn
+#          in: query
+#          description: |
+#            The amount of `tokenIn` (in `tokenIn` base units)
+#          required: true
+#          schema:
+#            $ref: "#/components/schemas/BigNumber"
+#      responses:
+#        200:
+#          description: Fair quotes for wapping ERC20 token
+#          content:
+#            application/json:
+#              schema:
+#                $ref: "#/components/schemas/Quotes"
 
 components:
   schemas:
