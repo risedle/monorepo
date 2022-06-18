@@ -47,11 +47,19 @@
                         {
                             "scope": "!*@risedle/types*",
                             "release": false
+                        },
+                        {
+                            "breaking": true,
+                            "release": false
+                        },
+                        {
+                            "scope": "@risedle/types",
+                            "type": "bump",
+                            "release": "major"
                         }
                     ]
                 }
             ],
-            "@semantic-release/release-notes-generator",
             [
                 "@semantic-release/npm",
                 {
