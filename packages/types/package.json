@@ -90,6 +90,7 @@
     },
     "dependencies": {},
     "exports": {
+        ".": "./dist/index.js",
         "./*": "./dist/*.js"
     }
 }
