@@ -1,31 +1,37 @@
 import { getSourceTokensByChainId } from "../src/index";
-import { ChainId } from "@risedle/types/chain";
-import { TokenInfoSource } from "@risedle/types/token";
+import { ChainId, TokenInfoSource } from "@risedle/types";
 
 describe("getSourceTokensByChainId", () => {
     describe("given unsupported chain id", () => {
         it("should return null", () => {
-            let o = getSourceTokensByChainId(123);
-            expect(o).toBe(null);
+            let output = getSourceTokensByChainId(123);
+            expect(output).toBe(undefined);
 
-            o = getSourceTokensByChainId(ChainId.BSC_TESTNET);
-            expect(o).toBe(null);
+            output = getSourceTokensByChainId(ChainId.BSC_TESTNET);
+            expect(output).toBe(undefined);
         });
     });
 
     describe("given BSC chain id", () => {
         it("should return correct values", () => {
-            let o = getSourceTokensByChainId(ChainId.BSC);
-            expect(Object(o).keys()).toStrictEqual([
-                TokenInfoSource.PancakeSwapSubgraph,
-            ]);
-            expect(o[TokenInfoSource.PancakeSwapSubgraph].length).toBe(2);
+            let sourceTokens = getSourceTokensByChainId(ChainId.BSC);
 
-            o = getSourceTokensByChainId(56);
-            expect(Object(o).keys()).toStrictEqual([
-                TokenInfoSource.PancakeSwapSubgraph,
-            ]);
-            expect(o[TokenInfoSource.PancakeSwapSubgraph].length).toBe(2);
+            // Check source tokens
+            expect(sourceTokens).toBeDefined();
+            expect(
+                sourceTokens!.has(TokenInfoSource.PancakeSwapSubgraph)
+            ).toBe(true);
+
+            // Check returned tokens
+            const tokens = sourceTokens!.get(
+                TokenInfoSource.PancakeSwapSubgraph
+            );
+            expect(tokens).toBeDefined();
+            expect(tokens!.length).toBe(2);
+
+            // Get source tokens via integer
+            sourceTokens = getSourceTokensByChainId(56);
+            expect(sourceTokens).not.toBe(null);
         });
     });
 });

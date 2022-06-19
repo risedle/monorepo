@@ -4,12 +4,12 @@ import { BSC_SOURCETOKENS } from "./bsc";
 // Get source tokens by Chain Id
 export function getSourceTokensByChainId(
     chainId: ChainId
-): SourceTokens | null {
+): SourceTokens | undefined {
     switch (chainId) {
         case ChainId.BSC:
             return BSC_SOURCETOKENS;
         default:
-            return null;
+            return undefined;
     }
 }
 
