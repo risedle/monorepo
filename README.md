@@ -1,4 +1,12 @@
-# Risedle Labs Monorepo
+<p align="center">
+  <img width="340" alt="Risedle Labs Monorepo logo" src="./risedle-monorepo.png">
+</p>
+
+<p align="center">
+  <a aria-label="Vercel logo" href="https://vercel.com">
+    <img src="https://badgen.net/badge/icon/Made%20By%20Risedle%20Labs?label&color=black&labelColor=black">
+  </a>
+</p>
 
 Welcome to Risedle Labs Monorepo!
 
