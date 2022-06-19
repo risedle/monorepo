@@ -1,6 +1,6 @@
 {
     "name": "@risedle/chains",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "license": "MIT",
     "source": "src/index.ts",
     "main": "dist/index.js",
@@ -30,6 +30,9 @@
         "url": "https://github.com/pyk"
     },
     "contributors": [],
+    "dependencies": {
+        "@risedle/types": "1.1.1"
+    },
     "devDependencies": {
         "@semantic-release/git": "10.0.1",
         "semantic-release": "19.0.3"
@@ -89,10 +92,12 @@
             ]
         ]
     },
-    "dependencies": {
-        "@risedle/types": "1.0.2"
-    },
     "exports": {
+        ".": "./dist/index.js",
         "./*": "./dist/*.js"
+    },
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org/",
+        "tag": "latest"
     }
 }
