@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a aria-label="Vercel logo" href="https://vercel.com">
+  <a aria-label="Risedle Website" href="https://risedle.com">
     <img src="https://badgen.net/badge/icon/Made%20By%20Risedle%20Labs?label&color=black&labelColor=black">
   </a>
 </p>
