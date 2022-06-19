@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "packages/chains/**"
+      - ".github/workflows/risedle-chains-release.yml"
 
 jobs:
   release:
@@ -23,7 +24,6 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
-        working-directory: ./packages/chains
       - name: Test
         run: npm test
         working-directory: ./packages/chains
