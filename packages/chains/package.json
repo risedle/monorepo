@@ -93,6 +93,7 @@
         "@risedle/types": "1.1.1"
     },
     "exports": {
+        ".": "./dist/index.js",
         "./*": "./dist/*.js"
     }
 }
