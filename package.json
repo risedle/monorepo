@@ -55,9 +55,12 @@
     },
     "lint-staged": {
         "*.md": "prettier --write",
-        "*.json": "prettier --write",
-        "*.ts": "eslint --fix",
+        "*.mdx": "prettier --write",
+        "*.ts": "prettier --write",
+        "*.tsx": "prettier --write",
+        "*.js": "prettier --write",
+        "*.jsx": "prettier --write",
         "*.yml": "prettier --write",
-        "*.js": "eslint --fix"
+        "*.json": "prettier --write"
     }
 }
