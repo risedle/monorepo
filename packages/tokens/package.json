@@ -90,7 +90,7 @@
         ]
     },
     "dependencies": {
-        "@risedle/types": "1.1.0"
+        "@risedle/types": "1.1.2"
     },
     "exports": {
         ".": "./dist/index.js",
