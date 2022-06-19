@@ -10,4 +10,22 @@ npm install --save-exact @risedle/types@latest
 
 ### Usage
 
-Docs coming soon
+In order to use for Typescript apps, you need to set `node16` as
+`moduleResolution` in the compiler options.
+
+```json
+    "compilerOptions": {
+        ...
+        "moduleResolution": "node16",
+    },
+```
+
+Here is the example on how to use `@risedle/types`:
+
+```typescript
+// Like this
+import { ChainId, Chain } from "@risedle/types";
+
+// Or like this
+import { ChainId, Chain } from "@risedle/types/chain";
+```
