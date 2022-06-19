@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "packages/chains/**"
+      - ".github/workflows/risedle-chains-release.yml"
 
 jobs:
   release:
