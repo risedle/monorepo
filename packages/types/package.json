@@ -29,6 +29,7 @@
         "url": "https://github.com/pyk"
     },
     "contributors": [],
+    "dependencies": {},
     "devDependencies": {
         "@semantic-release/git": "10.0.1",
         "semantic-release": "19.0.3"
@@ -88,9 +89,12 @@
             ]
         ]
     },
-    "dependencies": {},
     "exports": {
         ".": "./dist/index.js",
         "./*": "./dist/*.js"
+    },
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org/",
+        "tag": "latest"
     }
 }
