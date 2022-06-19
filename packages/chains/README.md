@@ -11,3 +11,9 @@ npm install @risedle/chains@latest --save-exact
 Docs coming soon
 
 bump
+
+### Upgrading types
+
+```sh
+npm install --save --save-exact @risedle/types@latest -w=@risedle/chains
+```

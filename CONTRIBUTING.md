@@ -17,10 +17,11 @@ have that are not covered in this guide.
 ### Code of Conduct
 
 The Risedle project adheres to the [Risedle Code of Conduct][risedle-coc]. This
-code of conduct describes the _minimum_ behavior expected from all contributors.
+code of conduct describes the _minimum_ behavior expected from all
+contributors.
 
-Instances of violations of the Code of Conduct can be reported by contacting the
-team at [bayu@risedle.com](mailto:bayu@risedle.com).
+Instances of violations of the Code of Conduct can be reported by contacting
+the team at [bayu@risedle.com](mailto:bayu@risedle.com).
 
 ### Ways to contribute
 
@@ -41,11 +42,11 @@ participate in the discussion around bugs and participate in reviewing PRs.
 
 ### Asking for help
 
-If you have reviewed existing documentation and still have questions, or you are
-having problems, you can get help in the following ways:
+If you have reviewed existing documentation and still have questions, or you
+are having problems, you can get help in the following ways:
 
--   **Asking in the support Discord:** The [Risedle Discord][risedle-discord] is
-    a fast and easy way to ask questions.
+-   **Asking in the support Discord:** The [Risedle Discord][risedle-discord]
+    is a fast and easy way to ask questions.
 -   **Opening a discussion:** This repository comes with a discussions board
     where you can also ask for help. Click the "Discussions" tab in the top.
 

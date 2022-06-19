@@ -1,62 +1,27 @@
-# Risedle Monorepo
+# Risedle Labs Monorepo
 
-This monorepo is created using [turborepo](https://turborepo.org/).
+Welcome to Risedle Labs Monorepo!
 
-## What's inside?
+This repository is a home of all Risedle Labs source code. We love to build on
+public. This monorepo is created using [turborepo](https://turborepo.org/).
 
-This turborepo uses [npm](https://www.npmjs.com/) as a package manager. It
-includes the following packages/apps:
+### Your Monorepomap
 
-### Apps and Packages
+Looking at a bunch of directories and source codes can be intimidating
+sometimes. Luckily we have provided minimap to accompany your contribution
+journey:
 
--   `docs`: a [Next.js](https://nextjs.org) app
--   `web`: another [Next.js](https://nextjs.org) app
--   `ui`: a stub React component library shared by both `web` and `docs`
-    applications
--   `eslint-config-custom`: `eslint` configurations (includes
-    `eslint-config-next` and `eslint-config-prettier`)
--   `tsconfig`: `tsconfig.json`s used throughout the monorepo
+![Risedle Labs Monorepomap](./map.png)
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+-   **[apps](./apps)** is a home of all standalone and deployable apps that
+    created by Risedle Labs team.
+-   **[packages](./packages)** is a home of all libraries that used across
+    projects created by Risedle Labs team.
 
-### Utilities
+### Useful Links
 
-This turborepo has some additional tools already setup for you:
-
--   [TypeScript](https://www.typescriptlang.org/) for static type checking
--   [ESLint](https://eslint.org/) for code linting
--   [Prettier](https://prettier.io) for code formatting
-
-## Setup
-
-This repository is used in the `npx create-turbo@latest` command, and selected
-when choosing which package manager you wish to use with your monorepo (npm).
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-npm run build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-npm run dev
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
--   [Pipelines](https://turborepo.org/docs/core-concepts/pipelines)
--   [Caching](https://turborepo.org/docs/core-concepts/caching)
--   [Remote Caching (Beta)](https://turborepo.org/docs/core-concepts/remote-caching)
--   [Scoped Tasks](https://turborepo.org/docs/core-concepts/scopes)
--   [Configuration Options](https://turborepo.org/docs/reference/configuration)
--   [CLI Usage](https://turborepo.org/docs/reference/command-line-reference)
+-   [Risedle Labs Website](https://risedle.com)
+-   [Risedle Exchange Website](https://risedle.exchange)
+-   [Risedle Exchange Storybook](https://storybook.risedle.exchange)
+-   [Risedle Labs Twitter](https://twitter.com/risedle)
+-   [Risedle Labs Discord](https://discord.com/invite/YCSCd97SXj)

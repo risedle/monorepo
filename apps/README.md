@@ -14,7 +14,8 @@ The app should written in Typescript and use one of the following stacks:
 3. [Express.js](https://expressjs.com/) App
 
 These basic requirements are used to ensure that we can transfer knowledge
-between engineers easily and it's designed that one-man can handle all the apps.
+between engineers easily and it's designed that one-man can handle all the
+apps.
 
 All app should have `package.json` with the following settings:
 

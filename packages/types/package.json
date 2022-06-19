@@ -1,6 +1,6 @@
 {
-    "name": "@risedle/ui",
-    "version": "1.0.0",
+    "name": "@risedle/types",
+    "version": "1.1.0",
     "license": "MIT",
     "source": "src/index.ts",
     "main": "dist/index.js",
@@ -12,7 +12,7 @@
     "scripts": {
         "clean": "rm -rf dist",
         "build": "tsc",
-        "lint": "eslint src/**/*.ts*"
+        "lint": "eslint src/*.ts"
     },
     "prepublish": "tsc",
     "homepage": "https://risedle.com",
@@ -30,18 +30,11 @@
     },
     "contributors": [],
     "devDependencies": {
-        "@types/react": "^17.0.37",
-        "@types/react-dom": "^17.0.11",
-        "eslint": "^7.32.0",
-        "eslint-config-custom": "*",
-        "react": "^17.0.2",
-        "tsconfig": "*",
-        "typescript": "^4.5.2",
         "@semantic-release/git": "10.0.1",
         "semantic-release": "19.0.3"
     },
     "release": {
-        "tagFormat": "@risedle/ui-v${version}",
+        "tagFormat": "@risedle/types-v${version}",
         "branches": [
             "main"
         ],
@@ -52,14 +45,27 @@
                     "preset": "conventionalcommits",
                     "releaseRules": [
                         {
-                            "scope": "!*@risedle/ui*",
+                            "scope": "!*@risedle/types*",
                             "release": false
+                        },
+                        {
+                            "breaking": true,
+                            "release": false
+                        },
+                        {
+                            "scope": "@risedle/types",
+                            "type": "bump",
+                            "release": "major"
                         }
                     ]
                 }
             ],
-            "@semantic-release/release-notes-generator",
-            "@semantic-release/npm",
+            [
+                "@semantic-release/npm",
+                {
+                    "tarballDir": "."
+                }
+            ],
             [
                 "@semantic-release/github",
                 {
@@ -68,7 +74,7 @@
                     "assets": [
                         {
                             "path": "*.tgz",
-                            "label": "@risedle/ui"
+                            "label": "@risedle/types"
                         }
                     ],
                     "labels": false
@@ -77,9 +83,13 @@
             [
                 "@semantic-release/git",
                 {
-                    "message": "chore(release): @risedle/ui ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+                    "message": "chore(release): @risedle/types ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
                 }
             ]
         ]
+    },
+    "dependencies": {},
+    "exports": {
+        "./*": "./dist/*.js"
     }
 }

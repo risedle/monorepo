@@ -20,8 +20,8 @@ the migrations.
 
 ### Deployment
 
-Risedle API is automatically deployed via Github Actions and can be accessed via
-the following URL:
+Risedle API is automatically deployed via Github Actions and can be accessed
+via the following URL:
 
 -   **Production** [https://api.risedle.exchange](https://api.risedle.exchange)
 -   **Staging**

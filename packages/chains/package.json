@@ -1,6 +1,6 @@
 {
     "name": "@risedle/chains",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "source": "src/index.ts",
     "main": "dist/index.js",
@@ -48,12 +48,25 @@
                         {
                             "scope": "!*@risedle/chains*",
                             "release": false
+                        },
+                        {
+                            "breaking": true,
+                            "release": false
+                        },
+                        {
+                            "scope": "@risedle/chains",
+                            "type": "bump",
+                            "release": "major"
                         }
                     ]
                 }
             ],
-            "@semantic-release/release-notes-generator",
-            "@semantic-release/npm",
+            [
+                "@semantic-release/npm",
+                {
+                    "tarballDir": "."
+                }
+            ],
             [
                 "@semantic-release/github",
                 {
@@ -75,5 +88,11 @@
                 }
             ]
         ]
+    },
+    "dependencies": {
+        "@risedle/types": "1.0.2"
+    },
+    "exports": {
+        "./*": "./dist/*.js"
     }
 }
