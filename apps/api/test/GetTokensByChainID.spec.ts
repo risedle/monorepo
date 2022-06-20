@@ -20,4 +20,14 @@ describe("GET /chainId/tokens", () => {
             });
         });
     });
+
+    describe("given Binance Smart Chain", () => {
+        it("should responds OK", async () => {
+            const res = await request(server)
+                .get("/v1/56/tokens")
+                .set("Accept", "application/json");
+            expect(res.status).toBe(200);
+            expect(res.body.tokens.length).toBeGreaterThan(1);
+        });
+    });
 });

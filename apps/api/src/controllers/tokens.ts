@@ -24,7 +24,7 @@ async function GetTokensByChainId(req: Request, res: Response) {
         return res.status(404).json({ errors: errors.array() });
     }
     // const chainId: ChainId = ChainId[req.params.chainId as unknown as string];
-    const tokenInfos = tokensService.getTokensByChainId(
+    const tokenInfos = await tokensService.getTokensByChainId(
         req.params.chainId as unknown as ChainId
     );
     return res.json({ tokens: tokenInfos });
