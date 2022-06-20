@@ -1,15 +1,15 @@
 import express from "express";
-import quotes from "../controllers/quotes";
-import tokens from "../controllers/tokens";
+import quotesController from "../controllers/quotes";
+import tokensController from "../controllers/tokens";
 
 const router = express.Router();
 
-router.get("/quotes", quotes.GetQuotes);
+router.get("/quotes", quotesController.GetQuotes);
 
 router.get(
     "/:chainId/tokens",
-    tokens.GetTokensByChainIdValidation,
-    tokens.GetTokensByChainId
+    tokensController.GetTokensByChainIdValidation,
+    tokensController.GetTokensByChainId
 );
 
 export { router };

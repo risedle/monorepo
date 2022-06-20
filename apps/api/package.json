@@ -33,6 +33,9 @@
         "supertest": "6.2.3"
     },
     "dependencies": {
+        "@risedle/chains": "1.2.0",
+        "@risedle/tokens": "1.0.0",
+        "@risedle/types": "1.1.2",
         "@sentry/node": "7.1.1",
         "cors": "2.8.5",
         "dotenv": "16.0.1",
@@ -40,6 +43,7 @@
         "ethers-multicall": "0.2.3",
         "express": "4.18.1",
         "express-validator": "6.14.1",
+        "graphql-request": "4.3.0",
         "morgan": "1.10.0",
         "pg": "8.7.3",
         "swagger-ui-express": "4.4.0",
