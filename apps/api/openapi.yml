@@ -39,9 +39,12 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Token"
+                type: object
+                properties:
+                  tokens:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/TokenInfo"
         404:
           description: |
             Chain ID not supported
@@ -171,7 +174,7 @@ components:
         amountOutAfterFeeUSD:
           $ref: "#/components/schemas/USD"
 
-    Token:
+    TokenInfo:
       description: ERC20 token metadata & market information
       type: object
       properties:
@@ -202,13 +205,27 @@ components:
             Price change (%) in the last 24 hours. It can be negative.
           $ref: "#/components/schemas/USD"
         volumeUSD:
-          description: Current token price in USD
+          description: Current token trade volume in USD
           $ref: "#/components/schemas/USD"
         dailyVolumeChangeUSD:
           description: |
-            Price change (USD) in the last 24 hours. It can be negative.
+            Volume change (USD) in the last 24 hours. It can be negative.
           $ref: "#/components/schemas/USD"
         dailyVolumeChangePercentage:
           description: |
-            Price change (%) in the last 24 hours. It can be negative.
+            Volume change (%) in the last 24 hours. It can be negative.
           $ref: "#/components/schemas/USD"
+        totalLiqudity:
+          description: |
+            Total available liquidity
+          type: number
+          example: 100000000
+        totalLiquidityUSD:
+          description: |
+            Total available liquidity (USD)
+          $ref: "#/components/schemas/USD"
+        source:
+          description: |
+            The source data of token info
+          type: string
+          example: PancakeSwapSubgraph
