@@ -48,6 +48,7 @@ const pancakeSwapQuery = gql`
                 date
                 priceUSD
                 dailyVolumeUSD
+                totalLiquidityUSD
             }
         }
     }
@@ -104,7 +105,7 @@ export async function getTokenInfoFromPancakeSwapSubgraph(
             source: TokenInfoSource.PancakeSwapSubgraph,
             totalLiquidity: parseFloat(tokenInfo.totalLiquidity),
             totalLiquidityUSD: parseFloat(
-                tokenInfo.tokanDatData[0].totalLiquidityUSD
+                tokenInfo.tokenDayData[0].totalLiquidityUSD
             ),
         });
     }

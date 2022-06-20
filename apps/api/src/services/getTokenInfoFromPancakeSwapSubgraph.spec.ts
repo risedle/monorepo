@@ -36,13 +36,13 @@ describe("getTokenInfoFromPancakeSwapSubgraph", () => {
                 "0xe9e7cea3dedca5984780bafc599bd69add087d56"
             );
             expect(tokens[0]!.priceUSD).toBeGreaterThan(0.8);
-            expect(tokens[0]!.dailyPriceChangeUSD).toBeDefined();
-            expect(tokens[0]!.dailyPriceChangePercentage).toBeDefined();
+            expect(tokens[0]!.dailyPriceChangeUSD).toBeTruthy();
+            expect(tokens[0]!.dailyPriceChangePercentage).toBeTruthy();
             expect(tokens[0]!.volumeUSD).toBeGreaterThan(1000000);
-            expect(tokens[0]!.dailyVolumeChangeUSD).toBeDefined();
-            expect(tokens[0]!.dailyVolumeChangePercentage).toBeDefined();
-            expect(tokens[1]!.totalLiquidity).toBeDefined();
-            expect(tokens[0]!.totalLiquidityUSD).toBeDefined();
+            expect(tokens[0]!.dailyVolumeChangeUSD).toBeTruthy();
+            expect(tokens[0]!.dailyVolumeChangePercentage).toBeTruthy();
+            expect(tokens[0]!.totalLiquidity).toBeTruthy();
+            expect(tokens[0]!.totalLiquidityUSD).toBeTruthy();
             expect(tokens[1]).toBe(undefined);
         });
     });
@@ -55,8 +55,8 @@ describe("getTokenInfoFromPancakeSwapSubgraph", () => {
                 // USDC
                 "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
             ]);
-            console.log(tokens);
             expect(tokens.length).toBe(2);
+
             expect(tokens[0]!.name).toBe("BUSD Token");
             expect(tokens[0]!.symbol).toBe("BUSD");
             expect(tokens[0]!.decimals).toBe(18);
@@ -64,13 +64,13 @@ describe("getTokenInfoFromPancakeSwapSubgraph", () => {
                 "0xe9e7cea3dedca5984780bafc599bd69add087d56"
             );
             expect(tokens[0]!.priceUSD).toBeGreaterThan(0.8);
-            expect(tokens[0]!.dailyPriceChangeUSD).toBeDefined();
-            expect(tokens[0]!.dailyPriceChangePercentage).toBeDefined();
+            expect(tokens[0]!.dailyPriceChangeUSD).toBeTruthy();
+            expect(tokens[0]!.dailyPriceChangePercentage).toBeTruthy();
             expect(tokens[0]!.volumeUSD).toBeGreaterThan(1000000);
-            expect(tokens[0]!.dailyVolumeChangeUSD).toBeDefined();
-            expect(tokens[0]!.dailyVolumeChangePercentage).toBeDefined();
-            expect(tokens[1]!.totalLiquidity).toBeDefined();
-            expect(tokens[0]!.totalLiquidityUSD).toBeDefined();
+            expect(tokens[0]!.dailyVolumeChangeUSD).toBeTruthy();
+            expect(tokens[0]!.dailyVolumeChangePercentage).toBeTruthy();
+            expect(tokens[1]!.totalLiquidity).toBeTruthy();
+            expect(tokens[0]!.totalLiquidityUSD).toBeTruthy();
 
             expect(tokens[1]!.name).toBe("USD Coin");
             expect(tokens[1]!.symbol).toBe("USDC");
@@ -79,13 +79,13 @@ describe("getTokenInfoFromPancakeSwapSubgraph", () => {
                 "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d"
             );
             expect(tokens[1]!.priceUSD).toBeGreaterThan(0.8);
-            expect(tokens[1]!.dailyPriceChangeUSD).toBeDefined();
-            expect(tokens[1]!.dailyPriceChangePercentage).toBeDefined();
+            expect(tokens[1]!.dailyPriceChangeUSD).toBeTruthy();
+            expect(tokens[1]!.dailyPriceChangePercentage).toBeTruthy();
             expect(tokens[1]!.volumeUSD).toBeGreaterThan(1111111);
-            expect(tokens[1]!.dailyVolumeChangeUSD).toBeDefined();
-            expect(tokens[1]!.dailyVolumeChangePercentage).toBeDefined();
-            expect(tokens[1]!.totalLiquidity).toBeDefined();
-            expect(tokens[1]!.totalLiquidityUSD).toBeDefined();
+            expect(tokens[1]!.dailyVolumeChangeUSD).toBeTruthy();
+            expect(tokens[1]!.dailyVolumeChangePercentage).toBeTruthy();
+            expect(tokens[1]!.totalLiquidity).toBeTruthy();
+            expect(tokens[1]!.totalLiquidityUSD).toBeTruthy();
         });
     });
 });
