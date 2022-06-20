@@ -7,7 +7,8 @@
         "build": "tsc",
         "lint": "eslint src/**/*.ts",
         "test": "jest",
-        "dev": "node dist/index.js"
+        "dev:server": "node dist/index.js",
+        "dev": "nodemon"
     },
     "author": {
         "name": "bayu",
@@ -28,6 +29,7 @@
         "@types/supertest": "2.0.12",
         "@types/swagger-ui-express": "4.1.3",
         "@types/yamljs": "0.2.31",
+        "nodemon": "2.0.16",
         "supertest": "6.2.3"
     },
     "dependencies": {
@@ -43,5 +45,15 @@
         "swagger-ui-express": "4.4.0",
         "typeorm": "0.3.6",
         "yamljs": "0.3.0"
+    },
+    "nodemonConfig": {
+        "exec": "NODE_ENV=development npm run build && npm run dev:server",
+        "watch": "./src",
+        "ext": "ts",
+        "ignore": [
+            ".git",
+            "node_modules",
+            "dist"
+        ]
     }
 }
