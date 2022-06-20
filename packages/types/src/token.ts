@@ -36,4 +36,6 @@ export interface TokenInfo {
     dailyVolumeChangeUSD: number;
     dailyVolumeChangePercentage: number;
     source: TokenInfoSource;
+    totalLiquidity: number;
+    totalLiquidityUSD: number;
 }
