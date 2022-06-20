@@ -16,7 +16,7 @@ jobs:
       deployments: write
     environment:
       name: api-stag
-      url: https://api-stag.risedle.exchange
+      url: https://apiedge.risedle.exchange
     steps:
       - name: Check out code
         uses: actions/checkout@v2

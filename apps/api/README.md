@@ -25,7 +25,7 @@ via the following URL:
 
 -   **Production** [https://api.risedle.exchange](https://api.risedle.exchange)
 -   **Staging**
-    [https://edge.api.risedle.exchange](https://edge.api.risedle.exchange)
+    [https://apiedge.risedle.exchange](https://apiedge.risedle.exchange)
 
 ### Upgrading internal dependencies
 

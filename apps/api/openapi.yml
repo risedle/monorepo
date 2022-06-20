@@ -6,7 +6,7 @@ info:
 
 servers:
   - description: Staging
-    url: https://edge.api.risedle.exchange
+    url: https://apiedge.risedle.exchange
   - description: Production
     url: https://api.risedle.exchange
   - description: Local
