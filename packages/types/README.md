@@ -5,7 +5,7 @@ Type definitions used across Risedle apps and packages.
 ### Installation
 
 ```sh
-npm install --save-exact @risedle/types@latest
+npm install --save --save-exact @risedle/types@latest
 ```
 
 ### Usage
