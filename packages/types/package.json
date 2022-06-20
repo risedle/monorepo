@@ -1,6 +1,6 @@
 {
-    "name": "@risedle/chains",
-    "version": "1.2.0",
+    "name": "@risedle/types",
+    "version": "1.1.2",
     "license": "MIT",
     "source": "src/index.ts",
     "main": "dist/index.js",
@@ -12,8 +12,7 @@
     "scripts": {
         "clean": "rm -rf dist",
         "build": "tsc",
-        "lint": "eslint src/*.ts",
-        "test": "jest"
+        "lint": "eslint src/*.ts"
     },
     "prepublish": "tsc",
     "homepage": "https://risedle.com",
@@ -30,15 +29,13 @@
         "url": "https://github.com/pyk"
     },
     "contributors": [],
-    "dependencies": {
-        "@risedle/types": "1.1.1"
-    },
+    "dependencies": {},
     "devDependencies": {
         "@semantic-release/git": "10.0.1",
         "semantic-release": "19.0.3"
     },
     "release": {
-        "tagFormat": "@risedle/chains-v${version}",
+        "tagFormat": "@risedle/types-v${version}",
         "branches": [
             "main"
         ],
@@ -49,7 +46,7 @@
                     "preset": "conventionalcommits",
                     "releaseRules": [
                         {
-                            "scope": "!*@risedle/chains*",
+                            "scope": "!*@risedle/types*",
                             "release": false
                         },
                         {
@@ -57,7 +54,7 @@
                             "release": false
                         },
                         {
-                            "scope": "@risedle/chains",
+                            "scope": "@risedle/types",
                             "type": "bump",
                             "release": "major"
                         }
@@ -78,7 +75,7 @@
                     "assets": [
                         {
                             "path": "*.tgz",
-                            "label": "@risedle/chains"
+                            "label": "@risedle/types"
                         }
                     ],
                     "labels": false
@@ -87,7 +84,7 @@
             [
                 "@semantic-release/git",
                 {
-                    "message": "chore(release): @risedle/chains ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+                    "message": "chore(release): @risedle/types ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
                 }
             ]
         ]

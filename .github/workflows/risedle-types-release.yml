@@ -1,12 +1,12 @@
-name: "@risedle/chains"
+name: "@risedle/types"
 
 on:
   push:
     branches:
       - main
     paths:
-      - "packages/chains/**"
-      - ".github/workflows/risedle-chains-release.yml"
+      - "packages/types/**"
+      - ".github/workflows/risedle-types-release.yml"
 
 jobs:
   release:
@@ -24,12 +24,9 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
-      - name: Test
-        run: npm test
-        working-directory: ./packages/chains
       - name: Set access to public
         run: npm config set access public
-        working-directory: ./packages/chains
+        working-directory: ./packages/types
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -39,4 +36,4 @@ jobs:
           GIT_COMMITTER_NAME: Risedle
           GIT_COMMITTER_EMAIL: github@risedle.com
         run: npx semantic-release
-        working-directory: ./packages/chains
+        working-directory: ./packages/types

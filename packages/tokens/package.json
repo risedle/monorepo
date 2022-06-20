@@ -1,6 +1,6 @@
 {
-    "name": "@risedle/chains",
-    "version": "1.2.0",
+    "name": "@risedle/tokens",
+    "version": "1.0.0",
     "license": "MIT",
     "source": "src/index.ts",
     "main": "dist/index.js",
@@ -31,14 +31,14 @@
     },
     "contributors": [],
     "dependencies": {
-        "@risedle/types": "1.1.1"
+        "@risedle/types": "1.1.2"
     },
     "devDependencies": {
         "@semantic-release/git": "10.0.1",
         "semantic-release": "19.0.3"
     },
     "release": {
-        "tagFormat": "@risedle/chains-v${version}",
+        "tagFormat": "@risedle/tokens-v${version}",
         "branches": [
             "main"
         ],
@@ -49,7 +49,7 @@
                     "preset": "conventionalcommits",
                     "releaseRules": [
                         {
-                            "scope": "!*@risedle/chains*",
+                            "scope": "!*@risedle/tokens*",
                             "release": false
                         },
                         {
@@ -57,7 +57,7 @@
                             "release": false
                         },
                         {
-                            "scope": "@risedle/chains",
+                            "scope": "@risedle/tokens",
                             "type": "bump",
                             "release": "major"
                         }
@@ -78,7 +78,7 @@
                     "assets": [
                         {
                             "path": "*.tgz",
-                            "label": "@risedle/chains"
+                            "label": "@risedle/tokens"
                         }
                     ],
                     "labels": false
@@ -87,7 +87,7 @@
             [
                 "@semantic-release/git",
                 {
-                    "message": "chore(release): @risedle/chains ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+                    "message": "chore(release): @risedle/tokens ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
                 }
             ]
         ]
