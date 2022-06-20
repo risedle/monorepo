@@ -25,4 +25,12 @@ via the following URL:
 
 -   **Production** [https://api.risedle.exchange](https://api.risedle.exchange)
 -   **Staging**
-    [https://api-stag.risedle.exchange](https://api-stag.risedle.exchange)
+    [https://apiedge.risedle.exchange](https://apiedge.risedle.exchange)
+
+### Upgrading internal dependencies
+
+Run the following command to update the internal packages:
+
+```sh
+npm i --save --save-exact @risedle/types@latest @risedle/chains@latest @risedle/tokens@latest -w=api
+```

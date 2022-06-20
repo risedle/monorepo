@@ -12,8 +12,8 @@ processes = []
 [experimental]
   allowed_public_ports = []
   auto_rollback = true
-  cmd = ["node", "dist/server.js"]
-  entrypoint = ["node", "dist/server.js"]
+  cmd = ["node", "dist/index.js"]
+  entrypoint = ["node", "dist/index.js"]
 
 [[services]]
   internal_port = 3000
