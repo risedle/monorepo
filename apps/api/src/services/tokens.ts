@@ -102,7 +102,9 @@ export async function getTokenInfoFromPancakeSwapSubgraph(
             volumeUSD: parseFloat(tokenInfo.tradeVolumeUSD),
             dailyVolumeChangeUSD,
             dailyVolumeChangePercentage,
-            source: TokenInfoSource.PancakeSwapSubgraph,
+            source: TokenInfoSource[
+                TokenInfoSource.PancakeSwapSubgraph
+            ] as unknown as TokenInfoSource,
             totalLiquidity: parseFloat(tokenInfo.totalLiquidity),
             totalLiquidityUSD: parseFloat(
                 tokenInfo.tokenDayData[0].totalLiquidityUSD
