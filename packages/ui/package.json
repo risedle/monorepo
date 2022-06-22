@@ -54,12 +54,25 @@
                         {
                             "scope": "!*@risedle/ui*",
                             "release": false
+                        },
+                        {
+                            "breaking": true,
+                            "release": false
+                        },
+                        {
+                            "scope": "@risedle/ui",
+                            "type": "bump",
+                            "release": "major"
                         }
                     ]
                 }
             ],
-            "@semantic-release/release-notes-generator",
-            "@semantic-release/npm",
+            [
+                "@semantic-release/npm",
+                {
+                    "tarballDir": "."
+                }
+            ],
             [
                 "@semantic-release/github",
                 {
