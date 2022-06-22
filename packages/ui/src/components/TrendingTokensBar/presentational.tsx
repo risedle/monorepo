@@ -1,5 +1,5 @@
 import type { FunctionComponent } from "react";
-import { TokenInfo } from "@risedle/types/token";
+import { TokenInfo } from "@risedle/types";
 import Link from "next/link";
 
 /**
