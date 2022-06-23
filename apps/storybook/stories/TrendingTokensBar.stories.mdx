@@ -1,0 +1,74 @@
+import { Canvas, Story, ArgsTable } from "@storybook/addon-docs";
+import { TrendingTokensBar } from "./TrendingTokensBar";
+
+<Meta
+    title="Risedle UI/Trending Tokens Bar"
+    component={TrendingTokensBar}
+    argTypes={{
+        tokens: {
+            type: {
+                required: false,
+            },
+            table: {
+                defaultValue: { summary: "undefined" },
+            },
+        },
+    }}
+/>
+
+export const Template = (args) => <TrendingTokensBar {...args} />;
+
+# Trending Tokens Bar
+
+**TrendingTokensBar** is a stateless or presentational component.
+
+-   **TrendingTokensBar** doesn't fetch [`TokenInfo`][tokeninfo] data directly.
+-   `tokens` props are passed by parent container component:
+    **TrendingTokensBarContainer**.
+-   **TrendingTokensBar** takes props list of [`TokenInfo`][tokeninfo] and
+    render DOM only.
+
+For any amount of `tokens` the **TrendingTokensBar** will fill current
+viewport.
+
+Example usage:
+
+```typescript
+import { TrendingTokensBar } from "@risedle/ui";
+
+export const Component = () => {
+    // Fetch data or something
+    return <TrendingTokensBar tokens={{ data }} />;
+};
+```
+
+<ArgsTable story="Without Tokens" />
+
+### Without Tokens
+
+<Canvas withSource="open">
+    <Story
+        name="Without Tokens"
+        args={{
+            tokens: undefined,
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### With Tokens
+
+<Canvas withSource="open">
+    <Story
+        name="With Tokens"
+        args={{
+            tokens: undefined,
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+[tokeninfo]:
+    https://github.com/risedle/monorepo/blob/main/packages/types/src/token.ts#L27

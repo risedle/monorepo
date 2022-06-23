@@ -12,8 +12,8 @@
     },
     "license": "MIT",
     "devDependencies": {
-        "@risedle/ui": "*",
         "@babel/core": "^7.18.5",
+        "@risedle/ui": "*",
         "@storybook/addon-actions": "^6.5.9",
         "@storybook/addon-essentials": "^6.5.9",
         "@storybook/addon-interactions": "^6.5.9",
