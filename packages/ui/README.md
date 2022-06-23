@@ -25,19 +25,20 @@ Resources:
 npm install --save --save-exact @risedle/ui@latest
 ```
 
-TODO: add tailwind presets here
-
-### Usage
-
-In order to use for Typescript apps, you need to set `node16` as
-`moduleResolution` in the compiler options.
+To install locally on another package inside this monorepo, use the following
+syntax in the `package.json`:
 
 ```json
-    "compilerOptions": {
-        ...
-        "moduleResolution": "node16",
-    },
+{
+    "dependencies": {
+        "@risedle/ui": "*"
+    }
+}
 ```
+
+Don't forget to run `npm install` on monorepo root.
+
+### Usage
 
 Here is the example on how to use `@risedle/ui`:
 
@@ -68,9 +69,14 @@ To test out the component, you need to create the stories inside the
 Run storybook locally to iterate the UI design faster:
 
 ```sh
-cd apps/storybook
+# In monorepo root
 npm run storybook
 ```
+
+This will run two process in parallel:
+
+-   Auto-build `@risedle/ui` on every changes
+-   Auto-reload storybook server on evert changes
 
 If your component story is not loaded in the Storybook, check the error on the
 console.

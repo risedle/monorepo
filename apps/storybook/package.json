@@ -12,6 +12,7 @@
     },
     "license": "MIT",
     "devDependencies": {
+        "@risedle/ui": "*",
         "@babel/core": "^7.18.5",
         "@storybook/addon-actions": "^6.5.9",
         "@storybook/addon-essentials": "^6.5.9",
@@ -21,9 +22,9 @@
         "@storybook/manager-webpack4": "^6.5.9",
         "@storybook/react": "^6.5.9",
         "@storybook/testing-library": "^0.0.13",
-        "babel-loader": "^8.2.5"
-    },
-    "dependencies": {
-        "@risedle/ui": "file:packages/ui"
+        "autoprefixer": "^10.4.7",
+        "babel-loader": "^8.2.5",
+        "postcss": "^8.4.14",
+        "tailwindcss": "^3.1.4"
     }
 }

@@ -12,7 +12,8 @@
     "scripts": {
         "clean": "rm -rf dist",
         "build": "tsc",
-        "lint": "eslint src/**/*.ts*"
+        "lint": "eslint src/**/*.ts*",
+        "storybook": "nodemon"
     },
     "prepublish": "tsc",
     "homepage": "https://risedle.com",
@@ -35,6 +36,7 @@
         "@types/react-dom": "^17.0.11",
         "eslint": "^7.32.0",
         "eslint-config-custom": "*",
+        "nodemon": "^2.0.16",
         "react": "^17.0.2",
         "semantic-release": "19.0.3",
         "tsconfig": "*",
@@ -97,5 +99,15 @@
     },
     "dependencies": {
         "@risedle/types": "1.2.0"
+    },
+    "nodemonConfig": {
+        "exec": "NODE_ENV=development npm run build",
+        "watch": "./src",
+        "ext": "tsx,ts",
+        "ignore": [
+            ".git",
+            "node_modules",
+            "dist"
+        ]
     }
 }

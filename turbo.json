@@ -18,6 +18,15 @@
         },
         "dev": {
             "cache": false
+        },
+        "storybook": {
+            "dependsOn": ["build"],
+            "inputs": [
+                "src/**/*.tsx",
+                "src/**/*.ts",
+                "storybook/**/*.ts",
+                "storybook/**/*.tsx"
+            ]
         }
     }
 }
