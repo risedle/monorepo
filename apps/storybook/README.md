@@ -8,11 +8,8 @@ To start the development run the following command:
 npm run storybook
 ```
 
-To create new component:
-
-1. Go to [@risedle/ui](../../packages/ui)
-2. Create new `tsx` component file
-3. Create new stories in here
+To create new component please follow this
+[guide](https://github.com/risedle/monorepo/tree/main/packages/ui#develop-new-component).
 
 ### Preview Deployment
 
