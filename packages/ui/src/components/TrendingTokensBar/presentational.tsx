@@ -9,5 +9,5 @@ export interface TrendingTokensBarProps {
 }
 
 export const TrendingTokensBar = (props: TrendingTokensBarProps) => {
-    return <div>OK</div>;
+    return <div className="bg-red-500 w-screen">OK</div>;
 };

@@ -5,3 +5,9 @@
 import { TrendingTokensBar as Component } from "@risedle/ui";
 
 export const TrendingTokensBar = Component;
+
+export const Hello = () => {
+    return (
+        <div className="bg-red-500 text-3xl font-bold underline">Helloooo</div>
+    );
+};
