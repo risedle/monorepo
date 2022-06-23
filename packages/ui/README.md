@@ -36,7 +36,7 @@ syntax in the `package.json`:
 }
 ```
 
-Don't forget to run `npm install` on monorepo root.
+Don't forget to run `npm ci` & `npm run buil` on monorepo root.
 
 ### Usage
 
@@ -50,21 +50,23 @@ import { TrendingTokensBar, TrendingTokensBarContainer } from "@risedle/ui";
 
 Step by step to create new component:
 
-1. Create new directory inside [src/components](./src/components). For example
-   [src/components/TrendingTokensBar](./src/components/TrendingTokensBar).
-2. Create new `presentational.tsx` inside the directory and write the
-   presentational/stateless component. For example
-   [src/components/TrendingTokensBar/presentational.tsx](./src/components/TrendingTokensBar/presentational.tsx).
-3. (Optional) Create new `container.tsx` inside directory and write the
-   container/stateful component. For example
-   [src/components/TrendingTokensBar/container.tsx](./src/components/TrendingTokensBar/container.tsx).
-4. Create new `index.tsx` inside the directory and import the presentational
-   and container component (if any). For example
-   [src/components/TrendingTokensBar/index.tsx](./src/components/TrendingTokensBar/index.tsx).
+1. Start from storybook first and answer the following questions:
+    - What is component for?
+    - Is it stateless/presentational or stateful/container?
+    - See example:
+      [TrendingTokensBar](../../apps/storybook/stories/TrendingTokensBar.stories.mdx)
+2. Create new implementation in [src/components](./src/components).
+    - For stateless component, use `presentational.tsx` as the file name. For
+      example
+      [TrendingTokensBar/presentational.tsx](./src/components/TrendingTokensBar/presentational.tsx)
+    - For stateful component, use `container.tsx` as the file name. For example
+      [TrendingTokensBar/container.tsx](./src/components/TrendingTokensbar/container.tsx)
+3. Iterate: Refine the story documentation and update the implementation.
 
-To test out the component, you need to create the stories inside the
-[apps/storybook/stories](../../apps/storybook/stories). For example
-[apps/storybook/stories/TrendingTokensBar.stories.tsx](../../apps/storybook/stories/TrendingTOkensBar.stories.tsx).
+Notes:
+
+-   Please use minimal props as possible (e.g. Use optional props to define
+    loading state instead of separate props field).
 
 Run storybook locally to iterate the UI design faster:
 
