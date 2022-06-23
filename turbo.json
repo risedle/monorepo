@@ -20,7 +20,7 @@
             "cache": false
         },
         "storybook": {
-            "dependsOn": ["build"],
+            "cache": false,
             "inputs": [
                 "src/**/*.tsx",
                 "src/**/*.ts",
