@@ -12,7 +12,8 @@
     "scripts": {
         "clean": "rm -rf dist",
         "build": "tsc",
-        "lint": "eslint src/**/*.ts*"
+        "lint": "eslint src/**/*.ts*",
+        "storybook": "nodemon"
     },
     "prepublish": "tsc",
     "homepage": "https://risedle.com",
@@ -30,15 +31,16 @@
     },
     "contributors": [],
     "devDependencies": {
+        "@semantic-release/git": "10.0.1",
         "@types/react": "^17.0.37",
         "@types/react-dom": "^17.0.11",
         "eslint": "^7.32.0",
         "eslint-config-custom": "*",
+        "nodemon": "^2.0.16",
         "react": "^17.0.2",
+        "semantic-release": "19.0.3",
         "tsconfig": "*",
-        "typescript": "^4.5.2",
-        "@semantic-release/git": "10.0.1",
-        "semantic-release": "19.0.3"
+        "typescript": "^4.5.2"
     },
     "release": {
         "tagFormat": "@risedle/ui-v${version}",
@@ -93,6 +95,19 @@
                     "message": "chore(release): @risedle/ui ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
                 }
             ]
+        ]
+    },
+    "dependencies": {
+        "@risedle/types": "1.2.0"
+    },
+    "nodemonConfig": {
+        "exec": "NODE_ENV=development npm run build",
+        "watch": "./src",
+        "ext": "tsx,ts",
+        "ignore": [
+            ".git",
+            "node_modules",
+            "dist"
         ]
     }
 }

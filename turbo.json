@@ -18,6 +18,15 @@
         },
         "dev": {
             "cache": false
+        },
+        "storybook": {
+            "cache": false,
+            "inputs": [
+                "src/**/*.tsx",
+                "src/**/*.ts",
+                "storybook/**/*.ts",
+                "storybook/**/*.tsx"
+            ]
         }
     }
 }

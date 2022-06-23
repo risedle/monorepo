@@ -8,6 +8,8 @@
   </a>
 </p>
 
+### Get started
+
 Welcome to Risedle Labs Monorepo!
 
 This repository is a home of all Risedle Labs source code. We love to build on
@@ -27,6 +29,11 @@ journey:
     projects created by Risedle Labs team.
 
 ### Useful Links
+
+-   [Getting Started with npm Workspaces](https://ruanmartinelli.com/posts/npm-7-workspaces-1)
+-   [Monorepo Setup with NPM and TypeScript](https://javascript.plainenglish.io/monorepo-setup-with-npm-and-typescript-90b329ba7275)
+
+### Risedle Labs
 
 -   [Risedle Labs Website](https://risedle.com)
 -   [Risedle Exchange Website](https://risedle.exchange)
