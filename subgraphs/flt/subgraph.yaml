@@ -1,0 +1,55 @@
+specVersion: 0.0.4
+
+schema:
+  file: ./schema.graphql
+
+dataSources:
+  - kind: ethereum
+    name: RiseTokenFactory
+    network: bsc
+    source:
+      address: "0x46D06cf8052eA6FdbF71736AF33eD23686eA1452"
+      abi: RiseTokenFactory
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      file: ./src/RiseTokenFactory.ts
+      entities:
+        - RiseToken
+      abis:
+        - name: RiseTokenFactory
+          file: ./abis/RiseTokenFactory.json
+      eventHandlers:
+        - event: TokenCreated(address,address,address,uint256)
+          handler: handleTokenCreated
+
+templates:
+  - kind: ethereum/contract
+    name: RiseToken
+    network: bsc
+    source:
+      abi: RiseToken
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      file: ./src/RiseToken.ts
+      entities:
+        - RiseToken
+      abis:
+        - name: RiseToken
+          file: ./abis/RiseToken.json
+        - name: RiseTokenFactory
+          file: ./abis/RiseTokenFactory.json
+      eventHandlers:
+        - event: Buy((address,address,uint256,uint256,uint256,uint256,uint256,uint256))
+          handler: handleBuy
+        - event: Sell((address,address,uint256,uint256,uint256,uint256,uint256))
+          handler: handleSell
+        - event: Rebalanced(address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleRebalance
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      blockHandlers:
+        - handler: handleBlock
