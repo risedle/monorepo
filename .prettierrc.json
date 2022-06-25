@@ -4,23 +4,14 @@
     "semi": true,
     "singleQuote": false,
     "proseWrap": "always",
+    "printWidth": 79,
+    "useTabs": false,
+    "bracketSpacing": true,
     "overrides": [
         {
-            "files": ["*.tsx", "*.ts", "*.mdx", "*.md"],
+            "files": ["*.yml", "*.yaml"],
             "options": {
-                "printWidth": 79,
-                "tabWidth": 4,
-                "useTabs": false,
-                "singleQuote": false,
-                "bracketSpacing": true
-            }
-        },
-        {
-            "files": "*.yml",
-            "options": {
-                "tabWidth": 2,
-                "useTabs": false,
-                "singleQuote": false
+                "tabWidth": 2
             }
         }
     ]
