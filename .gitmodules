@@ -1,3 +1,6 @@
 [submodule "contracts/bsc/lib/flt"]
 	path = contracts/bsc/lib/flt
 	url = https://github.com/risedle/flt
+[submodule "contracts/bsc/lib/forge-std"]
+	path = contracts/bsc/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
