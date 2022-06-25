@@ -1,8 +1,10 @@
 /**
  * This dummy content is required in order to storybook infer the ArgsTable
  */
-
+import React from "react";
 import { TrendingTokensBar as Component } from "@risedle/ui";
+
+console.log("DEBUGG", Component);
 
 export const TrendingTokensBar = Component;
 

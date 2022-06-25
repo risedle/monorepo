@@ -1,3 +1,5 @@
+import React from "react";
+
 import "../stories/tailwind.css";
 
 export const parameters = {
