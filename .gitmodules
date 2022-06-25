@@ -1,0 +1,3 @@
+[submodule "contracts/bsc/lib/flt"]
+	path = contracts/bsc/lib/flt
+	url = https://github.com/risedle/flt
