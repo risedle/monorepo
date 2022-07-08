@@ -10,16 +10,9 @@
         "stateMutability": "nonpayable",
         "type": "constructor"
     },
-    { "inputs": [], "name": "FeeRecipientNotChanged", "type": "error" },
     {
-        "inputs": [
-            {
-                "internalType": "contract RiseToken",
-                "name": "token",
-                "type": "address"
-            }
-        ],
-        "name": "TokenExists",
+        "inputs": [],
+        "name": "FeeRecipientNotChanged",
         "type": "error"
     },
     {
@@ -41,7 +34,7 @@
             {
                 "indexed": true,
                 "internalType": "address",
-                "name": "previousOwner",
+                "name": "user",
                 "type": "address"
             },
             {
@@ -51,7 +44,7 @@
                 "type": "address"
             }
         ],
-        "name": "OwnershipTransferred",
+        "name": "OwnerUpdated",
         "type": "event"
     },
     {
@@ -59,21 +52,27 @@
         "inputs": [
             {
                 "indexed": false,
-                "internalType": "contract RiseToken",
+                "internalType": "address",
                 "name": "token",
                 "type": "address"
             },
             {
                 "indexed": false,
-                "internalType": "contract IfERC20",
-                "name": "fCollateral",
-                "type": "address"
+                "internalType": "string",
+                "name": "name",
+                "type": "string"
             },
             {
                 "indexed": false,
-                "internalType": "contract IfERC20",
-                "name": "fDebt",
-                "type": "address"
+                "internalType": "string",
+                "name": "symbol",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "bytes",
+                "name": "data",
+                "type": "bytes"
             },
             {
                 "indexed": false,
@@ -88,31 +87,31 @@
     {
         "inputs": [
             {
-                "internalType": "contract IfERC20",
-                "name": "_fCollateral",
-                "type": "address"
+                "internalType": "string",
+                "name": "_name",
+                "type": "string"
             },
             {
-                "internalType": "contract IfERC20",
-                "name": "_fDebt",
-                "type": "address"
+                "internalType": "string",
+                "name": "_symbol",
+                "type": "string"
             },
             {
-                "internalType": "contract UniswapAdapter",
-                "name": "_uniswapAdapter",
-                "type": "address"
+                "internalType": "bytes",
+                "name": "_data",
+                "type": "bytes"
             },
             {
-                "internalType": "contract RariFusePriceOracleAdapter",
-                "name": "_oracleAdapter",
+                "internalType": "address",
+                "name": "_implementation",
                 "type": "address"
             }
         ],
         "name": "create",
         "outputs": [
             {
-                "internalType": "contract RiseToken",
-                "name": "_riseToken",
+                "internalType": "contract IFLT",
+                "name": "_flt",
                 "type": "address"
             }
         ],
@@ -123,7 +122,11 @@
         "inputs": [],
         "name": "feeRecipient",
         "outputs": [
-            { "internalType": "address", "name": "", "type": "address" }
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
         ],
         "stateMutability": "view",
         "type": "function"
@@ -131,22 +134,17 @@
     {
         "inputs": [
             {
-                "internalType": "contract IfERC20",
-                "name": "",
-                "type": "address"
-            },
-            {
-                "internalType": "contract IfERC20",
+                "internalType": "address",
                 "name": "",
                 "type": "address"
             }
         ],
-        "name": "getToken",
+        "name": "isValid",
         "outputs": [
             {
-                "internalType": "contract RiseToken",
+                "internalType": "bool",
                 "name": "",
-                "type": "address"
+                "type": "bool"
             }
         ],
         "stateMutability": "view",
@@ -156,16 +154,13 @@
         "inputs": [],
         "name": "owner",
         "outputs": [
-            { "internalType": "address", "name": "", "type": "address" }
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
         ],
         "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "renounceOwnership",
-        "outputs": [],
-        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
@@ -183,30 +178,34 @@
     },
     {
         "inputs": [
-            { "internalType": "uint256", "name": "", "type": "uint256" }
-        ],
-        "name": "tokens",
-        "outputs": [
-            {
-                "internalType": "contract RiseToken",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
             {
                 "internalType": "address",
                 "name": "newOwner",
                 "type": "address"
             }
         ],
-        "name": "transferOwnership",
+        "name": "setOwner",
         "outputs": [],
         "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "tokens",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
         "type": "function"
     }
 ]

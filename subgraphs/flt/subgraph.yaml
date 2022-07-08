@@ -8,48 +8,41 @@ dataSources:
     name: RiseTokenFactory
     network: bsc
     source:
-      address: "0x46D06cf8052eA6FdbF71736AF33eD23686eA1452"
-      abi: RiseTokenFactory
+      address: "0x888884173B6E6f4B42731853b89c39591ac53d92"
+      abi: FLTFactory
+      startBlock: 19363000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
       language: wasm/assemblyscript
-      file: ./src/RiseTokenFactory.ts
+      file: ./src/factory.ts
       entities:
-        - RiseToken
+        - Factory
       abis:
-        - name: RiseTokenFactory
-          file: ./abis/RiseTokenFactory.json
+        - name: FLTFactory
+          file: ./abis/FLTFactory.json
       eventHandlers:
-        - event: TokenCreated(address,address,address,uint256)
+        - event: TokenCreated(address,string,string,bytes,uint256)
           handler: handleTokenCreated
 
 templates:
   - kind: ethereum/contract
-    name: RiseToken
+    name: FLT
     network: bsc
     source:
-      abi: RiseToken
+      abi: FLT
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
       language: wasm/assemblyscript
-      file: ./src/RiseToken.ts
+      file: ./src/flt.ts
       entities:
-        - RiseToken
+        - Token
       abis:
-        - name: RiseToken
-          file: ./abis/RiseToken.json
-        - name: RiseTokenFactory
-          file: ./abis/RiseTokenFactory.json
+        - name: FLT
+          file: ./abis/FLT.json
+        - name: FLTFactory
+          file: ./abis/FLTFactory.json
       eventHandlers:
-        - event: Buy((address,address,uint256,uint256,uint256,uint256,uint256,uint256))
-          handler: handleBuy
-        - event: Sell((address,address,uint256,uint256,uint256,uint256,uint256))
-          handler: handleSell
-        - event: Rebalanced(address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
-          handler: handleRebalance
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
-      blockHandlers:
-        - handler: handleBlock
