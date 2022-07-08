@@ -1,0 +1,162 @@
+type RiseTokenFactory @entity {
+    # factory address
+    id: ID!
+
+    # Rise Token info
+    riseTokenCount: Int!
+
+    # Total volume (mint + redeem)
+    totalVolumeUSD: BigDecimal!
+
+    # Transactions
+    txCount: BigInt!
+}
+
+type RiseToken @entity {
+    # RISE token address
+    id: ID!
+
+    # Mirrored from the smart contract
+    collateral: Bytes!
+    debt: Bytes!
+    fCollateral: Bytes!
+    fDebt: Bytes!
+    totalCollateral: BigInt!
+    totalDebt: BigInt!
+    maxBuy: BigInt!
+    fees: BigInt!
+    minLeverageRatio: BigInt!
+    maxLeverageRatio: BigInt!
+    step: BigInt! # Rebalancing step
+    discount: BigInt!
+    isInitialized: Boolean!
+
+    # derivs
+    feesUSD: BigDecimal!
+
+    # Creation stats
+    createdAtTimestamp: BigInt!
+    createdAtBlockNumber: BigInt!
+
+    # Fields used to help derived relationship
+    leveragePositions: [LeveragePosition!]! @derivedFrom(field: "riseToken")
+    mints: [Mint!]! @derivedFrom(field: "riseToken")
+    burns: [Burn!]! @derivedFrom(field: "riseToken")
+    rebalances: [Rebalance!]! @derivedFrom(field: "riseToken")
+}
+
+type User @entity {
+    # wallet address
+    id: ID!
+
+    leveragePositions: [LeveragePosition!] @derivedFrom(field: "user")
+    volumeUSD: BigDecimal!
+
+    mints: [Mint!]! @derivedFrom(field: "recipient")
+    burns: [Burn!]! @derivedFrom(field: "sender")
+}
+
+type LeveragePosition @entity {
+    # "wallet address"-"rise token address"
+    id: ID!
+
+    user: User!
+    riseToken: RiseToken!
+
+    # We can derive the following data:
+    # average entry price = sizeUSD / size
+    # PnL = current price - average entry price
+    size: BigInt!
+    sizeUSD: BigInt!
+}
+
+type Transaction @entity {
+    id: ID! # txn hash
+    blockNumber: BigInt!
+    timestamp: BigInt!
+    # This is not the reverse of Mint.transaction; it is only used to
+    # track incomplete mints (similar for burns and swaps)
+    mints: [Mint!]
+    burns: [Burn!]
+    rebalances: [Rebalance!]
+}
+
+type Mint @entity {
+    # transaction hash + "-" + index in mints Transaction array
+    id: ID!
+
+    transaction: Transaction!
+    timestamp: BigInt!
+    riseToken: RiseToken!
+
+    # populated from the primary Buy event
+    sender: Bytes
+    recipient: User!
+    collateralAmount: BigInt!
+    debtAmount: BigInt!
+
+    # The amount of Rise token as fee
+    fee: BigInt!
+    feeUSD: BigDecimal!
+
+    # price in debt token and USD
+    price: BigInt!
+    priceUSD: BigDecimal!
+
+    # derived amount based on available prices of tokens
+    amount: BigInt!
+    amountUSD: BigDecimal
+
+    logIndex: BigInt
+}
+
+type Burn @entity {
+    # transaction hash + "-" + index in burns Transaction array
+    id: ID!
+
+    transaction: Transaction!
+    timestamp: BigInt!
+    riseToken: RiseToken!
+
+    # populated from the primary Sell event
+    sender: User!
+    recipient: Bytes
+    collateralAmount: BigInt!
+    debtAmount: BigInt!
+
+    # The amount of Rise token as fee
+    fee: BigInt!
+    feeUSD: BigDecimal!
+
+    # price in debt token and USD
+    price: BigInt!
+    priceUSD: BigDecimal!
+
+    # derived amount based on available prices of tokens
+    amount: BigInt!
+    amountUSD: BigDecimal
+
+    logIndex: BigInt
+}
+
+type Rebalance @entity {
+    # transaction hash + "-" + index in rebalances Transaction array
+    id: ID!
+
+    transaction: Transaction!
+    timestamp: BigInt!
+    riseToken: RiseToken!
+
+    # populated from the primary Rebalanced event
+    executor: Bytes
+    previousLeverageRatio: BigInt!
+    leverageRatio: BigInt!
+    previousTotalCollateral: BigInt!
+    totalCollateral: BigInt!
+    previousTotalDebt: BigInt!
+    totalDebt: BigInt!
+    previousPrice: BigInt!
+    totalPrice: BigInt!
+
+    logIndex: BigInt
+}
