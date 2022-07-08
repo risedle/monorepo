@@ -5,7 +5,7 @@ schema:
 
 dataSources:
   - kind: ethereum
-    name: RiseTokenFactory
+    name: Factory
     network: bsc
     source:
       address: "0x888884173B6E6f4B42731853b89c39591ac53d92"
@@ -21,6 +21,8 @@ dataSources:
       abis:
         - name: FLTFactory
           file: ./abis/FLTFactory.json
+        - name: ERC20
+          file: ./abis/ERC20.json
       eventHandlers:
         - event: TokenCreated(address,string,string,bytes,uint256)
           handler: handleTokenCreated
