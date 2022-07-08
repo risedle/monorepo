@@ -4,6 +4,7 @@
     "scripts": {
         "codegen": "graph codegen",
         "build": "graph build",
+        "test": "graph test",
         "deploy": "graph deploy --node https://api.thegraph.com/deploy/ risedle/flt",
         "create-local": "graph create --node http://localhost:8020/ risedle/flt",
         "remove-local": "graph remove --node http://localhost:8020/ risedle/flt",
