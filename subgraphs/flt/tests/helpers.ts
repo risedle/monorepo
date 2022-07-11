@@ -2,12 +2,14 @@ import { newMockEvent } from "matchstick-as/assembly/index";
 import { ethereum, BigInt, Address } from "@graphprotocol/graph-ts";
 
 import { Swap as SwapEvent } from "../generated/templates/FLT/FLT";
+import { AnswerUpdated } from "../generated/AccessControlledOffchainAggregator/AccessControlledOffchainAggregator";
 
 // Dummy data
-const SENDER = "0x8888888c0a5be14f3fc72a8c97ec489dee9c4460";
-const RECIPIENT = "0x1418be4753a22b69b613fa8b8144d856c023d46b";
+export const SENDER = "0x8888888c0a5be14f3fc72a8c97ec489dee9c4460";
+export const RECIPIENT = "0x1418be4753a22b69b613fa8b8144d856c023d46b";
 export const ETHRISE = "0x2e876c4cfef54417949d9bdbb350dd0e2775d1cc";
 export const USDC = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
+export const ETHUSD = "0x37bC7498f4FF12C19678ee8fE19d713b87F6a9e6";
 
 export function createSwapEvent(
     flt: string,
@@ -67,4 +69,31 @@ export function createSwapEvent(
     newSwapEvent.parameters.push(priceInETHParam);
 
     return newSwapEvent;
+}
+
+export function createAnswerUpdatedEvent(current: string): AnswerUpdated {
+    let newAnswerUpdated = changetype<AnswerUpdated>(newMockEvent());
+    newAnswerUpdated.address = Address.fromString(ETHUSD);
+    newAnswerUpdated.parameters = new Array();
+
+    // Build params
+    let currentParam = new ethereum.EventParam(
+        "current",
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromString(current))
+    );
+    let roundIdParam = new ethereum.EventParam(
+        "roundId",
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromString("100"))
+    );
+    let updatedAtParam = new ethereum.EventParam(
+        "updatedAt",
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromString("200"))
+    );
+
+    // Push the params
+    newAnswerUpdated.parameters.push(currentParam);
+    newAnswerUpdated.parameters.push(roundIdParam);
+    newAnswerUpdated.parameters.push(updatedAtParam);
+
+    return newAnswerUpdated;
 }

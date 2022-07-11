@@ -2,15 +2,17 @@ type Factory @entity {
     # factory address
     id: ID!
 
-    # Rise Token info
-    fltCount: Int!
-
     # Total volume (all swaps)
     totalVolumeUSD: BigDecimal!
     totalVolumeETH: BigDecimal!
+    totalFeeUSD: BigDecimal!
 
     # Transactions
     txCount: BigInt!
+
+    # FLT data
+    flts: [FLT!]!
+    fltCount: BigInt!
 }
 
 type FLT @entity {
@@ -21,23 +23,30 @@ type FLT @entity {
     name: String!
     decimals: BigInt!
 
-    # used for other stats like marketcap
+    # Total supply and max supply
     totalSupply: BigInt!
+    maxTotalSupply: BigInt!
 
-    # token specific volume
-    tradeVolume: BigDecimal!
-    tradeVolumeETH: BigDecimal!
+    # FLT specific volume
+    tradeVolume: BigInt!
     tradeVolumeUSD: BigDecimal!
+
+    # FLT specific fee
+    tradeFeeUSD: BigDecimal!
 
     # transactions across all swaps
     txCount: BigInt!
 
-    # derived prices
-    derivedETH: BigDecimal!
+    fltDayData: [FLTHourData!]! @derivedFrom(field: "flt")
+    fltHourData: [FLTDayData!]! @derivedFrom(field: "flt")
+}
 
-    # derived fields
-    fltDailySnapshot: [FLTDailySnapshot!]! @derivedFrom(field: "flt")
-    fltHourlySnapshot: [FLTHourlySnapshot!]! @derivedFrom(field: "flt")
+# ETH price from chainlink
+type ETHPriceData @entity {
+    id: ID! # always 'latest'
+    priceUSD: BigDecimal!
+    blockNumber: BigInt!
+    timestamp: BigInt!
 }
 
 type Token @entity {
@@ -49,34 +58,56 @@ type Token @entity {
     decimals: BigInt!
 }
 
-type FLTDailySnapshot @entity {
-    id: ID!
-    date: Int!
+type FLTHourData @entity {
+    id: ID! # flt address + "-" + hour
+    periodStartUnix: Int! # unix timestamp for start of hour
     flt: FLT!
 
-    # volume stats
-    dailyVolumeToken: BigDecimal!
-    dailyVolumeETH: BigDecimal!
-    dailyVolumeUSD: BigDecimal!
-    dailyTxns: BigInt!
-
-    # price stats
+    # OHLC data
+    open: BigDecimal!
+    high: BigDecimal!
+    low: BigDecimal!
+    close: BigDecimal!
     priceUSD: BigDecimal!
+
+    # Underlying data
+    collateralPerShare: BigInt!
+    debtPerShare: BigInt!
+    totalCollateral: BigInt!
+    totalDebt: BigInt!
+    totalSupply: BigInt!
+
+    # Trade volume
+    tradeVolume: BigDecimal!
+    tradeVolumeUSD: BigDecimal!
+    tradeFeeUSD: BigDecimal!
+    tradeTxns: BigInt!
 }
 
-type FLTHourlySnapshot @entity {
-    id: ID!
-    hourStartUnix: Int! # unix timestamp for start of hour
+type FLTDayData @entity {
+    id: ID! # flt address + "-" + hour
+    periodStartUnix: Int! # unix timestamp for start of hour
     flt: FLT!
 
-    # volume stats
-    hourlyVolumeToken: BigDecimal!
-    hourlyVolumeETH: BigDecimal!
-    hourlyVolumeUSD: BigDecimal!
-    hourlyTxns: BigInt!
-
-    # price stats
+    # OHLC data
+    open: BigDecimal!
+    high: BigDecimal!
+    low: BigDecimal!
+    close: BigDecimal!
     priceUSD: BigDecimal!
+
+    # Underlying data
+    collateralPerShare: BigInt!
+    debtPerShare: BigInt!
+    totalCollateral: BigInt!
+    totalDebt: BigInt!
+    totalSupply: BigInt!
+
+    # Trade volume
+    tradeVolume: BigDecimal!
+    tradeVolumeUSD: BigDecimal!
+    tradeFeeUSD: BigDecimal!
+    tradeTxns: BigInt!
 }
 
 type Transaction @entity {
@@ -99,11 +130,10 @@ type Swap @entity {
 
     # FLT metadata
     flt: FLT!
-    priceETH: BigDecimal!
-    priceUSD: BigDecimal!
 
     # User metadata
-    user: User!
+    sender: User!
+    recipient: User!
 
     # Swap metadata
     tokenIn: Token!

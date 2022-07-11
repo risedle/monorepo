@@ -10,7 +10,7 @@ dataSources:
     source:
       address: "0x888884173B6E6f4B42731853b89c39591ac53d92"
       abi: FLTFactory
-      startBlock: 19363000
+      startBlock: 19454975
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -26,6 +26,28 @@ dataSources:
       eventHandlers:
         - event: TokenCreated(address,string,string,bytes,uint256)
           handler: handleTokenCreated
+  - kind: ethereum
+    name: AccessControlledOffchainAggregator
+    network: bsc
+    source:
+      address: "0x137924D7C36816E0DcAF016eB617Cc2C92C05782"
+      abi: AccessControlledOffchainAggregator
+      startBlock: 19454975
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      file: ./src/snapshot.ts
+      entities:
+        - FLTHourData
+        - FLTDayData
+        - ETHPriceData
+      abis:
+        - name: AccessControlledOffchainAggregator
+          file: ./abis/AccessControlledOffchainAggregator.json
+      eventHandlers:
+        - event: AnswerUpdated(indexed int256,indexed uint256,uint256)
+          handler: handleAnswerUpdated
 
 templates:
   - kind: ethereum/contract
