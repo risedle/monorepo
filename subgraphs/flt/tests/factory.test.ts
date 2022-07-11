@@ -71,7 +71,7 @@ function createTokenCreatedEvent(
 describe("handleNewFLT()", () => {
     describe("given TokenCreatedEvent", () => {
         test("should create new Factory and Token", () => {
-            // Create mockup then call the handler
+            // Create mock event then call the handler
             let event = createTokenCreatedEvent(
                 TEST_NEW_FLT_TOKEN,
                 "2X Long ETH Risedle",

@@ -87,3 +87,5 @@ export function loadOrInitializeFLT(tokenAddress: Address): FLT {
     }
     return flt;
 }
+
+export function createSwapEvent(): SwapEvent {}
