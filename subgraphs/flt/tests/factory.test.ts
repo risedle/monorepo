@@ -71,7 +71,7 @@ function createTokenCreatedEvent(
 describe("handleNewFLT()", () => {
     describe("given TokenCreatedEvent", () => {
         test("should create new Factory and Token", () => {
-            // Create mockup then call the handler
+            // Create mock event then call the handler
             let event = createTokenCreatedEvent(
                 TEST_NEW_FLT_TOKEN,
                 "2X Long ETH Risedle",
@@ -103,51 +103,35 @@ describe("handleNewFLT()", () => {
 
             // Make sure FLT is created
             assert.fieldEquals(
-                "Token",
+                "FLT",
                 TEST_NEW_FLT_TOKEN,
                 "id",
                 TEST_NEW_FLT_TOKEN
             );
+            assert.fieldEquals("FLT", TEST_NEW_FLT_TOKEN, "symbol", "ETHRISE");
             assert.fieldEquals(
-                "Token",
-                TEST_NEW_FLT_TOKEN,
-                "symbol",
-                "ETHRISE"
-            );
-            assert.fieldEquals(
-                "Token",
+                "FLT",
                 TEST_NEW_FLT_TOKEN,
                 "name",
                 "2X Long ETH Risedle"
             );
-            assert.fieldEquals("Token", TEST_NEW_FLT_TOKEN, "decimals", "18");
-            assert.fieldEquals("Token", TEST_NEW_FLT_TOKEN, "isFLT", "true");
+            assert.fieldEquals("FLT", TEST_NEW_FLT_TOKEN, "decimals", "18");
+            assert.fieldEquals("FLT", TEST_NEW_FLT_TOKEN, "totalSupply", "0");
+            assert.fieldEquals("FLT", TEST_NEW_FLT_TOKEN, "tradeVolume", "0");
             assert.fieldEquals(
-                "Token",
-                TEST_NEW_FLT_TOKEN,
-                "totalSupply",
-                "0"
-            );
-            assert.fieldEquals(
-                "Token",
-                TEST_NEW_FLT_TOKEN,
-                "tradeVolume",
-                "0"
-            );
-            assert.fieldEquals(
-                "Token",
+                "FLT",
                 TEST_NEW_FLT_TOKEN,
                 "tradeVolumeETH",
                 "0"
             );
             assert.fieldEquals(
-                "Token",
+                "FLT",
                 TEST_NEW_FLT_TOKEN,
                 "tradeVolumeUSD",
                 "0"
             );
-            assert.fieldEquals("Token", TEST_NEW_FLT_TOKEN, "txCount", "0");
-            assert.fieldEquals("Token", TEST_NEW_FLT_TOKEN, "derivedETH", "0");
+            assert.fieldEquals("FLT", TEST_NEW_FLT_TOKEN, "txCount", "0");
+            assert.fieldEquals("FLT", TEST_NEW_FLT_TOKEN, "derivedETH", "0");
         });
     });
 });
