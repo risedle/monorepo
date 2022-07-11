@@ -92,12 +92,20 @@ type User @entity {
 }
 
 type Swap @entity {
-    # transaction hash + "-" + index in swaps Transaction array
-    id: ID!
+    # Basic metadata
+    id: ID! # transaction hash + "-" + index in swaps Transaction array
     transaction: Transaction!
-    timestamp: BigInt! # need this to pull recent txns for specific FLT
+    timestamp: BigInt!
+
+    # FLT metadata
     flt: FLT!
-    user: User! # User who receive FLT (buy) or receive non-flt token (sell)
+    priceETH: BigDecimal!
+    priceUSD: BigDecimal!
+
+    # User metadata
+    user: User!
+
+    # Swap metadata
     tokenIn: Token!
     tokenOut: Token!
     amountIn: BigDecimal!
@@ -106,7 +114,4 @@ type Swap @entity {
     amountOutUSD: BigDecimal!
     feeAmount: BigDecimal! # fee in tokenIn or tokenOut (non-flt token)
     feeAmountUSD: BigDecimal!
-
-    priceETH: BigDecimal!
-    priceUSD: BigDecimal!
 }

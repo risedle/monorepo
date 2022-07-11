@@ -1,5 +1,5 @@
 import { Swap as SwapEvent } from "../generated/templates/FLT/FLT";
-import { Transaction, Swap } from "../generated/schema";
+import { Transaction, Swap, FLT } from "../generated/schema";
 import { BigInt } from "@graphprotocol/graph-ts";
 
 export function handleSwap(event: SwapEvent): void {
@@ -13,20 +13,24 @@ export function handleSwap(event: SwapEvent): void {
         transaction.swaps = [];
     }
 
+    // Load FLT; otherwise revert
+    let flt = FLT.load(event.address.toHexString())!;
+    // TODO: Update FLT data here
+
     // Initialize new Swap
-    let swaps = transaction.swaps;
-    if (swaps === null) return;
+    let swaps = transaction.swaps!;
     let swapId = transactionId
         .concat("-")
         .concat(BigInt.fromI32(swaps.length).toString());
-    let swap = Swap.load(swapId);
-    if (swap === null) {
-        swap = new Swap(swapId);
-    }
-    swaps.push(swap.id);
+    let swap = new Swap(swapId);
+    swap.transaction = transaction.id;
+    swap.timestamp = transaction.timestamp;
+    swap.flt = flt.id;
+    swaps.push(swapId);
     transaction.swaps = swaps;
 
     // Persist data
     transaction.save();
+    flt.save();
     swap.save();
 }

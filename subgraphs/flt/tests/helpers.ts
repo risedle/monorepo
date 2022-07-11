@@ -6,10 +6,11 @@ import { Swap as SwapEvent } from "../generated/templates/FLT/FLT";
 // Dummy data
 const SENDER = "0x8888888c0a5be14f3fc72a8c97ec489dee9c4460";
 const RECIPIENT = "0x1418be4753a22b69b613fa8b8144d856c023d46b";
-export const BNBRISE = "0x2e876c4cfef54417949d9bdbb350dd0e2775d1cc";
-export const BUSD = "0xe9e7cea3dedca5984780bafc599bd69add087d56";
+export const ETHRISE = "0x2e876c4cfef54417949d9bdbb350dd0e2775d1cc";
+export const USDC = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
 
 export function createSwapEvent(
+    flt: string,
     tokenIn: string,
     tokenOut: string,
     amountIn: string,
@@ -18,6 +19,7 @@ export function createSwapEvent(
     priceInETH: string
 ): SwapEvent {
     let newSwapEvent = changetype<SwapEvent>(newMockEvent());
+    newSwapEvent.address = Address.fromString(flt);
     newSwapEvent.parameters = new Array();
 
     // Build params
