@@ -59,40 +59,52 @@ type Token @entity {
 }
 
 type FLTHourData @entity {
-    id: ID!
-    hourStartUnix: Int! # unix timestamp for start of hour
+    id: ID! # flt address + "-" + hour
+    periodStartUnix: Int! # unix timestamp for start of hour
     flt: FLT!
 
-    # Need to update without swap activity
+    # OHLC data
+    open: BigDecimal!
+    high: BigDecimal!
+    low: BigDecimal!
+    close: BigDecimal!
     priceUSD: BigDecimal!
-    priceETH: BigDecimal!
+
+    # Underlying data
+    collateralPerShare: BigInt!
+    debtPerShare: BigInt!
     totalCollateral: BigInt!
     totalDebt: BigInt!
-
-    # Only need to update when there is swap activity
     totalSupply: BigInt!
+
+    # Trade volume
     tradeVolume: BigDecimal!
-    tradeVolumeETH: BigDecimal!
     tradeVolumeUSD: BigDecimal!
     tradeFeeUSD: BigDecimal!
     tradeTxns: BigInt!
 }
 
 type FLTDayData @entity {
-    id: ID!
-    date: Int!
+    id: ID! # flt address + "-" + hour
+    periodStartUnix: Int! # unix timestamp for start of hour
     flt: FLT!
 
-    # Need to update without swap activity
+    # OHLC data
+    open: BigDecimal!
+    high: BigDecimal!
+    low: BigDecimal!
+    close: BigDecimal!
     priceUSD: BigDecimal!
-    priceETH: BigDecimal!
+
+    # Underlying data
+    collateralPerShare: BigInt!
+    debtPerShare: BigInt!
     totalCollateral: BigInt!
     totalDebt: BigInt!
-
-    # Only need to update when there is swap activity
     totalSupply: BigInt!
+
+    # Trade volume
     tradeVolume: BigDecimal!
-    tradeVolumeETH: BigDecimal!
     tradeVolumeUSD: BigDecimal!
     tradeFeeUSD: BigDecimal!
     tradeTxns: BigInt!

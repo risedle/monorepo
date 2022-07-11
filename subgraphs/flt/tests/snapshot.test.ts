@@ -38,7 +38,7 @@ describe("handleAnswerUpdated", () => {
             // Create answer updated event
             let event = createAnswerUpdatedEvent("23150854126");
             handleAnswerUpdated(event);
-            logStore();
+            // logStore();
 
             // Make sure ETHPriceData is updated
             let snapshot = ETHPriceData.load("latest")!;
@@ -56,7 +56,7 @@ describe("handleAnswerUpdated", () => {
             // Create answer updated event
             let event = createAnswerUpdatedEvent("23150854126");
             handleAnswerUpdated(event);
-            logStore();
+            // logStore();
 
             // Make sure ETHPriceData is updated
             let snapshot = ETHPriceData.load("latest")!;
@@ -65,29 +65,30 @@ describe("handleAnswerUpdated", () => {
             assert.stringEquals(snapshot.priceUSD.toString(), "231.50854126");
 
             // Make sure FLT hourly snapshot is updated
-            let hourData = FLTHourData.load("latest")!;
+            let hourData = FLTHourData.load(ETHRISE.concat("-0"))!;
             assert.stringEquals(hourData.flt, ETHRISE);
-            assert.stringEquals(hourData.priceUSD.toString(), "200");
-            assert.stringEquals(hourData.priceETH.toString(), "0.00000003");
+            assert.stringEquals(hourData.priceUSD.toString(), "69.452562378");
             assert.bigIntEquals(
                 hourData.totalCollateral,
-                BigInt.fromString("12212")
+                BigInt.fromString("600000000000000000")
             );
             assert.bigIntEquals(
                 hourData.totalDebt,
-                BigInt.fromString("12212")
+                BigInt.fromString("700000000000000000")
             );
 
             // Make sure FLT daily snapshot is updated
-            let dayData = FLTDayData.load("latest")!;
+            let dayData = FLTDayData.load(ETHRISE.concat("-0"))!;
             assert.stringEquals(dayData.flt, ETHRISE);
-            assert.stringEquals(dayData.priceUSD.toString(), "200");
-            assert.stringEquals(dayData.priceETH.toString(), "0.00000003");
+            assert.stringEquals(dayData.priceUSD.toString(), "69.452562378");
             assert.bigIntEquals(
                 dayData.totalCollateral,
-                BigInt.fromString("12212")
+                BigInt.fromString("600000000000000000")
             );
-            assert.bigIntEquals(dayData.totalDebt, BigInt.fromString("12212"));
+            assert.bigIntEquals(
+                dayData.totalDebt,
+                BigInt.fromString("700000000000000000")
+            );
         });
     });
 });

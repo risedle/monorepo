@@ -4,7 +4,12 @@ import {
     AnswerUpdated,
 } from "../generated/AccessControlledOffchainAggregator/AccessControlledOffchainAggregator";
 import { ETHPriceData } from "../generated/schema";
-import { convertTokenToDecimal, loadOrInitializeFactory } from "./helpers";
+import {
+    convertTokenToDecimal,
+    loadOrInitializeFactory,
+    updateFLTHourData,
+    updateFLTDayData,
+} from "./helpers";
 
 export function handleAnswerUpdated(event: AnswerUpdated): void {
     // Load or initialize new latest snapshot
@@ -12,6 +17,7 @@ export function handleAnswerUpdated(event: AnswerUpdated): void {
     if (ethPriceData === null) {
         ethPriceData = new ETHPriceData("latest");
     }
+
     // Get chainlink decimals
     let contract = AccessControlledOffchainAggregator.bind(event.address);
     let decimals = BigInt.fromI32(contract.decimals());
@@ -24,6 +30,11 @@ export function handleAnswerUpdated(event: AnswerUpdated): void {
 
     // Load or initialize factory
     let factory = loadOrInitializeFactory();
+    for (let i = 0; i < factory.flts.length; ++i) {
+        let fltId = factory.flts[i];
+        updateFLTHourData(fltId, ethPriceData, event.block.timestamp);
+        updateFLTDayData(fltId, ethPriceData, event.block.timestamp);
+    }
 
     // Persist data
     ethPriceData.save();
