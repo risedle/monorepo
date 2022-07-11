@@ -1,6 +1,6 @@
+import { log, BigInt } from "@graphprotocol/graph-ts";
 import { Swap as SwapEvent } from "../generated/templates/FLT/FLT";
 import { Transaction, Swap, FLT } from "../generated/schema";
-import { BigInt } from "@graphprotocol/graph-ts";
 
 export function handleSwap(event: SwapEvent): void {
     // Load or initialize new Transaction
@@ -14,7 +14,28 @@ export function handleSwap(event: SwapEvent): void {
     }
 
     // Load FLT; otherwise revert
-    let flt = FLT.load(event.address.toHexString())!;
+    let fltId = event.address.toHexString();
+    let flt = FLT.load(fltId)!;
+
+    log.debug("fltId: {}", [fltId]);
+    log.debug("tokenOut: {}", [event.params.tokenOut.toHexString()]);
+
+    // Handle FLT as tokenOut
+    let ethPrice = getETHPrice();
+    if (fltId == event.params.tokenOut.toHexString()) {
+        // Increase total supply with amountOut
+        flt.totalSupply = flt.totalSupply.plus(event.params.amountOut);
+        // Update FLT volume
+        flt.tradeVolume = flt.tradeVolume.plus(event.params.amountOut);
+        // Update FLT volume in USD
+        // Get value in ETH
+        // Get eth price in USD
+        // value on ETH times price in USD
+        flt.tradeVolumeUSD = flt.tradeVolumeUSD.plus(
+            getUSDFromAmount(fltId, event.params.amountOut)
+        );
+    }
+
     // TODO: Update FLT data here
 
     // Initialize new Swap

@@ -1,5 +1,6 @@
 import { log, BigInt, BigDecimal, Address } from "@graphprotocol/graph-ts";
 import { ERC20 } from "../generated/Factory/ERC20";
+import { FLT as FLTContract } from "../generated/templates/FLT/FLT";
 import { Factory, FLT } from "../generated/schema";
 
 export const FACTORY_ADDRESS = "0x888884173B6E6f4B42731853b89c39591ac53d92";
@@ -55,10 +56,11 @@ export function loadOrInitializeFactory(): Factory {
     let factory = Factory.load(FACTORY_ADDRESS);
     if (factory === null) {
         factory = new Factory(FACTORY_ADDRESS);
-        factory.fltCount = 0;
+        factory.fltCount = ZERO_BI;
         factory.totalVolumeETH = ZERO_BD;
         factory.totalVolumeUSD = ZERO_BD;
         factory.txCount = ZERO_BI;
+        factory.flts = [];
     }
     return factory;
 }
@@ -69,8 +71,6 @@ export function loadOrInitializeFLT(tokenAddress: Address): FLT {
         flt = new FLT(tokenAddress.toHexString());
         flt.symbol = fetchTokenSymbol(tokenAddress);
         flt.name = fetchTokenName(tokenAddress);
-        flt.totalSupply = fetchTokenTotalSupply(tokenAddress);
-
         // bail if we couldn't figure out the decimals
         let decimals = fetchTokenDecimals(tokenAddress);
         if (decimals === null) {
@@ -78,14 +78,38 @@ export function loadOrInitializeFLT(tokenAddress: Address): FLT {
         }
         flt.decimals = decimals;
 
-        flt.tradeVolume = ZERO_BD;
-        flt.tradeVolumeETH = ZERO_BD;
+        flt.totalSupply = fetchTokenTotalSupply(tokenAddress);
+        flt.maxTotalSupply = fetchFLTMaxSupply(tokenAddress);
+
+        flt.tradeVolume = ZERO_BI;
         flt.tradeVolumeUSD = ZERO_BD;
 
-        flt.derivedETH = ZERO_BD;
         flt.txCount = ZERO_BI;
     }
     return flt;
 }
 
-export function createSwapEvent(): SwapEvent {}
+function fetchFLTMaxSupply(tokenAddress: Address): BigInt {
+    let contract = FLTContract.bind(tokenAddress);
+    return contract.maxSupply();
+}
+
+export function exponentToBigDecimal(decimals: BigInt): BigDecimal {
+    let bd = BigDecimal.fromString("1");
+    for (let i = ZERO_BI; i.lt(decimals as BigInt); i = i.plus(ONE_BI)) {
+        bd = bd.times(BigDecimal.fromString("10"));
+    }
+    return bd;
+}
+
+export function convertTokenToDecimal(
+    tokenAmount: BigInt,
+    exchangeDecimals: BigInt
+): BigDecimal {
+    if (exchangeDecimals == ZERO_BI) {
+        return tokenAmount.toBigDecimal();
+    }
+    return tokenAmount
+        .toBigDecimal()
+        .div(exponentToBigDecimal(exchangeDecimals));
+}
