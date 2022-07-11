@@ -46,5 +46,7 @@ templates:
         - name: FLTFactory
           file: ./abis/FLTFactory.json
       eventHandlers:
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleTransfer
+        - event:
+            Swap(indexed address,indexed address,indexed
+            address,address,uint256,uint256,uint256,uint256)
+          handler: handleSwap

@@ -13,14 +13,13 @@ type Factory @entity {
     txCount: BigInt!
 }
 
-type Token @entity {
+type FLT @entity {
     # token address
     id: ID!
 
     symbol: String!
     name: String!
     decimals: BigInt!
-    isFLT: Boolean!
 
     # used for other stats like marketcap
     totalSupply: BigInt!
@@ -37,14 +36,23 @@ type Token @entity {
     derivedETH: BigDecimal!
 
     # derived fields
-    tokenDayData: [TokenDayData!]! @derivedFrom(field: "token")
-    tokenHourData: [TokenHourData!]! @derivedFrom(field: "token")
+    fltDailySnapshot: [FLTDailySnapshot!]! @derivedFrom(field: "flt")
+    fltHourlySnapshot: [FLTHourlySnapshot!]! @derivedFrom(field: "flt")
 }
 
-type TokenDayData @entity {
+type Token @entity {
+    # token address
+    id: ID!
+
+    symbol: String!
+    name: String!
+    decimals: BigInt!
+}
+
+type FLTDailySnapshot @entity {
     id: ID!
     date: Int!
-    token: Token!
+    flt: FLT!
 
     # volume stats
     dailyVolumeToken: BigDecimal!
@@ -56,10 +64,10 @@ type TokenDayData @entity {
     priceUSD: BigDecimal!
 }
 
-type TokenHourData @entity {
+type FLTHourlySnapshot @entity {
     id: ID!
     hourStartUnix: Int! # unix timestamp for start of hour
-    token: Token!
+    flt: FLT!
 
     # volume stats
     hourlyVolumeToken: BigDecimal!
@@ -68,5 +76,37 @@ type TokenHourData @entity {
     hourlyTxns: BigInt!
 
     # price stats
+    priceUSD: BigDecimal!
+}
+
+type Transaction @entity {
+    id: ID! # txn hash
+    blockNumber: BigInt!
+    timestamp: BigInt!
+    swaps: [Swap!]
+}
+
+type User @entity {
+    id: ID!
+    usdSwapped: BigDecimal!
+}
+
+type Swap @entity {
+    # transaction hash + "-" + index in swaps Transaction array
+    id: ID!
+    transaction: Transaction!
+    timestamp: BigInt! # need this to pull recent txns for specific FLT
+    flt: FLT!
+    user: User! # User who receive FLT (buy) or receive non-flt token (sell)
+    tokenIn: Token!
+    tokenOut: Token!
+    amountIn: BigDecimal!
+    amountOut: BigDecimal!
+    amountInUSD: BigDecimal!
+    amountOutUSD: BigDecimal!
+    feeAmount: BigDecimal! # fee in tokenIn or tokenOut (non-flt token)
+    feeAmountUSD: BigDecimal!
+
+    priceETH: BigDecimal!
     priceUSD: BigDecimal!
 }
