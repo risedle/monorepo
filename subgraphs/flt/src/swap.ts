@@ -48,7 +48,7 @@ export function handleSwap(event: SwapEvent): void {
     );
     let tokenIn = loadOrInitializeToken(event.params.tokenIn);
     let tokenOut = loadOrInitializeToken(event.params.tokenOut);
-    let swaps = transaction.swaps!;
+    let swaps = transaction.swaps;
     let swapId = transactionId
         .concat("-")
         .concat(BigInt.fromI32(swaps.length).toString());

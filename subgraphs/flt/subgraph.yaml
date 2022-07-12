@@ -59,7 +59,7 @@ templates:
       kind: ethereum/events
       apiVersion: 0.0.5
       language: wasm/assemblyscript
-      file: ./src/flt.ts
+      file: ./src/swap.ts
       entities:
         - Token
       abis:

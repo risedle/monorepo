@@ -106,12 +106,23 @@ type Transaction @entity {
     id: ID! # txn hash
     blockNumber: BigInt!
     timestamp: BigInt!
-    swaps: [Swap!]
+    swaps: [Swap!]!
 }
 
 type User @entity {
     id: ID!
-    usdSwapped: BigDecimal!
+    openPositions: [OpenPosition!]! @derivedFrom(field: "user")
+}
+
+type OpenPosition @entity {
+    # user address + "-" + flt address
+    id: ID!
+    user: User!
+    flt: FLT!
+
+    # Increased when buy, decreased when sell
+    amount: BigDecimal!
+    amountUSD: BigDecimal!
 }
 
 type Swap @entity {
@@ -124,8 +135,9 @@ type Swap @entity {
     flt: FLT!
 
     # User metadata
-    sender: User!
-    recipient: User!
+    user: User! # EOA that initiate transaction
+    sender: Bytes!
+    recipient: Bytes!
 
     # Swap metadata
     tokenIn: Token!
