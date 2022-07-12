@@ -270,7 +270,10 @@ describe("handleSwap", () => {
                 USER.concat("-").concat(ETHRISE)
             );
             assert.stringEquals(position.amount.toString(), "1");
-            assert.stringEquals(position.amountUSD.toString(), "100");
+            assert.stringEquals(
+                position.amountUSD.toString(),
+                "100.000000000000025151"
+            );
         });
     });
 
@@ -545,7 +548,10 @@ describe("handleSwap", () => {
                 USER.concat("-").concat(ETHRISE)
             );
             assert.stringEquals(position.amount.toString(), "1");
-            assert.stringEquals(position.amountUSD.toString(), "100");
+            assert.stringEquals(
+                position.amountUSD.toString(),
+                "100.000000000000025151"
+            );
 
             let sellEvent = createSwapEvent(
                 ETHRISE,

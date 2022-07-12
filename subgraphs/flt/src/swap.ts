@@ -18,6 +18,8 @@ import {
     ONE_BI,
     ZERO_BD,
     loadOrInitializeToken,
+    loadOrInitializeUser,
+    loadOrInitializeOpenPosition,
 } from "./helpers";
 
 export function handleSwap(event: SwapEvent): void {
@@ -53,6 +55,8 @@ export function handleSwap(event: SwapEvent): void {
         .concat("-")
         .concat(BigInt.fromI32(swaps.length).toString());
     let swap = new Swap(swapId);
+    let user = loadOrInitializeUser(event.transaction.from);
+    let position = loadOrInitializeOpenPosition(user, flt);
 
     // Derived data from Swap
     let swapAmount = ZERO_BD;
@@ -101,6 +105,10 @@ export function handleSwap(event: SwapEvent): void {
             tokenIn.decimals
         );
         swap.feeAmountUSD = swapFeeUSD;
+
+        // Update user's open position
+        position.amount = position.amount.plus(swapAmount);
+        position.amountUSD = position.amountUSD.plus(swapUSD);
     }
 
     // Handle FLT as tokenIn
@@ -142,6 +150,10 @@ export function handleSwap(event: SwapEvent): void {
             tokenOut.decimals
         );
         swap.feeAmountUSD = swapFeeUSD;
+
+        // Update user's open position
+        position.amount = position.amount.minus(swapAmount);
+        position.amountUSD = position.amountUSD.minus(swapUSD);
     }
 
     // Increase volume
@@ -174,6 +186,8 @@ export function handleSwap(event: SwapEvent): void {
     swap.tokenOut = tokenOut.id;
 
     // Persist data
+    user.save();
+    position.save();
     factory.save();
     fltHourData.save();
     fltDayData.save();
