@@ -10,7 +10,7 @@ dataSources:
     source:
       address: "0x888884173B6E6f4B42731853b89c39591ac53d92"
       abi: FLTFactory
-      startBlock: 19454975
+      startBlock: 19487270
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -32,7 +32,7 @@ dataSources:
     source:
       address: "0x137924D7C36816E0DcAF016eB617Cc2C92C05782"
       abi: AccessControlledOffchainAggregator
-      startBlock: 19454975
+      startBlock: 19487270
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
