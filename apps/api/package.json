@@ -6,7 +6,7 @@
     "scripts": {
         "build": "tsc",
         "lint": "eslint src/**/*.ts",
-        "test": "jest",
+        "test": "jest --testTimeout 20000",
         "dev:server": "node dist/index.js",
         "dev": "nodemon"
     },
