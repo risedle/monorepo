@@ -100,6 +100,21 @@ describe("handleSwap", () => {
                 "6.9452562378"
             );
 
+            // Trade fee should increased
+            assert.stringEquals(
+                factory.totalFeeUSD.toString(),
+                "0.92603416504"
+            );
+            assert.stringEquals(flt.totalFeeUSD.toString(), "0.92603416504");
+            assert.stringEquals(
+                fltHourData.tradeFeeUSD.toString(),
+                "0.92603416504"
+            );
+            assert.stringEquals(
+                fltDayData.tradeFeeUSD.toString(),
+                "0.92603416504"
+            );
+
             // Total supply should increased
             assert.bigIntEquals(
                 fltHourData.totalSupply,
