@@ -62,11 +62,12 @@ export function loadOrInitializeFactory(): Factory {
     let factory = Factory.load(FACTORY_ADDRESS);
     if (factory === null) {
         factory = new Factory(FACTORY_ADDRESS);
-        factory.fltCount = ZERO_BI;
-        factory.totalVolumeETH = ZERO_BD;
         factory.totalVolumeUSD = ZERO_BD;
-        factory.txCount = ZERO_BI;
+        factory.totalFeeUSD = ZERO_BD;
+        factory.totalTxns = ZERO_BI;
         factory.flts = [];
+        factory.fltCount = ZERO_BI;
+        factory.save();
     }
     return factory;
 }
@@ -75,6 +76,7 @@ export function loadOrInitializeFLT(tokenAddress: Address): FLT {
     let flt = FLT.load(tokenAddress.toHexString());
     if (flt === null) {
         flt = new FLT(tokenAddress.toHexString());
+        flt.factory = FACTORY_ADDRESS;
         flt.symbol = fetchTokenSymbol(tokenAddress);
         flt.name = fetchTokenName(tokenAddress);
         // bail if we couldn't figure out the decimals
@@ -84,13 +86,10 @@ export function loadOrInitializeFLT(tokenAddress: Address): FLT {
         }
         flt.decimals = decimals;
 
-        flt.totalSupply = fetchTokenTotalSupply(tokenAddress);
-        flt.maxTotalSupply = fetchFLTMaxSupply(tokenAddress);
-
-        flt.tradeVolume = ZERO_BI;
-        flt.tradeVolumeUSD = ZERO_BD;
-
-        flt.txCount = ZERO_BI;
+        flt.totalVolume = ZERO_BD;
+        flt.totalVolumeUSD = ZERO_BD;
+        flt.totalTxns = ZERO_BI;
+        flt.save();
     }
     return flt;
 }
@@ -147,6 +146,15 @@ function fetchFLTTotalCollateral(tokenAddress: Address): BigInt {
 function fetchFLTTotalDebt(tokenAddress: Address): BigInt {
     let contract = FLTContract.bind(tokenAddress);
     return contract.totalDebt();
+}
+
+export function convertFLTAmountToETH(
+    fltId: string,
+    amount: BigInt
+): BigDecimal {
+    let contract = FLTContract.bind(Address.fromString(fltId));
+    let ethAmount = contract.value(amount);
+    return convertETHToDecimal(ethAmount);
 }
 
 export function updateFLTHourData(

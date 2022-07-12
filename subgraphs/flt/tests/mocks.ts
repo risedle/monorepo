@@ -83,3 +83,19 @@ createMockedFunction(
     "decimals",
     "decimals():(uint8)"
 ).returns([ethereum.Value.fromUnsignedBigInt(BigInt.fromString("8"))]);
+
+createMockedFunction(
+    Address.fromString(ETHRISE),
+    "value",
+    "value(uint256):(uint256)"
+)
+    .withArgs([
+        ethereum.Value.fromUnsignedBigInt(
+            BigInt.fromString("1000000000000000000")
+        ),
+    ])
+    .returns([
+        ethereum.Value.fromUnsignedBigInt(
+            BigInt.fromString("30000000000000000")
+        ),
+    ]);

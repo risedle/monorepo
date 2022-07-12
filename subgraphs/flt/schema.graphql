@@ -2,43 +2,32 @@ type Factory @entity {
     # factory address
     id: ID!
 
-    # Total volume (all swaps)
+    # Total volume of all FLT
     totalVolumeUSD: BigDecimal!
-    totalVolumeETH: BigDecimal!
     totalFeeUSD: BigDecimal!
-
-    # Transactions
-    txCount: BigInt!
+    totalTxns: BigInt!
 
     # FLT data
-    flts: [FLT!]!
+    flts: [FLT!]! @derivedFrom(field: "factory")
     fltCount: BigInt!
 }
 
 type FLT @entity {
-    # token address
-    id: ID!
+    id: ID! # token address
+    factory: Factory!
 
     symbol: String!
     name: String!
     decimals: BigInt!
 
-    # Total supply and max supply
-    totalSupply: BigInt!
-    maxTotalSupply: BigInt!
+    # Sum of all trade data
+    totalVolume: BigDecimal!
+    totalVolumeUSD: BigDecimal!
+    totalFeeUSD: BigDecimal!
+    totalTxns: BigInt!
 
-    # FLT specific volume
-    tradeVolume: BigInt!
-    tradeVolumeUSD: BigDecimal!
-
-    # FLT specific fee
-    tradeFeeUSD: BigDecimal!
-
-    # transactions across all swaps
-    txCount: BigInt!
-
-    fltDayData: [FLTHourData!]! @derivedFrom(field: "flt")
-    fltHourData: [FLTDayData!]! @derivedFrom(field: "flt")
+    fltHourData: [FLTHourData!]! @derivedFrom(field: "flt")
+    fltDayData: [FLTDayData!]! @derivedFrom(field: "flt")
 }
 
 # ETH price from chainlink
