@@ -3,6 +3,7 @@ import { createMockedFunction } from "matchstick-as/assembly/index";
 import { ethereum, BigInt, Address } from "@graphprotocol/graph-ts";
 
 import { ETHRISE, ETHUSD } from "./helpers";
+import { ORACLE_ADDRESS } from "../src/helpers";
 
 createMockedFunction(
     Address.fromString(ETHRISE),
@@ -97,5 +98,25 @@ createMockedFunction(
     .returns([
         ethereum.Value.fromUnsignedBigInt(
             BigInt.fromString("30000000000000000")
+        ),
+    ]);
+
+createMockedFunction(
+    Address.fromString(ORACLE_ADDRESS),
+    "totalValue",
+    "totalValue(address,address,uint256):(uint256)"
+)
+    .withArgs([
+        ethereum.Value.fromAddress(
+            Address.fromString("0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48")
+        ),
+        ethereum.Value.fromAddress(
+            Address.fromString("0x0000000000000000000000000000000000000000")
+        ),
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromString("10000000")),
+    ])
+    .returns([
+        ethereum.Value.fromUnsignedBigInt(
+            BigInt.fromString("4000000000000000")
         ),
     ]);

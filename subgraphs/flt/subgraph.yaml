@@ -67,6 +67,8 @@ templates:
           file: ./abis/FLT.json
         - name: FLTFactory
           file: ./abis/FLTFactory.json
+        - name: RariFusePriceOracleAdapter
+          file: ./abis/RariFusePriceOracleAdapter.json
       eventHandlers:
         - event:
             Swap(indexed address,indexed address,indexed

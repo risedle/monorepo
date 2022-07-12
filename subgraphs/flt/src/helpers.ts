@@ -1,6 +1,7 @@
 import { log, BigInt, BigDecimal, Address } from "@graphprotocol/graph-ts";
 import { ERC20 } from "../generated/Factory/ERC20";
 import { FLT as FLTContract } from "../generated/templates/FLT/FLT";
+import { RariFusePriceOracleAdapter } from "../generated/templates/FLT/RariFusePriceOracleAdapter";
 import {
     Factory,
     FLT,
@@ -10,7 +11,8 @@ import {
 } from "../generated/schema";
 
 export const FACTORY_ADDRESS = "0x888884173B6E6f4B42731853b89c39591ac53d92";
-export const ADDRESS_ZERO = "0x0000000000000000000000000000000000000000";
+export const ORACLE_ADDRESS = "0x88888885EAf9c96B31b5a55CAF3173Fc6eb14ca6";
+export const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 
 export const ZERO_BI = BigInt.fromI32(0);
 export const ONE_BI = BigInt.fromI32(1);
@@ -88,6 +90,7 @@ export function loadOrInitializeFLT(tokenAddress: Address): FLT {
 
         flt.totalVolume = ZERO_BD;
         flt.totalVolumeUSD = ZERO_BD;
+        flt.totalFeeUSD = ZERO_BD;
         flt.totalTxns = ZERO_BI;
         flt.save();
     }
@@ -154,6 +157,21 @@ export function convertFLTAmountToETH(
 ): BigDecimal {
     let contract = FLTContract.bind(Address.fromString(fltId));
     let ethAmount = contract.value(amount);
+    return convertETHToDecimal(ethAmount);
+}
+
+export function convertTokenAmountToETH(
+    tokenAddress: string,
+    amount: BigInt
+): BigDecimal {
+    let contract = RariFusePriceOracleAdapter.bind(
+        Address.fromString(ORACLE_ADDRESS)
+    );
+    let ethAmount = contract.totalValue(
+        Address.fromString(tokenAddress),
+        Address.fromString(ZERO_ADDRESS),
+        amount
+    );
     return convertETHToDecimal(ethAmount);
 }
 

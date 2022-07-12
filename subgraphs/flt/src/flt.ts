@@ -11,9 +11,11 @@ import {
     updateFLTHourData,
     updateFLTDayData,
     convertFLTAmountToETH,
+    convertTokenAmountToETH,
     convertETHToDecimal,
     FACTORY_ADDRESS,
     ONE_BI,
+    ZERO_BD,
 } from "./helpers";
 
 export function handleSwap(event: SwapEvent): void {
@@ -42,24 +44,27 @@ export function handleSwap(event: SwapEvent): void {
         event.block.timestamp
     );
 
+    // Derived data from Swap
+    let swapAmount = ZERO_BD;
+    let swapUSD = ZERO_BD;
+    let swapFeeUSD = ZERO_BD;
+
     // Handle FLT as tokenOut
     if (fltId == event.params.tokenOut.toHexString()) {
-        // Update trade volume
-        let amountOut = convertETHToDecimal(event.params.amountOut);
+        // Get swap amount and the USD value
+        swapAmount = convertETHToDecimal(event.params.amountOut);
         let amountOutETH = convertFLTAmountToETH(
             flt.id,
             event.params.amountOut
         );
-        let amountOutUSD = amountOutETH.times(ethPriceData.priceUSD);
-        factory.totalVolumeUSD = factory.totalVolumeUSD.plus(amountOutUSD);
-        flt.totalVolume = flt.totalVolume.plus(amountOut);
-        flt.totalVolumeUSD = flt.totalVolumeUSD.plus(amountOutUSD);
-        fltHourData.tradeVolume = fltHourData.tradeVolume.plus(amountOut);
-        fltHourData.tradeVolumeUSD =
-            fltHourData.tradeVolumeUSD.plus(amountOutUSD);
-        fltDayData.tradeVolume = fltDayData.tradeVolume.plus(amountOut);
-        fltDayData.tradeVolumeUSD =
-            fltDayData.tradeVolumeUSD.plus(amountOutUSD);
+        swapUSD = amountOutETH.times(ethPriceData.priceUSD);
+
+        // Get swap fee in USD
+        let feeAmountETH = convertTokenAmountToETH(
+            event.params.tokenIn.toHexString(),
+            event.params.amountIn
+        );
+        swapFeeUSD = feeAmountETH.times(ethPriceData.priceUSD);
 
         // Increase total supply
         fltHourData.totalSupply = fltHourData.totalSupply.plus(
@@ -69,6 +74,21 @@ export function handleSwap(event: SwapEvent): void {
             event.params.amountOut
         );
     }
+
+    // Increase volume
+    factory.totalVolumeUSD = factory.totalVolumeUSD.plus(swapUSD);
+    flt.totalVolume = flt.totalVolume.plus(swapAmount);
+    flt.totalVolumeUSD = flt.totalVolumeUSD.plus(swapUSD);
+    fltHourData.tradeVolume = fltHourData.tradeVolume.plus(swapAmount);
+    fltHourData.tradeVolumeUSD = fltHourData.tradeVolumeUSD.plus(swapUSD);
+    fltDayData.tradeVolume = fltDayData.tradeVolume.plus(swapAmount);
+    fltDayData.tradeVolumeUSD = fltDayData.tradeVolumeUSD.plus(swapUSD);
+
+    // Increase swap fees
+    factory.totalFeeUSD = factory.totalFeeUSD.plus(swapFeeUSD);
+    flt.totalFeeUSD = flt.totalFeeUSD.plus(swapFeeUSD);
+    fltHourData.tradeFeeUSD = fltHourData.tradeFeeUSD.plus(swapFeeUSD);
+    fltDayData.tradeFeeUSD = fltDayData.tradeFeeUSD.plus(swapFeeUSD);
 
     // Increase trade count
     factory.totalTxns = factory.totalTxns.plus(ONE_BI);
