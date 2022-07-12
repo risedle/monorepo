@@ -184,6 +184,9 @@ export function handleSwap(event: SwapEvent): void {
     transaction.swaps = swaps;
     swap.tokenIn = tokenIn.id;
     swap.tokenOut = tokenOut.id;
+    swap.user = user.id;
+    swap.sender = event.params.sender;
+    swap.recipient = event.params.recipient;
 
     // Persist data
     user.save();
