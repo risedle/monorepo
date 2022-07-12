@@ -132,14 +132,8 @@ describe("handleSwap", () => {
             );
 
             // Total supply should increased
-            assert.bigIntEquals(
-                fltHourData.totalSupply,
-                BigInt.fromString(ethriseAmount)
-            );
-            assert.bigIntEquals(
-                fltDayData.totalSupply,
-                BigInt.fromString(ethriseAmount)
-            );
+            assert.stringEquals(fltHourData.totalSupply.toString(), "1");
+            assert.stringEquals(fltDayData.totalSupply.toString(), "1");
 
             // Transactions count should increased
             assert.bigIntEquals(factory.totalTxns, BigInt.fromString("1"));
@@ -266,14 +260,8 @@ describe("handleSwap", () => {
             );
 
             // Total supply should decreased
-            assert.bigIntEquals(
-                fltHourData.totalSupply,
-                BigInt.fromString("0")
-            );
-            assert.bigIntEquals(
-                fltDayData.totalSupply,
-                BigInt.fromString("0")
-            );
+            assert.stringEquals(fltHourData.totalSupply.toString(), "0");
+            assert.stringEquals(fltDayData.totalSupply.toString(), "0");
 
             // Transactions count should increased
             assert.bigIntEquals(factory.totalTxns, BigInt.fromString("2"));

@@ -78,10 +78,10 @@ export function handleSwap(event: SwapEvent): void {
 
         // Increase total supply
         fltHourData.totalSupply = fltHourData.totalSupply.plus(
-            event.params.amountOut
+            convertETHToDecimal(event.params.amountOut)
         );
         fltDayData.totalSupply = fltDayData.totalSupply.plus(
-            event.params.amountOut
+            convertETHToDecimal(event.params.amountOut)
         );
 
         // Update swap
@@ -119,10 +119,10 @@ export function handleSwap(event: SwapEvent): void {
 
         // Increase total supply
         fltHourData.totalSupply = fltHourData.totalSupply.minus(
-            event.params.amountIn
+            convertETHToDecimal(event.params.amountIn)
         );
         fltDayData.totalSupply = fltDayData.totalSupply.minus(
-            event.params.amountIn
+            convertETHToDecimal(event.params.amountIn)
         );
 
         // Update swap

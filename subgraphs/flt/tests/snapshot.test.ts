@@ -71,14 +71,8 @@ describe("handleAnswerUpdated", () => {
                 hourData.priceUSD.toString(),
                 "21.261357302524640978878398"
             );
-            assert.bigIntEquals(
-                hourData.totalCollateral,
-                BigInt.fromString("600000000000000000")
-            );
-            assert.bigIntEquals(
-                hourData.totalDebt,
-                BigInt.fromString("700000000000000000")
-            );
+            assert.stringEquals(hourData.totalCollateral.toString(), "0.6");
+            assert.stringEquals(hourData.totalDebt.toString(), "700");
 
             // Make sure FLT daily snapshot is updated
             let dayData = FLTDayData.load(ETHRISE.concat("-0"))!;
@@ -87,14 +81,8 @@ describe("handleAnswerUpdated", () => {
                 dayData.priceUSD.toString(),
                 "21.261357302524640978878398"
             );
-            assert.bigIntEquals(
-                dayData.totalCollateral,
-                BigInt.fromString("600000000000000000")
-            );
-            assert.bigIntEquals(
-                dayData.totalDebt,
-                BigInt.fromString("700000000000000000")
-            );
+            assert.stringEquals(dayData.totalCollateral.toString(), "0.6");
+            assert.stringEquals(dayData.totalDebt.toString(), "700");
         });
     });
 });
