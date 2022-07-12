@@ -1,7 +1,12 @@
 {
     "bsc": {
-        "RiseTokenFactory": {
-            "address": "0x46D06cf8052eA6FdbF71736AF33eD23686eA1452"
+        "Factory": {
+            "address": "0x888884173B6E6f4B42731853b89c39591ac53d92",
+            "startBlock": 19487270
+        },
+        "AccessControlledOffchainAggregator": {
+            "address": "0x137924D7C36816E0DcAF016eB617Cc2C92C05782",
+            "startBlock": 19487270
         }
     }
 }

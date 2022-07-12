@@ -70,7 +70,6 @@ export function loadOrInitializeFactory(): Factory {
         factory.totalVolumeUSD = ZERO_BD;
         factory.totalFeeUSD = ZERO_BD;
         factory.totalTxns = ZERO_BI;
-        factory.flts = [];
         factory.fltCount = ZERO_BI;
         factory.save();
     }
