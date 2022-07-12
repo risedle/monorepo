@@ -103,6 +103,47 @@ export function handleSwap(event: SwapEvent): void {
         swap.feeAmountUSD = swapFeeUSD;
     }
 
+    // Handle FLT as tokenIn
+    if (fltId == event.params.tokenIn.toHexString()) {
+        // Get swap amount and the USD value
+        swapAmount = convertETHToDecimal(event.params.amountIn);
+        let amountInETH = convertFLTAmountToETH(flt.id, event.params.amountIn);
+        swapUSD = amountInETH.times(ethPriceData.priceUSD);
+
+        // Get swap fee in USD
+        let feeAmountETH = convertTokenAmountToETH(
+            event.params.tokenOut.toHexString(),
+            event.params.feeAmount
+        );
+        swapFeeUSD = feeAmountETH.times(ethPriceData.priceUSD);
+
+        // Increase total supply
+        fltHourData.totalSupply = fltHourData.totalSupply.minus(
+            event.params.amountIn
+        );
+        fltDayData.totalSupply = fltDayData.totalSupply.minus(
+            event.params.amountIn
+        );
+
+        // Update swap
+        swap.amountIn = swapAmount;
+        swap.amountOut = convertTokenToDecimal(
+            event.params.amountOut,
+            tokenOut.decimals
+        );
+        let amountOutETH = convertTokenAmountToETH(
+            event.params.tokenOut.toHexString(),
+            event.params.amountOut
+        );
+        swap.amountInUSD = swapUSD;
+        swap.amountOutUSD = amountOutETH.times(ethPriceData.priceUSD);
+        swap.feeAmount = convertTokenToDecimal(
+            event.params.feeAmount,
+            tokenOut.decimals
+        );
+        swap.feeAmountUSD = swapFeeUSD;
+    }
+
     // Increase volume
     factory.totalVolumeUSD = factory.totalVolumeUSD.plus(swapUSD);
     flt.totalVolume = flt.totalVolume.plus(swapAmount);

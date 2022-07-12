@@ -1,5 +1,10 @@
-import { describe, test, assert } from "matchstick-as/assembly/index";
-import { logStore } from "matchstick-as/assembly/store";
+import {
+    describe,
+    test,
+    assert,
+    beforeEach,
+} from "matchstick-as/assembly/index";
+import { logStore, clearStore } from "matchstick-as/assembly/store";
 import {
     ethereum,
     BigInt,
@@ -27,6 +32,10 @@ import {
 
 // Contract call mocks
 import "./mocks";
+
+beforeEach(() => {
+    clearStore(); // <-- clear the store before each test in the file
+});
 
 function createDummy(tokenAddress: string): void {
     let factory = loadOrInitializeFactory();
@@ -147,6 +156,140 @@ describe("handleSwap", () => {
             assert.stringEquals(swap.tokenOut, ETHRISE);
             assert.stringEquals(swap.amountIn.toString(), "10");
             assert.stringEquals(swap.amountOut.toString(), "1");
+            assert.stringEquals(swap.feeAmount.toString(), "0.001");
+            assert.stringEquals(
+                swap.feeAmountUSD.toString(),
+                "0.00099999999999970299"
+            );
+
+            // Check Users metadata
+            // assert.stringEquals(swap.sender, ROUTER);
+            // assert.stringEquals(swap.recipient, USER);
+        });
+    });
+
+    describe("given FLT as tokenIn", () => {
+        test("should save data correctly", () => {
+            // Create dummy factory and FLT first
+            createDummy(ETHRISE);
+            let ethriseAmount = "1000000000000000000"; // 1 ETHRISE
+
+            // Create mock event then call the handler
+            let buyEvent = createSwapEvent(
+                ETHRISE,
+                USDC,
+                ETHRISE,
+                "10000000", // 10 USDC as amountIn
+                ethriseAmount, // ETHRISE amount as amountOut
+                "1000", // 0.01 USDC as feeAmount
+                "30000000000000000" // ETHRISE price in ETH
+            );
+            handleSwap(buyEvent);
+            let sellEvent = createSwapEvent(
+                ETHRISE,
+                ETHRISE,
+                USDC,
+                ethriseAmount, // ETHRISE amount as amountIn
+                "10000000", // 10 USDC as amountOut
+                "1000", // 0.001 USDC as feeAmount
+                "30000000000000000" // ETHRISE price in ETH
+            );
+            handleSwap(sellEvent);
+            logStore();
+
+            // Make sure Transaction is saved
+            let transactionId = sellEvent.transaction.hash.toHexString();
+            let transaction = Transaction.load(transactionId)!;
+            assert.stringEquals(transaction.id, transactionId);
+            assert.bigIntEquals(
+                transaction.blockNumber,
+                sellEvent.block.number
+            );
+            assert.bigIntEquals(
+                transaction.timestamp,
+                sellEvent.block.timestamp
+            );
+
+            // Make sure Swap is populated
+            let swapId = transactionId.concat("-1");
+            let swap = Swap.load(swapId)!;
+            assert.stringEquals(transaction.swaps![1], swapId);
+
+            // Check basic metadata
+            assert.stringEquals(swap.id, swapId);
+            assert.stringEquals(swap.transaction, transaction.id);
+            assert.bigIntEquals(swap.timestamp, sellEvent.block.timestamp);
+            assert.stringEquals(swap.flt, ETHRISE);
+
+            let factory = Factory.load(FACTORY_ADDRESS)!;
+            let flt = FLT.load(ETHRISE)!;
+            let fltHourData = FLTHourData.load(ETHRISE.concat("-0"))!;
+            let fltDayData = FLTDayData.load(ETHRISE.concat("-0"))!;
+
+            // Trade volume should increased
+            assert.stringEquals(
+                factory.totalVolumeUSD.toString(),
+                "200.000000000000050302"
+            );
+            assert.stringEquals(flt.totalVolume.toString(), "2");
+            assert.stringEquals(
+                flt.totalVolumeUSD.toString(),
+                "200.000000000000050302"
+            );
+            assert.stringEquals(fltHourData.tradeVolume.toString(), "2");
+            assert.stringEquals(
+                fltHourData.tradeVolumeUSD.toString(),
+                "200.000000000000050302"
+            );
+            assert.stringEquals(fltDayData.tradeVolume.toString(), "2");
+            assert.stringEquals(
+                fltDayData.tradeVolumeUSD.toString(),
+                "200.000000000000050302"
+            );
+
+            // Trade fee should increased
+            assert.stringEquals(
+                factory.totalFeeUSD.toString(),
+                "0.00199999999999940598"
+            );
+            assert.stringEquals(
+                flt.totalFeeUSD.toString(),
+                "0.00199999999999940598"
+            );
+            assert.stringEquals(
+                fltHourData.tradeFeeUSD.toString(),
+                "0.00199999999999940598"
+            );
+            assert.stringEquals(
+                fltDayData.tradeFeeUSD.toString(),
+                "0.00199999999999940598"
+            );
+
+            // Total supply should decreased
+            assert.bigIntEquals(
+                fltHourData.totalSupply,
+                BigInt.fromString("0")
+            );
+            assert.bigIntEquals(
+                fltDayData.totalSupply,
+                BigInt.fromString("0")
+            );
+
+            // Transactions count should increased
+            assert.bigIntEquals(factory.totalTxns, BigInt.fromString("2"));
+            assert.bigIntEquals(flt.totalTxns, BigInt.fromString("2"));
+            assert.bigIntEquals(fltHourData.tradeTxns, BigInt.fromString("2"));
+            assert.bigIntEquals(fltDayData.tradeTxns, BigInt.fromString("2"));
+
+            // tokenIn and tokenOut should be created
+            let tokenIn = Token.load(ETHRISE)!;
+            let tokenOut = Token.load(USDC)!;
+            assert.stringEquals(tokenIn.symbol, "ETHRISE");
+            assert.stringEquals(tokenOut.symbol, "USDC");
+            assert.stringEquals(swap.tokenIn, ETHRISE);
+            assert.stringEquals(swap.tokenOut, USDC);
+            assert.stringEquals(swap.amountIn.toString(), "1");
+            assert.stringEquals(swap.amountOut.toString(), "10");
             assert.stringEquals(swap.feeAmount.toString(), "0.001");
             assert.stringEquals(
                 swap.feeAmountUSD.toString(),
