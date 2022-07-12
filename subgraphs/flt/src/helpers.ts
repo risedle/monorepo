@@ -225,6 +225,11 @@ export function updateFLTHourData(
         fltHourData.tradeVolumeUSD = ZERO_BD;
         fltHourData.tradeFeeUSD = ZERO_BD;
         fltHourData.tradeTxns = ZERO_BI;
+
+        // Supply data
+        fltHourData.totalSupply = fetchTokenTotalSupply(
+            Address.fromString(fltId)
+        );
     }
 
     // Update price data
@@ -246,7 +251,6 @@ export function updateFLTHourData(
         Address.fromString(fltId)
     );
     fltHourData.totalDebt = fetchFLTTotalDebt(Address.fromString(fltId));
-    fltHourData.totalSupply = fetchTokenTotalSupply(Address.fromString(fltId));
 
     // Persist data
     fltHourData.save();
@@ -285,6 +289,11 @@ export function updateFLTDayData(
         fltDayData.tradeVolumeUSD = ZERO_BD;
         fltDayData.tradeFeeUSD = ZERO_BD;
         fltDayData.tradeTxns = ZERO_BI;
+
+        // Supply data
+        fltDayData.totalSupply = fetchTokenTotalSupply(
+            Address.fromString(fltId)
+        );
     }
 
     // Update price data
@@ -306,7 +315,6 @@ export function updateFLTDayData(
         Address.fromString(fltId)
     );
     fltDayData.totalDebt = fetchFLTTotalDebt(Address.fromString(fltId));
-    fltDayData.totalSupply = fetchTokenTotalSupply(Address.fromString(fltId));
 
     // Persist data
     fltDayData.save();
