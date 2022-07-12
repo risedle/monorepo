@@ -30,10 +30,12 @@ export function handleAnswerUpdated(event: AnswerUpdated): void {
 
     // Load or initialize factory
     let factory = loadOrInitializeFactory();
-    for (let i = 0; i < factory.flts.length; ++i) {
-        let fltId = factory.flts[i];
-        updateFLTHourData(fltId, ethPriceData, event.block.timestamp);
-        updateFLTDayData(fltId, ethPriceData, event.block.timestamp);
+    if (factory.fltCount.gt(BigInt.fromI32(0))) {
+        for (let i = 0; BigInt.fromI32(i).lt(factory.fltCount); ++i) {
+            let fltId = factory.flts[i];
+            updateFLTHourData(fltId, ethPriceData, event.block.timestamp);
+            updateFLTDayData(fltId, ethPriceData, event.block.timestamp);
+        }
     }
 
     // Persist data

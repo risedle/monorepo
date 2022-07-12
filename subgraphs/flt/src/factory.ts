@@ -7,7 +7,7 @@ import {
     ONE_BI,
 } from "./helpers";
 
-export function handleNewFLT(event: TokenCreated): void {
+export function handleTokenCreated(event: TokenCreated): void {
     let factory = loadOrInitializeFactory();
     factory.fltCount = factory.fltCount.plus(ONE_BI);
     let flt = loadOrInitializeFLT(event.params.token);
