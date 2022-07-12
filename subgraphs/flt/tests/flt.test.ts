@@ -15,6 +15,7 @@ import {
     FLTHourData,
     FLTDayData,
     ETHPriceData,
+    Token,
 } from "../generated/schema";
 import { createSwapEvent, ETHRISE, USDC, SENDER, RECIPIENT } from "./helpers";
 import { handleSwap } from "../src/flt";
@@ -31,7 +32,7 @@ function createDummy(tokenAddress: string): void {
     let factory = loadOrInitializeFactory();
     let flt = loadOrInitializeFLT(Address.fromString(tokenAddress));
     let ethPriceData = new ETHPriceData("latest");
-    ethPriceData.priceUSD = BigDecimal.fromString("231.50854126");
+    ethPriceData.priceUSD = BigDecimal.fromString("1088.87");
     ethPriceData.save();
     factory.save();
     flt.save();
@@ -85,34 +86,40 @@ describe("handleSwap", () => {
             // Trade volume should increased
             assert.stringEquals(
                 factory.totalVolumeUSD.toString(),
-                "6.9452562378"
+                "100.000000000000025151"
             );
             assert.stringEquals(flt.totalVolume.toString(), "1");
-            assert.stringEquals(flt.totalVolumeUSD.toString(), "6.9452562378");
+            assert.stringEquals(
+                flt.totalVolumeUSD.toString(),
+                "100.000000000000025151"
+            );
             assert.stringEquals(fltHourData.tradeVolume.toString(), "1");
             assert.stringEquals(
                 fltHourData.tradeVolumeUSD.toString(),
-                "6.9452562378"
+                "100.000000000000025151"
             );
             assert.stringEquals(fltDayData.tradeVolume.toString(), "1");
             assert.stringEquals(
                 fltDayData.tradeVolumeUSD.toString(),
-                "6.9452562378"
+                "100.000000000000025151"
             );
 
             // Trade fee should increased
             assert.stringEquals(
                 factory.totalFeeUSD.toString(),
-                "0.92603416504"
+                "0.00099999999999970299"
             );
-            assert.stringEquals(flt.totalFeeUSD.toString(), "0.92603416504");
+            assert.stringEquals(
+                flt.totalFeeUSD.toString(),
+                "0.00099999999999970299"
+            );
             assert.stringEquals(
                 fltHourData.tradeFeeUSD.toString(),
-                "0.92603416504"
+                "0.00099999999999970299"
             );
             assert.stringEquals(
                 fltDayData.tradeFeeUSD.toString(),
-                "0.92603416504"
+                "0.00099999999999970299"
             );
 
             // Total supply should increased
@@ -131,17 +138,24 @@ describe("handleSwap", () => {
             assert.bigIntEquals(fltHourData.tradeTxns, BigInt.fromString("1"));
             assert.bigIntEquals(fltDayData.tradeTxns, BigInt.fromString("1"));
 
+            // tokenIn and tokenOut should be created
+            let tokenIn = Token.load(USDC)!;
+            let tokenOut = Token.load(ETHRISE)!;
+            assert.stringEquals(tokenIn.symbol, "USDC");
+            assert.stringEquals(tokenOut.symbol, "ETHRISE");
+            assert.stringEquals(swap.tokenIn, USDC);
+            assert.stringEquals(swap.tokenOut, ETHRISE);
+            assert.stringEquals(swap.amountIn.toString(), "10");
+            assert.stringEquals(swap.amountOut.toString(), "1");
+            assert.stringEquals(swap.feeAmount.toString(), "0.001");
+            assert.stringEquals(
+                swap.feeAmountUSD.toString(),
+                "0.00099999999999970299"
+            );
+
             // Check Users metadata
             // assert.stringEquals(swap.sender, ROUTER);
             // assert.stringEquals(swap.recipient, USER);
-
-            // TODO: Sender and recipient swap volume should increased
-
-            // TODO: Load or initialize new token
-            // TODO: make sure token trade volume increased
-            // TODO: make sure token trade volume usd increased
-            // TODO:
-            // TODO: make sure factory volume is increased
         });
     });
 });

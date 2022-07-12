@@ -12,10 +12,12 @@ import {
     updateFLTDayData,
     convertFLTAmountToETH,
     convertTokenAmountToETH,
+    convertTokenToDecimal,
     convertETHToDecimal,
     FACTORY_ADDRESS,
     ONE_BI,
     ZERO_BD,
+    loadOrInitializeToken,
 } from "./helpers";
 
 export function handleSwap(event: SwapEvent): void {
@@ -29,6 +31,7 @@ export function handleSwap(event: SwapEvent): void {
         transaction.swaps = [];
     }
 
+    // Load or initialize entities
     let factory = Factory.load(FACTORY_ADDRESS)!;
     let fltId = event.address.toHexString();
     let ethPriceData = ETHPriceData.load("latest")!;
@@ -43,6 +46,13 @@ export function handleSwap(event: SwapEvent): void {
         ethPriceData,
         event.block.timestamp
     );
+    let tokenIn = loadOrInitializeToken(event.params.tokenIn);
+    let tokenOut = loadOrInitializeToken(event.params.tokenOut);
+    let swaps = transaction.swaps!;
+    let swapId = transactionId
+        .concat("-")
+        .concat(BigInt.fromI32(swaps.length).toString());
+    let swap = new Swap(swapId);
 
     // Derived data from Swap
     let swapAmount = ZERO_BD;
@@ -62,7 +72,7 @@ export function handleSwap(event: SwapEvent): void {
         // Get swap fee in USD
         let feeAmountETH = convertTokenAmountToETH(
             event.params.tokenIn.toHexString(),
-            event.params.amountIn
+            event.params.feeAmount
         );
         swapFeeUSD = feeAmountETH.times(ethPriceData.priceUSD);
 
@@ -73,6 +83,24 @@ export function handleSwap(event: SwapEvent): void {
         fltDayData.totalSupply = fltDayData.totalSupply.plus(
             event.params.amountOut
         );
+
+        // Update swap
+        swap.amountIn = convertTokenToDecimal(
+            event.params.amountIn,
+            tokenIn.decimals
+        );
+        swap.amountOut = swapAmount;
+        let amountInETH = convertTokenAmountToETH(
+            event.params.tokenIn.toHexString(),
+            event.params.amountIn
+        );
+        swap.amountInUSD = amountInETH.times(ethPriceData.priceUSD);
+        swap.amountOutUSD = swapUSD;
+        swap.feeAmount = convertTokenToDecimal(
+            event.params.feeAmount,
+            tokenIn.decimals
+        );
+        swap.feeAmountUSD = swapFeeUSD;
     }
 
     // Increase volume
@@ -96,17 +124,13 @@ export function handleSwap(event: SwapEvent): void {
     fltHourData.tradeTxns = fltHourData.tradeTxns.plus(ONE_BI);
     fltDayData.tradeTxns = fltDayData.tradeTxns.plus(ONE_BI);
 
-    // Initialize new Swap
-    let swaps = transaction.swaps!;
-    let swapId = transactionId
-        .concat("-")
-        .concat(BigInt.fromI32(swaps.length).toString());
-    let swap = new Swap(swapId);
     swap.transaction = transaction.id;
     swap.timestamp = transaction.timestamp;
     swap.flt = flt.id;
     swaps.push(swapId);
     transaction.swaps = swaps;
+    swap.tokenIn = tokenIn.id;
+    swap.tokenOut = tokenOut.id;
 
     // Persist data
     factory.save();
