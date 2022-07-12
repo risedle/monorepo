@@ -10,7 +10,7 @@ import { ethereum, Address, BigInt } from "@graphprotocol/graph-ts";
 
 import { TokenCreated } from "../generated/Factory/FLTFactory";
 import { Factory, FLT, Token } from "../generated/schema";
-import { handleNewFLT } from "../src/factory";
+import { handleTokenCreated } from "../src/factory";
 
 import { FACTORY_ADDRESS } from "../src/helpers";
 import { ETHRISE, WETH, USDC } from "./helpers";
@@ -57,7 +57,7 @@ describe("handleNewFLT()", () => {
                 "2X Long ETH Risedle",
                 "ETHRISE"
             );
-            handleNewFLT(event);
+            handleTokenCreated(event);
             // logStore();
 
             // Make sure the factory is created

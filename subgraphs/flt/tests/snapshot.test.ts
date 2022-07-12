@@ -10,7 +10,11 @@ import {
 } from "../generated/schema";
 import { handleAnswerUpdated } from "../src/snapshot";
 import { createAnswerUpdatedEvent, ETHRISE } from "./helpers";
-import { loadOrInitializeFactory, loadOrInitializeFLT } from "../src/helpers";
+import {
+    loadOrInitializeFactory,
+    loadOrInitializeFLT,
+    ONE_BI,
+} from "../src/helpers";
 
 // Contract calls mocks
 import "./mocks";
@@ -21,11 +25,7 @@ function createDummyData(): void {
 
     // Load of initialize FLT
     let flt = loadOrInitializeFLT(Address.fromString(ETHRISE));
-
-    // Add FLT to factory
-    let newFLTs = factory.flts;
-    newFLTs.push(flt.id);
-    factory.flts = newFLTs;
+    factory.fltCount = factory.fltCount.plus(ONE_BI);
 
     // Persist data
     flt.save();
