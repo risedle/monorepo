@@ -59,6 +59,12 @@ createMockedFunction(
 
 createMockedFunction(
     Address.fromString(ETHRISE),
+    "isInitialized",
+    "isInitialized():(bool)"
+).returns([ethereum.Value.fromBoolean(true)]);
+
+createMockedFunction(
+    Address.fromString(ETHRISE),
     "decimals",
     "decimals():(uint8)"
 ).returns([ethereum.Value.fromUnsignedBigInt(BigInt.fromString("18"))]);

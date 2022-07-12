@@ -42,12 +42,12 @@ export function handleSwap(event: SwapEvent): void {
         fltId,
         ethPriceData,
         event.block.timestamp
-    );
+    )!;
     let fltDayData = updateFLTDayData(
         fltId,
         ethPriceData,
         event.block.timestamp
-    );
+    )!;
     let tokenIn = loadOrInitializeToken(event.params.tokenIn);
     let tokenOut = loadOrInitializeToken(event.params.tokenOut);
     let swaps = transaction.swaps;

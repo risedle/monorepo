@@ -8,7 +8,7 @@ type Factory @entity {
     totalTxns: BigInt!
 
     # FLT data
-    flts: [FLT!]! @derivedFrom(field: "factory")
+    flts: [FLT!]
     fltCount: BigInt!
 }
 

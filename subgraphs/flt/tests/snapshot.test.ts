@@ -8,8 +8,13 @@ import {
     FLTDayData,
     FLT,
 } from "../generated/schema";
+import { handleTokenCreated } from "../src/factory";
 import { handleAnswerUpdated } from "../src/snapshot";
-import { createAnswerUpdatedEvent, ETHRISE } from "./helpers";
+import {
+    createTokenCreatedEvent,
+    createAnswerUpdatedEvent,
+    ETHRISE,
+} from "./helpers";
 import {
     loadOrInitializeFactory,
     loadOrInitializeFLT,
@@ -20,16 +25,13 @@ import {
 import "./mocks";
 
 function createDummyData(): void {
-    // Load or initialize factory
-    let factory = loadOrInitializeFactory();
-
-    // Load of initialize FLT
-    let flt = loadOrInitializeFLT(Address.fromString(ETHRISE));
-    factory.fltCount = factory.fltCount.plus(ONE_BI);
-
-    // Persist data
-    flt.save();
-    factory.save();
+    // Create mock event then call the handler
+    let event = createTokenCreatedEvent(
+        ETHRISE,
+        "2X Long ETH Risedle",
+        "ETHRISE"
+    );
+    handleTokenCreated(event);
 }
 
 describe("handleAnswerUpdated", () => {
