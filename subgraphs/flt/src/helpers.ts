@@ -8,6 +8,7 @@ import {
     ETHPriceData,
     FLTHourData,
     FLTDayData,
+    Token,
 } from "../generated/schema";
 
 export const FACTORY_ADDRESS = "0x888884173B6E6f4B42731853b89c39591ac53d92";
@@ -95,6 +96,23 @@ export function loadOrInitializeFLT(tokenAddress: Address): FLT {
         flt.save();
     }
     return flt;
+}
+
+export function loadOrInitializeToken(tokenAddress: Address): Token {
+    let token = Token.load(tokenAddress.toHexString());
+    if (token === null) {
+        token = new Token(tokenAddress.toHexString());
+        token.symbol = fetchTokenSymbol(tokenAddress);
+        token.name = fetchTokenName(tokenAddress);
+        // bail if we couldn't figure out the decimals
+        let decimals = fetchTokenDecimals(tokenAddress);
+        if (decimals === null) {
+            throw new Error("can't figure out the decimals");
+        }
+        token.decimals = decimals;
+        token.save();
+    }
+    return token;
 }
 
 function fetchFLTMaxSupply(tokenAddress: Address): BigInt {

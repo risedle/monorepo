@@ -131,6 +131,6 @@ type Swap @entity {
     amountOut: BigDecimal!
     amountInUSD: BigDecimal!
     amountOutUSD: BigDecimal!
-    feeAmount: BigDecimal! # fee in tokenIn or tokenOut (non-flt token)
+    feeAmount: BigDecimal!
     feeAmountUSD: BigDecimal!
 }
