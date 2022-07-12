@@ -110,7 +110,11 @@ describe("handleSwap", () => {
                 BigInt.fromString(ethriseAmount)
             );
 
-            // TODO: txcount should increased
+            // Transactions count should increased
+            assert.bigIntEquals(factory.totalTxns, BigInt.fromString("1"));
+            assert.bigIntEquals(flt.totalTxns, BigInt.fromString("1"));
+            assert.bigIntEquals(fltHourData.tradeTxns, BigInt.fromString("1"));
+            assert.bigIntEquals(fltDayData.tradeTxns, BigInt.fromString("1"));
 
             // Check Users metadata
             // assert.stringEquals(swap.sender, ROUTER);
