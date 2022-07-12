@@ -13,6 +13,7 @@ import {
     convertFLTAmountToETH,
     convertETHToDecimal,
     FACTORY_ADDRESS,
+    ONE_BI,
 } from "./helpers";
 
 export function handleSwap(event: SwapEvent): void {
@@ -68,6 +69,12 @@ export function handleSwap(event: SwapEvent): void {
             event.params.amountOut
         );
     }
+
+    // Increase trade count
+    factory.totalTxns = factory.totalTxns.plus(ONE_BI);
+    flt.totalTxns = flt.totalTxns.plus(ONE_BI);
+    fltHourData.tradeTxns = fltHourData.tradeTxns.plus(ONE_BI);
+    fltDayData.tradeTxns = fltDayData.tradeTxns.plus(ONE_BI);
 
     // Initialize new Swap
     let swaps = transaction.swaps!;
