@@ -9,6 +9,8 @@ import {
     FLTHourData,
     FLTDayData,
     Token,
+    User,
+    OpenPosition,
 } from "../generated/schema";
 
 export const FACTORY_ADDRESS = "0x888884173B6E6f4B42731853b89c39591ac53d92";
@@ -131,6 +133,32 @@ export function loadOrInitializeToken(tokenAddress: Address): Token {
         token.save();
     }
     return token;
+}
+
+export function loadOrInitializeUser(addy: Address): User {
+    let user = User.load(addy.toHexString());
+    if (user === null) {
+        user = new User(addy.toHexString());
+        user.save();
+    }
+    return user;
+}
+
+export function loadOrInitializeOpenPosition(
+    user: User,
+    flt: FLT
+): OpenPosition {
+    let positionId = user.id.concat("-").concat(flt.id);
+    let position = OpenPosition.load(positionId);
+    if (position === null) {
+        position = new OpenPosition(positionId);
+        position.user = user.id;
+        position.flt = flt.id;
+        position.amount = ZERO_BD;
+        position.amountUSD = ZERO_BD;
+        position.save();
+    }
+    return position;
 }
 
 function fetchFLTMaxSupply(tokenAddress: Address): BigInt {

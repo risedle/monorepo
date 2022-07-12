@@ -7,6 +7,7 @@ import { AnswerUpdated } from "../generated/AccessControlledOffchainAggregator/A
 // Dummy data
 export const SENDER = "0x8888888c0a5be14f3fc72a8c97ec489dee9c4460";
 export const RECIPIENT = "0x1418be4753a22b69b613fa8b8144d856c023d46b";
+export const USER = "0x1418be4753a22b69b613fa8b8144d856c023d46b";
 export const ETHRISE = "0x2e876c4cfef54417949d9bdbb350dd0e2775d1cc";
 export const USDC = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
 export const WETH = "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2";
@@ -24,6 +25,9 @@ export function createSwapEvent(
     let newSwapEvent = changetype<SwapEvent>(newMockEvent());
     newSwapEvent.address = Address.fromString(flt);
     newSwapEvent.parameters = new Array();
+    let tx = newSwapEvent.transaction;
+    tx.from = Address.fromString(USER);
+    newSwapEvent.transaction = tx;
 
     // Build params
     let senderParam = new ethereum.EventParam(
