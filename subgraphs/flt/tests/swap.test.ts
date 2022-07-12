@@ -10,6 +10,7 @@ import {
     BigInt,
     Address,
     BigDecimal,
+    Bytes,
 } from "@graphprotocol/graph-ts";
 
 import {
@@ -24,7 +25,14 @@ import {
     User,
     OpenPosition,
 } from "../generated/schema";
-import { createSwapEvent, ETHRISE, USDC, USER } from "./helpers";
+import {
+    createSwapEvent,
+    ETHRISE,
+    USDC,
+    USER,
+    SENDER,
+    RECIPIENT,
+} from "./helpers";
 import { handleSwap } from "../src/swap";
 import {
     FACTORY_ADDRESS,
@@ -226,6 +234,11 @@ describe("handleSwap", () => {
             assert.stringEquals(swap.id, swapId);
             assert.bigIntEquals(swap.timestamp, event.block.timestamp);
             assert.stringEquals(swap.flt, ETHRISE);
+
+            // Check user
+            assert.bytesEquals(swap.sender, Bytes.fromHexString(SENDER));
+            assert.bytesEquals(swap.recipient, Bytes.fromHexString(RECIPIENT));
+            assert.stringEquals(swap.user, USER);
 
             // tokenIn and tokenOut should be created
             let tokenIn = Token.load(USDC)!;
@@ -508,6 +521,11 @@ describe("handleSwap", () => {
             assert.stringEquals(swap.id, swapId);
             assert.bigIntEquals(swap.timestamp, sellEvent.block.timestamp);
             assert.stringEquals(swap.flt, ETHRISE);
+
+            // Check user
+            assert.bytesEquals(swap.sender, Bytes.fromHexString(SENDER));
+            assert.bytesEquals(swap.recipient, Bytes.fromHexString(RECIPIENT));
+            assert.stringEquals(swap.user, USER);
 
             let tokenIn = Token.load(ETHRISE)!;
             let tokenOut = Token.load(USDC)!;
