@@ -75,6 +75,16 @@ export function loadOrInitializeFactory(): Factory {
     return factory;
 }
 
+function fetchFLTCollateral(tokenAddress: Address): Address {
+    let contract = FLTContract.bind(tokenAddress);
+    return contract.collateral();
+}
+
+function fetchFLTDebt(tokenAddress: Address): Address {
+    let contract = FLTContract.bind(tokenAddress);
+    return contract.debt();
+}
+
 export function loadOrInitializeFLT(tokenAddress: Address): FLT {
     let flt = FLT.load(tokenAddress.toHexString());
     if (flt === null) {
@@ -88,6 +98,14 @@ export function loadOrInitializeFLT(tokenAddress: Address): FLT {
             throw new Error("can't figure out the decimals");
         }
         flt.decimals = decimals;
+
+        // Fetch collateral and debt
+        let collateralAddress = fetchFLTCollateral(tokenAddress);
+        let collateral = loadOrInitializeToken(collateralAddress);
+        flt.collateral = collateral.id;
+        let debtAddress = fetchFLTDebt(tokenAddress);
+        let debt = loadOrInitializeToken(debtAddress);
+        flt.debt = debt.id;
 
         flt.totalVolume = ZERO_BD;
         flt.totalVolumeUSD = ZERO_BD;

@@ -20,6 +20,9 @@ type FLT @entity {
     name: String!
     decimals: BigInt!
 
+    collateral: Token!
+    debt: Token!
+
     # Sum of all trade data
     totalVolume: BigDecimal!
     totalVolumeUSD: BigDecimal!

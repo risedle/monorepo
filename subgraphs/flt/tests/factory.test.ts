@@ -6,37 +6,17 @@ import {
     createMockedFunction,
 } from "matchstick-as/assembly/index";
 import { logStore } from "matchstick-as/assembly/store";
-import { ethereum, Address } from "@graphprotocol/graph-ts";
+import { ethereum, Address, BigInt } from "@graphprotocol/graph-ts";
 
 import { TokenCreated } from "../generated/Factory/FLTFactory";
+import { Factory, FLT, Token } from "../generated/schema";
 import { handleNewFLT } from "../src/factory";
 
-import { ZERO_BI, DECIMALS_BI, FACTORY_ADDRESS } from "../src/helpers";
+import { FACTORY_ADDRESS } from "../src/helpers";
+import { ETHRISE, WETH, USDC } from "./helpers";
 
-const TEST_NEW_FLT_TOKEN = "0xe9e7cea3dedca5984780bafc599bd69add087d56";
-createMockedFunction(
-    Address.fromString(TEST_NEW_FLT_TOKEN),
-    "symbol",
-    "symbol():(string)"
-).returns([ethereum.Value.fromString("ETHRISE")]);
-
-createMockedFunction(
-    Address.fromString(TEST_NEW_FLT_TOKEN),
-    "name",
-    "name():(string)"
-).returns([ethereum.Value.fromString("2X Long ETH Risedle")]);
-
-createMockedFunction(
-    Address.fromString(TEST_NEW_FLT_TOKEN),
-    "totalSupply",
-    "totalSupply():(uint256)"
-).returns([ethereum.Value.fromUnsignedBigInt(ZERO_BI)]);
-
-createMockedFunction(
-    Address.fromString(TEST_NEW_FLT_TOKEN),
-    "decimals",
-    "decimals():(uint8)"
-).returns([ethereum.Value.fromUnsignedBigInt(DECIMALS_BI)]);
+// Mock contract calls
+import "./mocks";
 
 function createTokenCreatedEvent(
     tokenAddress: string,
@@ -73,65 +53,40 @@ describe("handleNewFLT()", () => {
         test("should create new Factory and Token", () => {
             // Create mock event then call the handler
             let event = createTokenCreatedEvent(
-                TEST_NEW_FLT_TOKEN,
+                ETHRISE,
                 "2X Long ETH Risedle",
                 "ETHRISE"
             );
             handleNewFLT(event);
+            // logStore();
 
             // Make sure the factory is created
-            assert.fieldEquals(
-                "Factory",
-                FACTORY_ADDRESS,
-                "id",
-                FACTORY_ADDRESS
-            );
-            assert.fieldEquals("Factory", FACTORY_ADDRESS, "fltCount", "1");
-            assert.fieldEquals(
-                "Factory",
-                FACTORY_ADDRESS,
-                "totalVolumeUSD",
-                "0"
-            );
-            assert.fieldEquals(
-                "Factory",
-                FACTORY_ADDRESS,
-                "totalVolumeETH",
-                "0"
-            );
-            assert.fieldEquals("Factory", FACTORY_ADDRESS, "txCount", "0");
+            let factory = Factory.load(FACTORY_ADDRESS)!;
+            assert.stringEquals(factory.id, FACTORY_ADDRESS);
+            assert.bigIntEquals(factory.fltCount, BigInt.fromString("1"));
+            assert.stringEquals(factory.totalVolumeUSD.toString(), "0");
+            assert.bigIntEquals(factory.totalTxns, BigInt.fromString("0"));
 
-            // Make sure FLT is created
-            assert.fieldEquals(
-                "FLT",
-                TEST_NEW_FLT_TOKEN,
-                "id",
-                TEST_NEW_FLT_TOKEN
-            );
-            assert.fieldEquals("FLT", TEST_NEW_FLT_TOKEN, "symbol", "ETHRISE");
-            assert.fieldEquals(
-                "FLT",
-                TEST_NEW_FLT_TOKEN,
-                "name",
-                "2X Long ETH Risedle"
-            );
-            assert.fieldEquals("FLT", TEST_NEW_FLT_TOKEN, "decimals", "18");
-            assert.fieldEquals("FLT", TEST_NEW_FLT_TOKEN, "totalSupply", "0");
-            assert.fieldEquals("FLT", TEST_NEW_FLT_TOKEN, "tradeVolume", "0");
-            assert.fieldEquals(
-                "FLT",
-                TEST_NEW_FLT_TOKEN,
-                "tradeVolumeETH",
-                "0"
-            );
-            assert.fieldEquals(
-                "FLT",
-                TEST_NEW_FLT_TOKEN,
-                "tradeVolumeUSD",
-                "0"
-            );
-            assert.fieldEquals("FLT", TEST_NEW_FLT_TOKEN, "txCount", "0");
-            assert.fieldEquals("FLT", TEST_NEW_FLT_TOKEN, "derivedETH", "0");
+            let flt = FLT.load(ETHRISE)!;
+            assert.stringEquals(flt.id, ETHRISE);
+            assert.stringEquals(flt.name, "2X Long ETH Risedle");
+            assert.stringEquals(flt.symbol, "ETHRISE");
+            assert.bigIntEquals(flt.decimals, BigInt.fromString("18"));
+            assert.stringEquals(flt.collateral, WETH);
+            assert.stringEquals(flt.debt, USDC);
+
+            let collateral = Token.load(WETH)!;
+            assert.stringEquals(collateral.symbol, "WETH");
+            assert.bigIntEquals(collateral.decimals, BigInt.fromString("18"));
+
+            let debt = Token.load(USDC)!;
+            assert.stringEquals(debt.symbol, "USDC");
+            assert.bigIntEquals(debt.decimals, BigInt.fromString("6"));
+
+            assert.stringEquals(flt.totalVolume.toString(), "0");
+            assert.stringEquals(flt.totalVolumeUSD.toString(), "0");
+            assert.stringEquals(flt.totalFeeUSD.toString(), "0");
+            assert.bigIntEquals(flt.totalTxns, BigInt.fromString("0"));
         });
     });
 });

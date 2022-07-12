@@ -65,7 +65,7 @@ describe("handleSwap", () => {
                 "30000000000000000" // ETHRISE price in ETH
             );
             handleSwap(event);
-            logStore();
+            // logStore();
 
             // Make sure Transaction is saved
             let transactionId = event.transaction.hash.toHexString();
@@ -195,7 +195,7 @@ describe("handleSwap", () => {
                 "30000000000000000" // ETHRISE price in ETH
             );
             handleSwap(sellEvent);
-            logStore();
+            // logStore();
 
             // Make sure Transaction is saved
             let transactionId = sellEvent.transaction.hash.toHexString();

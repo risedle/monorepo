@@ -2,7 +2,7 @@
 import { createMockedFunction } from "matchstick-as/assembly/index";
 import { ethereum, BigInt, Address } from "@graphprotocol/graph-ts";
 
-import { ETHRISE, ETHUSD, USDC } from "./helpers";
+import { ETHRISE, ETHUSD, USDC, WETH } from "./helpers";
 import { ORACLE_ADDRESS } from "../src/helpers";
 
 createMockedFunction(
@@ -18,6 +18,12 @@ createMockedFunction(
 ).returns([ethereum.Value.fromString("USDC")]);
 
 createMockedFunction(
+    Address.fromString(WETH),
+    "symbol",
+    "symbol():(string)"
+).returns([ethereum.Value.fromString("WETH")]);
+
+createMockedFunction(
     Address.fromString(ETHRISE),
     "name",
     "name():(string)"
@@ -28,6 +34,12 @@ createMockedFunction(
     "name",
     "name():(string)"
 ).returns([ethereum.Value.fromString("USDC")]);
+
+createMockedFunction(
+    Address.fromString(WETH),
+    "name",
+    "name():(string)"
+).returns([ethereum.Value.fromString("WETH")]);
 
 createMockedFunction(
     Address.fromString(ETHRISE),
@@ -58,12 +70,30 @@ createMockedFunction(
 ).returns([ethereum.Value.fromUnsignedBigInt(BigInt.fromString("6"))]);
 
 createMockedFunction(
+    Address.fromString(WETH),
+    "decimals",
+    "decimals():(uint8)"
+).returns([ethereum.Value.fromUnsignedBigInt(BigInt.fromString("18"))]);
+
+createMockedFunction(
     Address.fromString(ETHRISE),
     "price",
     "price():(uint256)"
 ).returns([
     ethereum.Value.fromUnsignedBigInt(BigInt.fromString("91838327807727300")),
 ]);
+
+createMockedFunction(
+    Address.fromString(ETHRISE),
+    "collateral",
+    "collateral():(address)"
+).returns([ethereum.Value.fromAddress(Address.fromString(WETH))]);
+
+createMockedFunction(
+    Address.fromString(ETHRISE),
+    "debt",
+    "debt():(address)"
+).returns([ethereum.Value.fromAddress(Address.fromString(USDC))]);
 
 createMockedFunction(
     Address.fromString(ETHRISE),

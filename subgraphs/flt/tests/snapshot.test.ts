@@ -67,7 +67,10 @@ describe("handleAnswerUpdated", () => {
             // Make sure FLT hourly snapshot is updated
             let hourData = FLTHourData.load(ETHRISE.concat("-0"))!;
             assert.stringEquals(hourData.flt, ETHRISE);
-            assert.stringEquals(hourData.priceUSD.toString(), "69.452562378");
+            assert.stringEquals(
+                hourData.priceUSD.toString(),
+                "21.261357302524640978878398"
+            );
             assert.bigIntEquals(
                 hourData.totalCollateral,
                 BigInt.fromString("600000000000000000")
@@ -80,7 +83,10 @@ describe("handleAnswerUpdated", () => {
             // Make sure FLT daily snapshot is updated
             let dayData = FLTDayData.load(ETHRISE.concat("-0"))!;
             assert.stringEquals(dayData.flt, ETHRISE);
-            assert.stringEquals(dayData.priceUSD.toString(), "69.452562378");
+            assert.stringEquals(
+                dayData.priceUSD.toString(),
+                "21.261357302524640978878398"
+            );
             assert.bigIntEquals(
                 dayData.totalCollateral,
                 BigInt.fromString("600000000000000000")
