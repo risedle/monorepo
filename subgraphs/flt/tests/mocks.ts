@@ -123,9 +123,7 @@ createMockedFunction(
     Address.fromString(ETHRISE),
     "totalDebt",
     "totalDebt():(uint256)"
-).returns([
-    ethereum.Value.fromUnsignedBigInt(BigInt.fromString("700000000000000000")),
-]);
+).returns([ethereum.Value.fromUnsignedBigInt(BigInt.fromString("700000000"))]);
 
 createMockedFunction(
     Address.fromString(ETHUSD),

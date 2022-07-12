@@ -63,11 +63,11 @@ type FLTHourData @entity {
     priceUSD: BigDecimal!
 
     # Underlying data
-    collateralPerShare: BigInt!
-    debtPerShare: BigInt!
-    totalCollateral: BigInt!
-    totalDebt: BigInt!
-    totalSupply: BigInt!
+    collateralPerShare: BigDecimal!
+    debtPerShare: BigDecimal!
+    totalCollateral: BigDecimal!
+    totalDebt: BigDecimal!
+    totalSupply: BigDecimal!
 
     # Trade volume
     tradeVolume: BigDecimal!
@@ -89,11 +89,11 @@ type FLTDayData @entity {
     priceUSD: BigDecimal!
 
     # Underlying data
-    collateralPerShare: BigInt!
-    debtPerShare: BigInt!
-    totalCollateral: BigInt!
-    totalDebt: BigInt!
-    totalSupply: BigInt!
+    collateralPerShare: BigDecimal!
+    debtPerShare: BigDecimal!
+    totalCollateral: BigDecimal!
+    totalDebt: BigDecimal!
+    totalSupply: BigDecimal!
 
     # Trade volume
     tradeVolume: BigDecimal!

@@ -216,6 +216,9 @@ export function updateFLTHourData(
     ethPriceData: ETHPriceData,
     eventTimestamp: BigInt
 ): FLTHourData {
+    let flt = FLT.load(fltId)!;
+    let collateral = Token.load(flt.collateral)!;
+    let debt = Token.load(flt.debt)!;
     let timestamp = eventTimestamp.toI32();
     let hourIndex = timestamp / 3600;
     let hourStartUnix = hourIndex * 3600;
@@ -245,9 +248,8 @@ export function updateFLTHourData(
         fltHourData.tradeTxns = ZERO_BI;
 
         // Supply data
-        fltHourData.totalSupply = fetchTokenTotalSupply(
-            Address.fromString(fltId)
-        );
+        let totalSupply = fetchTokenTotalSupply(Address.fromString(fltId));
+        fltHourData.totalSupply = convertETHToDecimal(totalSupply);
     }
 
     // Update price data
@@ -261,14 +263,25 @@ export function updateFLTHourData(
     fltHourData.priceUSD = fltPriceUSD;
 
     // Update underlying data
-    fltHourData.collateralPerShare = fetchFLTCollateralPerShare(
+    let collateralPerShare = fetchFLTCollateralPerShare(
         Address.fromString(fltId)
     );
-    fltHourData.debtPerShare = fetchFLTDebtPerShare(Address.fromString(fltId));
-    fltHourData.totalCollateral = fetchFLTTotalCollateral(
-        Address.fromString(fltId)
+    fltHourData.collateralPerShare = convertTokenToDecimal(
+        collateralPerShare,
+        collateral.decimals
     );
-    fltHourData.totalDebt = fetchFLTTotalDebt(Address.fromString(fltId));
+    let debtPerShare = fetchFLTDebtPerShare(Address.fromString(fltId));
+    fltHourData.debtPerShare = convertTokenToDecimal(
+        debtPerShare,
+        debt.decimals
+    );
+    let totalCollateral = fetchFLTTotalCollateral(Address.fromString(fltId));
+    fltHourData.totalCollateral = convertTokenToDecimal(
+        totalCollateral,
+        collateral.decimals
+    );
+    let totalDebt = fetchFLTTotalDebt(Address.fromString(fltId));
+    fltHourData.totalDebt = convertTokenToDecimal(totalDebt, debt.decimals);
 
     // Persist data
     fltHourData.save();
@@ -280,6 +293,9 @@ export function updateFLTDayData(
     ethPriceData: ETHPriceData,
     eventTimestamp: BigInt
 ): FLTDayData {
+    let flt = FLT.load(fltId)!;
+    let collateral = Token.load(flt.collateral)!;
+    let debt = Token.load(flt.debt)!;
     let timestamp = eventTimestamp.toI32();
     let dayIndex = timestamp / 86400;
     let dayStartUnix = dayIndex * 86400;
@@ -309,9 +325,8 @@ export function updateFLTDayData(
         fltDayData.tradeTxns = ZERO_BI;
 
         // Supply data
-        fltDayData.totalSupply = fetchTokenTotalSupply(
-            Address.fromString(fltId)
-        );
+        let totalSupply = fetchTokenTotalSupply(Address.fromString(fltId));
+        fltDayData.totalSupply = convertETHToDecimal(totalSupply);
     }
 
     // Update price data
@@ -325,14 +340,25 @@ export function updateFLTDayData(
     fltDayData.priceUSD = fltPriceUSD;
 
     // Update underlying data
-    fltDayData.collateralPerShare = fetchFLTCollateralPerShare(
+    let collateralPerShare = fetchFLTCollateralPerShare(
         Address.fromString(fltId)
     );
-    fltDayData.debtPerShare = fetchFLTDebtPerShare(Address.fromString(fltId));
-    fltDayData.totalCollateral = fetchFLTTotalCollateral(
-        Address.fromString(fltId)
+    fltDayData.collateralPerShare = convertTokenToDecimal(
+        collateralPerShare,
+        collateral.decimals
     );
-    fltDayData.totalDebt = fetchFLTTotalDebt(Address.fromString(fltId));
+    let debtPerShare = fetchFLTDebtPerShare(Address.fromString(fltId));
+    fltDayData.debtPerShare = convertTokenToDecimal(
+        debtPerShare,
+        debt.decimals
+    );
+    let totalCollateral = fetchFLTTotalCollateral(Address.fromString(fltId));
+    fltDayData.totalCollateral = convertTokenToDecimal(
+        totalCollateral,
+        collateral.decimals
+    );
+    let totalDebt = fetchFLTTotalDebt(Address.fromString(fltId));
+    fltDayData.totalDebt = convertTokenToDecimal(totalDebt, debt.decimals);
 
     // Persist data
     fltDayData.save();
