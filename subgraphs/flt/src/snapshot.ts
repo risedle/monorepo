@@ -30,9 +30,10 @@ export function handleAnswerUpdated(event: AnswerUpdated): void {
 
     // Load or initialize factory
     let factory = loadOrInitializeFactory();
-    if (factory.fltCount.gt(BigInt.fromI32(0))) {
-        for (let i = 0; BigInt.fromI32(i).lt(factory.fltCount); ++i) {
-            let fltId = factory.flts[i];
+    let flts = factory.flts;
+    if (flts) {
+        for (let i = 0; i < flts.length; ++i) {
+            let fltId = flts[i];
             updateFLTHourData(fltId, ethPriceData, event.block.timestamp);
             updateFLTDayData(fltId, ethPriceData, event.block.timestamp);
         }

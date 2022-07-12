@@ -3,6 +3,7 @@ import { ethereum, BigInt, Address } from "@graphprotocol/graph-ts";
 
 import { Swap as SwapEvent } from "../generated/templates/FLT/FLT";
 import { AnswerUpdated } from "../generated/AccessControlledOffchainAggregator/AccessControlledOffchainAggregator";
+import { TokenCreated } from "../generated/Factory/FLTFactory";
 
 // Dummy data
 export const SENDER = "0x8888888c0a5be14f3fc72a8c97ec489dee9c4460";
@@ -12,6 +13,36 @@ export const ETHRISE = "0x2e876c4cfef54417949d9bdbb350dd0e2775d1cc";
 export const USDC = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
 export const WETH = "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2";
 export const ETHUSD = "0x37bC7498f4FF12C19678ee8fE19d713b87F6a9e6";
+
+export function createTokenCreatedEvent(
+    tokenAddress: string,
+    tokenName: string,
+    tokenSymbol: string
+): TokenCreated {
+    let newTokenCreatedEvent = changetype<TokenCreated>(newMockEvent());
+    newTokenCreatedEvent.parameters = new Array();
+
+    // Build params
+    let tokenAddressParam = new ethereum.EventParam(
+        "token",
+        ethereum.Value.fromAddress(Address.fromString(tokenAddress))
+    );
+    let tokenNameParam = new ethereum.EventParam(
+        "name",
+        ethereum.Value.fromString(tokenName)
+    );
+    let tokenSymbolParam = new ethereum.EventParam(
+        "symbol",
+        ethereum.Value.fromString(tokenSymbol)
+    );
+
+    // push the parameters
+    newTokenCreatedEvent.parameters.push(tokenAddressParam);
+    newTokenCreatedEvent.parameters.push(tokenNameParam);
+    newTokenCreatedEvent.parameters.push(tokenSymbolParam);
+
+    return newTokenCreatedEvent;
+}
 
 export function createSwapEvent(
     flt: string,

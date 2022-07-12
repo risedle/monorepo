@@ -11,10 +11,16 @@ export function handleTokenCreated(event: TokenCreated): void {
     let factory = loadOrInitializeFactory();
     factory.fltCount = factory.fltCount.plus(ONE_BI);
     let flt = loadOrInitializeFLT(event.params.token);
+    let flts = factory.flts;
+    if (flts === null) {
+        flts = [];
+    }
+    flts.push(flt.id);
+    factory.flts = flts;
 
     // Create the tracked contract based on the template
     FLTTemplate.create(event.params.token);
 
-    factory.save();
     flt.save();
+    factory.save();
 }

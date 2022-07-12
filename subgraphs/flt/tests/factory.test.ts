@@ -1,52 +1,15 @@
-import {
-    describe,
-    test,
-    assert,
-    newMockEvent,
-    createMockedFunction,
-} from "matchstick-as/assembly/index";
+import { describe, test, assert } from "matchstick-as/assembly/index";
 import { logStore } from "matchstick-as/assembly/store";
 import { ethereum, Address, BigInt } from "@graphprotocol/graph-ts";
 
-import { TokenCreated } from "../generated/Factory/FLTFactory";
 import { Factory, FLT, Token } from "../generated/schema";
 import { handleTokenCreated } from "../src/factory";
 
 import { FACTORY_ADDRESS } from "../src/helpers";
-import { ETHRISE, WETH, USDC } from "./helpers";
+import { ETHRISE, WETH, USDC, createTokenCreatedEvent } from "./helpers";
 
 // Mock contract calls
 import "./mocks";
-
-function createTokenCreatedEvent(
-    tokenAddress: string,
-    tokenName: string,
-    tokenSymbol: string
-): TokenCreated {
-    let newTokenCreatedEvent = changetype<TokenCreated>(newMockEvent());
-    newTokenCreatedEvent.parameters = new Array();
-
-    // Build params
-    let tokenAddressParam = new ethereum.EventParam(
-        "token",
-        ethereum.Value.fromAddress(Address.fromString(tokenAddress))
-    );
-    let tokenNameParam = new ethereum.EventParam(
-        "name",
-        ethereum.Value.fromString(tokenName)
-    );
-    let tokenSymbolParam = new ethereum.EventParam(
-        "symbol",
-        ethereum.Value.fromString(tokenSymbol)
-    );
-
-    // push the parameters
-    newTokenCreatedEvent.parameters.push(tokenAddressParam);
-    newTokenCreatedEvent.parameters.push(tokenNameParam);
-    newTokenCreatedEvent.parameters.push(tokenSymbolParam);
-
-    return newTokenCreatedEvent;
-}
 
 describe("handleNewFLT()", () => {
     describe("given TokenCreatedEvent", () => {

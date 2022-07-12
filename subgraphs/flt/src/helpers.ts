@@ -71,6 +71,7 @@ export function loadOrInitializeFactory(): Factory {
         factory.totalFeeUSD = ZERO_BD;
         factory.totalTxns = ZERO_BI;
         factory.fltCount = ZERO_BI;
+        factory.flts = [];
         factory.save();
     }
     return factory;
@@ -165,6 +166,11 @@ function fetchFLTMaxSupply(tokenAddress: Address): BigInt {
     return contract.maxSupply();
 }
 
+function fetchFLTInitializationStatus(tokenAddress: Address): bool {
+    let contract = FLTContract.bind(tokenAddress);
+    return contract.isInitialized();
+}
+
 export function exponentToBigDecimal(decimals: BigInt): BigDecimal {
     let bd = BigDecimal.fromString("1");
     for (let i = ZERO_BI; i.lt(decimals as BigInt); i = i.plus(ONE_BI)) {
@@ -242,8 +248,12 @@ export function updateFLTHourData(
     fltId: string,
     ethPriceData: ETHPriceData,
     eventTimestamp: BigInt
-): FLTHourData {
+): FLTHourData | null {
     let flt = FLT.load(fltId)!;
+    let isInitialized = fetchFLTInitializationStatus(
+        Address.fromString(fltId)
+    );
+    if (!isInitialized) return null;
     let collateral = Token.load(flt.collateral)!;
     let debt = Token.load(flt.debt)!;
     let timestamp = eventTimestamp.toI32();
@@ -319,8 +329,12 @@ export function updateFLTDayData(
     fltId: string,
     ethPriceData: ETHPriceData,
     eventTimestamp: BigInt
-): FLTDayData {
+): FLTDayData | null {
     let flt = FLT.load(fltId)!;
+    let isInitialized = fetchFLTInitializationStatus(
+        Address.fromString(fltId)
+    );
+    if (!isInitialized) return null;
     let collateral = Token.load(flt.collateral)!;
     let debt = Token.load(flt.debt)!;
     let timestamp = eventTimestamp.toI32();
