@@ -100,13 +100,15 @@ describe("handleSwap", () => {
                 "6.9452562378"
             );
 
-            // FLT total supply should increased
-            // assert.bigIntEquals(
-            //    flt.totalSupply,
-            //    BigInt.fromString(ethriseTotalSupply).plus(
-            //        BigInt.fromString(ethriseAmount)
-            //    )
-            //);
+            // Total supply should increased
+            assert.bigIntEquals(
+                fltHourData.totalSupply,
+                BigInt.fromString(ethriseAmount)
+            );
+            assert.bigIntEquals(
+                fltDayData.totalSupply,
+                BigInt.fromString(ethriseAmount)
+            );
 
             // TODO: txcount should increased
 

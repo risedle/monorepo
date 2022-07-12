@@ -60,7 +60,13 @@ export function handleSwap(event: SwapEvent): void {
         fltDayData.tradeVolumeUSD =
             fltDayData.tradeVolumeUSD.plus(amountOutUSD);
 
-        // TODO: update total supply in hourly and daily
+        // Increase total supply
+        fltHourData.totalSupply = fltHourData.totalSupply.plus(
+            event.params.amountOut
+        );
+        fltDayData.totalSupply = fltDayData.totalSupply.plus(
+            event.params.amountOut
+        );
     }
 
     // Initialize new Swap
