@@ -14,5 +14,9 @@
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/risedle/monorepo/issues"
+    },
+    "dependencies": {
+        "dotenv": "16.0.1",
+        "ethers": "5.6.9"
     }
 }
