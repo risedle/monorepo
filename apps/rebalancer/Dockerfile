@@ -13,6 +13,5 @@ COPY . /app/
 RUN ls -a
 
 RUN npm install
-RUN npm run build
 
 CMD ["node", "./dist/cron.js"]
