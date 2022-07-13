@@ -1,11 +1,9 @@
 import { isChainIdSupported } from "@risedle/chains";
 import { param } from "express-validator";
 
-
 /**
- * List of validations for get tokens by chainId operation
+ * List of validations for get tokens and markets by chainId operation
  */
-
 
 const GetTokensByChainIdValidation = [
   param("chainId")

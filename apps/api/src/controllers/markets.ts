@@ -5,7 +5,7 @@ import { GetTokensByChainIdValidation } from "../utils/validationChainId";
 import { getMarketsData } from "../services/market";
 
 /**
- * GetTokensByChainId return list of TokenInfo
+ * getMarketsByChainId return list of markets
  */
 async function getMarketsByChainId(req: Request, res: Response) {
   const errors = validationResult(req);
