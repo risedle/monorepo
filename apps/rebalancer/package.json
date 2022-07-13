@@ -1,0 +1,18 @@
+{
+    "name": "rebalancer",
+    "version": "1.0.0",
+    "private": true,
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc"
+    },
+    "author": {
+        "name": "bayu",
+        "email": "bayu@risedle.com",
+        "url": "https://github.com/pyk"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/risedle/monorepo/issues"
+    }
+}
