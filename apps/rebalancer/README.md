@@ -35,11 +35,11 @@ node dist/cron.js
 This bot is automatically deployed to
 [fly.io](https://fly.io/docs/introduction/) via GitHub Workflow.
 
-To create deployment on new chain, you need to create new app first.
+To create deployment on new chain, you need to create new Fly app first.
 
-To create new app, run the following command:
+To create new Fly app, run the following command:
 
-````sh
+```sh
 flyctl launch
 ```
 
@@ -58,4 +58,3 @@ Next step is to setup automatic deployment.
 
 Copy [rebalancer-bsc.yml](../../.github/workflows/rebalancer-bsc.yml) to new
 chain then update the `name`, the `paths`, and `flyctl` command line argument.
-````

@@ -1,0 +1,18 @@
+FROM node:18-alpine
+
+# update packages
+RUN apk update
+
+# create root application folder
+WORKDIR /app
+
+# copy source code to /app/ folder
+COPY . /app/
+
+# check files list
+RUN ls -a
+
+RUN npm install
+RUN npm run build
+
+CMD ["node", "./dist/cron.js"]
