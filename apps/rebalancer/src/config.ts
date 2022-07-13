@@ -7,3 +7,4 @@ export const RPC_URL = process.env.RPC_URL!;
 export const FLTS = process.env.FLTS!.split(",");
 export const MIN_PROFITS = process.env.MIN_PROFITS!.split(",");
 export const WALLET_PK = process.env.WALLET_PK!;
+export const SENTRY_DSN = process.env.SENTRY_DSN!;

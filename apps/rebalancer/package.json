@@ -16,6 +16,8 @@
         "url": "https://github.com/risedle/monorepo/issues"
     },
     "dependencies": {
+        "@sentry/node": "7.6.0",
+        "@sentry/tracing": "7.6.0",
         "dotenv": "16.0.1",
         "ethers": "5.6.9",
         "node-cron": "3.0.1"
