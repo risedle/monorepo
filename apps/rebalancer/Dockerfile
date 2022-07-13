@@ -12,6 +12,5 @@ COPY . /app/
 # check files list
 RUN ls -a
 
+RUN npm install uuid
 RUN npm install
-
-CMD ["node", "./dist/cron.js"]

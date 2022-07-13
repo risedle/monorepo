@@ -11,9 +11,9 @@ async function getTokensByChainId(
 
     // Fetch TokenInfo based on their source
     let tokenInfos: Array<TokenInfo> = [];
-    for (let [source, addresses] of sourceTokens) {
+    for (const [source, addresses] of sourceTokens) {
         switch (source) {
-            case TokenInfoSource.PancakeSwapSubgraph:
+            case TokenInfoSource.PancakeSwapSubgraph: {
                 const infos = await getTokenInfoFromPancakeSwapSubgraph(
                     addresses
                 );
@@ -22,8 +22,10 @@ async function getTokensByChainId(
                     infos.filter((info): info is TokenInfo => !!info)
                 );
                 continue;
-            default:
+            }
+            default: {
                 continue;
+            }
         }
     }
     return tokenInfos;
@@ -68,9 +70,9 @@ export async function getTokenInfoFromPancakeSwapSubgraph(
         addresses: addresses,
     });
 
-    let tokenInfoMap = new Map<string, TokenInfo>();
+    const tokenInfoMap = new Map<string, TokenInfo>();
     const tokens = data.tokens;
-    for (let tokenInfo of tokens) {
+    for (const tokenInfo of tokens) {
         // Get price and volume data
         const todayPriceUSD = parseFloat(tokenInfo.tokenDayData[0].priceUSD);
         const yesterdayPriceUSD = parseFloat(

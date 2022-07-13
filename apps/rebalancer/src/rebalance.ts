@@ -17,8 +17,8 @@ export async function run() {
 
     console.log("[rebalancer] checking ...", FLTS);
     const result = await contract.getRebalances(FLTS, MIN_PROFITS);
-    let calldatas = [];
-    for (let calldata of result) {
+    const calldatas = [];
+    for (const calldata of result) {
         if (calldata == "0x") continue;
         calldatas.push(calldata);
     }

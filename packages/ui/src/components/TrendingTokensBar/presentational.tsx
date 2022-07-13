@@ -1,5 +1,5 @@
 import { TokenInfo } from "@risedle/types";
-import Link from "next/link";
+// import Link from "next/link";
 
 export interface TrendingTokensBarProps {
     /**
@@ -8,6 +8,6 @@ export interface TrendingTokensBarProps {
     tokens?: Array<TokenInfo>;
 }
 
-export const TrendingTokensBar = (props: TrendingTokensBarProps) => {
+export const TrendingTokensBar = () => {
     return <div className="bg-red-500 w-screen">OK</div>;
 };

@@ -1,3 +1,7 @@
 kill_signal = "SIGTERM"
 kill_timeout = 5
 processes = []
+
+[experimental]
+  cmd = ["node", "dist/cron.js"]
+  entrypoint = ["node", "dist/cron.js"]
