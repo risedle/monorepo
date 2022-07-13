@@ -1,24 +1,36 @@
-import { Contract, providers } from "ethers";
+import { Contract, providers, Wallet } from "ethers";
 import abi from "./abi.json";
 
+import { RPC_URL, FLTS, MIN_PROFITS, WALLET_PK } from "./config";
+
 /**
- * Get profitable rebalance opportunities
+ * Bundle two functions into one
  */
-export async function getRebalances(
-    provider: providers.JsonRpcProvider,
-    flts: Array<string>,
-    minProfits: Array<string>
-): Promise<Array<string>> {
+export async function run() {
+    const provider = new providers.JsonRpcProvider(RPC_URL);
+    const wallet = new Wallet(WALLET_PK, provider);
     const contract = new Contract(
         "0x8888888856DA285c46e0A0547D84737Ad145CAd7",
         abi,
-        provider
+        wallet
     );
-    const result = await contract.getRebalances(flts, minProfits);
+
+    console.log("[rebalancer] checking ...", FLTS);
+    const result = await contract.getRebalances(FLTS, MIN_PROFITS);
     let calldatas = [];
     for (let calldata of result) {
         if (calldata == "0x") continue;
         calldatas.push(calldata);
     }
-    return calldatas;
+
+    // Execute rebalance
+    if (calldatas.length > 0) {
+        console.log("[rebalancer] executing ...", calldatas);
+        const tx = await contract.multicall(calldatas);
+        console.log("[rebalancer] tx hash", tx.hash);
+        await tx.wait();
+        console.log("[rebalancer] done");
+    } else {
+        console.log("[rebalancer] no rebalance");
+    }
 }
