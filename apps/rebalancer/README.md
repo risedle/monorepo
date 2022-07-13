@@ -21,7 +21,7 @@ Copy `.env.example` to `.env` and modify the values.
 Build the rebalancer:
 
 ```sh
-tsc
+npm run build
 ```
 
 Run the rebalancer:
@@ -52,9 +52,10 @@ Run the following command to create the secrets:
 
 ```sh
 flyctl secrets --app APP_NAME set RPC_URL="" WALLET_PK="" SENTRY_DSN="" FLTS="" MIN_PROFITS=""
-````
+```
 
 Next step is to setup automatic deployment.
 
 Copy [rebalancer-bsc.yml](../../.github/workflows/rebalancer-bsc.yml) to new
 chain then update the `name`, the `paths`, and `flyctl` command line argument.
+````
