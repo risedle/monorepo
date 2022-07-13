@@ -2,7 +2,6 @@ import { request as grequest, gql } from "graphql-request";
 import { getUrlGraphByChainId } from '@risedle/tokens'
 import { ChainId, GetMarketDataResponse } from "@risedle/types";
 const queryMarket = gql`
-
 {
  flts{
   symbol
@@ -10,16 +9,8 @@ const queryMarket = gql`
   fltHourData(first:1,orderBy:periodStartUnix,orderDirection:desc){
     priceUSD
     totalSupply
-  }
-}
-
-}
-
+  }}}
 `;
-
-
-
-
 
 export async function getMarketsData(chainId: ChainId) {
   return new Promise(async (resolve, reject) => {
@@ -39,7 +30,5 @@ export async function getMarketsData(chainId: ChainId) {
       reject(e);
     }
   })
-
-
 
 }
