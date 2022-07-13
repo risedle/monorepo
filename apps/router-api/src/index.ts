@@ -1,5 +1,5 @@
 import { Router } from "itty-router";
-import { error, json, missing } from "itty-router-extras";
+import { json, missing } from "itty-router-extras";
 import { Chain, getSupportedDexs } from "./chains";
 
 // Create parent router

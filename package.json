@@ -13,7 +13,7 @@
         "test": "turbo run test",
         "dev": "turbo run dev --parallel",
         "storybook": "turbo run storybook --parallel",
-        "lint": "turbo run lint",
+        "lint": "eslint --ext=.ts,.tsx .",
         "format": "prettier --write \"**/*.{ts,tsx,md,json,js,yml}\"",
         "check": "prettier --check \"**/*.{ts,tsx,md,json,js,yml}\""
     },
@@ -21,8 +21,9 @@
         "@commitlint/cli": "17.0.2",
         "@commitlint/config-conventional": "17.0.2",
         "@types/jest": "28.1.1",
-        "eslint": "8.17.0",
-        "eslint-config-custom": "latest",
+        "@typescript-eslint/eslint-plugin": "^5.30.6",
+        "@typescript-eslint/parser": "^5.30.6",
+        "eslint": "^8.17.0",
         "husky": "8.0.1",
         "jest": "28.1.1",
         "lint-staged": "13.0.1",
@@ -66,5 +67,26 @@
         "*.jsx": "prettier --write",
         "*.yml": "prettier --write",
         "*.json": "prettier --write"
+    },
+    "eslintConfig": {
+        "root": true,
+        "extends": [
+            "eslint:recommended",
+            "plugin:@typescript-eslint/recommended"
+        ],
+        "parser": "@typescript-eslint/parser",
+        "plugins": [
+            "@typescript-eslint"
+        ],
+        "rules": {},
+        "ignorePatterns": [
+            "*.test.ts",
+            "*.spec.ts",
+            "subgraphs/*",
+            "contracts/*",
+            "apps/*/dist",
+            "packages/*/dist",
+            "*.d.ts"
+        ]
     }
 }
