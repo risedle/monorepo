@@ -15,6 +15,7 @@ const task = cron.schedule("*/5 * * * *", async () => {
         await run();
     } catch (e) {
         console.error("Failed to rebalance:", e);
+        Sentry.captureException(e);
     }
 });
 
