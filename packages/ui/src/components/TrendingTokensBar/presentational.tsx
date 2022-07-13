@@ -1,5 +1,5 @@
 import { TokenInfo } from "@risedle/types";
-import Link from "next/link";
+// import Link from "next/link";
 
 export interface TrendingTokensBarProps {
     /**
