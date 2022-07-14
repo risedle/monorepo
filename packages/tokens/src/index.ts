@@ -13,8 +13,18 @@ export function getSourceTokensByChainId(
     }
 }
 
+export function getSourceMarketsByChainId(chainId: ChainId): string {
+    switch (chainId) {
+        case ChainId.BSC:
+            return "https://api.thegraph.com/subgraphs/name/risedle/risedle-flt-bsc";
+        default:
+            return "";
+    }
+}
+
 const tokens = {
     getSourceTokensByChainId,
+    getSourceMarketsByChainId,
 };
 
 export default tokens;

@@ -1,19 +1,8 @@
 import { Request, Response } from "express";
-import { param, validationResult } from "express-validator";
+import { validationResult } from "express-validator";
 import { ChainId } from "@risedle/types/chain";
-import { isChainIdSupported } from "@risedle/chains";
 import tokensService from "../services/tokens";
-
-/**
- * List of validations for get tokens by chainId operation
- */
-const GetTokensByChainIdValidation = [
-    param("chainId")
-        .exists({ checkFalsy: true })
-        .toInt()
-        .custom((chainId) => isChainIdSupported(chainId))
-        .withMessage("chainId not supported"),
-];
+import { GetTokensByChainIdValidation } from "../utils/validationChainId";
 
 /**
  * GetTokensByChainId return list of TokenInfo
