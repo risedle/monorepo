@@ -1,4 +1,4 @@
-import { getFuseLeveragedTokensByChainId } from "./flts";
+import { getFuseLeveragedTokensByChainId } from "../flts";
 import { ChainId } from "@risedle/types";
 
 describe("getFuseLeveragedTokensByChainId", () => {

@@ -1,5 +1,5 @@
 import { request as grequest, gql } from "graphql-request";
-import { ChainId } from "@risedle/types";
+import { ChainId, FuseLeveragedTokenInfo } from "@risedle/types";
 
 const queryFuseLeveragedTokens = gql`
     {
@@ -34,30 +34,6 @@ const queryFuseLeveragedTokens = gql`
         }
     }
 `;
-
-interface FuseLeveragedTokenBackingInfo {
-    name: string;
-    symbol: string;
-    amount: number;
-}
-
-interface FuseLeveragedTokenInfo {
-    name: string;
-    symbol: string;
-    decimals: number;
-    address: string;
-    priceUSD: number;
-    dailyPriceChangeUSD: number;
-    dailyPriceChangePercentage: number;
-    totalVolumeUSD: number;
-    dailyVolumeChangeUSD: number;
-    dailyVolumeChangePercentage: number;
-    marketcapUSD: number;
-    collateral: FuseLeveragedTokenBackingInfo;
-    debt: FuseLeveragedTokenBackingInfo;
-    totalCollateral: number;
-    totalDebt: number;
-}
 
 // prettier-ignore
 const BSC_GRAPH = "https://api.thegraph.com/subgraphs/name/risedle/risedle-flt-bsc";
