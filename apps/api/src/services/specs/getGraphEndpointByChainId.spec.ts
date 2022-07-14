@@ -1,4 +1,4 @@
-import { getGraphEndpointByChainId } from "./flts";
+import { getGraphEndpointByChainId } from "../flts";
 import { ChainId } from "@risedle/types";
 
 describe("getGraphEndpointByChainId", () => {

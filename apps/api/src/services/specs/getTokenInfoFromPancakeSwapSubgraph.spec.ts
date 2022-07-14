@@ -1,4 +1,4 @@
-import { getTokenInfoFromPancakeSwapSubgraph } from "./tokens";
+import { getTokenInfoFromPancakeSwapSubgraph } from "../tokens";
 
 describe("getTokenInfoFromPancakeSwapSubgraph", () => {
     describe("given empty array", () => {
