@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { validationResult } from "express-validator";
 import { ChainId } from "@risedle/types/chain";
-import tokensService from "../services/tokens";
 import { GetTokensByChainIdValidation } from "../utils/validationChainId";
+import tokensService from "../services/tokens";
 
 /**
  * GetTokensByChainId return list of TokenInfo
@@ -12,7 +12,6 @@ async function GetTokensByChainId(req: Request, res: Response) {
     if (!errors.isEmpty()) {
         return res.status(404).json({ errors: errors.array() });
     }
-    // const chainId: ChainId = ChainId[req.params.chainId as unknown as string];
     const tokenInfos = await tokensService.getTokensByChainId(
         req.params.chainId as unknown as ChainId
     );

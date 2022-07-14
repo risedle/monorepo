@@ -215,7 +215,7 @@ components:
           type: string
           example: PancakeSwapSubgraph
 
-    FuseLeveragedTokenUnderlyingInfo:
+    FuseLeveragedTokenBackingInfo:
       description: Basic information of Fuse Leveraged Token underlying assets
       type: object
       properties:
@@ -263,7 +263,7 @@ components:
           description: |
             Price change (%) in the last 24 hours. It can be negative.
           $ref: "#/components/schemas/USD"
-        volumeUSD:
+        totalVolumeUSD:
           description: Total trade volume in USD
           $ref: "#/components/schemas/USD"
         dailyVolumeChangeUSD:
@@ -277,8 +277,17 @@ components:
         marketcapUSD:
           description: Total supply times current price
           $ref: "#/components/schemas/USD"
-        underlyings:
-          description: Underlying assets of Fuse Leveraged Token
-          type: array
-          items:
-            $ref: "#/components/schemas/FuseLeveragedTokenUnderlyingInfo"
+        collateral:
+          description: Collateral of Fuse Leveraged Token
+          $ref: "#/components/schemas/FuseLeveragedTokenBackingInfo"
+        debt:
+          description: Debt of Fuse Leveraged Token
+          $ref: "#/components/schemas/FuseLeveragedTokenBackingInfo"
+        totalCollateral:
+          description: Fuse Leveraged Token's total collateral
+          type: number
+          example: 1.1
+        totalDebt:
+          description: Fuse Leveraged Token's total debt
+          type: number
+          example: 999
