@@ -32,7 +32,7 @@ jobs:
         working-directory: ./packages/tokens
       - name: Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GIT_AUTHOR_NAME: Risedle
           GIT_AUTHOR_EMAIL: github@risedle.com
