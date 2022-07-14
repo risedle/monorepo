@@ -5,6 +5,7 @@ import {
     GetMarketDataResponse,
     GetGraphDataResponse,
 } from "@risedle/types";
+
 const queryMarket = gql`
     {
         flts {
