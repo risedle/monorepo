@@ -1,10 +1,10 @@
-interface FuseLeveragedTokenBackingInfo {
+export interface FuseLeveragedTokenBackingInfo {
     name: string;
     symbol: string;
     amount: number;
 }
 
-interface FuseLeveragedTokenInfo {
+export interface FuseLeveragedTokenInfo {
     name: string;
     symbol: string;
     decimals: number;
