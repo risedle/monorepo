@@ -1,7 +1,7 @@
 import request from "supertest";
 import server from "../src/server";
 
-describe("GET /chainId/tokens", () => {
+describe("GET /chainId/markets", () => {
     describe("given unsupported chainId", () => {
         it("should responds 404 not found", async () => {
             const res = await request(server)
@@ -24,10 +24,10 @@ describe("GET /chainId/tokens", () => {
     describe("given Binance Smart Chain", () => {
         it("should responds OK", async () => {
             const res = await request(server)
-                .get("/v1/56/tokens")
+                .get("/v1/56/markets")
                 .set("Accept", "application/json");
             expect(res.status).toBe(200);
-            expect(res.body.tokens.length).toBeGreaterThan(1);
+            expect(res.body.markets.length).toBeGreaterThan(1);
         });
     });
 });

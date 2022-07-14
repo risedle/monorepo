@@ -12,10 +12,15 @@ async function getMarketsByChainId(req: Request, res: Response) {
     if (!errors.isEmpty()) {
         return res.status(404).json({ errors: errors.array() });
     }
-    const { status, ...marketData } = await getMarketsData(
-        req.params.chainId as unknown as ChainId
-    );
-    return res.status(status).json(marketData);
+    try {
+        const data = await getMarketsData(
+            req.params.chainId as unknown as ChainId
+        );
+        return res.status(200).json(data);
+    }
+    catch (e) {
+        return res.status(400).json(e);
+    }
 }
 
 const markets = {
