@@ -17,8 +17,7 @@ async function getMarketsByChainId(req: Request, res: Response) {
             req.params.chainId as unknown as ChainId
         );
         return res.status(200).json(data);
-    }
-    catch (e) {
+    } catch (e) {
         return res.status(400).json(e);
     }
 }

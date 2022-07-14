@@ -1,4 +1,3 @@
-
 export type FLTResponse = {
     symbol: string;
     name: string;
@@ -16,9 +15,9 @@ export type MarketResponse = {
     symbol: string;
     name: string;
     price: number;
-}
+};
 
 export type GetMarketDataResponse = {
     markets: Array<MarketResponse>;
     aum: number;
-}
+};

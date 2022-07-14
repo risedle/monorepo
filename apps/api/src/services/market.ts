@@ -1,6 +1,10 @@
 import { request as grequest, gql } from "graphql-request";
 import { getSourceMarketsByChainId } from "@risedle/tokens";
-import { ChainId, GetMarketDataResponse, GetGraphDataResponse } from "@risedle/types";
+import {
+    ChainId,
+    GetMarketDataResponse,
+    GetGraphDataResponse,
+} from "@risedle/types";
 const queryMarket = gql`
     {
         flts {
@@ -18,8 +22,9 @@ const queryMarket = gql`
     }
 `;
 
-export async function getMarketsData(chainId: ChainId): Promise<GetMarketDataResponse | undefined> {
-
+export async function getMarketsData(
+    chainId: ChainId
+): Promise<GetMarketDataResponse | undefined> {
     const { flts }: GetGraphDataResponse = await grequest(
         getSourceMarketsByChainId(chainId),
         queryMarket
@@ -36,5 +41,4 @@ export async function getMarketsData(chainId: ChainId): Promise<GetMarketDataRes
     });
 
     return { markets: mappedData, aum };
-
 }
