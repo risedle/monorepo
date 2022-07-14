@@ -33,7 +33,7 @@
     },
     "dependencies": {
         "@risedle/chains": "1.2.0",
-        "@risedle/tokens": "1.0.0",
+        "@risedle/tokens": "1.1.0",
         "@risedle/types": "1.2.0",
         "@sentry/node": "7.1.1",
         "cors": "2.8.5",

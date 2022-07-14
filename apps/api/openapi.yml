@@ -13,10 +13,10 @@ servers:
     url: http://localhost:3000
 
 tags:
-  #  - name: Quotes
-  #    description: Quote for swapping ERC20 token
   - name: Tokens
     description: Tokens information
+  - name: Fuse Leveraged Token
+    description: List of endpoint for Fuse Leveraged Token
 
 paths:
   /v1/{chainId}/tokens:
@@ -49,51 +49,36 @@ paths:
           description: |
             Chain ID not supported
 
-#  /v1/quotes:
-#    get:
-#      tags:
-#        - Quotes
-#      operationId: getQuotes
-#      summary: |
-#        Get the fair price, fee and execution cost for swapping ERC20 token
-#      parameters:
-#        - name: chainId
-#          in: query
-#          description: |
-#            Chain ID. This is used to get the current gas price of the chain
-#          required: true
-#          schema:
-#            type: integer
-#            format: int32
-#            example: 42161
-#        - name: tokenIn
-#          in: query
-#          description: |
-#            ERC20 token address that user want to sell to get `tokenOut`
-#          required: true
-#          schema:
-#            $ref: "#/components/schemas/Address"
-#        - name: tokenOut
-#          in: query
-#          description: |
-#            ERC20 token address that user want to buy for `tokenIn`
-#          required: true
-#          schema:
-#            $ref: "#/components/schemas/Address"
-#        - name: amountIn
-#          in: query
-#          description: |
-#            The amount of `tokenIn` (in `tokenIn` base units)
-#          required: true
-#          schema:
-#            $ref: "#/components/schemas/BigNumber"
-#      responses:
-#        200:
-#          description: Fair quotes for wapping ERC20 token
-#          content:
-#            application/json:
-#              schema:
-#                $ref: "#/components/schemas/Quotes"
+  /v1/{chainId}/flts:
+    get:
+      tags:
+        - Fuse Leveraged Token
+      operationId: GetFuseLeveragedTokensByChainId
+      summary: |
+        Get list of Fuse Leveraged Tokens on specific chain
+      parameters:
+        - in: path
+          name: chainId
+          schema:
+            $ref: "#/components/schemas/ChainId"
+          required: true
+      responses:
+        200:
+          description: |
+            List of Fuse Leveaged Token and the market information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tokens:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/FuseLeveragedTokenInfo"
+        404:
+          description: Chain ID not supported
+        500:
+          description: Internal server error
 
 components:
   schemas:
@@ -229,3 +214,71 @@ components:
             The source data of token info
           type: string
           example: PancakeSwapSubgraph
+
+    FuseLeveragedTokenUnderlyingInfo:
+      description: Basic information of Fuse Leveraged Token underlying assets
+      type: object
+      properties:
+        name:
+          description: Asset's name
+          type: string
+          example: "Wrapped ETH"
+        symbol:
+          description: Asset's symbol
+          type: string
+          example: "WETH"
+        amount:
+          description: Asset's amount
+          type: number
+          format: float
+          example: 1.2
+
+    FuseLeveragedTokenInfo:
+      description: Basic information of Fuse Leveraged Token
+      type: object
+      properties:
+        name:
+          description: Fuse Leveraged Token's name
+          type: string
+          example: "2X Long ETH Risedle"
+        symbol:
+          description: Fuse Leveraged Token's symbol
+          type: string
+          example: "ETHRISE"
+        decimals:
+          description: Fuse Leveraged Token's decimals
+          type: number
+          example: 18
+        address:
+          description: Fuse Leveraged Token's contract address
+          $ref: "#/components/schemas/Address"
+        priceUSD:
+          description: Current price in USD
+          $ref: "#/components/schemas/USD"
+        dailyPriceChangeUSD:
+          description: |
+            Price change (USD) in the last 24 hours. It can be negative.
+          $ref: "#/components/schemas/USD"
+        dailyPriceChangePercentage:
+          description: |
+            Price change (%) in the last 24 hours. It can be negative.
+          $ref: "#/components/schemas/USD"
+        volumeUSD:
+          description: Total trade volume in USD
+          $ref: "#/components/schemas/USD"
+        dailyVolumeChangeUSD:
+          description: |
+            Volume change (USD) in the last 24 hours. It can be negative.
+          $ref: "#/components/schemas/USD"
+        dailyVolumeChangePercentage:
+          description: |
+            Volume change (%) in the last 24 hours. It can be negative.
+          $ref: "#/components/schemas/USD"
+        marketcapUSD:
+          description: Total supply times current price
+          $ref: "#/components/schemas/USD"
+        underlyings:
+          description: Underlying assets of Fuse Leveraged Token
+          type: array
+          items:
+            $ref: "#/components/schemas/FuseLeveragedTokenUnderlyingInfo"
