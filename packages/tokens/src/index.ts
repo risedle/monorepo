@@ -13,7 +13,6 @@ export function getSourceTokensByChainId(
     }
 }
 
-
 export function getUrlGraphByChainId(chainId: ChainId): string {
     switch (chainId) {
         case ChainId.BSC:
@@ -25,7 +24,7 @@ export function getUrlGraphByChainId(chainId: ChainId): string {
 
 const tokens = {
     getSourceTokensByChainId,
-    getUrlGraphByChainId
+    getUrlGraphByChainId,
 };
 
 export default tokens;

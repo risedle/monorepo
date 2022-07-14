@@ -6,11 +6,11 @@ import { param } from "express-validator";
  */
 
 const GetTokensByChainIdValidation = [
-  param("chainId")
-    .exists({ checkFalsy: true })
-    .toInt()
-    .custom((chainId) => isChainIdSupported(chainId))
-    .withMessage("chainId not supported"),
+    param("chainId")
+        .exists({ checkFalsy: true })
+        .toInt()
+        .custom((chainId) => isChainIdSupported(chainId))
+        .withMessage("chainId not supported"),
 ];
 
 export { GetTokensByChainIdValidation };
