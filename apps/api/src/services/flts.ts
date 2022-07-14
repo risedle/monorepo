@@ -89,7 +89,7 @@ export async function getFuseLeveragedTokensByChainId(
     // Get data from the graph
     const data = await grequest(endpoint, queryFuseLeveragedTokens);
     const tokens = [];
-    for (let flt of data.flts) {
+    for (const flt of data.flts) {
         // Price and volume daily change
         const currentPrice = parseFloat(flt.dailyData[0].close);
         const prevPrice = parseFloat(flt.dailyData[1].open);
