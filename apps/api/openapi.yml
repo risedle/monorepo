@@ -128,7 +128,7 @@ paths:
           required: true
       responses:
         200:
-          description: Fuse Leveraged Token info.
+          description: Historical price
           content:
             application/json:
               schema:
@@ -138,6 +138,40 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/FuseLeveragedTokenPrice"
+        404:
+          description: Chain ID not supported
+        500:
+          description: Internal server error
+
+  /v1/{chainId}/flts/{symbol}/volumes:
+    get:
+      tags:
+        - Fuse Leveraged Token
+      operationId: GetFuseLeveragedTokenVolumesBySymbol
+      summary: Get Fuse Leveraged Token's historical trade volume by symbol
+      parameters:
+        - in: path
+          name: chainId
+          schema:
+            $ref: "#/components/schemas/ChainId"
+          required: true
+        - in: path
+          name: symbol
+          type: string
+          example: "ETHRISE"
+          required: true
+      responses:
+        200:
+          description: Historical volume
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  volumes:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/FuseLeveragedTokenVolume"
         404:
           description: Chain ID not supported
         500:
@@ -374,4 +408,16 @@ components:
           $ref: "#/components/schemas/USD"
         close:
           description: The lowest price in USD
+          $ref: "#/components/schemas/USD"
+
+    FuseLeveragedTokenVolume:
+      description: Fuse Leveraged Token's trade volume at given timestamp
+      type: object
+      properties:
+        timestamp:
+          description: Unix timestamp in seconds
+          type: number
+          example: 1657868400
+        volumeUSD:
+          description: Trade volume in USD
           $ref: "#/components/schemas/USD"
