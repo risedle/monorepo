@@ -22,7 +22,7 @@ describe("getFuseLeveragedTokensByChainId", () => {
             expect(tokens[0].decimals).toEqual(18);
             expect(tokens[0].address).toBeTruthy();
             expect(tokens[0].priceUSD).toBeGreaterThan(0);
-            expect(tokens[0].dailyPriceChangeUSD).toBeTruthy();
+            expect(typeof tokens[0].dailyPriceChangeUSD).toBe("number");
             expect(tokens[0].dailyPriceChangePercentage).toBeLessThanOrEqual(
                 100
             );
@@ -30,7 +30,7 @@ describe("getFuseLeveragedTokensByChainId", () => {
                 tokens[0].dailyPriceChangePercentage
             ).toBeGreaterThanOrEqual(-100);
             expect(tokens[0].totalVolumeUSD).toBeGreaterThan(0);
-            expect(tokens[0].dailyVolumeChangeUSD).toBeTruthy();
+            expect(typeof tokens[0].dailyVolumeChangeUSD).toBe("number");
             expect(tokens[0].dailyVolumeChangePercentage).toBeLessThanOrEqual(
                 100
             );
