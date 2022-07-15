@@ -109,6 +109,40 @@ paths:
         500:
           description: Internal server error
 
+  /v1/{chainId}/flts/{symbol}/prices:
+    get:
+      tags:
+        - Fuse Leveraged Token
+      operationId: GetFuseLeveragedTokenPricesBySymbol
+      summary: Get Fuse Leveraged Token's historical price by symbol
+      parameters:
+        - in: path
+          name: chainId
+          schema:
+            $ref: "#/components/schemas/ChainId"
+          required: true
+        - in: path
+          name: symbol
+          type: string
+          example: "ETHRISE"
+          required: true
+      responses:
+        200:
+          description: Fuse Leveraged Token info.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  prices:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/FuseLeveragedTokenPrice"
+        404:
+          description: Chain ID not supported
+        500:
+          description: Internal server error
+
 components:
   schemas:
     Address:
@@ -320,3 +354,24 @@ components:
           description: Fuse Leveraged Token's total debt
           type: number
           example: 999
+
+    FuseLeveragedTokenPrice:
+      description: Fuse Leveraged Token's price at given timestamp
+      type: object
+      properties:
+        timestamp:
+          description: Unix timestamp in seconds
+          type: number
+          example: 1657868400
+        open:
+          description: Open price in USD
+          $ref: "#/components/schemas/USD"
+        high:
+          description: The highest price in USD
+          $ref: "#/components/schemas/USD"
+        low:
+          description: The lowest price in USD
+          $ref: "#/components/schemas/USD"
+        close:
+          description: The lowest price in USD
+          $ref: "#/components/schemas/USD"

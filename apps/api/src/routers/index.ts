@@ -25,4 +25,10 @@ router.get(
     fltsController.GetFuseLeveragedTokenBySymbol
 );
 
+router.get(
+    "/:chainId/flts/:symbol/prices",
+    fltsController.GetFuseLeveragedTokensByChainIdValidation,
+    fltsController.GetFuseLeveragedTokenPricesBySymbol
+);
+
 export { router };
