@@ -42,7 +42,7 @@ async function GetFuseLeveragedTokenBySymbol(req: Request, res: Response) {
                         location: "params",
                         msg: "symbol not found",
                         param: "symbol",
-                        value: "hohoho",
+                        value: req.params.symbol,
                     },
                 ],
             });
