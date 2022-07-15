@@ -1,11 +1,11 @@
 import request from "supertest";
 import server from "../src/server";
 
-describe("GET /v1/chainId/flts/symbol/prices", () => {
+describe("GET /v1/chainId/flts/symbol/charts", () => {
     describe("given unsupported chainId", () => {
         it("should responds 404 not found", async () => {
             const res = await request(server)
-                .get("/v1/4321/flts/ethrise/prices")
+                .get("/v1/4321/flts/ethrise/charts")
                 .set("Accept", "application/json");
             expect(res.status).toBe(404);
             expect(res.body).toStrictEqual({
@@ -25,7 +25,7 @@ describe("GET /v1/chainId/flts/symbol/prices", () => {
         describe("given random symbol", () => {
             it("should responds 404 not found", async () => {
                 const res = await request(server)
-                    .get("/v1/56/flts/hohoho/prices")
+                    .get("/v1/56/flts/hohoho/charts")
                     .set("Accept", "application/json");
                 expect(res.status).toBe(404);
                 expect(res.body).toStrictEqual({
@@ -44,9 +44,11 @@ describe("GET /v1/chainId/flts/symbol/prices", () => {
         describe("given BNBRISE", () => {
             it("should responds 200 OK", async () => {
                 const res = await request(server)
-                    .get("/v1/56/flts/bnbrise/prices")
+                    .get("/v1/56/flts/bnbrise/charts")
                     .set("Accept", "application/json");
                 expect(res.status).toBe(200);
+
+                // Check price
                 const prices = res.body.prices;
                 expect(prices.length).toBeGreaterThan(24);
                 // Make sure it returns OHLC format
@@ -55,6 +57,18 @@ describe("GET /v1/chainId/flts/symbol/prices", () => {
                 expect(typeof prices[0].high).toBe("number");
                 expect(typeof prices[0].low).toBe("number");
                 expect(typeof prices[0].close).toBe("number");
+
+                // Check volumes
+                const volumes = res.body.volumes;
+                expect(volumes.length).toBeGreaterThan(2);
+                expect(volumes[0].timestamp).toBeGreaterThan(10000);
+                expect(typeof volumes[0].usd).toBe("number");
+
+                // Check fees
+                const fees = res.body.fees;
+                expect(fees.length).toBeGreaterThan(2);
+                expect(fees[0].timestamp).toBeGreaterThan(10000);
+                expect(typeof fees[0].usd).toBe("number");
             });
         });
     });

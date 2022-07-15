@@ -26,9 +26,9 @@ router.get(
 );
 
 router.get(
-    "/:chainId/flts/:symbol/prices",
+    "/:chainId/flts/:symbol/charts",
     fltsController.GetFuseLeveragedTokensByChainIdValidation,
-    fltsController.GetFuseLeveragedTokenPricesBySymbol
+    fltsController.GetFuseLeveragedTokenChartsBySymbol
 );
 
 export { router };
