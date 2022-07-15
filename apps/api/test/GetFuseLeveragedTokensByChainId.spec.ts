@@ -36,10 +36,20 @@ describe("GET /v1/chainId/flts", () => {
             expect(firstToken.address).toBeTruthy();
             expect(firstToken.priceUSD).toBeGreaterThan(1);
             expect(firstToken.dailyPriceChangeUSD).toBeTruthy();
-            expect(firstToken.dailyPriceChangePercentage).toBeTruthy();
+            expect(firstToken.dailyPriceChangePercentage).toBeLessThanOrEqual(
+                100
+            );
+            expect(
+                firstToken.dailyPriceChangePercentage
+            ).toBeGreaterThanOrEqual(-100);
             expect(firstToken.totalVolumeUSD).toBeGreaterThan(0);
-            expect(firstToken.dailyVolumeChangeUSD).toBeTruthy();
-            expect(firstToken.dailyVolumeChangePercentage).toBeTruthy();
+            expect(typeof firstToken.dailyVolumeChangeUSD).toBe("number");
+            expect(firstToken.dailyVolumeChangePercentage).toBeLessThanOrEqual(
+                100
+            );
+            expect(
+                firstToken.dailyVolumeChangePercentage
+            ).toBeGreaterThanOrEqual(-100);
             expect(firstToken.marketcapUSD).toBeGreaterThan(0);
             expect(firstToken.totalCollateral).toBeGreaterThan(0);
             expect(firstToken.totalDebt).toBeGreaterThan(0);

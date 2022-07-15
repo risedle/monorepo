@@ -80,6 +80,35 @@ paths:
         500:
           description: Internal server error
 
+  /v1/{chainId}/flts/{symbol}:
+    get:
+      tags:
+        - Fuse Leveraged Token
+      operationId: GetFuseLeveragedTokenBySymbol
+      summary: Get Fuse Leveraged Token by symbol
+      parameters:
+        - in: path
+          name: chainId
+          schema:
+            $ref: "#/components/schemas/ChainId"
+          required: true
+        - in: path
+          name: symbol
+          type: string
+          example: "ETHRISE"
+          required: true
+      responses:
+        200:
+          description: Fuse Leveraged Token info.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FuseLeveragedTokenInfo"
+        404:
+          description: Chain ID not supported
+        500:
+          description: Internal server error
+
 components:
   schemas:
     Address:

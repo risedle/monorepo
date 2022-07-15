@@ -19,4 +19,10 @@ router.get(
     fltsController.GetFuseLeveragedTokensByChainId
 );
 
+router.get(
+    "/:chainId/flts/:symbol",
+    fltsController.GetFuseLeveragedTokensByChainIdValidation,
+    fltsController.GetFuseLeveragedTokenBySymbol
+);
+
 export { router };
