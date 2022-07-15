@@ -69,6 +69,24 @@ const queryFuseLeveragedTokenBySymbol = gql`
     }
 `;
 
+const queryFuseLeveragedTokenPricesBySymbol = gql`
+    query getFuseLeveagedTokenPrices($symbol: String) {
+        flts(where: { symbol: $symbol }) {
+            prices: fltHourData(
+                first: 672
+                orderBy: periodStartUnix
+                orderDirection: desc
+            ) {
+                timestamp: periodStartUnix
+                open
+                high
+                low
+                close
+            }
+        }
+    }
+`;
+
 // prettier-ignore
 const BSC_GRAPH = "https://api.thegraph.com/subgraphs/name/risedle/risedle-flt-bsc";
 
@@ -179,9 +197,50 @@ export async function getFuseLeveragedTokenBySymbol(
     return getFuseLeveragedTokenInfo(data.flts[0]);
 }
 
+interface FuseLeveragedTokenPrice {
+    timestamp: number;
+    open: number;
+    high: number;
+    low: number;
+    close: number;
+}
+
+/**
+ * Get Fuse Leveraged Token historical prices by symbol
+ */
+export async function getFuseLeveragedTokenPricesBySymbol(
+    chainId: ChainId,
+    fltSymbol: string
+): Promise<Array<FuseLeveragedTokenPrice> | undefined> {
+    const endpoint = getGraphEndpointByChainId(chainId);
+    if (!endpoint) return undefined;
+
+    // Get data from the graph
+    const filter = fltSymbol.toUpperCase();
+    const data = await grequest(
+        endpoint,
+        queryFuseLeveragedTokenPricesBySymbol,
+        {
+            symbol: filter,
+        }
+    );
+    if (data.flts.length == 0) return undefined;
+    const prices = data.flts[0].prices.map((price: any) => {
+        return {
+            timestamp: price.timestamp,
+            open: parseFloat(price.timestamp),
+            high: parseFloat(price.high),
+            low: parseFloat(price.low),
+            close: parseFloat(price.close),
+        };
+    });
+    return prices;
+}
+
 const flts = {
     getFuseLeveragedTokensByChainId,
     getFuseLeveragedTokenBySymbol,
+    getFuseLeveragedTokenPricesBySymbol,
 };
 
 export default flts;
