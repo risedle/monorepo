@@ -3,9 +3,13 @@ import { ChainId } from "@risedle/types";
 
 describe("getFuseLeveragedTokenBySymbol", () => {
     describe("given random chainId", () => {
-        it("should return undefined", async () => {
-            const token = await getFuseLeveragedTokenBySymbol(1234, "AAA");
-            expect(token).toBeUndefined();
+        it("should throw an error", async () => {
+            expect.assertions(1);
+            try {
+                await getFuseLeveragedTokenBySymbol(1234, "AAA");
+            } catch (e) {
+                expect(e).toBe("Endpoint not defined for chainId 1234");
+            }
         });
     });
 

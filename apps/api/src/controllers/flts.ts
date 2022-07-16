@@ -16,7 +16,7 @@ async function GetFuseLeveragedTokensByChainId(req: Request, res: Response) {
         const flts = await fltsService.getFuseLeveragedTokensByChainId(
             req.params.chainId as unknown as ChainId
         );
-        return res.status(200).json({ tokens: flts });
+        return res.status(200).json(flts);
     } catch (e) {
         return res.status(500).json({ error: e });
     }
