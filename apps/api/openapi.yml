@@ -120,6 +120,49 @@ paths:
         500:
           description: Internal server error
 
+  /v1/{chainId}/flts/{symbol}/swaps:
+    get:
+      tags:
+        - Fuse Leveraged Token
+      operationId: GetFuseLeveragedTokenSwapsBySymbol
+      summary: |
+        Get Fuse Leveraged Token's historical swaps by symbol and user address (optional)
+      parameters:
+        - in: path
+          name: chainId
+          schema:
+            $ref: "#/components/schemas/ChainId"
+          required: true
+        - in: path
+          name: symbol
+          type: string
+          example: "ETHRISE"
+          required: true
+        - in: query
+          name: userAddress
+          type: string
+          example: "0x1418be4753a22b69b613fa8b8144d856c023d46b"
+      responses:
+        200:
+          description: Fuse Leveraged Token swaps data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  flt:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/FuseLeveragedTokenSwap"
+                  user:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/FuseLeveragedTokenSwap"
+        404:
+          description: Chain ID not supported
+        500:
+          description: Internal server error
+
 components:
   schemas:
     Address:
@@ -269,4 +312,56 @@ components:
           example: 1657868400
         usd:
           description: Trade fee in USD
+          $ref: "#/components/schemas/USD"
+
+    SwapTokenInfo:
+      description: Swap token info
+      type: object
+      properties:
+        name:
+          description: Token's name
+          type: string
+          example: "2X Long ETH Risedle"
+        symbol:
+          description: Token's symbol
+          type: string
+          example: "ETHRISE"
+
+    FuseLeveragedTokenSwap:
+      description: Fuse Leveraged Token's swap activity
+      type: object
+      properties:
+        timestamp:
+          description: Unix timestamp in seconds
+          type: number
+          example: 1657868400
+        hash:
+          description: Transaction hash
+          type: string
+          example: "0x5b0824785cc2370f5d903532eb6b26f4154e90e2faa5864c9dac9ebb9a25d3df"
+        user:
+          description: EOA that initiate the transaction
+          type: string
+          example: "0x1418be4753a22b69b613fa8b8144d856c023d46b"
+        tokenIn:
+          description: Input token
+          $ref: "#/components/schemas/SwapTokenInfo"
+        amountIn:
+          description: Token input amount
+          type: number
+          format: float
+          example: 0.6
+        amountInUSD:
+          description: Token input amount in USD
+          $ref: "#/components/schemas/USD"
+        tokenOut:
+          description: Output token
+          $ref: "#/components/schemas/SwapTokenInfo"
+        amountOut:
+          description: Token output amount
+          type: number
+          format: float
+          example: 0.6
+        amountOutUSD:
+          description: Token output amount in USD
           $ref: "#/components/schemas/USD"

@@ -88,6 +88,42 @@ async function GetFuseLeveragedTokenChartsBySymbol(
     }
 }
 
+/**
+ * GetFuseLeveragedTokenSwapsBySymbol return hourly historical price, daily
+ * historical volumes and fees of Fuse Leveraged Token up to 28 days
+ */
+async function GetFuseLeveragedTokenSwapsBySymbol(
+    req: Request,
+    res: Response
+) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(404).json({ errors: errors.array() });
+    }
+    try {
+        const swaps = await fltsService.getFuseLeveragedTokenSwapsBySymbol(
+            req.params.chainId as unknown as ChainId,
+            req.params.symbol,
+            req.query.userAddress as unknown as string
+        );
+        if (swaps == undefined) {
+            return res.status(404).json({
+                errors: [
+                    {
+                        location: "params",
+                        msg: "symbol not found",
+                        param: "symbol",
+                        value: req.params.symbol,
+                    },
+                ],
+            });
+        }
+        return res.status(200).json(swaps);
+    } catch (e) {
+        return res.status(500).json({ error: e });
+    }
+}
+
 const GetFuseLeveragedTokensByChainIdValidation = GetTokensByChainIdValidation;
 
 const flts = {
@@ -95,6 +131,7 @@ const flts = {
     GetFuseLeveragedTokensByChainId,
     GetFuseLeveragedTokenBySymbol,
     GetFuseLeveragedTokenChartsBySymbol,
+    GetFuseLeveragedTokenSwapsBySymbol,
 };
 
 export default flts;
