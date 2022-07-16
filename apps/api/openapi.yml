@@ -163,6 +163,41 @@ paths:
         500:
           description: Internal server error
 
+  /v1/{chainId}/flts/{symbol}/backings:
+    get:
+      tags:
+        - Fuse Leveraged Token
+      operationId: GetFuseLeveragedTokenBackingsBySymbol
+      summary: |
+        Get Fuse Leveraged Token's historical backings by symbol
+      parameters:
+        - in: path
+          name: chainId
+          schema:
+            $ref: "#/components/schemas/ChainId"
+          required: true
+        - in: path
+          name: symbol
+          type: string
+          example: "ETHRISE"
+          required: true
+      responses:
+        200:
+          description: Fuse Leveraged Token backings data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  backings:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/FuseLeveragedTokenBacking"
+        404:
+          description: Chain ID not supported
+        500:
+          description: Internal server error
+
 components:
   schemas:
     Address:
@@ -364,4 +399,26 @@ components:
           example: 0.6
         amountOutUSD:
           description: Token output amount in USD
+          $ref: "#/components/schemas/USD"
+
+    FuseLeveragedTokenBacking:
+      description: Fuse Leveraged Token's backing
+      type: object
+      properties:
+        timestamp:
+          description: Unix timestamp in seconds
+          type: number
+          example: 1657868400
+        collateralPerShare:
+          description: Collateral amount per Fuse Leveraged Token
+          type: number
+          format: float
+          example: 0.6
+        debtPerShare:
+          description: Debt amount per Fuse Leveraged Token
+          type: number
+          format: float
+          example: 0.6
+        valueUSD:
+          description: Price at given timestamp
           $ref: "#/components/schemas/USD"

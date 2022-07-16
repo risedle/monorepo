@@ -6,9 +6,9 @@ This is a Risedle FLT subgraph.
 
 The subgraph is deployed in here:
 
-| Network | The Graph                                                                    |
-| ------- | ---------------------------------------------------------------------------- |
-| BSC     | [Link](https://thegraph.com/hosted-service/subgraph/risedle/risedle-flt-bsc) |
+| Network | The Graph                                                                    | Endpoint                                                        |
+| ------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| BSC     | [Link](https://thegraph.com/hosted-service/subgraph/risedle/risedle-flt-bsc) | https://api.thegraph.com/subgraphs/name/risedle/risedle-flt-bsc |
 
 ### Get started
 
