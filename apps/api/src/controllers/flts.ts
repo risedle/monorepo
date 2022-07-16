@@ -89,8 +89,7 @@ async function GetFuseLeveragedTokenChartsBySymbol(
 }
 
 /**
- * GetFuseLeveragedTokenSwapsBySymbol return hourly historical price, daily
- * historical volumes and fees of Fuse Leveraged Token up to 28 days
+ * GetFuseLeveragedTokenSwapsBySymbol return swap activities
  */
 async function GetFuseLeveragedTokenSwapsBySymbol(
     req: Request,
