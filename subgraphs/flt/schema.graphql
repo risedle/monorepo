@@ -31,6 +31,7 @@ type FLT @entity {
 
     fltHourData: [FLTHourData!]! @derivedFrom(field: "flt")
     fltDayData: [FLTDayData!]! @derivedFrom(field: "flt")
+    swaps: [Swap!]! @derivedFrom(field: "flt")
 }
 
 # ETH price from chainlink
@@ -112,6 +113,7 @@ type Transaction @entity {
 type User @entity {
     id: ID!
     openPositions: [OpenPosition!]! @derivedFrom(field: "user")
+    swaps: [Swap!]! @derivedFrom(field: "user")
 }
 
 type OpenPosition @entity {

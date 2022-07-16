@@ -2,6 +2,14 @@
 
 This is a Risedle FLT subgraph.
 
+### Endpoints
+
+The subgraph is deployed in here:
+
+| Network | The Graph                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| BSC     | [Link](https://thegraph.com/hosted-service/subgraph/risedle/risedle-flt-bsc) |
+
 ### Get started
 
 You should run `npm install` on monorepo root.
@@ -14,6 +22,20 @@ npm run codegen
 
 # To run the test
 npm run test
+```
+
+### Deploy
+
+Store the access token locally:
+
+```sh
+graph auth --product hosted-service <ACCESS_TOKEN>
+```
+
+then deploy the subgraph using the following command:
+
+```sh
+graph deploy --product hosted-service risedle/risedle-flt-bsc --network bsc
 ```
 
 ### Useful links
