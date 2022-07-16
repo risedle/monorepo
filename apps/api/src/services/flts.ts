@@ -131,9 +131,9 @@ function getFuseLeveragedTokenInfo(flt: any): FuseLeveragedTokenInfo {
     const debtPerShare = parseFloat(flt.dailyData[0].debtPerShare);
 
     const priceChangeUSD = currentPrice - prevPrice;
-    let priceChangePercentage = (priceChangeUSD / prevPrice) * 100 || 0;
+    const priceChangePercentage = (priceChangeUSD / prevPrice) * 100 || 0;
     const volChangeUSD = currentVol - prevVol;
-    let volChangePercentage = (volChangeUSD / prevVol) * 100 || 0;
+    const volChangePercentage = (volChangeUSD / prevVol) * 100 || 0;
     const marketcapUSD = totalSupply * currentPrice;
 
     return {
