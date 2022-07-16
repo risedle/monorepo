@@ -145,6 +145,23 @@ const queryFuseLeveragedTokenSwapsBySymbol = gql`
     }
 `;
 
+const queryFuseLeveragedTokenBackingsBySymbol = gql`
+    query getFuseLeveagedTokenBackings($symbol: String) {
+        flts(where: { symbol: $symbol }) {
+            backings: fltDayData(
+                first: 28
+                orderBy: periodStartUnix
+                orderDirection: desc
+            ) {
+                timestamp: periodStartUnix
+                collateralPerShare
+                debtPerShare
+                valueUSD: priceUSD
+            }
+        }
+    }
+`;
+
 // prettier-ignore
 const BSC_GRAPH = "https://api.thegraph.com/subgraphs/name/risedle/risedle-flt-bsc";
 
@@ -290,6 +307,17 @@ interface FuseLeveragedTokenSwaps {
     user: Array<FuseLeveragedTokenSwap>;
 }
 
+interface FuseLeveragedTokenBacking {
+    timestamp: number;
+    collateralPerShare: number;
+    debtPerShare: number;
+    valueUSD: number;
+}
+
+interface FuseLeveragedTokenBackings {
+    backings: Array<FuseLeveragedTokenBacking>;
+}
+
 /**
  * Get Fuse Leveraged Token historical prices, volumes and fees by symbol
  */
@@ -381,11 +409,41 @@ export async function getFuseLeveragedTokenSwapsBySymbol(
     return { flt, user };
 }
 
+/**
+ * Get Fuse Leveraged Token historical backings
+ */
+export async function getFuseLeveragedTokenBackingsBySymbol(
+    chainId: ChainId,
+    fltSymbol: string
+): Promise<FuseLeveragedTokenBackings | undefined> {
+    // Get data from the graph
+    const endpoint = getGraphEndpointByChainId(chainId);
+    const filter = fltSymbol.toUpperCase();
+    const data = await grequest(
+        endpoint,
+        queryFuseLeveragedTokenBackingsBySymbol,
+        {
+            symbol: filter,
+        }
+    );
+    if (data.flts.length == 0) return undefined;
+    const backings = data.flts[0].backings.map((backing: any) => {
+        return {
+            timestamp: backing.timestamp,
+            collateralPerShare: parseFloat(backing.collateralPerShare),
+            debtPerShare: parseFloat(backing.debtPerShare),
+            valueUSD: parseFloat(backing.valueUSD),
+        };
+    });
+    return { backings };
+}
+
 const flts = {
     getFuseLeveragedTokensByChainId,
     getFuseLeveragedTokenBySymbol,
     getFuseLeveragedTokenChartsBySymbol,
     getFuseLeveragedTokenSwapsBySymbol,
+    getFuseLeveragedTokenBackingsBySymbol,
 };
 
 export default flts;
