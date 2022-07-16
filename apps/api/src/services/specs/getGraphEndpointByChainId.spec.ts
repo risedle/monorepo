@@ -3,9 +3,13 @@ import { ChainId } from "@risedle/types";
 
 describe("getGraphEndpointByChainId", () => {
     describe("given random chainId", () => {
-        it("should return undefined", () => {
-            const endpoint = getGraphEndpointByChainId(1234);
-            expect(endpoint).toBeUndefined();
+        it("should throw an error", () => {
+            expect.assertions(1);
+            try {
+                getGraphEndpointByChainId(1234);
+            } catch (e) {
+                expect(e).toBe("Endpoint not defined for chainId 1234");
+            }
         });
     });
 

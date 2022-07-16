@@ -1,10 +1,7 @@
 import express from "express";
-import quotesController from "../controllers/quotes";
 import fltsController from "../controllers/flts";
 
 const router = express.Router();
-
-router.get("/quotes", quotesController.GetQuotes);
 
 router.get(
     "/:chainId/flts",

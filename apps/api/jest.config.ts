@@ -7,10 +7,16 @@ const config: Config.InitialOptions = {
         "^.+\\.tsx?$": "ts-jest",
     },
     collectCoverage: true,
-    collectCoverageFrom: ["./src/**"],
+    collectCoverageFrom: [
+        "src/services/*.ts",
+        "src/routers/*.ts",
+        "src/controllers/*.ts",
+        "src/utils/*.ts",
+        "src/server.ts",
+    ],
     coverageThreshold: {
         global: {
-            lines: 90,
+            lines: 95,
         },
     },
 };

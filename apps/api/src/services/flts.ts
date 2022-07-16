@@ -109,14 +109,12 @@ const BSC_GRAPH = "https://api.thegraph.com/subgraphs/name/risedle/risedle-flt-b
 /**
  * Given Chain ID, return The Graph endpoint
  */
-export function getGraphEndpointByChainId(
-    chainId: ChainId
-): string | undefined {
+export function getGraphEndpointByChainId(chainId: ChainId): string {
     switch (chainId) {
         case ChainId.BSC:
             return BSC_GRAPH;
         default:
-            return undefined;
+            throw "Endpoint not defined for chainId " + chainId;
     }
 }
 
@@ -133,19 +131,9 @@ function getFuseLeveragedTokenInfo(flt: any): FuseLeveragedTokenInfo {
     const debtPerShare = parseFloat(flt.dailyData[0].debtPerShare);
 
     const priceChangeUSD = currentPrice - prevPrice;
-    let priceChangePercentage;
-    if (prevPrice == 0) {
-        priceChangePercentage = 0;
-    } else {
-        priceChangePercentage = (priceChangeUSD / prevPrice) * 100;
-    }
+    const priceChangePercentage = (priceChangeUSD / prevPrice) * 100 || 0;
     const volChangeUSD = currentVol - prevVol;
-    let volChangePercentage;
-    if (prevVol == 0) {
-        volChangePercentage = 0;
-    } else {
-        volChangePercentage = (volChangeUSD / prevVol) * 100;
-    }
+    const volChangePercentage = (volChangeUSD / prevVol) * 100 || 0;
     const marketcapUSD = totalSupply * currentPrice;
 
     return {
@@ -175,23 +163,24 @@ function getFuseLeveragedTokenInfo(flt: any): FuseLeveragedTokenInfo {
     };
 }
 
+interface FuseLeveragedTokenInfos {
+    tokens: Array<FuseLeveragedTokenInfo>;
+}
+
 /**
  * Get Fuse Leveraged Token Info by Chain Id
  */
 export async function getFuseLeveragedTokensByChainId(
     chainId: ChainId
-): Promise<Array<FuseLeveragedTokenInfo>> {
-    // Return empty array if no endpoint for given chain
-    const endpoint = getGraphEndpointByChainId(chainId);
-    if (!endpoint) return [];
-
+): Promise<FuseLeveragedTokenInfos> {
     // Get data from the graph
+    const endpoint = getGraphEndpointByChainId(chainId);
     const data = await grequest(endpoint, queryFuseLeveragedTokens);
     const tokens = [];
     for (const flt of data.flts) {
         tokens.push(getFuseLeveragedTokenInfo(flt));
     }
-    return tokens;
+    return { tokens };
 }
 
 /**
@@ -201,14 +190,13 @@ export async function getFuseLeveragedTokenBySymbol(
     chainId: ChainId,
     fltSymbol: string
 ): Promise<FuseLeveragedTokenInfo | undefined> {
-    const endpoint = getGraphEndpointByChainId(chainId);
-    if (!endpoint) return undefined;
-
     // Get data from the graph
+    const endpoint = getGraphEndpointByChainId(chainId);
     const filter = fltSymbol.toUpperCase();
     const data = await grequest(endpoint, queryFuseLeveragedTokenBySymbol, {
         symbol: filter,
     });
+    // If no found then symbol may invalid; return undefined
     if (data.flts.length == 0) return undefined;
     return getFuseLeveragedTokenInfo(data.flts[0]);
 }
@@ -244,10 +232,8 @@ export async function getFuseLeveragedTokenChartsBySymbol(
     chainId: ChainId,
     fltSymbol: string
 ): Promise<FuseLeveragedTokenChart | undefined> {
-    const endpoint = getGraphEndpointByChainId(chainId);
-    if (!endpoint) return undefined;
-
     // Get data from the graph
+    const endpoint = getGraphEndpointByChainId(chainId);
     const filter = fltSymbol.toUpperCase();
     const data = await grequest(
         endpoint,

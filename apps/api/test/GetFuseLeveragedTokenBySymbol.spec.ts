@@ -1,5 +1,11 @@
 import request from "supertest";
 import server from "../src/server";
+import fltService from "../src/services/flts";
+
+afterEach(() => {
+    // restore the spy created with spyOn
+    jest.restoreAllMocks();
+});
 
 describe("GET /v1/chainId/flts/symbol", () => {
     describe("given unsupported chainId", () => {
@@ -22,6 +28,22 @@ describe("GET /v1/chainId/flts/symbol", () => {
     });
 
     describe("given Binance Smart Chain", () => {
+        describe("given failed request to graphql", () => {
+            it("should responds 500 internal server error", async () => {
+                const mock = jest.spyOn(
+                    fltService,
+                    "getFuseLeveragedTokenBySymbol"
+                );
+                mock.mockImplementation(() => {
+                    throw new Error("some error");
+                });
+                const res = await request(server)
+                    .get("/v1/56/flts/bnbrise")
+                    .set("Accept", "application/json");
+                expect(res.status).toBe(500);
+            });
+        });
+
         describe("given random symbol", () => {
             it("should responds 404 not found", async () => {
                 const res = await request(server)
