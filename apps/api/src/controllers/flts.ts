@@ -54,10 +54,10 @@ async function GetFuseLeveragedTokenBySymbol(req: Request, res: Response) {
 }
 
 /**
- * GetFuseLeveragedTokenPricesBySymbol return hourly historical price of Fuse
- * Leveraged Token up to 28 days
+ * GetFuseLeveragedTokenChartsBySymbol return hourly historical price, daily
+ * historical volumes and fees of Fuse Leveraged Token up to 28 days
  */
-async function GetFuseLeveragedTokenPricesBySymbol(
+async function GetFuseLeveragedTokenChartsBySymbol(
     req: Request,
     res: Response
 ) {
@@ -66,11 +66,11 @@ async function GetFuseLeveragedTokenPricesBySymbol(
         return res.status(404).json({ errors: errors.array() });
     }
     try {
-        const prices = await fltsService.getFuseLeveragedTokenPricesBySymbol(
+        const charts = await fltsService.getFuseLeveragedTokenChartsBySymbol(
             req.params.chainId as unknown as ChainId,
             req.params.symbol
         );
-        if (prices == undefined) {
+        if (charts == undefined) {
             return res.status(404).json({
                 errors: [
                     {
@@ -82,7 +82,7 @@ async function GetFuseLeveragedTokenPricesBySymbol(
                 ],
             });
         }
-        return res.status(200).json({ prices: prices });
+        return res.status(200).json(charts);
     } catch (e) {
         return res.status(500).json({ error: e });
     }
@@ -94,7 +94,7 @@ const flts = {
     GetFuseLeveragedTokensByChainIdValidation,
     GetFuseLeveragedTokensByChainId,
     GetFuseLeveragedTokenBySymbol,
-    GetFuseLeveragedTokenPricesBySymbol,
+    GetFuseLeveragedTokenChartsBySymbol,
 };
 
 export default flts;

@@ -1,17 +1,10 @@
 import express from "express";
 import quotesController from "../controllers/quotes";
-import tokensController from "../controllers/tokens";
 import fltsController from "../controllers/flts";
 
 const router = express.Router();
 
 router.get("/quotes", quotesController.GetQuotes);
-
-router.get(
-    "/:chainId/tokens",
-    tokensController.GetTokensByChainIdValidation,
-    tokensController.GetTokensByChainId
-);
 
 router.get(
     "/:chainId/flts",
@@ -26,9 +19,9 @@ router.get(
 );
 
 router.get(
-    "/:chainId/flts/:symbol/prices",
+    "/:chainId/flts/:symbol/charts",
     fltsController.GetFuseLeveragedTokensByChainIdValidation,
-    fltsController.GetFuseLeveragedTokenPricesBySymbol
+    fltsController.GetFuseLeveragedTokenChartsBySymbol
 );
 
 export { router };

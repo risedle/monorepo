@@ -69,8 +69,8 @@ const queryFuseLeveragedTokenBySymbol = gql`
     }
 `;
 
-const queryFuseLeveragedTokenPricesBySymbol = gql`
-    query getFuseLeveagedTokenPrices($symbol: String) {
+const queryFuseLeveragedTokenChartsBySymbol = gql`
+    query getFuseLeveagedTokenCharts($symbol: String) {
         flts(where: { symbol: $symbol }) {
             prices: fltHourData(
                 first: 672
@@ -82,6 +82,22 @@ const queryFuseLeveragedTokenPricesBySymbol = gql`
                 high
                 low
                 close
+            }
+            volumes: fltDayData(
+                first: 28
+                orderBy: periodStartUnix
+                orderDirection: desc
+            ) {
+                timestamp: periodStartUnix
+                usd: tradeVolumeUSD
+            }
+            fees: fltDayData(
+                first: 28
+                orderBy: periodStartUnix
+                orderDirection: desc
+            ) {
+                timestamp: periodStartUnix
+                usd: tradeFeeUSD
             }
         }
     }
@@ -205,13 +221,29 @@ interface FuseLeveragedTokenPrice {
     close: number;
 }
 
+interface FuseLeveragedTokenVolume {
+    timestamp: number;
+    usd: number;
+}
+
+interface FuseLeveragedTokenFee {
+    timestamp: number;
+    usd: number;
+}
+
+interface FuseLeveragedTokenChart {
+    prices: Array<FuseLeveragedTokenPrice>;
+    volumes: Array<FuseLeveragedTokenVolume>;
+    fees: Array<FuseLeveragedTokenFee>;
+}
+
 /**
- * Get Fuse Leveraged Token historical prices by symbol
+ * Get Fuse Leveraged Token historical prices, volumes and fees by symbol
  */
-export async function getFuseLeveragedTokenPricesBySymbol(
+export async function getFuseLeveragedTokenChartsBySymbol(
     chainId: ChainId,
     fltSymbol: string
-): Promise<Array<FuseLeveragedTokenPrice> | undefined> {
+): Promise<FuseLeveragedTokenChart | undefined> {
     const endpoint = getGraphEndpointByChainId(chainId);
     if (!endpoint) return undefined;
 
@@ -219,7 +251,7 @@ export async function getFuseLeveragedTokenPricesBySymbol(
     const filter = fltSymbol.toUpperCase();
     const data = await grequest(
         endpoint,
-        queryFuseLeveragedTokenPricesBySymbol,
+        queryFuseLeveragedTokenChartsBySymbol,
         {
             symbol: filter,
         }
@@ -228,19 +260,31 @@ export async function getFuseLeveragedTokenPricesBySymbol(
     const prices = data.flts[0].prices.map((price: any) => {
         return {
             timestamp: price.timestamp,
-            open: parseFloat(price.timestamp),
+            open: parseFloat(price.open),
             high: parseFloat(price.high),
             low: parseFloat(price.low),
             close: parseFloat(price.close),
         };
     });
-    return prices;
+    const volumes = data.flts[0].volumes.map((volume: any) => {
+        return {
+            timestamp: volume.timestamp,
+            usd: parseFloat(volume.usd),
+        };
+    });
+    const fees = data.flts[0].fees.map((fee: any) => {
+        return {
+            timestamp: fee.timestamp,
+            usd: parseFloat(fee.usd),
+        };
+    });
+    return { prices, volumes, fees };
 }
 
 const flts = {
     getFuseLeveragedTokensByChainId,
     getFuseLeveragedTokenBySymbol,
-    getFuseLeveragedTokenPricesBySymbol,
+    getFuseLeveragedTokenChartsBySymbol,
 };
 
 export default flts;
