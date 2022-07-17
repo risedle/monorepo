@@ -1,0 +1,30 @@
+import { getBaseConfig } from "../../utils/getBaseConfig";
+
+/**
+ * see here: https://stackoverflow.com/a/48042799
+ */
+describe("getBaseConfig", () => {
+    const OLD_ENV = process.env;
+
+    beforeEach(() => {
+        process.env = { ...OLD_ENV }; // Make a copy
+    });
+
+    afterEach(() => {
+        process.env = OLD_ENV; // Restore old environment
+    });
+
+    describe("Given BNB Smart Chain config", () => {
+        it("should return correct base config", () => {
+            process.env.NEXT_PUBLIC_CHAIN_SLUG = "bsc";
+            process.env.NEXT_PUBLIC_CHAIN_ID = 56;
+            process.env.NEXT_PUBLIC_CHAIN_NAME = "BNB Smart Chain";
+            const baseConfig = getBaseConfig();
+            console.log("DEBUG", baseConfig);
+            expect(baseConfig.chainId).to.eq(56);
+            expect(baseConfig.chainSlug).to.eq("bsc");
+            expect(baseConfig.chainName).to.eq("BNB Smart Chain");
+            expect(baseConfig.baseURL).to.eq("https://bsc.risedle.com");
+        });
+    });
+});
