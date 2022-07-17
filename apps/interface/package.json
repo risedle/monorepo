@@ -24,7 +24,16 @@
         "cypress": "10.3.0",
         "eslint": "8.20.0",
         "eslint-config-next": "12.2.2",
+        "eslint-plugin-cypress": "^2.12.1",
         "start-server-and-test": "1.14.0",
         "typescript": "4.7.4"
+    },
+    "eslintConfig": {
+        "plugins": [
+            "cypress"
+        ],
+        "extends": [
+            "plugin:cypress/recommended"
+        ]
     }
 }

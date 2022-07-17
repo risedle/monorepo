@@ -13,7 +13,7 @@
         "test": "turbo run test",
         "dev": "turbo run dev --parallel",
         "storybook": "turbo run storybook --parallel",
-        "lint": "eslint --ext=.ts,.tsx .",
+        "lint": "turbo run lint --parallel",
         "format": "prettier --write \"**/*.{ts,tsx,md,json,js,yml}\"",
         "check": "prettier --check \"**/*.{ts,tsx,md,json,js,yml}\""
     },
