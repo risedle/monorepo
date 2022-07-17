@@ -1,5 +1,5 @@
 {
-    "name": "app-ui",
+    "name": "interface",
     "version": "0.1.0",
     "private": true,
     "scripts": {
@@ -8,16 +8,11 @@
         "start": "next start",
         "lint": "next lint"
     },
-    "author": {
-        "name": "bayu",
-        "email": "bayu@risedle.com",
-        "url": "https://github.com/pyk"
+    "dependencies": {
+        "next": "12.2.2",
+        "react": "18.2.0",
+        "react-dom": "18.2.0"
     },
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/risedle/monorepo/issues"
-    },
-    "homepage": "https://github.com/risedle/monorepo",
     "devDependencies": {
         "@types/node": "18.0.5",
         "@types/react": "18.0.15",
