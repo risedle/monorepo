@@ -8,6 +8,16 @@
         "start": "next start",
         "lint": "next lint"
     },
+    "author": {
+        "name": "bayu",
+        "email": "bayu@risedle.com",
+        "url": "https://github.com/pyk"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/risedle/monorepo/issues"
+    },
+    "homepage": "https://github.com/risedle/monorepo",
     "devDependencies": {
         "@types/node": "18.0.5",
         "@types/react": "18.0.15",
