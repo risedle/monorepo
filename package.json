@@ -15,7 +15,9 @@
         "storybook": "turbo run storybook --parallel",
         "lint": "turbo run lint --parallel",
         "format": "prettier --write \"**/*.{ts,tsx,md,json,js,yml}\"",
-        "check": "prettier --check \"**/*.{ts,tsx,md,json,js,yml}\""
+        "check": "prettier --check \"**/*.{ts,tsx,md,json,js,yml}\"",
+        "prepare": "husky install",
+        "postinstall": "npm run prepare"
     },
     "devDependencies": {
         "@commitlint/cli": "17.0.2",
