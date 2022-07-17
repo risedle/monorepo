@@ -7,21 +7,25 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "cypress": "cypress open",
-        "cypress:headless": "cypress run",
-        "e2e": "start-server-and-test dev http://localhost:3000 cypress",
-        "e2e:headless": "start-server-and-test dev http://localhost:3000 cypress:headless"
+        "test": "npm run e2e:headless",
+        "cypress:run": "cypress run",
+        "e2e": "start-server-and-test dev:instrumented http://localhost:3000 cypress",
+        "e2e:headless": "start-server-and-test dev:instrumented http://localhost:3000 cypress:run",
+        "dev:instrumented": "INSTRUMENT_CODE=1 next dev"
     },
     "dependencies": {
         "next": "12.2.2",
+        "next-seo": "5.4.0",
         "react": "18.2.0",
         "react-dom": "18.2.0"
     },
     "devDependencies": {
+        "@cypress/code-coverage": "3.10.0",
         "@types/node": "18.0.5",
         "@types/react": "18.0.15",
         "@types/react-dom": "18.0.6",
         "autoprefixer": "10.4.7",
+        "babel-plugin-istanbul": "6.1.1",
         "cypress": "10.3.0",
         "eslint": "8.20.0",
         "eslint-config-next": "12.2.2",
