@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { DefaultSeo } from "next-seo";
+import { useBaseURL } from "../hooks/useBaseURL";
 
 function MyApp({ Component, pageProps }: AppProps) {
     const baseUrl = useBaseURL();
@@ -17,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                     site: "@risedle",
                     handle: "@risedle",
                 }}
-                opengraph={{
+                openGraph={{
                     type: "website",
                     url: baseUrl,
                     title: "Trade on Risedle",
