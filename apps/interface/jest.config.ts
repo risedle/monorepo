@@ -25,6 +25,7 @@ const customJestConfig = {
             lines: 95,
         },
     },
+    reporters: ["default", "github-actions"],
 };
 
 const config = createJestConfig(customJestConfig);
