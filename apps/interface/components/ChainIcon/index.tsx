@@ -4,7 +4,7 @@ interface ChainIconProps {
     className: string;
 }
 
-export const BSCIcon = (props: ChainLogoProps) => {
+export const BSCIcon = (props: ChainIconProps) => {
     return (
         <div data-testid="ChainIconBSC">
             <svg
@@ -20,7 +20,7 @@ export const BSCIcon = (props: ChainLogoProps) => {
     );
 };
 
-export const ChainIcon = (props: ChainLogoProps) => {
+export const ChainIcon = (props: ChainIconProps) => {
     const baseConfig = getBaseConfig();
 
     // TODO: import ChainID types here

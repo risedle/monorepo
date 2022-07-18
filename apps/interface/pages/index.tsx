@@ -80,7 +80,7 @@ const WarningBar = () => {
 
     // Fill the current windown
     const dim = useWindowDimensions();
-    const contentAmount = parseInt(dim.width / 375 + 1);
+    const contentAmount = Math.round(dim.width / 375 + 1);
 
     // Base styles
     const styles = {
