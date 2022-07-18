@@ -15,3 +15,9 @@ export function getBaseConfig(): BaseConfig {
     const baseURL = `https://${chainSlug}.risedle.com`;
     return { chainSlug, chainId, chainName, baseURL };
 }
+
+const config = {
+    getBaseConfig,
+};
+
+export default config;
