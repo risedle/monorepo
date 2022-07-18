@@ -52,12 +52,12 @@ describe("Given a user visit /", () => {
         });
 
         describe("When the screen width is 1440px", () => {
-            it("WarningBarContent count should be 2", async () => {
+            it("WarningBarContent count should be 5", async () => {
                 await fireResize(1440);
                 const contents = await screen.findAllByTestId(
                     "WarningBarContent"
                 );
-                expect(contents.length).toBe(4);
+                expect(contents.length).toBe(5);
             });
         });
     });
