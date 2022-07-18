@@ -20,9 +20,4 @@ const config = {
     getBaseConfig,
 };
 
-if (typeof window !== "undefined") {
-    //here `window` is available
-    window.BaseConfig = config;
-}
-
 export default config;
