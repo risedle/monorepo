@@ -7,11 +7,12 @@ export default defineConfig({
             require("@cypress/code-coverage/task")(on, config);
             return config;
         },
-        specPattern: "cypress/**/*.spec.{ts,tsx}",
+        specPattern: "cypress/e2e/**/*.spec.{ts,tsx}",
         baseUrl: "http://localhost:3000",
     },
 
     component: {
+        specPattern: "cypress/component/*.spec.{ts,tsx}",
         devServer: {
             framework: "next",
             bundler: "webpack",

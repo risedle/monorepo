@@ -1,0 +1,19 @@
+const shouldInstrumentCode = "INSTRUMENT_CODE" in process.env;
+console.log("shouldInstrumentCode", shouldInstrumentCode);
+
+module.exports = {
+    presets: ["next/babel"],
+    plugins: shouldInstrumentCode
+        ? [
+              "istanbul",
+              [
+                  "@babel/plugin-transform-modules-commonjs",
+                  {
+                      loose: true,
+                  },
+              ],
+          ]
+        : [],
+};
+
+console.dir(module.exports, { depth: null });
