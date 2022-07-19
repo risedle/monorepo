@@ -1,6 +1,6 @@
 import { getBaseConfig } from "../../utils/getBaseConfig";
 import { getChainColors } from "../../utils/getChainColors";
-import { useWindowDimensions } from "../../hooks/useWindowDimensions";
+import { useViewportSize } from "../../hooks/useViewportSize";
 import { ChainIcon } from "../ChainIcon";
 
 const WarningBarContent = () => {
@@ -77,7 +77,7 @@ export const WarningBar = () => {
     const chainColors = getChainColors();
 
     // Fill the current windown
-    const dim = useWindowDimensions();
+    const dim = useViewportSize();
     const contentAmount = Math.round(dim.width / 375 + 1);
 
     // Base styles

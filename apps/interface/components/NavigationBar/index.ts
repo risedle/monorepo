@@ -1,7 +1,3 @@
-import type { NextPage } from "next";
-import { NextSeo } from "next-seo";
-import { getBaseConfig } from "../utils/getBaseConfig";
-import { WarningBar } from "../components/WarningBar";
 import { useViewportTablet } from "../hooks/useViewportSize";
 
 const NavigationBarLogoIcon = () => {
@@ -31,7 +27,7 @@ const NavigationBarLogoIcon = () => {
     );
 };
 
-const NavigationBar = () => {
+export const NavigationBar = () => {
     const isTablet = useViewportTablet();
 
     const styles = {
@@ -69,18 +65,4 @@ const NavigationBar = () => {
     );
 };
 
-const Home: NextPage = () => {
-    const baseConfig = getBaseConfig();
-
-    return (
-        <>
-            <NextSeo
-                title={`Trade Leveraged Tokens on ${baseConfig.chainName}`}
-            />
-            <WarningBar />
-            <NavigationBar />
-        </>
-    );
-};
-
-export default Home;
+export default NavigationBar;
