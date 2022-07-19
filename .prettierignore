@@ -10,3 +10,5 @@ subgraphs/**/generated/*
 contracts/**/lib/*
 contracts/**/cache/*
 apps/api/coverage/**
+apps/interface/coverage/**
+apps/interface/.nyc_output/**
