@@ -92,6 +92,7 @@ export const WarningBar = () => {
                 borderBottom
                 borderBottomWidth="1px"
                 borderBottomColor={borderBottomColor}
+                overflowX="hidden"
             >
                 <HStack
                     divider={
