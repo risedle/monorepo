@@ -3,6 +3,12 @@ import { render, screen } from "@testing-library/react";
 import { NavigationBar } from "../../components/NavigationBar";
 
 describe("<NavigationBar />", () => {
+    it("should have this important class", () => {
+        render(<NavigationBar />);
+        const navigationBar = screen.getByTestId("NavigationBar");
+        expect(navigationBar).toHaveClass("max-w-7xl container items-center");
+    });
+
     describe("Given trade link as active", () => {
         it("should render trade link as active", () => {
             render(<NavigationBar tradeActive />);

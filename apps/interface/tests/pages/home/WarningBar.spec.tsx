@@ -28,11 +28,6 @@ describe("Given a user visit /", () => {
             expect(defaultIcons.length).toBeGreaterThan(2);
         });
 
-        it("WarningBar should have class 'overflow-x-hidden'", () => {
-            const warningBar = screen.getByTestId("WarningBar");
-            expect(warningBar).toHaveClass("overflow-x-hidden");
-        });
-
         describe("When the screen width is 375px", () => {
             it("WarningBarContent count should be 2", async () => {
                 await fireResizeEvent(375);
@@ -68,11 +63,6 @@ describe("Given a user visit /", () => {
         it("WarningBar should render BSC icons", async () => {
             const defaultIcons = await screen.findAllByTestId("ChainIconBSC");
             expect(defaultIcons.length).toBeGreaterThan(2);
-        });
-
-        it("WarningBar should have class 'overflow-x-hidden'", () => {
-            const warningBar = screen.getByTestId("WarningBar");
-            expect(warningBar).toHaveClass("overflow-x-hidden");
         });
 
         describe("When the screen width is 375px", () => {

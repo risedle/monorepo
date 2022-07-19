@@ -16,6 +16,13 @@
         "dev:instrumented": "INSTRUMENT_CODE=1 next dev"
     },
     "dependencies": {
+        "@chakra-ui/react": "2.2.4",
+        "@emotion/react": "11.9.3",
+        "@emotion/styled": "11.9.3",
+        "@fontsource/ibm-plex-mono": "4.5.10",
+        "@fontsource/inter": "4.5.11",
+        "@radix-ui/react-dropdown-menu": "0.1.7-rc.47",
+        "framer-motion": "6.5.1",
         "next": "12.2.2",
         "next-seo": "5.4.0",
         "react": "18.2.0",

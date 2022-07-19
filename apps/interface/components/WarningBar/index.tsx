@@ -1,105 +1,112 @@
+import {
+    Container,
+    HStack,
+    StackDivider,
+    useColorModeValue,
+    Box,
+    Text,
+    Center,
+} from "@chakra-ui/react";
+
 import { getBaseConfig } from "../../utils/getBaseConfig";
-import { getChainColors } from "../../utils/getChainColors";
 import { useViewportSize } from "../../hooks/useViewportSize";
 import { ChainIcon } from "../ChainIcon";
 
 const WarningBarContent = () => {
     const baseConfig = getBaseConfig();
-    const chainColors = getChainColors();
 
-    // Base styles
-    const styles = {
-        content: [
-            "flex",
-            "flex-row",
-            "divide-x",
-            "min-w-[375px]",
-            chainColors,
-        ].join(" "),
-        textContainer: [
-            "flex",
-            "flex-row",
-            "items-center",
-            "px-8",
-            "gap-1",
-        ].join(" "),
-        textBase: [
-            "font-semibold",
-            "text-xs",
-            "leading-4",
-            "tracking-tight",
-            "text-gray-light-11",
-            "dark:text-gray-dark-11",
-            "fill-gray-light-11",
-            "dark:fill-gray-dark-11",
-            "shrink-0",
-        ].join(" "),
-        textChain: [
-            "font-semibold",
-            "text-xs",
-            "leading-4",
-            "tracking-tight",
-            "shrink-0",
-            chainColors,
-        ].join(" "),
-    };
+    const activeColor = useColorModeValue(
+        "warningBar.active.light",
+        "warningBar.active.dark"
+    );
+    const baseColor = useColorModeValue(
+        "warningBar.base.light",
+        "warningBar.base.dark"
+    );
+    const borderBottomColor = useColorModeValue("gray.light.4", "gray.dark.4");
+
     return (
-        <>
-            <div data-testid="WarningBarContent" className={styles.content}>
-                {/* Use at your own risk + Logo */}
-                <div className={styles.textContainer}>
-                    <div className={styles.textChain}>
+        <HStack
+            data-testid="WarningBarContent"
+            divider={<StackDivider borderColor={activeColor} opacity="0.1" />}
+            spacing="8"
+        >
+            <HStack>
+                <Box minW="max">
+                    <Text
+                        fontSize="xs"
+                        fontWeight="semibold"
+                        color={activeColor}
+                        lineHeight="4"
+                        letterSpacing="tight"
+                    >
                         Use at your own risk
-                    </div>
-                    <div>
-                        <ChainIcon className={styles.textChain} />
-                    </div>
-                </div>
-                {/* end of use at yout own risk + logo */}
-
-                {/* Chain name + Logo */}
-                <div className={styles.textContainer}>
-                    <div className={styles.textBase}>
-                        {`${baseConfig.chainName}`}
-                    </div>
-                    <div>
-                        <ChainIcon className={styles.textBase} />
-                    </div>
-                </div>
-                {/* end of chain name + logo */}
-            </div>
-        </>
+                    </Text>
+                </Box>
+                <Box minW="max">
+                    <Center>
+                        <ChainIcon color={activeColor} />
+                    </Center>
+                </Box>
+            </HStack>
+            <HStack>
+                <Box minW="max">
+                    <Text
+                        fontSize="xs"
+                        fontWeight="semibold"
+                        color={baseColor}
+                        lineHeight="4"
+                        letterSpacing="tight"
+                    >
+                        {baseConfig.chainName}
+                    </Text>
+                </Box>
+                <Box minW="max">
+                    <Center>
+                        <ChainIcon color={baseColor} />
+                    </Center>
+                </Box>
+            </HStack>
+        </HStack>
     );
 };
 
 export const WarningBar = () => {
-    // Chain specific colors
-    const chainColors = getChainColors();
-
     // Fill the current windown
     const dim = useViewportSize();
     const contentAmount = Math.round(dim.width / 375 + 1);
 
-    // Base styles
-    const styles = {
-        contentContainer: [
-            "flex",
-            "flex-row",
-            "divide-x",
-            chainColors,
-            "py-3",
-            "border-b",
-            "border-gray-light-4",
-            "dark:border-gray-dark-4",
-            "overflow-x-hidden",
-        ].join(" "),
-    };
+    const dividerColor = useColorModeValue(
+        "warningBar.active.light",
+        "warningBar.active.dark"
+    );
+    const borderBottomColor = useColorModeValue("gray.light.4", "gray.dark.4");
 
     return (
-        <div data-testid="WarningBar" className={styles.contentContainer}>
-            {Array.from(Array(contentAmount), (e, i) => {
-                return <WarningBarContent key={i} />;
-            })}
-        </div>
+        <>
+            <Container
+                maxW="full"
+                centerContent
+                data-testid="WarningBar"
+                py="3"
+                borderBottom
+                borderBottomWidth="1px"
+                borderBottomColor={borderBottomColor}
+            >
+                <HStack
+                    divider={
+                        <StackDivider
+                            borderColor={dividerColor}
+                            opacity="0.1"
+                        />
+                    }
+                    spacing="8"
+                >
+                    {Array.from(Array(contentAmount), (e, i) => {
+                        return <WarningBarContent key={i} />;
+                    })}
+                </HStack>
+            </Container>
+        </>
     );
 };
