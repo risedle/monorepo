@@ -2,20 +2,12 @@ import "@testing-library/jest-dom/extend-expect";
 import Home from "../../../pages/index";
 import { render, screen, waitFor } from "@testing-library/react";
 import * as BaseConfig from "../../../utils/getBaseConfig";
+import { fireResizeEvent } from "../../utils/fireResizeEvent";
 
 afterEach(() => {
     // restore the spy created with spyOn
     jest.restoreAllMocks();
 });
-
-// simulate window resize
-async function fireResize(width) {
-    // NOTE: Wrapped in waitFor to suppress 'act' warning
-    await waitFor(async () => {
-        window.innerWidth = width;
-        window.dispatchEvent(new Event("resize"));
-    });
-}
 
 describe("Given a user visit /", () => {
     describe("Given random chainId", () => {
@@ -43,7 +35,7 @@ describe("Given a user visit /", () => {
 
         describe("When the screen width is 375px", () => {
             it("WarningBarContent count should be 2", async () => {
-                await fireResize(375);
+                await fireResizeEvent(375);
                 const contents = await screen.findAllByTestId(
                     "WarningBarContent"
                 );
@@ -53,7 +45,7 @@ describe("Given a user visit /", () => {
 
         describe("When the screen width is 1440px", () => {
             it("WarningBarContent count should be 5", async () => {
-                await fireResize(1440);
+                await fireResizeEvent(1440);
                 const contents = await screen.findAllByTestId(
                     "WarningBarContent"
                 );
@@ -85,7 +77,7 @@ describe("Given a user visit /", () => {
 
         describe("When the screen width is 375px", () => {
             it("WarningBarContent count should be 2", async () => {
-                await fireResize(375);
+                await fireResizeEvent(375);
                 const contents = await screen.findAllByTestId(
                     "WarningBarContent"
                 );
@@ -95,7 +87,7 @@ describe("Given a user visit /", () => {
 
         describe("When the screen width is 1440px", () => {
             it("WarningBarContent count should be 5", async () => {
-                await fireResize(1440);
+                await fireResizeEvent(1440);
                 const contents = await screen.findAllByTestId(
                     "WarningBarContent"
                 );
