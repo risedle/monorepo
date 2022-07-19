@@ -1,4 +1,5 @@
 import { useViewportTablet } from "../../hooks/useViewportSize";
+import Link from "next/link";
 
 const NavigationBarLogoIcon = () => {
     return (
@@ -27,10 +28,26 @@ const NavigationBarLogoIcon = () => {
     );
 };
 
-export const NavigationBar = () => {
+interface NavigationBarProps {
+    tradeActive?: boolean;
+    earnActive?: boolean;
+    portfolioActive?: boolean;
+}
+
+export const NavigationBar = (props: NavigationBarProps) => {
     const isTablet = useViewportTablet();
 
     const styles = {
+        navigationBar: [
+            "flex",
+            "flex-row",
+            "max-w-7xl",
+            "container",
+            "mx-auto",
+            "px-4",
+            "py-5",
+        ].join(" "),
+        navigationBarLogoContainer: ["flex-none"].join(" "),
         navigationBarLogo: ["flex", "flex-row", "gap-2", "items-center"].join(
             " "
         ),
@@ -41,10 +58,49 @@ export const NavigationBar = () => {
             "leading-4",
             "tracking-tight",
         ].join(" "),
+        navigationBarLinksContainer: [
+            "flex",
+            "flex-row",
+            "flex-auto",
+            "justify-center",
+            "sm:justify-start",
+            "items-center",
+            "gap-4",
+            "sm:gap-8",
+            "sm:pl-12",
+        ].join(" "),
+        navigationBarLinkBase: [
+            "font-normal",
+            "text-sm",
+            "leading-4",
+            "text-gray-light-10",
+            "dark:text-gray-dark-10",
+        ].join(" "),
+        navigationBarLinkActive: [
+            "font-normal",
+            "text-sm",
+            "leading-4",
+            "text-gray-light-12",
+            "dark:text-gray-dark-12",
+        ].join(" "),
     };
+    // Active links
+    const tradeStyles = props.tradeActive
+        ? styles.navigationBarLinkActive
+        : styles.navigationBarLinkBase;
+    const earnStyles = props.earnActive
+        ? styles.navigationBarLinkActive
+        : styles.navigationBarLinkBase;
+    const portfolioStyles = props.portfolioActive
+        ? styles.navigationBarLinkActive
+        : styles.navigationBarLinkBase;
+
     return (
-        <div data-testid="NavigationBar">
-            <div data-testid="NavigationBarLogo">
+        <div data-testid="NavigationBar" className={styles.navigationBar}>
+            <div
+                data-testid="NavigationBarLogo"
+                className={styles.navigationBarLogoContainer}
+            >
                 <a
                     href="https://risedle.com"
                     className={styles.navigationBarLogo}
@@ -60,6 +116,35 @@ export const NavigationBar = () => {
                         </div>
                     )}
                 </a>
+            </div>
+            <div
+                data-testid="NavigationBarLinks"
+                className={styles.navigationBarLinksContainer}
+            >
+                <Link href="/trade">
+                    <a
+                        data-testid="NavigationBarLinksTrade"
+                        className={tradeStyles}
+                    >
+                        Trade
+                    </a>
+                </Link>
+                <Link href="/pools">
+                    <a
+                        data-testid="NavigationBarLinksEarn"
+                        className={earnStyles}
+                    >
+                        Earn
+                    </a>
+                </Link>
+                <Link href="/portfolio">
+                    <a
+                        data-testid="NavigationBarLinksPortfolio"
+                        className={portfolioStyles}
+                    >
+                        Portfolio
+                    </a>
+                </Link>
             </div>
         </div>
     );
