@@ -8,7 +8,7 @@ interface ViewportSize {
 /**
  * Hook to get current viewport size
  */
-export function useViewportSize(): ViewporSize {
+export function useViewportSize(): ViewportSize {
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
 
@@ -31,7 +31,7 @@ export function useViewportSize(): ViewporSize {
 /**
  * This hook will return true if screen size is larger than tablet
  */
-export function useViewportTablet(): bool {
+export function useViewportTablet(): boolean {
     const dim = useViewportSize();
     return dim.width >= 680 ? true : false;
 }
@@ -39,7 +39,7 @@ export function useViewportTablet(): bool {
 /**
  * This hook will return true if screen size is larger than laptop
  */
-export function useViewportLaptop(): bool {
+export function useViewportLaptop(): boolean {
     const dim = useViewportSize();
     return dim.width >= 1024 ? true : false;
 }
@@ -47,7 +47,7 @@ export function useViewportLaptop(): bool {
 /**
  * This hook will return true if screen size is larger than desktop
  */
-export function useViewportDesktop(): bool {
+export function useViewportDesktop(): boolean {
     const dim = useViewportSize();
     return dim.width >= 1280 ? true : false;
 }
