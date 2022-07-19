@@ -1,8 +1,10 @@
 import type { NextPage } from "next";
 import { NextSeo } from "next-seo";
 import { getBaseConfig } from "../utils/getBaseConfig";
-import { WarningBar } from "../components/WarningBar";
 import { NavigationBar } from "../components/NavigationBar";
+// import { WarningBar } from "../components/WarningBar";
+import { NewWarningBar } from "../components/WarningBar/WarningBar";
+import { BannerBSC } from "../components/BannerBSC/BannerBSC";
 
 const Home: NextPage = () => {
     const baseConfig = getBaseConfig();
@@ -12,7 +14,9 @@ const Home: NextPage = () => {
             <NextSeo
                 title={`Trade Leveraged Tokens on ${baseConfig.chainName}`}
             />
-            <WarningBar />
+            {/* <NewWarningBar /> */}
+            <BannerBSC />
+            {/* <WarningBar /> */}
             <NavigationBar tradeActive />
         </>
     );
