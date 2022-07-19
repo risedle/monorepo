@@ -1,4 +1,4 @@
-import { useViewportTablet } from "../hooks/useViewportSize";
+import { useViewportTablet } from "../../hooks/useViewportSize";
 
 const NavigationBarLogoIcon = () => {
     return (
