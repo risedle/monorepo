@@ -1,32 +1,26 @@
+import { Container, Flex, Center, Spacer, Show } from "@chakra-ui/react";
+
 import { NavigationBarLogo } from "./logo";
 import { NavigationBarLinks } from "./links";
-// import { NavigationBarChainSwitcher } from "./chain";
+import { NavigationBarChainSwitcher } from "./chain";
 
-interface NavigationBarProps {
-    tradeActive?: boolean;
-    earnActive?: boolean;
-    portfolioActive?: boolean;
-}
-
-export const NavigationBar = (props: NavigationBarProps) => {
-    const styles = {
-        container: [
-            "flex",
-            "flex-row",
-            "max-w-7xl",
-            "container",
-            "mx-auto",
-            "px-4",
-            "py-3",
-            "items-center",
-        ].join(" "),
-    };
-
+export const NavigationBar = () => {
     return (
-        <div data-testid="NavigationBar" className={styles.container}>
-            <NavigationBarLogo />
-            <NavigationBarLinks {...props} />
-        </div>
+        <Container maxW="7xl" py="3" data-testid="NavigationBar">
+            <Flex>
+                <Center>
+                    <NavigationBarLogo />
+                </Center>
+                {/* Center links on mobile */}
+                <Center flex={{ base: "1", md: "0" }}>
+                    <NavigationBarLinks />
+                </Center>
+                <Show above="md">
+                    <Spacer />
+                    <NavigationBarChainSwitcher />
+                </Show>
+            </Flex>
+        </Container>
     );
 };
 

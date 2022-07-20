@@ -13,7 +13,7 @@ const Home: NextPage = () => {
                 title={`Trade Leveraged Tokens on ${baseConfig.chainName}`}
             />
             <WarningBar />
-            <NavigationBar tradeActive />
+            <NavigationBar />
         </>
     );
 };

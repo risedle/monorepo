@@ -1,13 +1,9 @@
 import { getBaseConfig } from "../../utils/getBaseConfig";
-import { Icon } from "@chakra-ui/react";
+import { Icon, IconProps } from "@chakra-ui/react";
 
-interface ChainIconProps {
-    // TODO(pyk): use ChainId enum from @risedle/types
-    chainId: number;
-    className: string;
-}
+// TODO(pyk): refactor this to its own file ChainIcon/bsc.tsx etc
 
-export const ChainIconBSC = (props) => {
+export const ChainIconBSC = (props: IconProps) => {
     return (
         <Icon data-testid="ChainIconBSC" viewBox="0 0 16 16" {...props}>
             <path
@@ -18,9 +14,9 @@ export const ChainIconBSC = (props) => {
     );
 };
 
-export const ChainIconArbitrum = (props) => {
+export const ChainIconArbitrum = (props: IconProps) => {
     return (
-        <Icon data-testid="ChainIconBSC" viewBox="0 0 17 19" {...props}>
+        <Icon data-testid="ChainIconArbitrum" viewBox="0 0 17 19" {...props}>
             <path
                 d="M10.148 8.74696L11.4837 6.5039L15.084 12.0535L15.0857 13.1185L15.074 5.78979C15.0654 5.61065 14.9693 5.44677 14.8159 5.35012L8.33411 1.6602C8.18258 1.58642 7.99021 1.58727 7.83886 1.66253C7.8184 1.67262 7.79915 1.68367 7.78087 1.69572L7.75824 1.70977L1.46664 5.31801L1.44225 5.32898C1.41086 5.34326 1.37909 5.36143 1.34934 5.38252C1.23002 5.46716 1.15083 5.59237 1.1252 5.73281C1.12135 5.75409 1.1185 5.77574 1.11719 5.79765L1.12708 11.7699L4.48053 6.62584C4.90277 5.94377 5.82263 5.72406 6.67658 5.736L7.67882 5.76217L1.77342 15.1349L2.46955 15.5315L8.44564 5.7717L11.0871 5.76221L5.12642 15.7683L7.61041 17.1823L7.90719 17.3512C8.03273 17.4017 8.18074 17.4042 8.30733 17.359L14.8802 13.5892L13.6236 14.3099L10.148 8.74696ZM10.6576 16.011L8.14875 12.1141L9.68025 9.54211L12.9752 14.6818L10.6576 16.011Z"
                 fill="#2D374B"
@@ -49,16 +45,20 @@ export const ChainIconArbitrum = (props) => {
     );
 };
 
-export const ChainIcon = (props) => {
+interface ChainIconProps extends IconProps {
+    chainId?: number;
+}
+
+export const ChainIcon = (props: ChainIconProps) => {
     const baseConfig = getBaseConfig();
     const chainId = props.chainId ? props.chainId : baseConfig.chainId;
 
-    // TODO: import ChainID types here
+    // TODO: import ChainID types here from @risedle/types
     switch (chainId) {
         case 56:
             return <ChainIconBSC {...props} />;
-        case 1:
-            return <ChainIconArbitrum />;
+        case 42161:
+            return <ChainIconArbitrum {...props} />;
         default:
             return <div data-testid="ChainIconDefault">DEFAULT ICON</div>;
     }

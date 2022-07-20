@@ -1,45 +1,60 @@
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 import { NavigationBar } from "../../components/NavigationBar";
+import nextRouter from "next/router";
 
 describe("<NavigationBar />", () => {
-    it("should have this important class", () => {
-        render(<NavigationBar />);
-        const navigationBar = screen.getByTestId("NavigationBar");
-        expect(navigationBar).toHaveClass("max-w-7xl container items-center");
-    });
+    describe("Given a user visit /", () => {
+        it("should render 'Trade' link as active", () => {
+            const useRouter = jest.spyOn(nextRouter, "useRouter");
+            useRouter.mockImplementation(() => ({
+                route: "/",
+                pathname: "/",
+            }));
+            render(<NavigationBar />);
 
-    describe("Given trade link as active", () => {
-        it("should render trade link as active", () => {
-            render(<NavigationBar tradeActive />);
             const navigationBarLinksTrade = screen.getByTestId(
                 "NavigationBarLinksTrade"
             );
             expect(navigationBarLinksTrade).toBeInTheDocument();
-            expect(navigationBarLinksTrade).toHaveAttribute("href", "/trade");
-            expect(navigationBarLinksTrade).toHaveClass(
-                "text-gray-light-12 dark:text-gray-dark-12"
+            expect(navigationBarLinksTrade).toHaveAttribute("href", "/");
+            expect(navigationBarLinksTrade).toHaveAttribute(
+                "data-state",
+                "active"
             );
         });
     });
 
-    describe("Given earn link as active", () => {
-        it("should render earn link as active", () => {
-            render(<NavigationBar earnActive />);
+    describe("Given a user visit /earn", () => {
+        it("should render 'Earn' link as active", () => {
+            const useRouter = jest.spyOn(nextRouter, "useRouter");
+            useRouter.mockImplementation(() => ({
+                route: "/earn",
+                pathname: "/earn",
+            }));
+            render(<NavigationBar />);
+
             const navigationBarLinksEarn = screen.getByTestId(
                 "NavigationBarLinksEarn"
             );
             expect(navigationBarLinksEarn).toBeInTheDocument();
-            expect(navigationBarLinksEarn).toHaveAttribute("href", "/pools");
-            expect(navigationBarLinksEarn).toHaveClass(
-                "text-gray-light-12 dark:text-gray-dark-12"
+            expect(navigationBarLinksEarn).toHaveAttribute("href", "/earn");
+            expect(navigationBarLinksEarn).toHaveAttribute(
+                "data-state",
+                "active"
             );
         });
     });
 
-    describe("Given portfolio link as active", () => {
-        it("should render portfolio link as active", () => {
-            render(<NavigationBar portfolioActive />);
+    describe("Given a user visit /portfolio", () => {
+        it("should render 'Portfolio' link as active", () => {
+            const useRouter = jest.spyOn(nextRouter, "useRouter");
+            useRouter.mockImplementation(() => ({
+                route: "/portfolio",
+                pathname: "/portfolio",
+            }));
+            render(<NavigationBar />);
+
             const navigationBarLinksPortfolio = screen.getByTestId(
                 "NavigationBarLinksPortfolio"
             );
@@ -48,8 +63,9 @@ describe("<NavigationBar />", () => {
                 "href",
                 "/portfolio"
             );
-            expect(navigationBarLinksPortfolio).toHaveClass(
-                "text-gray-light-12 dark:text-gray-dark-12"
+            expect(navigationBarLinksPortfolio).toHaveAttribute(
+                "data-state",
+                "active"
             );
         });
     });

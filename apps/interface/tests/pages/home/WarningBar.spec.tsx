@@ -1,8 +1,9 @@
 import "@testing-library/jest-dom/extend-expect";
 import Home from "../../../pages/index";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import * as BaseConfig from "../../../utils/getBaseConfig";
 import { fireResizeEvent } from "../../utils/fireResizeEvent";
+import nextRouter from "next/router";
 
 afterEach(() => {
     // restore the spy created with spyOn
@@ -10,14 +11,21 @@ afterEach(() => {
 });
 
 describe("Given a user visit /", () => {
+    beforeEach(() => {
+        const useRouter = jest.spyOn(nextRouter, "useRouter");
+        useRouter.mockImplementation(() => ({
+            route: "/",
+            pathname: "/",
+        }));
+    });
+
     describe("Given random chainId", () => {
         beforeEach(() => {
             // Mock a base config
-            const mock = jest
-                .spyOn(BaseConfig, "getBaseConfig")
-                .mockImplementation(() => {
-                    return { chainId: 1234 };
-                });
+            const getBaseConfig = jest.spyOn(BaseConfig, "getBaseConfig");
+            getBaseConfig.mockImplementation(() => {
+                return { chainId: 1234 };
+            });
             render(<Home />);
         });
 

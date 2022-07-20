@@ -3,6 +3,7 @@ interface Chain {
     chainSlug: string;
     chainId: number;
     chainName: string;
+    baseURL: string;
 }
 
 interface BaseConfig {
@@ -24,6 +25,7 @@ const BSC = {
     chainSlug: "bsc",
     chainId: 56,
     chainName: "BNB Smart Chain",
+    baseURL: "https://bsc.risedle.com",
 };
 
 const supportedChains = [Arbitrum, BSC];
@@ -32,6 +34,8 @@ const supportedChains = [Arbitrum, BSC];
  * Given NEXT_PUBLIC_* from configuration then return the base config
  */
 export function getBaseConfig(): BaseConfig {
+    // TODO: bayu only take CHAIN id and get this data from variable BSC and
+    // Arbitrum that defined above
     const chainSlug = process.env.NEXT_PUBLIC_CHAIN_SLUG || "bsc";
     const chainId = parseInt(process.env.NEXT_PUBLIC_CHAIN_ID || "56");
     const chainName = process.env.NEXT_PUBLIC_CHAIN_NAME || "BNB Smart Chain";

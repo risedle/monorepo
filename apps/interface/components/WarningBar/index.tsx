@@ -23,7 +23,6 @@ const WarningBarContent = () => {
         "warningBar.base.light",
         "warningBar.base.dark"
     );
-    const borderBottomColor = useColorModeValue("gray.light.4", "gray.dark.4");
 
     return (
         <HStack
@@ -40,7 +39,7 @@ const WarningBarContent = () => {
                         lineHeight="4"
                         letterSpacing="tight"
                     >
-                        Use at your own risk
+                        {baseConfig.chainName}
                     </Text>
                 </Box>
                 <Box minW="max">
@@ -58,7 +57,7 @@ const WarningBarContent = () => {
                         lineHeight="4"
                         letterSpacing="tight"
                     >
-                        {baseConfig.chainName}
+                        Alpha Release
                     </Text>
                 </Box>
                 <Box minW="max">
@@ -89,7 +88,6 @@ export const WarningBar = () => {
                 centerContent
                 data-testid="WarningBar"
                 py="3"
-                borderBottom
                 borderBottomWidth="1px"
                 borderBottomColor={borderBottomColor}
                 overflowX="hidden"
