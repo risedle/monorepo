@@ -60,7 +60,6 @@ const { connectors } = getDefaultWallets({
     appName: "Risedle",
     chains,
 });
-console.log("DEBUG:", connectors);
 
 const wagmiClient = createClient({
     autoConnect: true,
