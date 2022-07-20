@@ -24,7 +24,7 @@ describe("Given a user visit /", () => {
             // Mock a base config
             const getBaseConfig = jest.spyOn(BaseConfig, "getBaseConfig");
             getBaseConfig.mockImplementation(() => {
-                return { chainId: 1234 };
+                return { chainId: 1234, supportedChains: [] };
             });
             render(<Home />);
         });
@@ -70,7 +70,7 @@ describe("Given a user visit /", () => {
             const mock = jest
                 .spyOn(BaseConfig, "getBaseConfig")
                 .mockImplementation(() => {
-                    return { chainId: 56 };
+                    return { chainId: 56, supportedChains: [] };
                 });
             render(<Home />);
         });

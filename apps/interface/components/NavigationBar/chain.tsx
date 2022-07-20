@@ -13,6 +13,7 @@ import {
     Flex,
     Center,
     IconProps,
+    ButtonProps,
 } from "@chakra-ui/react";
 
 import { ChainIcon } from "../ChainIcon";
@@ -31,7 +32,7 @@ const ChevronDownIcon = (props: IconProps) => {
     );
 };
 
-export const NavigationBarChainSwitcher = () => {
+export const NavigationBarChainSwitcher = (props: ButtonProps) => {
     const baseConfig = getBaseConfig();
 
     // Styles
@@ -76,6 +77,7 @@ export const NavigationBarChainSwitcher = () => {
                 leftIcon={<ChainIcon color="bsc" w="4" h="4" />}
                 rightIcon={<ChevronDownIcon w="4" h="4" />}
                 data-testid="NavigationBarChainSwitcher"
+                {...props}
             >
                 <Text>{baseConfig.chainName}</Text>
             </MenuButton>
