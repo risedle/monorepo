@@ -1,6 +1,7 @@
 import { extendTheme } from "@chakra-ui/react";
 import type { StyleConfig } from "@chakra-ui/theme-tools";
 import { getBaseConfig } from "../utils/getBaseConfig";
+import { mode } from "@chakra-ui/theme-tools";
 
 // TODO(pyk): refactor this chakra theming approach once we ready
 // What we need:
@@ -31,6 +32,7 @@ const baseColors = {
         },
     },
     gray: {
+        1: mode("#FCFCFC", "#161616"),
         light: {
             1: "#FCFCFC",
             2: "#F8F8F8",
@@ -120,6 +122,27 @@ const components: Record<string, StyleConfig> = {
                         colorMode == "dark" ? "gray.dark.2" : "gray.light.2",
                 },
             }),
+            icon: ({ colorMode }) => ({
+                background:
+                    colorMode == "dark" ? "gray.dark.2" : "gray.light.2",
+                borderColor:
+                    colorMode == "dark" ? "gray.dark.4" : "gray.light.4",
+                borderWidth: "1px",
+                color: colorMode == "dark" ? "gray.dark.12" : "gray.light.12",
+                fontWeight: "semibold",
+                fontSize: "sm",
+                lineHeight: "4",
+                borderRadius: "full",
+                padding: 0,
+                _hover: {
+                    background:
+                        colorMode == "dark" ? "gray.dark.2" : "gray.light.2",
+                },
+                _active: {
+                    background:
+                        colorMode == "dark" ? "gray.dark.2" : "gray.light.2",
+                },
+            }),
             bsc: ({ colorMode }) => ({
                 background:
                     colorMode == "dark"
@@ -171,6 +194,13 @@ const theme = extendTheme({
     },
     initialColorMode: "dark",
     useSystemColorMode: false,
+    styles: {
+        global: (props) => ({
+            body: {
+                bg: mode("#FCFCFC", "#161616")(props),
+            },
+        }),
+    },
 });
 
 export default theme;

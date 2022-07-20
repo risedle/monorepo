@@ -5,12 +5,14 @@ import {
     Spacer,
     Show,
     HStack,
+    Hide,
 } from "@chakra-ui/react";
 
 import { NavigationBarLogo } from "./logo";
 import { NavigationBarLinks } from "./links";
 import { NavigationBarChainSwitcher } from "./chain";
 import { ConnectWalletButton } from "../ConnectWalletButton";
+import { DarkmodeToggle } from "../DarkmodeToggle";
 
 export const NavigationBar = () => {
     return (
@@ -28,8 +30,12 @@ export const NavigationBar = () => {
                     <HStack spacing="2">
                         <NavigationBarChainSwitcher />
                         <ConnectWalletButton />
+                        <DarkmodeToggle />
                     </HStack>
                 </Show>
+                <Hide above="tablet">
+                    <DarkmodeToggle />
+                </Hide>
             </Flex>
         </Container>
     );
