@@ -1,12 +1,4 @@
-import {
-    Container,
-    Flex,
-    Center,
-    Spacer,
-    Show,
-    HStack,
-    Hide,
-} from "@chakra-ui/react";
+import { Container, Flex, Center, Spacer, HStack } from "@chakra-ui/react";
 
 import { NavigationBarLogo } from "./logo";
 import { NavigationBarLinks } from "./links";
@@ -25,17 +17,16 @@ export const NavigationBar = () => {
                 <Center flex={{ base: "1", tablet: "0" }}>
                     <NavigationBarLinks />
                 </Center>
-                <Show above="tablet">
-                    <Spacer />
-                    <HStack spacing="2">
-                        <NavigationBarChainSwitcher />
-                        <ConnectWalletButton />
-                        <DarkmodeToggle />
-                    </HStack>
-                </Show>
-                <Hide above="tablet">
+                <Spacer display={{ base: "none", tablet: "block" }} />
+                <HStack spacing={{ tablet: "2" }}>
+                    <NavigationBarChainSwitcher
+                        display={{ base: "none", tablet: "inline-flex" }}
+                    />
+                    <ConnectWalletButton
+                        display={{ base: "none", tablet: "block" }}
+                    />
                     <DarkmodeToggle />
-                </Hide>
+                </HStack>
             </Flex>
         </Container>
     );

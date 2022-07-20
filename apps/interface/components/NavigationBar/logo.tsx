@@ -8,8 +8,6 @@ import {
     Text,
 } from "@chakra-ui/react";
 
-import { useViewportTablet } from "../../hooks/useViewportSize";
-
 const NavigationBarLogoIcon = (props: IconProps) => {
     const color = useColorModeValue("black", "white");
     return (
@@ -37,25 +35,22 @@ const NavigationBarLogoIcon = (props: IconProps) => {
 };
 
 export const NavigationBarLogo = () => {
-    const isTablet = useViewportTablet();
-
     return (
         <Box data-testid="NavigationBarLogo">
             <Link href="https://risedle.com" minW="max" _hover={{}}>
                 <HStack>
                     <NavigationBarLogoIcon w="6" h="6" />
-                    {/* Show text only on tablet or ger */}
-                    {isTablet && (
-                        <Text
-                            data-testid="NavigationBarLogoText"
-                            fontWeight="bold"
-                            fontSize="md"
-                            lineHeight="4"
-                            letterSpacing="tight"
-                        >
-                            Risedle
-                        </Text>
-                    )}
+                    {/* Show text only on tablet or above */}
+                    <Text
+                        data-testid="NavigationBarLogoText"
+                        fontWeight="bold"
+                        fontSize="md"
+                        lineHeight="4"
+                        letterSpacing="tight"
+                        display={{ base: "none", tablet: "block" }}
+                    >
+                        Risedle
+                    </Text>
                 </HStack>
             </Link>
         </Box>
