@@ -50,12 +50,12 @@ interface ChainIconProps extends IconProps {
 }
 
 export const ChainIcon = (props: ChainIconProps) => {
-    let { chainId, ...iconProps } = props;
+    const { chainId, ...iconProps } = props;
     const baseConfig = getBaseConfig();
-    chainId = chainId ? chainId : baseConfig.chainId;
+    const currentChainId = chainId ? chainId : baseConfig.chainId;
 
     // TODO: import ChainID types here from @risedle/types
-    switch (chainId) {
+    switch (currentChainId) {
         case 56:
             return <ChainIconBSC {...iconProps} />;
         case 42161:

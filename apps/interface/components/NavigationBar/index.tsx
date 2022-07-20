@@ -12,10 +12,10 @@ export const NavigationBar = () => {
                     <NavigationBarLogo />
                 </Center>
                 {/* Center links on mobile */}
-                <Center flex={{ base: "1", md: "0" }}>
+                <Center flex={{ base: "1", tablet: "0" }}>
                     <NavigationBarLinks />
                 </Center>
-                <Show above="md">
+                <Show above="tablet">
                     <Spacer />
                     <NavigationBarChainSwitcher />
                 </Show>
