@@ -15,9 +15,9 @@ class RisedleDocument extends Document {
 
     render() {
         return (
-            <Html className="dark overflow-x-hidden font-inter">
+            <Html>
                 <Head></Head>
-                <body className="min-h-screen bg-gray-light-1 dark:bg-gray-dark-1">
+                <body>
                     <ColorModeScript initialColorMode="dark" />
                     <Main />
                     <NextScript />
