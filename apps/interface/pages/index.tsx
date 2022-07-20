@@ -18,13 +18,4 @@ const Home: NextPage = () => {
     );
 };
 
-// This gets called on every request
-export async function getServerSideProps() {
-    // Fetch data from external API
-    console.log("DEBUG: pages/index.tsx: OK");
-
-    // Pass data to the page via props
-    return { props: {} };
-}
-
 export default Home;

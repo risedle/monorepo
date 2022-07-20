@@ -41,25 +41,27 @@ describe("Given a user visit /", () => {
             expect(warningBar).toHaveStyle("overflow-x: hidden");
         });
 
-        describe("When the screen width is 375px", () => {
-            it("WarningBarContent count should be 2", async () => {
-                await fireResizeEvent(375);
-                const contents = await screen.findAllByTestId(
-                    "WarningBarContent"
-                );
-                expect(contents.length).toBe(2);
-            });
-        });
+        // NOTE: optimistically generate 10 elements at once
 
-        describe("When the screen width is 1440px", () => {
-            it("WarningBarContent count should be 5", async () => {
-                await fireResizeEvent(1440);
-                const contents = await screen.findAllByTestId(
-                    "WarningBarContent"
-                );
-                expect(contents.length).toBe(5);
-            });
-        });
+        //        describe("When the screen width is 375px", () => {
+        //            it("WarningBarContent count should be 2", async () => {
+        //                await fireResizeEvent(375);
+        //                const contents = await screen.findAllByTestId(
+        //                    "WarningBarContent"
+        //                );
+        //                expect(contents.length).toBe(2);
+        //            });
+        //        });
+        //
+        //        describe("When the screen width is 1440px", () => {
+        //            it("WarningBarContent count should be 5", async () => {
+        //                await fireResizeEvent(1440);
+        //                const contents = await screen.findAllByTestId(
+        //                    "WarningBarContent"
+        //                );
+        //                expect(contents.length).toBe(5);
+        //            });
+        //        });
     });
 
     describe("Given BNB Smart Chain", () => {
@@ -83,24 +85,26 @@ describe("Given a user visit /", () => {
             expect(warningBar).toHaveStyle("overflow-x: hidden");
         });
 
-        describe("When the screen width is 375px", () => {
-            it("WarningBarContent count should be 2", async () => {
-                await fireResizeEvent(375);
-                const contents = await screen.findAllByTestId(
-                    "WarningBarContent"
-                );
-                expect(contents.length).toBe(2);
-            });
-        });
+        // NOTE: optimistically generate 10 elements at once
 
-        describe("When the screen width is 1440px", () => {
-            it("WarningBarContent count should be 5", async () => {
-                await fireResizeEvent(1440);
-                const contents = await screen.findAllByTestId(
-                    "WarningBarContent"
-                );
-                expect(contents.length).toBe(5);
-            });
-        });
+        //        describe("When the screen width is 375px", () => {
+        //            it("WarningBarContent count should be 2", async () => {
+        //                await fireResizeEvent(375);
+        //                const contents = await screen.findAllByTestId(
+        //                    "WarningBarContent"
+        //                );
+        //                expect(contents.length).toBe(2);
+        //            });
+        //        });
+        //
+        //        describe("When the screen width is 1440px", () => {
+        //            it("WarningBarContent count should be 5", async () => {
+        //                await fireResizeEvent(1440);
+        //                const contents = await screen.findAllByTestId(
+        //                    "WarningBarContent"
+        //                );
+        //                expect(contents.length).toBe(5);
+        //            });
+        //        });
     });
 });
