@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 
 import { getBaseConfig } from "../../utils/getBaseConfig";
-import { useViewportSize } from "../../hooks/useViewportSize";
+// import { useViewportSize } from "../../hooks/useViewportSize";
 import { ChainIcon } from "../ChainIcon";
 
 const WarningBarContent = () => {
@@ -72,8 +72,11 @@ const WarningBarContent = () => {
 
 export const WarningBar = () => {
     // Fill the current windown
-    const dim = useViewportSize();
-    const contentAmount = Math.round(dim.width / 375 + 1);
+    // const dim = useViewportSize();
+    // const contentAmount = Math.round(dim.width / 375 + 1);
+
+    // Optimistically generate 10 bars to prevent flashing on load
+    const contentAmount = 10;
 
     const dividerColor = useColorModeValue(
         "warningBar.active.light",

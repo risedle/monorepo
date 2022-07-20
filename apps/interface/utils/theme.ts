@@ -192,7 +192,7 @@ const theme = extendTheme({
     config: {
         cssVarPrefix: "risedle",
     },
-    initialColorMode: "dark",
+    initialColorMode: "light",
     useSystemColorMode: false,
     styles: {
         global: (props: any) => ({

@@ -5,7 +5,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/600.css";
 import "@fontsource/inter/700.css";
-// import "@fontsource/ibm-plex-mono/700.css";
+//import "@fontsource/ibm-plex-mono/700.css";
 
 import "@rainbow-me/rainbowkit/styles.css";
 
