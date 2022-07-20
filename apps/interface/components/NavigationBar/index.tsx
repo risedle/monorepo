@@ -1,8 +1,16 @@
-import { Container, Flex, Center, Spacer, Show } from "@chakra-ui/react";
+import {
+    Container,
+    Flex,
+    Center,
+    Spacer,
+    Show,
+    HStack,
+} from "@chakra-ui/react";
 
 import { NavigationBarLogo } from "./logo";
 import { NavigationBarLinks } from "./links";
 import { NavigationBarChainSwitcher } from "./chain";
+import { ConnectWalletButton } from "../ConnectWalletButton";
 
 export const NavigationBar = () => {
     return (
@@ -17,7 +25,10 @@ export const NavigationBar = () => {
                 </Center>
                 <Show above="tablet">
                     <Spacer />
-                    <NavigationBarChainSwitcher />
+                    <HStack spacing="2">
+                        <NavigationBarChainSwitcher />
+                        <ConnectWalletButton />
+                    </HStack>
                 </Show>
             </Flex>
         </Container>

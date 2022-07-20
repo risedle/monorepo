@@ -20,8 +20,19 @@ const baseColors = {
             11: "#F1A10D",
         },
     },
+    red: {
+        dark: {
+            10: "#F2555A",
+        },
+    },
+    sky: {
+        dark: {
+            10: "#8AE8FF",
+        },
+    },
     gray: {
         light: {
+            1: "#FCFCFC",
             2: "#F8F8F8",
             3: "#F3F3F3",
             4: "#EDEDED",
@@ -40,7 +51,24 @@ const baseColors = {
             12: "#EDEDED",
         },
     },
-    bsc: "#F3BA2C",
+    blue: {
+        light: {
+            1: "#FBFDFF",
+        },
+    },
+    bsc: {
+        chainIcon: "#F3BA2C",
+        button: {
+            bg: {
+                light: "#CF8721",
+                dark: "#EE9D2B",
+            },
+            border: {
+                light: "#AC6D0D",
+                dark: "#F3BA63",
+            },
+        },
+    },
 };
 
 const warningBarDividerColors: Record<string, Record<string, string>> = {
@@ -90,6 +118,34 @@ const components: Record<string, StyleConfig> = {
                 _active: {
                     background:
                         colorMode == "dark" ? "gray.dark.2" : "gray.light.2",
+                },
+            }),
+            bsc: ({ colorMode }) => ({
+                background:
+                    colorMode == "dark"
+                        ? "bsc.button.bg.dark"
+                        : "bsc.button.bg.light",
+                borderColor:
+                    colorMode == "dark"
+                        ? "bsc.button.border.dark"
+                        : "bsc.button.border.light",
+                borderWidth: "1px",
+                color: colorMode == "dark" ? "blue.light.1" : "gray.light.1",
+                fontWeight: "semibold",
+                fontSize: "sm",
+                lineHeight: "4",
+                borderRadius: "full",
+                _hover: {
+                    background:
+                        colorMode == "dark"
+                            ? "bsc.button.bg.dark"
+                            : "bsc.button.bg.light",
+                },
+                _active: {
+                    background:
+                        colorMode == "dark"
+                            ? "bsc.button.bg.dark"
+                            : "bsc.button.bg.light",
                 },
             }),
         },

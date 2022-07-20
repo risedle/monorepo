@@ -2,9 +2,14 @@ import "@testing-library/jest-dom/extend-expect";
 import nextRouter from "next/router";
 import { setMedia, cleanupMedia } from "mock-match-media";
 import { screen, fireEvent, waitFor } from "@testing-library/react";
-import { chakraRender } from "../../utils/chakraRender";
+import { renderApp } from "../../utils/renderApp";
 
 import Home from "../../../pages/index";
+jest.mock("@rainbow-me/rainbowkit", () => ({
+    ConnectButton: {
+        Custom: jest.fn(),
+    },
+}));
 
 afterEach(() => {
     // restore the spy created with spyOn
@@ -23,7 +28,7 @@ describe("Given a user visit /", () => {
     describe("When they use screen smaller than a tablet (min-width: 680px)", () => {
         beforeEach(() => {
             setMedia({ width: "375px" });
-            chakraRender(<Home />);
+            renderApp(<Home />);
         });
 
         it("NavigationBarChainSwitcher should not be rendered", () => {
@@ -37,7 +42,7 @@ describe("Given a user visit /", () => {
     describe("When they use screen larger than a tablet (min-width: 680px)", () => {
         beforeEach(async () => {
             setMedia({ width: "720px" });
-            chakraRender(<Home />);
+            renderApp(<Home />);
         });
 
         it("NavigationBarChainSwitcher should be rendered", () => {

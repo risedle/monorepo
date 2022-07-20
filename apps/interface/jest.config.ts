@@ -20,9 +20,11 @@ const customJestConfig = {
         "components/**/*.tsx",
         "pages/**/*.tsx",
         "hooks/**/*.ts",
+        // Ignore untestable files
         "!utils/theme.ts",
         "!pages/_app.tsx",
         "!pages/_document.tsx",
+        "!components/ConnectWalletButton/index.tsx",
     ],
     coverageThreshold: {
         global: {
