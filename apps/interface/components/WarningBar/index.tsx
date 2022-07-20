@@ -9,7 +9,6 @@ import {
 } from "@chakra-ui/react";
 
 import { getBaseConfig } from "../../utils/getBaseConfig";
-// import { useViewportSize } from "../../hooks/useViewportSize";
 import { ChainIcon } from "../ChainIcon";
 
 const WarningBarContent = () => {
@@ -29,6 +28,7 @@ const WarningBarContent = () => {
             data-testid="WarningBarContent"
             divider={<StackDivider borderColor={activeColor} opacity="0.1" />}
             spacing="8"
+            minW="max"
         >
             <HStack>
                 <Box minW="max">
@@ -71,11 +71,8 @@ const WarningBarContent = () => {
 };
 
 export const WarningBar = () => {
-    // Fill the current windown
-    // const dim = useViewportSize();
-    // const contentAmount = Math.round(dim.width / 375 + 1);
-
-    // Optimistically generate 10 bars to prevent flashing on load
+    // Optimistically generate 10 bars to prevent flashing on load coz it will
+    // be pre-rendered (or html generated) when deployed
     const contentAmount = 10;
 
     const dividerColor = useColorModeValue(
