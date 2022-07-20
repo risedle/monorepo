@@ -7,8 +7,66 @@ import "@fontsource/inter/600.css";
 import "@fontsource/inter/700.css";
 // import "@fontsource/ibm-plex-mono/700.css";
 
+import "@rainbow-me/rainbowkit/styles.css";
+
+// Rainbowkit
+import {
+    Chain,
+    getDefaultWallets,
+    RainbowKitProvider,
+} from "@rainbow-me/rainbowkit";
+import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
+import { alchemyProvider } from "wagmi/providers/alchemy";
+import { publicProvider } from "wagmi/providers/public";
+
 import { getBaseConfig } from "../utils/getBaseConfig";
 import theme from "../utils/theme";
+
+// TODO(pyk): refactor this
+const bscChain: Chain = {
+    id: 56,
+    name: "BNB Smart Chain",
+    network: "bsc",
+    iconUrl: "https://example.com/icon.svg",
+    iconBackground: "#fff",
+    nativeCurrency: {
+        decimals: 18,
+        name: "BNB",
+        symbol: "BNB",
+    },
+    rpcUrls: {
+        default: "https://bscrpc.com",
+    },
+    blockExplorers: {
+        etherscan: {
+            name: "BNB Smart Chain Explorer",
+            url: "https://bscscan.com",
+        },
+        default: {
+            name: "BNB Smart Chain Explorer",
+            url: "https://bscscan.com",
+        },
+    },
+    testnet: false,
+};
+
+// Rainbowkit configuration
+const { chains, provider } = configureChains(
+    [bscChain],
+    [alchemyProvider({ alchemyId: process.env.ALCHEMY_ID }), publicProvider()]
+);
+
+const { connectors } = getDefaultWallets({
+    appName: "Risedle",
+    chains,
+});
+console.log("DEBUG:", connectors);
+
+const wagmiClient = createClient({
+    autoConnect: true,
+    connectors,
+    provider,
+});
 
 function App({ Component, pageProps }: AppProps) {
     const baseConfig = getBaseConfig();
@@ -40,7 +98,11 @@ function App({ Component, pageProps }: AppProps) {
                 }}
             />
             <ChakraProvider theme={theme}>
-                <Component {...pageProps} />
+                <WagmiConfig client={wagmiClient}>
+                    <RainbowKitProvider chains={chains}>
+                        <Component {...pageProps} />
+                    </RainbowKitProvider>
+                </WagmiConfig>
             </ChakraProvider>
         </>
     );
