@@ -1,8 +1,9 @@
 import "@testing-library/jest-dom/extend-expect";
 import Home from "../../../pages/index";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import * as BaseConfig from "../../../utils/getBaseConfig";
 import { fireResizeEvent } from "../../utils/fireResizeEvent";
+import nextRouter from "next/router";
 
 afterEach(() => {
     // restore the spy created with spyOn
@@ -10,14 +11,21 @@ afterEach(() => {
 });
 
 describe("Given a user visit /", () => {
+    beforeEach(() => {
+        const useRouter = jest.spyOn(nextRouter, "useRouter");
+        useRouter.mockImplementation(() => ({
+            route: "/",
+            pathname: "/",
+        }));
+    });
+
     describe("Given random chainId", () => {
         beforeEach(() => {
             // Mock a base config
-            const mock = jest
-                .spyOn(BaseConfig, "getBaseConfig")
-                .mockImplementation(() => {
-                    return { chainId: 1234 };
-                });
+            const getBaseConfig = jest.spyOn(BaseConfig, "getBaseConfig");
+            getBaseConfig.mockImplementation(() => {
+                return { chainId: 1234 };
+            });
             render(<Home />);
         });
 
@@ -28,9 +36,9 @@ describe("Given a user visit /", () => {
             expect(defaultIcons.length).toBeGreaterThan(2);
         });
 
-        it("WarningBar should have class 'overflow-x-hidden'", () => {
+        it("WarningBar should have style overflow:hidden", () => {
             const warningBar = screen.getByTestId("WarningBar");
-            expect(warningBar).toHaveClass("overflow-x-hidden");
+            expect(warningBar).toHaveStyle("overflow-x: hidden");
         });
 
         describe("When the screen width is 375px", () => {
@@ -70,9 +78,9 @@ describe("Given a user visit /", () => {
             expect(defaultIcons.length).toBeGreaterThan(2);
         });
 
-        it("WarningBar should have class 'overflow-x-hidden'", () => {
+        it("WarningBar should have style overflow:hidden", () => {
             const warningBar = screen.getByTestId("WarningBar");
-            expect(warningBar).toHaveClass("overflow-x-hidden");
+            expect(warningBar).toHaveStyle("overflow-x: hidden");
         });
 
         describe("When the screen width is 375px", () => {

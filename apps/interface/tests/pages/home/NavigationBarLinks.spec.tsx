@@ -1,10 +1,15 @@
 import "@testing-library/jest-dom/extend-expect";
 import Home from "../../../pages/index";
-import { render, screen, waitFor, debug } from "@testing-library/react";
-import { fireResizeEvent } from "../../utils/fireResizeEvent";
+import { render, screen } from "@testing-library/react";
+import nextRouter from "next/router";
 
 describe("Given a user visit /", () => {
     beforeEach(async () => {
+        const useRouter = jest.spyOn(nextRouter, "useRouter");
+        useRouter.mockImplementation(() => ({
+            route: "/",
+            pathname: "/",
+        }));
         render(<Home />);
     });
 
@@ -23,9 +28,10 @@ describe("Given a user visit /", () => {
             "NavigationBarLinksTrade"
         );
         expect(navigationBarLinksTrade).toBeInTheDocument();
-        expect(navigationBarLinksTrade).toHaveAttribute("href", "/trade");
-        expect(navigationBarLinksTrade).toHaveClass(
-            "text-gray-light-12 dark:text-gray-dark-12"
+        expect(navigationBarLinksTrade).toHaveAttribute("href", "/");
+        expect(navigationBarLinksTrade).toHaveAttribute(
+            "data-state",
+            "active"
         );
     });
 
@@ -34,7 +40,7 @@ describe("Given a user visit /", () => {
             "NavigationBarLinksEarn"
         );
         expect(navigationBarLinksEarn).toBeInTheDocument();
-        expect(navigationBarLinksEarn).toHaveAttribute("href", "/pools");
+        expect(navigationBarLinksEarn).toHaveAttribute("href", "/earn");
     });
 
     it("NavigationBarLinksPortfolio should be rendered", () => {

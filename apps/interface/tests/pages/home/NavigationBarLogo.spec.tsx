@@ -1,11 +1,17 @@
 import "@testing-library/jest-dom/extend-expect";
 import Home from "../../../pages/index";
-import { render, screen, waitFor, debug } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { fireResizeEvent } from "../../utils/fireResizeEvent";
+import nextRouter from "next/router";
 
 describe("Given a user visit /", () => {
     beforeEach(async () => {
         await fireResizeEvent(1440);
+        const useRouter = jest.spyOn(nextRouter, "useRouter");
+        useRouter.mockImplementation(() => ({
+            route: "/",
+            pathname: "/",
+        }));
         render(<Home />);
     });
 
@@ -52,12 +58,10 @@ describe("Given a user visit /", () => {
         });
 
         it("NavigationBarLogoText should be rendered", async () => {
-            await waitFor(() => {
-                const navigationBarLogoText = screen.queryByTestId(
-                    "NavigationBarLogoText"
-                );
-                expect(navigationBarLogoText).toBeInTheDocument();
-            });
+            const navigationBarLogoText = screen.queryByTestId(
+                "NavigationBarLogoText"
+            );
+            expect(navigationBarLogoText).toBeInTheDocument();
         });
     });
 });

@@ -1,7 +1,14 @@
-import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { DefaultSeo } from "next-seo";
+import { ChakraProvider } from "@chakra-ui/react";
+
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
+// import "@fontsource/ibm-plex-mono/700.css";
+
 import { getBaseConfig } from "../utils/getBaseConfig";
+import theme from "../utils/theme";
 
 function App({ Component, pageProps }: AppProps) {
     const baseConfig = getBaseConfig();
@@ -32,7 +39,9 @@ function App({ Component, pageProps }: AppProps) {
                     ],
                 }}
             />
-            <Component {...pageProps} />
+            <ChakraProvider theme={theme}>
+                <Component {...pageProps} />
+            </ChakraProvider>
         </>
     );
 }

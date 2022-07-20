@@ -18,7 +18,11 @@ const customJestConfig = {
     collectCoverageFrom: [
         "utils/*.ts",
         "components/**/*.tsx",
+        "pages/**/*.tsx",
         "hooks/**/*.ts",
+        "!utils/theme.ts",
+        "!pages/_app.tsx",
+        "!pages/_document.tsx",
     ],
     coverageThreshold: {
         global: {
@@ -26,6 +30,7 @@ const customJestConfig = {
         },
     },
     reporters: ["default", "github-actions"],
+    setupFiles: ["<rootDir>/jest.setup.ts"],
 };
 
 const config = createJestConfig(customJestConfig);
