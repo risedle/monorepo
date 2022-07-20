@@ -195,7 +195,7 @@ const theme = extendTheme({
     initialColorMode: "dark",
     useSystemColorMode: false,
     styles: {
-        global: (props) => ({
+        global: (props: any) => ({
             body: {
                 bg: mode("#FCFCFC", "#161616")(props),
             },
