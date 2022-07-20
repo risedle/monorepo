@@ -6,7 +6,7 @@ import "mock-match-media/jest-setup";
 
 /**
  * Mock rainbowkit
- * see here:
+ * see here: https://github.com/rainbow-me/rainbowkit/issues/461#issuecomment-1190043830
  */
 jest.mock("@rainbow-me/rainbowkit", () => ({
     ConnectButton: {
