@@ -32,7 +32,6 @@ const baseColors = {
         },
     },
     gray: {
-        1: mode("#FCFCFC", "#161616"),
         light: {
             1: "#FCFCFC",
             2: "#F8F8F8",
@@ -186,8 +185,9 @@ const theme = extendTheme({
     components,
     colors,
     breakpoints,
-    ronts: {
+    fonts: {
         body: '"Inter", sans-serif;',
+        mono: '"IBM Plex Mono", monospace;',
     },
     config: {
         cssVarPrefix: "risedle",
