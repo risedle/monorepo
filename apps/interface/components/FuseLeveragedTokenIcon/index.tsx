@@ -1,4 +1,4 @@
-import Image from "next/image";
+import NextImage from "next/image";
 import { useColorMode } from "@chakra-ui/react";
 
 interface FuseLeveragedTokenIconProps {
@@ -11,7 +11,7 @@ export const FuseLeveragedTokenIcon = (props: FuseLeveragedTokenIconProps) => {
     const { colorMode } = useColorMode();
 
     return (
-        <Image
+        <NextImage
             src={`/icons/${symbol}-${colorMode}.svg`}
             width="48px"
             height="48px"

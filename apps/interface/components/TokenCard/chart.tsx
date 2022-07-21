@@ -17,6 +17,7 @@ export const TokenCardChart = (props: TokenCardChartProps) => {
 
     // TODO(pyk): import zustand store here to get priceChange and set hovered
     // price and timestamp
+    // TODO(pyk): add test based on priceChange
     const priceChange = 1;
 
     return (
@@ -45,13 +46,7 @@ export const TokenCardChart = (props: TokenCardChartProps) => {
                         type="number"
                         domain={["dataMin - 5", "dataMax + 5"]}
                     />
-                    <Tooltip
-                        position={{ y: 0 }}
-                        content={() => {
-                            // TODO(pyk): set hovered state from zustand here
-                            return null;
-                        }}
-                    />
+                    <Tooltip position={{ y: 0 }} />
                     <defs>
                         <linearGradient
                             id="upGradient"

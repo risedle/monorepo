@@ -45,6 +45,7 @@ export const TokenCard = (props: TokenCardProps) => {
             border="1px"
             borderColor={gray3}
             borderRadius="3xl"
+            data-testid="TokenCard"
         >
             {/* Token Card Title */}
             <TokenCardTitle name={name} symbol={symbol} />

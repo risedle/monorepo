@@ -14,7 +14,7 @@ export const TokenCards = (props: TokenCardsProps) => {
     ));
 
     return (
-        <Container maxW="7xl" py="3" data-testid="Heading">
+        <Container maxW="7xl" py="3" data-testid="TokenCards">
             <SimpleGrid
                 columns={{ base: 1, laptop: 2, desktop: 3 }}
                 spacing="6"
