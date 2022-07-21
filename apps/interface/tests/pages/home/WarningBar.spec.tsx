@@ -1,9 +1,10 @@
 import "@testing-library/jest-dom/extend-expect";
-import Home from "../../../pages/index";
 import { render, screen } from "@testing-library/react";
 import * as BaseConfig from "../../../utils/getBaseConfig";
 import { fireResizeEvent } from "../../utils/fireResizeEvent";
 import nextRouter from "next/router";
+
+import Home from "../../../pages/index";
 
 afterEach(() => {
     // restore the spy created with spyOn
@@ -20,13 +21,13 @@ describe("Given a user visit /", () => {
     });
 
     describe("Given random chainId", () => {
-        beforeEach(() => {
+        beforeEach(async () => {
             // Mock a base config
             const getBaseConfig = jest.spyOn(BaseConfig, "getBaseConfig");
             getBaseConfig.mockImplementation(() => {
                 return { chainId: 1234, supportedChains: [] };
             });
-            render(<Home />);
+            render(<Home tokens={[]} />);
         });
 
         it("WarningBar should render default icons", async () => {
@@ -65,14 +66,14 @@ describe("Given a user visit /", () => {
     });
 
     describe("Given BNB Smart Chain", () => {
-        beforeEach(() => {
+        beforeEach(async () => {
             // Mock a base config
             const mock = jest
                 .spyOn(BaseConfig, "getBaseConfig")
                 .mockImplementation(() => {
                     return { chainId: 56, supportedChains: [] };
                 });
-            render(<Home />);
+            render(<Home tokens={[]} />);
         });
 
         it("WarningBar should render BSC icons", async () => {

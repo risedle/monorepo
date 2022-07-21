@@ -3,6 +3,11 @@ import { render, screen } from "@testing-library/react";
 import { NavigationBar } from "../../components/NavigationBar";
 import nextRouter from "next/router";
 
+afterEach(() => {
+    // restore the spy created with spyOn
+    jest.restoreAllMocks();
+});
+
 describe("<NavigationBar />", () => {
     describe("Given a user visit /", () => {
         it("should render 'Trade' link as active", () => {

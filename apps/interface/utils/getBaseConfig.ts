@@ -4,13 +4,10 @@ interface Chain {
     chainId: number;
     chainName: string;
     baseURL: string;
+    graphEndpoint: string;
 }
 
-interface BaseConfig {
-    chainSlug: string;
-    chainId: number;
-    chainName: string;
-    baseURL: string;
+interface BaseConfig extends Chain {
     supportedChains: Array<Chain>;
 }
 
@@ -19,6 +16,7 @@ const Arbitrum = {
     chainId: 42161,
     chainName: "Arbitrum",
     baseURL: "https://risedle.com/markets",
+    graphEndpoint: "",
 };
 
 const BSC = {
@@ -26,21 +24,24 @@ const BSC = {
     chainId: 56,
     chainName: "BNB Smart Chain",
     baseURL: "https://bsc.risedle.com",
+    graphEndpoint:
+        "https://api.thegraph.com/subgraphs/name/risedle/risedle-flt-bsc",
 };
 
 const supportedChains = [Arbitrum, BSC];
 
+const baseConfigs = {
+    bsc: BSC,
+    arbitrum: Arbitrum,
+};
+
 /**
- * Given NEXT_PUBLIC_* from configuration then return the base config
+ * Given NEXT_PUBLIC_CHAIN_SLUG from configuration then return the base config
  */
 export function getBaseConfig(): BaseConfig {
-    // TODO: bayu only take CHAIN id and get this data from variable BSC and
-    // Arbitrum that defined above
     const chainSlug = process.env.NEXT_PUBLIC_CHAIN_SLUG || "bsc";
-    const chainId = parseInt(process.env.NEXT_PUBLIC_CHAIN_ID || "56");
-    const chainName = process.env.NEXT_PUBLIC_CHAIN_NAME || "BNB Smart Chain";
-    const baseURL = `https://${chainSlug}.risedle.com`;
-    return { chainSlug, chainId, chainName, baseURL, supportedChains };
+    // @ts-ignore
+    return { ...baseConfigs[chainSlug], supportedChains };
 }
 
 const config = {
