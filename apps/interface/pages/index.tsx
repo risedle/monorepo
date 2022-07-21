@@ -11,7 +11,7 @@ import { getFuseLeveragedTokensSummary } from "../utils/getFuseLeveragedTokensSu
 import { WarningBar } from "../components/WarningBar";
 import { NavigationBar } from "../components/NavigationBar";
 import { HomeHeading } from "../components/HomeHeading";
-import { TokenCards } from "../components/TokenCards";
+import { TokenCards } from "../components/TokenCard/cards";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface HomeProps extends FuseLeveragedTokens {}
