@@ -170,6 +170,31 @@ const components: Record<string, StyleConfig> = {
                             : "bsc.button.bg.light",
                 },
             }),
+            gradient: ({ colorMode }) => ({
+                backgroundImage:
+                    colorMode == "dark"
+                        ? `radial-gradient(
+                                91.36% 358.74% at 12.29% 100%,
+                                #c9bbff 0%,
+                                #b2ecff 30.08%,
+                                #ffc1f9 60.28%,
+                                #fff5c1 100%
+                            );`
+                        : `radial-gradient(
+                            91.36% 358.74% at 12.29% 100%,
+                            #9d85ff 0%,
+                            #7ad4f0 30.08%,
+                            #f554e5 60.28%,
+                            #e7cf55 100%
+                        );`,
+                color: colorMode == "dark" ? "gray.light.12" : "gray.light.1",
+                px: "6",
+                py: "3",
+                fontWeight: "semibold",
+                fontSize: "sm",
+                lineHeight: "4",
+                borderRadius: "full",
+            }),
         },
     },
 };

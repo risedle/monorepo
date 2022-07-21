@@ -9,24 +9,6 @@ import {
 import NavigationBar from "../components/NavigationBar";
 
 export default function Custom404() {
-    const gradient = useColorModeValue(
-        `radial-gradient(
-        91.36% 358.74% at 12.29% 100%,
-        #9d85ff 0%,
-        #7ad4f0 30.08%,
-        #f554e5 60.28%,
-        #e7cf55 100%
-    );`,
-        `radial-gradient(
-        91.36% 358.74% at 12.29% 100%,
-        #c9bbff 0%,
-        #b2ecff 30.08%,
-        #ffc1f9 60.28%,
-        #fff5c1 100%
-    );`
-    );
-    const textColor = useColorModeValue("gray.light.1", "gray.light.12");
-    const gray1 = useColorModeValue("gray.light.1", "gray.dark.1");
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
     return (
@@ -79,12 +61,7 @@ export default function Custom404() {
                     </Text>
                 </VStack>
                 <a href="https://risedle.com/">
-                    <Button
-                        color={textColor}
-                        paddingX="24px"
-                        paddingY="12px"
-                        backgroundImage={gradient}
-                    >
+                    <Button variant="gradient">
                         <Text marginRight="8px">&larr;</Text>
                         Back to Landing Page
                     </Button>
