@@ -3,6 +3,11 @@ import { render, screen } from "@testing-library/react";
 import { ChainIcon } from "../../components/ChainIcon";
 import * as BaseConfig from "../../utils/getBaseConfig";
 
+afterEach(() => {
+    // restore the spy created with spyOn
+    jest.restoreAllMocks();
+});
+
 describe("<ChainIcon />", () => {
     describe("Given default chainId", () => {
         it("should render based on base config", () => {

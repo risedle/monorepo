@@ -11,6 +11,7 @@ import { getFuseLeveragedTokensSummary } from "../utils/getFuseLeveragedTokensSu
 import { WarningBar } from "../components/WarningBar";
 import { NavigationBar } from "../components/NavigationBar";
 import { HomeHeading } from "../components/HomeHeading";
+import { TokenCards } from "../components/TokenCard/cards";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface HomeProps extends FuseLeveragedTokens {}
@@ -19,6 +20,7 @@ const Home: NextPage<HomeProps, unknown> = (props) => {
     const baseConfig = getBaseConfig();
     const { totalMarketCap, totalVolume } =
         getFuseLeveragedTokensSummary(props);
+    const { tokens } = props;
 
     return (
         <>
@@ -31,6 +33,7 @@ const Home: NextPage<HomeProps, unknown> = (props) => {
                 totalMarketCap={totalMarketCap}
                 totalVolume={totalVolume}
             />
+            <TokenCards tokens={tokens} />
         </>
     );
 };

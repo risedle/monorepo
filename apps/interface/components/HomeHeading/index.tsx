@@ -108,6 +108,7 @@ export const HomeHeading = (props: HomeHeadingProps) => {
                 borderColor={gray9}
                 opacity="0.3"
                 marginTop={{ base: "7", tablet: "10" }}
+                marginBottom={{ base: "7", tablet: "10" }}
             />
         </Container>
     );
