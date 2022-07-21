@@ -1,8 +1,17 @@
 ## Risedle Interface
 
-TODO bayu add docs here
+Risedle Interface is a Web3 app that deployed specificly for each chain.
 
-### Data Fetching Strategies
+TODO(pyk): Add docs about how to run here
+
+### Table of contents
+
+-   [Data Fetching Strategy](#data-fetching-strategy)
+-   [Known Issues](#known-issues)
+-   [Development Resources](#development-resources)
+-   [Testing Resources](#testing-resources)
+
+### Data Fetching Strategy
 
 To increase the performance, we will use the following data fetching
 strategies:
