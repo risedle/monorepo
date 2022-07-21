@@ -7,8 +7,10 @@ import {
     useColorModeValue,
 } from "@chakra-ui/react";
 import NavigationBar from "../components/NavigationBar";
+import { getBaseConfig } from "../utils/getBaseConfig";
 
 export default function Custom404() {
+    const baseConfig = getBaseConfig();
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
     return (
@@ -60,7 +62,7 @@ export default function Custom404() {
                         Uh oh, seems the page you're searching is not there
                     </Text>
                 </VStack>
-                <a href="https://risedle.com/">
+                <a href={baseConfig.baseURL}>
                     <Button variant="gradient">
                         <Text marginRight="8px">&larr;</Text>
                         Back to Landing Page
