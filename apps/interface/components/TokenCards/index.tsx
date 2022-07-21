@@ -30,7 +30,7 @@ import {
 import type {
     FuseLeveragedTokens,
     FuseLeveragedToken,
-} from "../utils/fetchFuseLeveragedTokens";
+} from "../../utils/fetchFuseLeveragedTokens";
 import { FuseLeveragedTokenIcon } from "../FuseLeveragedTokenIcon";
 
 /**
@@ -196,7 +196,7 @@ const TokenCard = (props: TokenCardProps) => {
     // Data
     const { name, symbol, prices } = props;
     const priceChange = 1;
-    const onHover = (price, timestamp) => {
+    const onHover = (price: number, timestamp: number) => {
         console.log("onHover");
     };
     const onMouseLeave = () => {
@@ -350,7 +350,7 @@ export const TokenCards = (props: TokenCardsProps) => {
     return (
         <Container maxW="7xl" py="3" data-testid="Heading">
             <SimpleGrid
-                columns={{ base: "1", laptop: "2", desktop: "3" }}
+                columns={{ base: 1, laptop: 2, desktop: 3 }}
                 spacing="6"
                 margin="auto"
                 maxW={{ base: "400px", laptop: "730px", desktop: "100%" }}
