@@ -17,7 +17,7 @@ describe("Given a user visit /", () => {
             route: "/",
             pathname: "/",
         }));
-        renderApp(<Home />);
+        renderApp(<Home tokens={[]} />);
     });
 
     it("should popup when clicked", async () => {

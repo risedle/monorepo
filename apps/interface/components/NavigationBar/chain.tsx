@@ -33,7 +33,7 @@ const ChevronDownIcon = (props: IconProps) => {
 };
 
 export const NavigationBarChainSwitcher = (props: ButtonProps) => {
-    const baseConfig = getBaseConfig();
+    const { chainId, supportedChains, chainName } = getBaseConfig();
 
     // Styles
     const popupBackground = useColorModeValue("gray.light.2", "gray.dark.2");
@@ -42,9 +42,7 @@ export const NavigationBarChainSwitcher = (props: ButtonProps) => {
     const textColor = useColorModeValue("gray.light.12", "gray.dark.12");
 
     // Dropdown selections
-    const chains = baseConfig.supportedChains.filter(
-        (c) => c.chainId != baseConfig.chainId
-    );
+    const chains = supportedChains.filter((c) => c.chainId != chainId);
     const menuItems = chains.map((chain) => {
         return (
             <MenuItem
@@ -79,7 +77,7 @@ export const NavigationBarChainSwitcher = (props: ButtonProps) => {
                 data-testid="NavigationBarChainSwitcher"
                 {...props}
             >
-                <Text>{baseConfig.chainName}</Text>
+                <Text>{chainName}</Text>
             </MenuButton>
             <MenuList
                 data-testid="NavigationBarChainSwitcherPopup"

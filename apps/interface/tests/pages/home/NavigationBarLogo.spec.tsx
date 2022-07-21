@@ -4,6 +4,11 @@ import nextRouter from "next/router";
 
 import Home from "../../../pages/index";
 
+afterEach(() => {
+    // restore the spy created with spyOn
+    jest.restoreAllMocks();
+});
+
 describe("Given a user visit /", () => {
     beforeEach(async () => {
         const useRouter = jest.spyOn(nextRouter, "useRouter");
@@ -11,7 +16,7 @@ describe("Given a user visit /", () => {
             route: "/",
             pathname: "/",
         }));
-        render(<Home />);
+        render(<Home tokens={[]} />);
     });
 
     it("NavigationBar should be rendered", () => {
