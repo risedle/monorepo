@@ -26,6 +26,7 @@ server.use(
             "http://localhost:6006",
             "http://localhost:3000",
             /.frontend-3mt\.pages\.dev$/,
+            /risedle\.vercel\.app$/,
         ],
     })
 );
