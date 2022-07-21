@@ -62,7 +62,11 @@ export default function Custom404() {
                     </Text>
                 </VStack>
                 <NextLink href="/" passHref>
-                    <Button as="a" variant="gradient">
+                    <Button
+                        as="a"
+                        variant="gradient"
+                        data-testid="BackToHomeLink"
+                    >
                         <Text marginRight="8px">&larr;</Text>
                         Back to Home
                     </Button>
