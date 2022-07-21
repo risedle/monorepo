@@ -8,10 +8,8 @@ import {
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import NavigationBar from "../components/NavigationBar";
-import { getBaseConfig } from "../utils/getBaseConfig";
 
 export default function Custom404() {
-    const baseConfig = getBaseConfig();
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
     return (
