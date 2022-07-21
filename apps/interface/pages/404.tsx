@@ -6,6 +6,7 @@ import {
     VStack,
     useColorModeValue,
 } from "@chakra-ui/react";
+import NextLink from "next/link";
 import NavigationBar from "../components/NavigationBar";
 import { getBaseConfig } from "../utils/getBaseConfig";
 
@@ -62,12 +63,12 @@ export default function Custom404() {
                         Uh oh, seems the page you're searching is not there
                     </Text>
                 </VStack>
-                <a href={baseConfig.baseURL}>
-                    <Button variant="gradient">
+                <NextLink href="/" passHref>
+                    <Button as="a" variant="gradient">
                         <Text marginRight="8px">&larr;</Text>
                         Back to Home
                     </Button>
-                </a>
+                </NextLink>
             </Flex>
         </Container>
     );
