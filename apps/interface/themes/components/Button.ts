@@ -2,7 +2,7 @@
  * <Button /> Variants
  */
 
-const ButtonSolid = ({ colorMode }) => ({
+const ButtonSolid = ({ colorMode }: { colorMode: string }) => ({
     background: colorMode == "dark" ? "gray.dark.2" : "gray.light.2",
     borderColor: colorMode == "dark" ? "gray.dark.4" : "gray.light.4",
     borderWidth: "1px",
@@ -19,7 +19,7 @@ const ButtonSolid = ({ colorMode }) => ({
     },
 });
 
-const ButtonIcon = ({ colorMode }) => ({
+const ButtonIcon = ({ colorMode }: { colorMode: string }) => ({
     background: colorMode == "dark" ? "gray.dark.2" : "gray.light.2",
     borderColor: colorMode == "dark" ? "gray.dark.4" : "gray.light.4",
     borderWidth: "1px",
@@ -37,7 +37,7 @@ const ButtonIcon = ({ colorMode }) => ({
     },
 });
 
-const ButtonBSC = ({ colorMode }) => ({
+const ButtonBSC = ({ colorMode }: { colorMode: string }) => ({
     background:
         colorMode == "dark" ? "bsc.button.bg.dark" : "bsc.button.bg.light",
     borderColor:
@@ -60,7 +60,7 @@ const ButtonBSC = ({ colorMode }) => ({
     },
 });
 
-const ButtonGradient = ({ colorMode }) => ({
+const ButtonGradient = ({ colorMode }: { colorMode: string }) => ({
     backgroundImage:
         colorMode == "dark"
             ? `radial-gradient(
