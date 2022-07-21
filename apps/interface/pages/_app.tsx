@@ -20,7 +20,7 @@ import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 
 import { getBaseConfig } from "../utils/getBaseConfig";
-import theme from "../utils/theme";
+import themes from "../themes";
 
 // TODO(pyk): refactor this
 const bscChain: Chain = {
@@ -96,7 +96,7 @@ function App({ Component, pageProps }: AppProps) {
                     ],
                 }}
             />
-            <ChakraProvider theme={theme}>
+            <ChakraProvider theme={themes}>
                 <WagmiConfig client={wagmiClient}>
                     <RainbowKitProvider chains={chains}>
                         <Component {...pageProps} />
