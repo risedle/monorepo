@@ -5,7 +5,6 @@ import { fireResizeEvent } from "../../utils/fireResizeEvent";
 import nextRouter from "next/router";
 
 import Home from "../../../pages/index";
-import { fetchFuseLeveragedTokens } from "../../../utils/fetchFuseLeveragedTokens";
 
 afterEach(() => {
     // restore the spy created with spyOn
