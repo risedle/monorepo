@@ -21,6 +21,7 @@ server.use(
     cors({
         origin: [
             "https://risedle.com",
+            "https://bsc.risedle.com",
             "https://risedle.exchange",
             "https://risedle.trade",
             "http://localhost:6006",
