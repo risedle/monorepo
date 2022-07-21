@@ -65,7 +65,7 @@ export default function Custom404() {
                 <a href={baseConfig.baseURL}>
                     <Button variant="gradient">
                         <Text marginRight="8px">&larr;</Text>
-                        Back to Landing Page
+                        Back to Home
                     </Button>
                 </a>
             </Flex>
