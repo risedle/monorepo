@@ -9,8 +9,24 @@ describe("<TokenCards />", () => {
         render(
             <TokenCards
                 tokens={[
-                    { name: "ok", symbol: "ok1", address: "ok1", prices: [] },
-                    { name: "ok", symbol: "ok2", address: "ok2", prices: [] },
+                    {
+                        name: "ok",
+                        symbol: "ok1",
+                        address: "ok1",
+                        prices: [
+                            { timestamp: 1, price: 1 },
+                            { timestamp: 2, price: 2 },
+                        ],
+                    },
+                    {
+                        name: "ok",
+                        symbol: "ok2",
+                        address: "ok2",
+                        prices: [
+                            { timestamp: 1, price: 1 },
+                            { timestamp: 2, price: 2 },
+                        ],
+                    },
                 ]}
             />
         );
