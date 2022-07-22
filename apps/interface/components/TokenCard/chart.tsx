@@ -16,8 +16,11 @@ interface TokenCardChartTooltipProps {
 
 export const TokenCardChartTooltip = (props: TokenCardChartTooltipProps) => {
     // Data
-    if (props.payload == null) return <div>Props Undefined</div>;
-    const point = props.payload[0].payload;
+    const { payload } = props;
+    if (payload == null) return <div>undefined</div>;
+    const p = payload.at(0);
+    if (p == null) return <div>undefined</div>;
+    const point = p.payload;
 
     // Styles
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
