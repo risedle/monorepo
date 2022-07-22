@@ -18,6 +18,19 @@ const baseColors = {
     red: {
         dark: {
             10: "#F2555A",
+            11: "#FF6369",
+        },
+        light: {
+            10: "#DC3D43",
+            11: "#CD2B31",
+        },
+    },
+    green: {
+        dark: {
+            11: "#4CC38A",
+        },
+        light: {
+            11: "#18794E",
         },
     },
     sky: {

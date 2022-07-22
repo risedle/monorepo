@@ -11,6 +11,7 @@ import type { FuseLeveragedToken } from "../../utils/fetchFuseLeveragedTokens";
 
 import { TokenCardTitle } from "./title";
 import { TokenCardCharts } from "./charts";
+import { TokenCardInfo } from "./info";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface TokenCardProps extends FuseLeveragedToken {}
@@ -74,21 +75,12 @@ export const TokenCard = (props: TokenCardProps) => {
                 />
             </Box>
 
-            {/* Show latest data */}
-            <SimpleGrid columns={3} width="100%" padding="4">
-                <VStack textAlign="left">
-                    <Text width="100%">Price</Text>
-                    <Text width="100%">20</Text>
-                </VStack>
-                <VStack textAlign="left">
-                    <Text width="100%">Changes</Text>
-                    <Text width="100%">20</Text>
-                </VStack>
-                <VStack textAlign="left">
-                    <Text width="100%">Capacity</Text>
-                    <Text width="100%">20</Text>
-                </VStack>
-            </SimpleGrid>
+            {/* Show latest on-chain data */}
+            <TokenCardInfo
+                price={20}
+                priceChangePercent={-10}
+                marketCap={2000}
+            />
         </VStack>
     );
 };
