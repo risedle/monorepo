@@ -19,4 +19,18 @@ describe("<TokenCardChartTooltip />", () => {
         const ts = screen.queryByTestId("TokenCardChartTooltipTimestamp");
         expect(ts).toHaveTextContent("Jul 22, 2022, 1:26 PM");
     });
+
+    describe("Given undefined payload", () => {
+        it("should not render price and timestamp", () => {
+            render(<TokenCardChartTooltip />);
+            const tooltip = screen.queryByTestId("TokenCardChartTooltip");
+            expect(tooltip).not.toBeInTheDocument();
+
+            const price = screen.queryByTestId("TokenCardChartTooltipPrice");
+            expect(price).not.toBeInTheDocument();
+
+            const ts = screen.queryByTestId("TokenCardChartTooltipTimestamp");
+            expect(ts).not.toBeInTheDocument();
+        });
+    });
 });

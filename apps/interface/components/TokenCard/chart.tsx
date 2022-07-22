@@ -17,7 +17,7 @@ interface TokenCardChartTooltipProps {
 export const TokenCardChartTooltip = (props: TokenCardChartTooltipProps) => {
     // Data
     const { payload } = props;
-    if (payload == null) return <div>undefined</div>;
+    if (payload == null) return <div>TokenCardChartTooltip undefined</div>;
     const p = payload.at(0);
     if (p == null) return <div>undefined</div>;
     const point = p.payload;
@@ -55,17 +55,23 @@ export const TokenCardChart = (props: TokenCardChartProps) => {
     const { prices } = props;
     const latest = prices.at(-1);
     const oldest = prices.at(0);
-    if (latest == null || oldest == null) return <div>undefined</div>;
+    if (latest == null || oldest == null) {
+        return (
+            <div data-testid="TokenCardChartUndefined">
+                TokenCardChart undefined
+            </div>
+        );
+    }
     const priceChange = latest.price - oldest.price;
 
     return (
         <Box data-testid="TokenCardChart" w="100%" h="200px">
-            <ResponsiveContainer width="100%" h="200px">
+            <ResponsiveContainer width="100%" height={200}>
                 <AreaChart
                     data={prices}
                     margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
-                    width={200}
-                    height={100}
+                    width={300}
+                    height={200}
                 >
                     <Area
                         type="monotoneX"
