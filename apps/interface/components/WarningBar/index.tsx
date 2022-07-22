@@ -80,6 +80,10 @@ export const WarningBar = () => {
         "warningBar.active.dark"
     );
     const borderBottomColor = useColorModeValue("gray.light.4", "gray.dark.4");
+    const bg = useColorModeValue(
+        "rgba(255,249,237,0.4)",
+        "rgba(22,22,22,0.4)"
+    );
 
     return (
         <>
@@ -91,6 +95,8 @@ export const WarningBar = () => {
                 borderBottomWidth="1px"
                 borderBottomColor={borderBottomColor}
                 overflowX="hidden"
+                background={bg}
+                backdropFilter="blur(104px)"
             >
                 <HStack
                     divider={
