@@ -1,7 +1,6 @@
 import { Icon, IconProps } from "@chakra-ui/react";
 
 export const PriceUpIcon = (props: IconProps) => {
-    console.log("DEBUG: PriceUpIcon");
     return (
         <Icon data-testid="PriceUpIcon" viewBox="0 0 16 16" {...props}>
             <path
