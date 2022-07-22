@@ -17,7 +17,7 @@ describe("<TokenCardChartTooltip />", () => {
         expect(price).toHaveTextContent("$5.60");
 
         const ts = screen.queryByTestId("TokenCardChartTooltipTimestamp");
-        expect(ts).toHaveTextContent("Jul 22, 2022, 1:26 PM");
+        expect(ts).toHaveTextContent("Jul 22, 2022");
     });
 
     describe("Given undefined payload", () => {
