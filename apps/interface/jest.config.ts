@@ -32,7 +32,7 @@ const customJestConfig = {
         },
     },
     reporters: ["default", "github-actions"],
-    setupFiles: ["<rootDir>/jest.setup.ts"],
+    setupFilesAfterEnv: ["./jest.setup.ts"],
 };
 
 const config = createJestConfig(customJestConfig);
