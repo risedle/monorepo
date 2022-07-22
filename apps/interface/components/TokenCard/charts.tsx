@@ -40,11 +40,10 @@ export const TokenCardCharts = (props: TokenCardChartsProps) => {
                     borderColor: gray4,
                 }}
                 _hover={{
-                    fontWeight: "semibold",
                     color: gray12,
-                    background: gray2,
-                    border: "1px",
-                    borderColor: gray4,
+                }}
+                _active={{
+                    color: gray12,
                 }}
             >
                 {timeframe}
