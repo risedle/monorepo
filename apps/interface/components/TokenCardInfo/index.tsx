@@ -4,8 +4,6 @@ import {
     Text,
     SimpleGrid,
     useColorModeValue,
-    Icon,
-    IconProps,
     Center,
     Skeleton,
 } from "@chakra-ui/react";
@@ -50,7 +48,7 @@ export const TokenCardInfo = (props: TokenCardInfoProps) => {
                     startColor={gray3}
                     endColor={gray4}
                     borderRadius="lg"
-                    isLoaded
+                    isLoaded={isLoaded}
                 >
                     <Text
                         width="100%"
@@ -74,7 +72,7 @@ export const TokenCardInfo = (props: TokenCardInfoProps) => {
                     startColor={gray3}
                     endColor={gray4}
                     borderRadius="lg"
-                    isLoaded
+                    isLoaded={isLoaded}
                 >
                     <HStack width="100%" color={priceChangeColor} spacing="1">
                         <Center>{priceChangeIcon}</Center>
@@ -103,7 +101,7 @@ export const TokenCardInfo = (props: TokenCardInfoProps) => {
                     startColor={gray3}
                     endColor={gray4}
                     borderRadius="lg"
-                    isLoaded
+                    isLoaded={isLoaded}
                 >
                     <Text
                         width="100%"

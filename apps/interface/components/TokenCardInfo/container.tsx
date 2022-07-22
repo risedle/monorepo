@@ -17,10 +17,10 @@ export const TokenCardInfoContainer = (props: TokenCardInfoContainerProps) => {
     // TODO(pyk): show toast when error happen
     return (
         <TokenCardInfo
-            price={data?.priceUSD}
-            priceChangePercent={data?.dailyPriceChangePercentage}
-            marketCap={data?.marketcapUSD}
-            isLoaded
+            price={data?.priceUSD || 0}
+            priceChangePercent={data?.dailyPriceChangePercentage || 0}
+            marketCap={data?.marketcapUSD || 0}
+            isLoaded={isLoaded}
         />
     );
 };

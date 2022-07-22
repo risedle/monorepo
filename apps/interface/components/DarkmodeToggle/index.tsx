@@ -3,7 +3,6 @@ import {
     useColorMode,
     Icon,
     IconProps,
-    Center,
     Circle,
 } from "@chakra-ui/react";
 
@@ -21,7 +20,7 @@ const DarkmodeIcon = (props: IconProps) => {
 };
 
 export const DarkmodeToggle = () => {
-    const { colorMode, toggleColorMode } = useColorMode();
+    const { toggleColorMode } = useColorMode();
     return (
         <Button
             data-testid="DarkmodeToggle"

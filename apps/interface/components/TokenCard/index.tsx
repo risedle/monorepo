@@ -3,7 +3,6 @@ import {
     Box,
     Text,
     Divider,
-    SimpleGrid,
     useColorModeValue,
 } from "@chakra-ui/react";
 

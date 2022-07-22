@@ -1,11 +1,9 @@
 import {
     Container,
     Flex,
-    Center,
     Spacer,
     HStack,
     VStack,
-    Box,
     Text,
     useColorModeValue,
     Divider,
