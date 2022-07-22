@@ -2,7 +2,7 @@ import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 
 import "../utils/window.ResizeObserver.mock.ts";
-import { TokenCardInfo } from "../../components/TokenCard/info";
+import { TokenCardInfo } from "../../components/TokenCardInfo";
 
 describe("<TokenCardInfo />", () => {
     describe("Given positive price change", () => {

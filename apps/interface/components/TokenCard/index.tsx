@@ -11,7 +11,7 @@ import type { FuseLeveragedToken } from "../../utils/fetchFuseLeveragedTokens";
 
 import { TokenCardTitle } from "./title";
 import { TokenCardCharts } from "./charts";
-import { TokenCardInfo } from "./info";
+import { TokenCardInfoContainer } from "../TokenCardInfo/container";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface TokenCardProps extends FuseLeveragedToken {}
@@ -76,11 +76,7 @@ export const TokenCard = (props: TokenCardProps) => {
             </Box>
 
             {/* Show latest on-chain data */}
-            <TokenCardInfo
-                price={20}
-                priceChangePercent={-10}
-                marketCap={2000}
-            />
+            <TokenCardInfoContainer symbol={symbol} />
         </VStack>
     );
 };
