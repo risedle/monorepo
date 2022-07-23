@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 
-import { FuseLeveragedTokenIcon } from "../FuseLeveragedTokenIcon";
+import FuseLeveragedTokenIcon from "../Icons/FuseLeveragedToken";
 
 interface TokenCardTitleProps {
     name: string;

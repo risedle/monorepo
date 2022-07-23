@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 
 import { getBaseConfig } from "../../utils/getBaseConfig";
-import { ChainIcon } from "../ChainIcon";
+import ChainIcon from "../Icons/Chain";
 
 const WarningBarContent = () => {
     const baseConfig = getBaseConfig();

@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 
-import { FuseLeveragedTokenIcon } from "../../components/FuseLeveragedTokenIcon";
+import { FuseLeveragedTokenIcon } from "../../components/Icons/FuseLeveragedToken";
 import chakra from "../utils/chakra";
 
 afterEach(() => {

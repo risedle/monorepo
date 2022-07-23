@@ -19,3 +19,5 @@ export const FuseLeveragedTokenIcon = (props: FuseLeveragedTokenIconProps) => {
         />
     );
 };
+
+export default FuseLeveragedTokenIcon;
