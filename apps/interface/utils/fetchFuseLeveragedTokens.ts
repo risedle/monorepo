@@ -1,6 +1,7 @@
 import { request as grequest, gql } from "graphql-request";
 
-import { getBaseConfig } from "../utils/getBaseConfig";
+import { getBaseConfig } from "./getBaseConfig";
+import { FuseLeveragedTokens } from "./types";
 
 /**
  * NOTE:
@@ -72,59 +73,6 @@ const queryFuseLeveragedTokens = gql`
         }
     }
 `;
-
-interface FuseLeveragedTokenDayData {
-    open: string;
-    close: string;
-    tradeVolumeUSD: string;
-    totalSupply: string;
-    collateralPerShare: string;
-    debtPerShare: string;
-    totalCollateral: string;
-    totalDebt: string;
-}
-
-interface FuseLeveragedTokenPrice {
-    timestamp: number;
-    open: string;
-    high: string;
-    low: string;
-    close: string;
-}
-
-interface FuseLeveragedTokenVolume {
-    timestamp: number;
-    usd: string;
-}
-
-interface FuseLeveragedTokenFee {
-    timestamp: number;
-    usd: string;
-}
-
-interface FuseLeveragedTokenBackingInfo {
-    name: string;
-    symbol: string;
-    decimal: string;
-}
-
-export interface FuseLeveragedToken {
-    name: string;
-    symbol: string;
-    decimals: string;
-    address: string;
-    prices: Array<FuseLeveragedTokenPrice>;
-    volumes: Array<FuseLeveragedTokenVolume>;
-    fees: Array<FuseLeveragedTokenFee>;
-    dailyData: Array<FuseLeveragedTokenDayData>;
-    totalVolumeUSD: string;
-    collateral: FuseLeveragedTokenBackingInfo;
-    debt: FuseLeveragedTokenBackingInfo;
-}
-
-export interface FuseLeveragedTokens {
-    tokens: Array<FuseLeveragedToken>;
-}
 
 export const fetchFuseLeveragedTokens =
     async (): Promise<FuseLeveragedTokens> => {

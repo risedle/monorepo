@@ -2,10 +2,8 @@ import type { NextPage, GetStaticProps } from "next";
 import { NextSeo } from "next-seo";
 
 import { getBaseConfig } from "../utils/getBaseConfig";
-import {
-    fetchFuseLeveragedTokens,
-    FuseLeveragedTokens,
-} from "../utils/fetchFuseLeveragedTokens";
+import { fetchFuseLeveragedTokens } from "../utils/fetchFuseLeveragedTokens";
+import type { FuseLeveragedTokens } from "../utils/types";
 import { getFuseLeveragedTokensSummary } from "../utils/getFuseLeveragedTokensSummary";
 
 import { WarningBar } from "../components/WarningBar";
@@ -42,7 +40,7 @@ const Home: NextPage<HomeProps, unknown> = (props) => {
     );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async () => {
     // Get list of FLTs
     const data = await fetchFuseLeveragedTokens();
     return { props: data, revalidate: 3600 };
