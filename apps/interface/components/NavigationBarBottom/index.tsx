@@ -1,4 +1,4 @@
-import { Container, Flex, Box, useColorModeValue } from "@chakra-ui/react";
+import { Container, Flex, useColorModeValue } from "@chakra-ui/react";
 
 import { ChainSwitcher } from "../ChainSwitcher";
 import { ConnectWalletButton } from "../ConnectWalletButton";

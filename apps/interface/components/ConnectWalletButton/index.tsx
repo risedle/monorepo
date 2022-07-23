@@ -1,5 +1,5 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { Box, Button, ButtonProps, Icon, IconProps } from "@chakra-ui/react";
+import { Box, BoxProps, Button, Icon, IconProps } from "@chakra-ui/react";
 
 import { getBaseConfig } from "../../utils/getBaseConfig";
 
@@ -108,7 +108,7 @@ const BlueIndicatorIcon = (props: IconProps) => {
     );
 };
 
-export const ConnectWalletButton = (props: ButtonProps) => {
+export const ConnectWalletButton = (props: BoxProps) => {
     const baseConfig = getBaseConfig();
 
     return (

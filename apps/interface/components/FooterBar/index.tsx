@@ -2,7 +2,6 @@
 import {
     Container,
     Flex,
-    Box,
     Spacer,
     Link,
     HStack,

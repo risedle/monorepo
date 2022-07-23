@@ -15,10 +15,6 @@ import {
     IconProps,
     ButtonProps,
     Circle,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    useDisclosure,
 } from "@chakra-ui/react";
 
 import { ChainIcon } from "../ChainIcon";

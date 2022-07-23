@@ -2,17 +2,14 @@ import {
     Menu,
     MenuButton,
     MenuList,
-    MenuItem,
     Button,
     Text,
-    Icon,
     useColorModeValue,
     Box,
     Link,
     Spacer,
     Flex,
     Center,
-    IconProps,
     ButtonProps,
     Circle,
     VStack,
@@ -222,9 +219,6 @@ export const NavigationBarBottomLinks = (props: ButtonProps) => {
     // Styles
     const gray2 = useColorModeValue("gray.light.2", "gray.dark.2");
     const gray3 = useColorModeValue("gray.light.3", "gray.dark.3");
-    const gray9 = useColorModeValue("gray.light.9", "gray.dark.9");
-    const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
-    const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
     const blur = useColorModeValue("rgba(22,22,22,0.6)", "rgba(0,0,0,0.6)");
 
     return (
