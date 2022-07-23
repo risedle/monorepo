@@ -42,7 +42,7 @@ const Home: NextPage<HomeProps, unknown> = (props) => {
     );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async () => {
     // Get list of FLTs
     const data = await fetchFuseLeveragedTokens();
     return { props: data, revalidate: 3600 };
