@@ -12,6 +12,7 @@ import { HomeHeading } from "../components/HomeHeading";
 import { TokenCards } from "../components/TokenCard/cards";
 import { FooterBar } from "../components/FooterBar";
 import { NavigationBarBottom } from "../components/NavigationBarBottom";
+import { BackgroundGradient } from "../components/BackgroundGradient";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface HomeProps extends FuseLeveragedTokens {}
@@ -36,6 +37,7 @@ const Home: NextPage<HomeProps, unknown> = (props) => {
             <TokenCards tokens={tokens} />
             <FooterBar />
             <NavigationBarBottom />
+            <BackgroundGradient page="home" />
         </>
     );
 };
