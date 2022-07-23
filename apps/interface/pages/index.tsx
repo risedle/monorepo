@@ -12,7 +12,7 @@ import { WarningBar } from "../components/WarningBar";
 import { NavigationBar } from "../components/NavigationBar";
 import { HomeHeading } from "../components/HomeHeading";
 import { TokenCards } from "../components/TokenCard/cards";
-import { BackgroundGradient } from "../components/BackgroundGradient";
+// import { BackgroundGradient } from "../components/BackgroundGradient";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface HomeProps extends FuseLeveragedTokens {}
@@ -28,7 +28,6 @@ const Home: NextPage<HomeProps, unknown> = (props) => {
             <NextSeo
                 title={`Trade Leveraged Tokens on ${baseConfig.chainName}`}
             />
-            <BackgroundGradient />
             <WarningBar />
             <NavigationBar />
             <HomeHeading

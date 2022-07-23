@@ -31,6 +31,16 @@ const theme = extendTheme({
         global: (props: any) => ({
             body: {
                 bg: mode("#FCFCFC", "#161616")(props),
+                backgroundImage: mode(
+                    "url(/backgrounds/bsc-light.png)",
+                    "url(/backgrounds/bsc-dark.png)"
+                )(props),
+                backgroundRepeat: "no-repeat",
+                backgroundPositionX: "center",
+                //backgroundPositionY: { base: "-276%" },
+                //backgroundSize: { base: "300%", desktop: "1000px 1000px" },
+                backgroundSize: "1000px 1000px",
+                backgroundPositionY: "-583px",
             },
         }),
     },
