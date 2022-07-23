@@ -1,5 +1,5 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { Button, ButtonProps, Icon, IconProps } from "@chakra-ui/react";
+import { Box, Button, ButtonProps, Icon, IconProps } from "@chakra-ui/react";
 
 import { getBaseConfig } from "../../utils/getBaseConfig";
 
@@ -112,64 +112,71 @@ export const ConnectWalletButton = (props: ButtonProps) => {
     const baseConfig = getBaseConfig();
 
     return (
-        <ConnectButton.Custom data-testid="NavigationBarConnectWallet">
-            {({
-                account,
-                chain,
-                openAccountModal,
-                openChainModal,
-                openConnectModal,
-                mounted,
-            }) => {
-                return (
-                    <div
-                        {...(!mounted && {
-                            "aria-hidden": true,
-                            style: {
-                                opacity: 0,
-                                pointerEvents: "none",
-                                userSelect: "none",
-                            },
-                        })}
-                    >
-                        {(() => {
-                            if (!mounted || !account || !chain) {
+        <Box data-testid="ConnectWalletButton" {...props}>
+            <ConnectButton.Custom data-testid="NavigationBarConnectWallet">
+                {({
+                    account,
+                    chain,
+                    openAccountModal,
+                    openChainModal,
+                    openConnectModal,
+                    mounted,
+                }) => {
+                    return (
+                        <div
+                            {...(!mounted && {
+                                "aria-hidden": true,
+                                style: {
+                                    opacity: 0,
+                                    pointerEvents: "none",
+                                    userSelect: "none",
+                                },
+                            })}
+                        >
+                            {(() => {
+                                if (!mounted || !account || !chain) {
+                                    return (
+                                        <Button
+                                            onClick={openConnectModal}
+                                            variant={baseConfig.chainSlug}
+                                            width="100%"
+                                        >
+                                            Connect Wallet
+                                        </Button>
+                                    );
+                                }
+                                if (chain.unsupported) {
+                                    return (
+                                        <Button
+                                            width="100%"
+                                            onClick={openChainModal}
+                                            leftIcon={
+                                                <RedIndicatorIcon
+                                                    w="6"
+                                                    h="6"
+                                                />
+                                            }
+                                        >
+                                            Switch Network
+                                        </Button>
+                                    );
+                                }
                                 return (
                                     <Button
-                                        onClick={openConnectModal}
-                                        variant={baseConfig.chainSlug}
-                                        {...props}
-                                    >
-                                        Connect Wallet
-                                    </Button>
-                                );
-                            }
-                            if (chain.unsupported) {
-                                return (
-                                    <Button
-                                        onClick={openChainModal}
+                                        onClick={openAccountModal}
                                         leftIcon={
-                                            <RedIndicatorIcon w="6" h="6" />
+                                            <BlueIndicatorIcon w="6" h="6" />
                                         }
+                                        width="100%"
                                     >
-                                        Switch Network
+                                        {account.displayName}
                                     </Button>
                                 );
-                            }
-                            return (
-                                <Button
-                                    onClick={openAccountModal}
-                                    leftIcon={
-                                        <BlueIndicatorIcon w="6" h="6" />
-                                    }
-                                >
-                                    {account.displayName}
-                                </Button>
-                            );
-                        })()}
-                    </div>
-                );
-            }}
-        </ConnectButton.Custom>
+                            })()}
+                        </div>
+                    );
+                }}
+            </ConnectButton.Custom>
+        </Box>
     );
 };

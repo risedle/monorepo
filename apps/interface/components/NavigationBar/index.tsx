@@ -2,7 +2,7 @@ import { Container, Flex, Center, Spacer, HStack } from "@chakra-ui/react";
 
 import { NavigationBarLogo } from "./logo";
 import { NavigationBarLinks } from "./links";
-import { NavigationBarChainSwitcher } from "./chain";
+import { ChainSwitcher } from "../ChainSwitcher";
 import { ConnectWalletButton } from "../ConnectWalletButton";
 import { DarkmodeToggle } from "../DarkmodeToggle";
 
@@ -19,8 +19,8 @@ export const NavigationBar = () => {
                 </Center>
                 <Spacer display={{ base: "none", tablet: "block" }} />
                 <HStack spacing={{ tablet: "2" }}>
-                    <NavigationBarChainSwitcher
-                        display={{ base: "none", tablet: "inline-flex" }}
+                    <ChainSwitcher
+                        display={{ base: "none", tablet: "flex" }}
                     />
                     <ConnectWalletButton
                         display={{ base: "none", tablet: "block" }}
