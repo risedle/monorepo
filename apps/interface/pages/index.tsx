@@ -12,7 +12,7 @@ import { WarningBar } from "../components/WarningBar";
 import { NavigationBar } from "../components/NavigationBar";
 import { HomeHeading } from "../components/HomeHeading";
 import { TokenCards } from "../components/TokenCard/cards";
-// import { BackgroundGradient } from "../components/BackgroundGradient";
+import { FooterBar } from "../components/FooterBar";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface HomeProps extends FuseLeveragedTokens {}
@@ -35,6 +35,7 @@ const Home: NextPage<HomeProps, unknown> = (props) => {
                 totalVolume={totalVolume}
             />
             <TokenCards tokens={tokens} />
+            <FooterBar />
         </>
     );
 };
