@@ -21,14 +21,12 @@ describe("Given a user visit /", () => {
     });
 
     it("should popup when clicked", async () => {
-        const chainSwitcher = screen.getByTestId("NavigationBarChainSwitcher");
+        const chainSwitcher = screen.getAllByTestId("ChainSwitcher")[0];
 
         fireEvent.click(chainSwitcher);
 
         await waitFor(() => {
-            const popup = screen.getByTestId(
-                "NavigationBarChainSwitcherPopup"
-            );
+            const popup = screen.getAllByTestId("ChainSwitcherPopup")[0];
             expect(popup).toBeVisible();
         });
     });

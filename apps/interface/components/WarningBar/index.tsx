@@ -86,32 +86,27 @@ export const WarningBar = () => {
     );
 
     return (
-        <>
-            <Container
-                maxW="full"
-                centerContent
-                data-testid="WarningBar"
-                py="3"
-                borderBottomWidth="1px"
-                borderBottomColor={borderBottomColor}
-                overflowX="hidden"
-                background={bg}
-                backdropFilter="blur(104px)"
+        <Container
+            maxW="full"
+            centerContent
+            data-testid="WarningBar"
+            py="3"
+            borderBottomWidth="1px"
+            borderBottomColor={borderBottomColor}
+            overflowX="hidden"
+            background={bg}
+            backdropFilter="blur(104px)"
+        >
+            <HStack
+                divider={
+                    <StackDivider borderColor={dividerColor} opacity="0.1" />
+                }
+                spacing="8"
             >
-                <HStack
-                    divider={
-                        <StackDivider
-                            borderColor={dividerColor}
-                            opacity="0.1"
-                        />
-                    }
-                    spacing="8"
-                >
-                    {Array.from(Array(contentAmount), (e, i) => {
-                        return <WarningBarContent key={i} />;
-                    })}
-                </HStack>
-            </Container>
-        </>
+                {Array.from(Array(contentAmount), (e, i) => {
+                    return <WarningBarContent key={i} />;
+                })}
+            </HStack>
+        </Container>
     );
 };
