@@ -91,6 +91,7 @@ const Button = {
         solid: ButtonSolid,
         icon: ButtonIcon,
         bsc: ButtonBSC,
+        gradient: ButtonGradient,
     },
 };
 
