@@ -75,7 +75,7 @@ function App({ Component, pageProps }: AppProps) {
             <DefaultSeo
                 titleTemplate="%s | Risedle"
                 defaultTitle="Risedle"
-                description="Trade, earn and build on the decentralized crypto leveraged ETFs market protocol"
+                description="Trade, earn and build on the decentralized crypto leveraged token protocol"
                 canonical="https://risedle.com"
                 twitter={{
                     cardType: "summary_large_image",
@@ -87,7 +87,7 @@ function App({ Component, pageProps }: AppProps) {
                     url: baseConfig.baseURL,
                     title: "Trade on Risedle",
                     description:
-                        "Trade, earn and build on the decentralized crypto leveraged ETFs market protocol",
+                        "Trade, earn and build on the decentralized crypto leveraged token protocol",
                     site_name: "Risedle",
                     images: [
                         {
