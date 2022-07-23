@@ -87,7 +87,7 @@ function App({ Component, pageProps }: AppProps) {
                     url: baseConfig.baseURL,
                     title: "Trade on Risedle",
                     description:
-                        "Trade, earn and build on the decentralized crypto leveraged ETFs market protocol",
+                        "Trade, earn and build on the decentralized crypto leveraged token protocol",
                     site_name: "Risedle",
                     images: [
                         {
