@@ -6,7 +6,7 @@ import {
     useColorModeValue,
 } from "@chakra-ui/react";
 
-import type { FuseLeveragedToken } from "../../utils/fetchFuseLeveragedTokens";
+import type { FuseLeveragedToken } from "../../utils/types";
 
 import { TokenCardTitle } from "./title";
 import { TokenCardCharts } from "./charts";

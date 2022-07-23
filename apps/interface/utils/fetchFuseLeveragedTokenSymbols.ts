@@ -12,14 +12,14 @@ import { getBaseConfig } from "../utils/getBaseConfig";
 
 const queryFuseLeveragedTokenSymbols = gql`
     {
-        symbols: flts(orderBy: symbol) {
+        flts(orderBy: symbol) {
             symbol
         }
     }
 `;
 
 export interface FuseLeveragedTokenSymbols {
-    symbols: Array<string>;
+    flts: Array<{ symbol: string }>;
 }
 
 export async function fetchFuseLeveragedTokenSymbols(): Promise<FuseLeveragedTokenSymbols> {

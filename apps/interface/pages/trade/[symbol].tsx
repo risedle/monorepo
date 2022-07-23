@@ -1,15 +1,18 @@
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
-import type { FuseLeveragedTokenInfo } from "@risedle/types";
 import { NextSeo } from "next-seo";
 
 import { getBaseConfig } from "../../utils/getBaseConfig";
 import { fetchFuseLeveragedTokenSymbols } from "../../utils/fetchFuseLeveragedTokenSymbols";
 import { fetchFuseLeveragedTokenBySymbol } from "../../utils/fetchFuseLeveragedTokenBySymbol";
+import type { FuseLeveragedToken } from "../../utils/types";
 
 import { WarningBar } from "../../components/WarningBar";
 import { NavigationBar } from "../../components/NavigationBar";
 import { FooterBar } from "../../components/FooterBar";
 import { NavigationBarBottom } from "../../components/NavigationBarBottom";
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface TradeProps extends FuseLeveragedToken {}
 
 const Trade: NextPage<TradeProps, unknown> = (props) => {
     console.debug("DEBUG: Trade: props", props);
@@ -30,7 +33,7 @@ const Trade: NextPage<TradeProps, unknown> = (props) => {
 export const getStaticPaths: GetStaticPaths = async () => {
     // Get list of fuse leveraged token symbols
     const data = await fetchFuseLeveragedTokenSymbols();
-    const paths = data.symbols.map((flt) => ({
+    const paths = data.flts.map((flt) => ({
         params: { symbol: flt.symbol.toLowerCase() },
     }));
     return {
@@ -41,6 +44,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const { params } = context;
+    if (params == null) throw new Error("Trade: params is undefined");
+    if (params.symbol == null) throw new Error("Trade: symbol is undefined");
+    if (Array.isArray(params.symbol)) throw new Error("Trade: symbol invalid");
 
     // Fetch full data of FLT
     const data = await fetchFuseLeveragedTokenBySymbol(params.symbol);

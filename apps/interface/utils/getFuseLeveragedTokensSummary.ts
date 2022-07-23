@@ -1,4 +1,4 @@
-import { FuseLeveragedTokens } from "./fetchFuseLeveragedTokens";
+import type { FuseLeveragedTokens } from "./types";
 
 interface FuseLeveragedTokensSummary {
     totalMarketCap: number;

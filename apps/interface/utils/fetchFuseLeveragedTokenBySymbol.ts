@@ -45,9 +45,13 @@ const queryFuseLeveragedTokenBySymbol = gql`
     }
 `;
 
+interface FuseLeveragedTokenBySymbolResponse {
+    flts: Array<FuseLeveragedToken>;
+}
+
 export async function fetchFuseLeveragedTokenBySymbol(
     symbol: string
-): Promise<FuseLeveragedToken> {
+): Promise<FuseLeveragedTokenBySymbolResponse> {
     const { graphEndpoint } = getBaseConfig();
     const filter = symbol.toUpperCase();
     return await grequest(graphEndpoint, queryFuseLeveragedTokenBySymbol, {

@@ -2,10 +2,8 @@ import type { NextPage, GetStaticProps } from "next";
 import { NextSeo } from "next-seo";
 
 import { getBaseConfig } from "../utils/getBaseConfig";
-import {
-    fetchFuseLeveragedTokens,
-    FuseLeveragedTokens,
-} from "../utils/fetchFuseLeveragedTokens";
+import { fetchFuseLeveragedTokens } from "../utils/fetchFuseLeveragedTokens";
+import type { FuseLeveragedTokens } from "../utils/types";
 import { getFuseLeveragedTokensSummary } from "../utils/getFuseLeveragedTokensSummary";
 
 import { WarningBar } from "../components/WarningBar";
