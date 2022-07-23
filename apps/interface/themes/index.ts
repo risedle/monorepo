@@ -37,8 +37,6 @@ const theme = extendTheme({
                 )(props),
                 backgroundRepeat: "no-repeat",
                 backgroundPositionX: "center",
-                //backgroundPositionY: { base: "-276%" },
-                //backgroundSize: { base: "300%", desktop: "1000px 1000px" },
                 backgroundSize: "1000px 1000px",
                 backgroundPositionY: "-583px",
             },
