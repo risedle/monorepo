@@ -10,6 +10,7 @@ import { WarningBar } from "../../components/WarningBar";
 import { NavigationBar } from "../../components/NavigationBar";
 import { FooterBar } from "../../components/FooterBar";
 import { NavigationBarBottom } from "../../components/NavigationBarBottom";
+import { BackgroundGradient } from "../../components/BackgroundGradient";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface TradeProps extends FuseLeveragedToken {}
@@ -26,6 +27,7 @@ const Trade: NextPage<TradeProps, unknown> = (props) => {
             <NavigationBar />
             <FooterBar />
             <NavigationBarBottom />
+            <BackgroundGradient page="trade" />
         </>
     );
 };
