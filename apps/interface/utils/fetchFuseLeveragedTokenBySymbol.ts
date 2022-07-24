@@ -41,6 +41,17 @@ const queryFuseLeveragedTokenBySymbol = gql`
                 name
                 symbol
             }
+            prices: fltHourData(
+                first: 672
+                orderBy: periodStartUnix
+                orderDirection: desc
+            ) {
+                timestamp: periodStartUnix
+                open
+                high
+                low
+                close
+            }
         }
     }
 `;

@@ -5,6 +5,7 @@ import {
     Skeleton,
     useColorModeValue,
     Center,
+    BoxProps,
 } from "@chakra-ui/react";
 
 // Utils
@@ -15,7 +16,7 @@ import ArrowDownIcon from "../Icons/ArrowDown";
 import ArrowUpIcon from "../Icons/ArrowUp";
 import InfoTooltip from "../InfoTooltip";
 
-interface SwapCardLatestPriceInfoProps {
+interface SwapCardLatestPriceInfoProps extends BoxProps {
     price: number;
     priceChangeUSD: number;
     priceChangePercent: number;
@@ -47,6 +48,7 @@ export const SwapCardLatestPriceInfo = (
             width="100%"
             gap="4"
             margin="0 !important"
+            {...props}
         >
             <VStack alignItems="flex-start" gap="2" minW="80px">
                 <HStack gap={1}>

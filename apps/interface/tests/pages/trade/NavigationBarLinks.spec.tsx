@@ -15,7 +15,7 @@ describe("Given a user visit /", () => {
             route: "/trade/ethrise",
             pathname: "/trade/ethrise",
         }));
-        render(<Trade />);
+        render(<Trade prices={[]} />);
     });
 
     it("NavigationBar should be rendered", () => {

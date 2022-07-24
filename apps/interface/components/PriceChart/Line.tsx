@@ -1,4 +1,10 @@
-import { Box, HStack, Text, useColorModeValue } from "@chakra-ui/react";
+/**
+ * Line charts usually only plot the closing prices, thus reducing noise from
+ * less critical times in the trading day, such as the open, high, and low prices.
+ *
+ * https://www.investopedia.com/terms/l/linechart.asp
+ */
+import { Box, useColorModeValue } from "@chakra-ui/react";
 import {
     Area,
     AreaChart,
@@ -7,66 +13,35 @@ import {
     YAxis,
 } from "recharts";
 
-import { formatUSD } from "../../utils/formatUSD";
-import { formatTimestamp } from "../../utils/formatTimestamp";
+// Sub-components
+import PriceChartLineTooltip from "./Tooltip";
 
-interface TokenCardChartTooltipProps {
-    payload?: Array<{ payload: { timestamp: number; price: number } }>;
-}
-
-export const TokenCardChartTooltip = (props: TokenCardChartTooltipProps) => {
-    // Data
-    const { payload } = props;
-    if (payload == null) return <div>TokenCardChartTooltip undefined</div>;
-    const p = payload.at(0);
-    if (p == null) return <div>undefined</div>;
-    const point = p.payload;
-
-    // Styles
-    const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
-
-    return (
-        <HStack data-testid="TokenCardChartTooltip">
-            <Text
-                fontSize="sm"
-                color={gray10}
-                lineHeight="4"
-                data-testid="TokenCardChartTooltipPrice"
-            >
-                {point && formatUSD(point.price)}
-            </Text>
-            <Text
-                fontSize="sm"
-                color={gray10}
-                lineHeight="4"
-                data-testid="TokenCardChartTooltipTimestamp"
-            >
-                {point && formatTimestamp(point.timestamp * 1000)}
-            </Text>
-        </HStack>
-    );
-};
-
-export interface TokenCardChartProps {
+export interface PriceChartLineProps {
     prices: Array<{ timestamp: number; price: number }>;
 }
 
-export const TokenCardChart = (props: TokenCardChartProps) => {
+export const PriceChartLine = (props: PriceChartLineProps) => {
+    // Data
     const { prices } = props;
     const latest = prices.at(-1);
     const oldest = prices.at(0);
     if (latest == null || oldest == null) {
         return (
-            <div data-testid="TokenCardChartUndefined">
-                TokenCardChart undefined
+            <div data-testid="PriceChartLineUndefined">
+                PriceChartLine undefined
             </div>
         );
     }
     const priceChange = latest.price - oldest.price;
 
+    // Styles
+    // NOTE: need to use raw hex value for chart
+    const green11 = useColorModeValue("#18794E", "#4CC38A");
+    const red11 = useColorModeValue("#CD2B31", "#FF6369");
+
     return (
-        <Box data-testid="TokenCardChart" w="100%" h="200px">
-            <ResponsiveContainer width="100%" height={200}>
+        <Box data-testid="PriceChartLine" w="100%" h="192px">
+            <ResponsiveContainer width="100%" height={192}>
                 <AreaChart
                     data={prices}
                     margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
@@ -77,13 +52,14 @@ export const TokenCardChart = (props: TokenCardChartProps) => {
                         type="monotoneX"
                         dataKey="price"
                         strokeWidth={2}
-                        stroke={priceChange > 0 ? "#4CC38A" : "#CD2B31"}
+                        stroke={priceChange > 0 ? green11 : red11}
                         fill={
                             priceChange > 0
                                 ? "url(#upGradient)"
                                 : "url(#downGradient)"
                         }
-                        data-testid="TokenCardChartArea"
+                        fillOpacity={0.2}
+                        data-testid="PriceChartLineArea"
                     />
                     <YAxis
                         hide={true}
@@ -91,8 +67,8 @@ export const TokenCardChart = (props: TokenCardChartProps) => {
                         domain={["dataMin - 5", "dataMax + 5"]}
                     />
                     <Tooltip
-                        position={{ y: 0, x: 16 }}
-                        content={<TokenCardChartTooltip />}
+                        cursor={false}
+                        content={<PriceChartLineTooltip />}
                     />
                     <defs>
                         <linearGradient
@@ -101,6 +77,7 @@ export const TokenCardChart = (props: TokenCardChartProps) => {
                             y1="0"
                             x2="0"
                             y2="1"
+                            fillOpacity={0.2}
                         >
                             <stop
                                 offset="0%"
@@ -119,6 +96,7 @@ export const TokenCardChart = (props: TokenCardChartProps) => {
                             y1="0"
                             x2="0"
                             y2="1"
+                            fillOpacity={0.2}
                         >
                             <stop
                                 offset="0%"
@@ -137,3 +115,5 @@ export const TokenCardChart = (props: TokenCardChartProps) => {
         </Box>
     );
 };
+
+export default PriceChartLine;

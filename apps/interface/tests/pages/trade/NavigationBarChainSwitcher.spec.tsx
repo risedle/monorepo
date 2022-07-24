@@ -16,7 +16,7 @@ describe("Given a user visit /", () => {
             route: "/trade/ethrise",
             pathname: "/trade/ethrise",
         }));
-        renderApp(<Trade />);
+        renderApp(<Trade prices={[]} />);
     });
 
     it("should popup when clicked", async () => {

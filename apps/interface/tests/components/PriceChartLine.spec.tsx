@@ -1,15 +1,14 @@
-import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 
 import "../utils/window.ResizeObserver.mock";
 import "../utils/recharts.mock";
-import { TokenCardChart } from "../../components/TokenCard/chart";
+import { PriceChartLine } from "../../components/PriceChart/Line";
 
-describe("<TokenCardChart />", () => {
+describe("<PriceChartLine />", () => {
     describe("Given uptrend price chart", () => {
         it("should render green chart", () => {
             const { debug, container } = render(
-                <TokenCardChart
+                <PriceChartLine
                     prices={[
                         { timestamp: 1658471219, price: 2 },
                         { timestamp: 1658471219, price: 5.6 },
@@ -25,7 +24,7 @@ describe("<TokenCardChart />", () => {
     describe("Given downtrend price chart", () => {
         it("should render green chart", () => {
             const { debug, container } = render(
-                <TokenCardChart
+                <PriceChartLine
                     prices={[
                         { timestamp: 1658471219, price: 2 },
                         { timestamp: 1658471219, price: 1 },
@@ -40,8 +39,8 @@ describe("<TokenCardChart />", () => {
 
     describe("Given empty prices", () => {
         it("should render placeholder component", () => {
-            render(<TokenCardChart prices={[]} />);
-            const el = screen.queryByTestId("TokenCardChartUndefined");
+            render(<PriceChartLine prices={[]} />);
+            const el = screen.queryByTestId("PriceChartLineUndefined");
             expect(el).toBeInTheDocument();
         });
     });

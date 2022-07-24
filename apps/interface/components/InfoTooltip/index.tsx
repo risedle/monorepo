@@ -31,6 +31,7 @@ export const InfoTooltip = (props: InfoTooltipProps) => {
             fontSize="sm"
             lineHeight="4"
             borderRadius="lg"
+            padding="2"
         >
             {/**
              * NOTE: need to wrap the Icon with span.
