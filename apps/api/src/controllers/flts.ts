@@ -157,6 +157,37 @@ async function GetFuseLeveragedTokenBackingsBySymbol(
     }
 }
 
+/**
+ * GetUserPositionById return user position
+ */
+async function GetUserPositionById(req: Request, res: Response) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(404).json({ errors: errors.array() });
+    }
+    try {
+        const position = await fltsService.getUserPositionById(
+            req.params.chainId as unknown as ChainId,
+            req.params.positionId
+        );
+        if (position == undefined) {
+            return res.status(404).json({
+                errors: [
+                    {
+                        location: "params",
+                        msg: "positionId not found",
+                        param: "positionId",
+                        value: req.params.positionId,
+                    },
+                ],
+            });
+        }
+        return res.status(200).json(position);
+    } catch (e) {
+        return res.status(500).json({ error: e });
+    }
+}
+
 const GetFuseLeveragedTokensByChainIdValidation = GetTokensByChainIdValidation;
 
 const flts = {
@@ -166,6 +197,7 @@ const flts = {
     GetFuseLeveragedTokenChartsBySymbol,
     GetFuseLeveragedTokenSwapsBySymbol,
     GetFuseLeveragedTokenBackingsBySymbol,
+    GetUserPositionById,
 };
 
 export default flts;
