@@ -1,5 +1,6 @@
 import express from "express";
 import fltsController from "../controllers/flts";
+import flt from "../controllers/flt";
 
 const router = express.Router();
 
@@ -12,7 +13,7 @@ router.get(
 router.get(
     "/:chainId/flts/:symbol",
     fltsController.GetFuseLeveragedTokensByChainIdValidation,
-    fltsController.GetFuseLeveragedTokenBySymbol
+    flt.GetFuseLeveragedTokenBySymbol
 );
 
 router.get(

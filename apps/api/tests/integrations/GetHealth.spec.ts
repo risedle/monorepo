@@ -1,5 +1,5 @@
 import request from "supertest";
-import server from "../src/server";
+import server from "../../src/server";
 
 describe("GET /health", () => {
     it("should responds 200 OK", async () => {

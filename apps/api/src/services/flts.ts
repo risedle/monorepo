@@ -35,40 +35,6 @@ const queryFuseLeveragedTokens = gql`
     }
 `;
 
-const queryFuseLeveragedTokenBySymbol = gql`
-    query getFuseLeveagedToken($symbol: String) {
-        flts(orderBy: symbol, where: { symbol: $symbol }) {
-            name
-            symbol
-            decimals
-            address: id
-            dailyData: fltDayData(
-                orderBy: periodStartUnix
-                orderDirection: desc
-                first: 2
-            ) {
-                open
-                close
-                tradeVolumeUSD
-                totalSupply
-                collateralPerShare
-                debtPerShare
-                totalCollateral
-                totalDebt
-            }
-            totalVolumeUSD
-            collateral {
-                name
-                symbol
-            }
-            debt {
-                name
-                symbol
-            }
-        }
-    }
-`;
-
 const queryFuseLeveragedTokenChartsBySymbol = gql`
     query getFuseLeveagedTokenCharts($symbol: String) {
         flts(where: { symbol: $symbol }) {
@@ -259,24 +225,6 @@ export async function getFuseLeveragedTokensByChainId(
         tokens.push(getFuseLeveragedTokenInfo(flt));
     }
     return { tokens };
-}
-
-/**
- * Get Fuse Leveraged Token Info by Symbol
- */
-export async function getFuseLeveragedTokenBySymbol(
-    chainId: ChainId,
-    fltSymbol: string
-): Promise<FuseLeveragedTokenInfo | undefined> {
-    // Get data from the graph
-    const endpoint = getGraphEndpointByChainId(chainId);
-    const filter = fltSymbol.toUpperCase();
-    const data = await grequest(endpoint, queryFuseLeveragedTokenBySymbol, {
-        symbol: filter,
-    });
-    // If no found then symbol may invalid; return undefined
-    if (data.flts.length == 0) return undefined;
-    return getFuseLeveragedTokenInfo(data.flts[0]);
 }
 
 interface FuseLeveragedTokenPrice {
@@ -489,7 +437,6 @@ export async function getUserPositionById(
 
 const flts = {
     getFuseLeveragedTokensByChainId,
-    getFuseLeveragedTokenBySymbol,
     getFuseLeveragedTokenChartsBySymbol,
     getFuseLeveragedTokenSwapsBySymbol,
     getFuseLeveragedTokenBackingsBySymbol,

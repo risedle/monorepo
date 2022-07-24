@@ -1,17 +1,17 @@
 import request from "supertest";
-import server from "../src/server";
-import fltService from "../src/services/flts";
+import server from "../../src/server";
+import fltService from "../../src/services/flts";
 
 afterEach(() => {
     // restore the spy created with spyOn
     jest.restoreAllMocks();
 });
 
-describe("GET /v1/chainId/flts/symbol/charts", () => {
+describe("GET /v1/chainId/flts/symbol/backings", () => {
     describe("given unsupported chainId", () => {
         it("should responds 404 not found", async () => {
             const res = await request(server)
-                .get("/v1/4321/flts/ethrise/charts")
+                .get("/v1/4321/flts/ethrise/backings")
                 .set("Accept", "application/json");
             expect(res.status).toBe(404);
             expect(res.body).toStrictEqual({
@@ -32,13 +32,13 @@ describe("GET /v1/chainId/flts/symbol/charts", () => {
             it("should responds 500 internal server error", async () => {
                 const mock = jest.spyOn(
                     fltService,
-                    "getFuseLeveragedTokenChartsBySymbol"
+                    "getFuseLeveragedTokenBackingsBySymbol"
                 );
                 mock.mockImplementation(() => {
                     throw new Error("some error");
                 });
                 const res = await request(server)
-                    .get("/v1/56/flts/bnbrise/charts")
+                    .get("/v1/56/flts/bnbrise/backings")
                     .set("Accept", "application/json");
                 expect(res.status).toBe(500);
             });
@@ -47,7 +47,7 @@ describe("GET /v1/chainId/flts/symbol/charts", () => {
         describe("given random symbol", () => {
             it("should responds 404 not found", async () => {
                 const res = await request(server)
-                    .get("/v1/56/flts/hohoho/charts")
+                    .get("/v1/56/flts/hohoho/backings")
                     .set("Accept", "application/json");
                 expect(res.status).toBe(404);
                 expect(res.body).toStrictEqual({
@@ -66,31 +66,17 @@ describe("GET /v1/chainId/flts/symbol/charts", () => {
         describe("given BNBRISE", () => {
             it("should responds 200 OK", async () => {
                 const res = await request(server)
-                    .get("/v1/56/flts/bnbrise/charts")
+                    .get("/v1/56/flts/bnbrise/backings")
                     .set("Accept", "application/json");
                 expect(res.status).toBe(200);
 
                 // Check price
-                const prices = res.body.prices;
-                expect(prices.length).toBeGreaterThan(24);
-                // Make sure it returns OHLC format
-                expect(prices[0].timestamp).toBeGreaterThan(10000);
-                expect(typeof prices[0].open).toBe("number");
-                expect(typeof prices[0].high).toBe("number");
-                expect(typeof prices[0].low).toBe("number");
-                expect(typeof prices[0].close).toBe("number");
-
-                // Check volumes
-                const volumes = res.body.volumes;
-                expect(volumes.length).toBeGreaterThan(2);
-                expect(volumes[0].timestamp).toBeGreaterThan(10000);
-                expect(typeof volumes[0].usd).toBe("number");
-
-                // Check fees
-                const fees = res.body.fees;
-                expect(fees.length).toBeGreaterThan(2);
-                expect(fees[0].timestamp).toBeGreaterThan(10000);
-                expect(typeof fees[0].usd).toBe("number");
+                const backings = res.body.backings;
+                expect(backings.length).toBeGreaterThan(1);
+                expect(backings[0].timestamp).toBeGreaterThan(10000);
+                expect(typeof backings[0].collateralPerShare).toBe("number");
+                expect(typeof backings[0].debtPerShare).toBe("number");
+                expect(typeof backings[0].valueUSD).toBe("number");
             });
         });
     });

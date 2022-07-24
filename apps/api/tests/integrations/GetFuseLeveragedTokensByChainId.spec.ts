@@ -1,6 +1,6 @@
 import request from "supertest";
-import server from "../src/server";
-import fltService from "../src/services/flts";
+import server from "../../src/server";
+import fltService from "../../src/services/flts";
 
 afterEach(() => {
     // restore the spy created with spyOn

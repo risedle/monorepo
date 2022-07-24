@@ -1,12 +1,12 @@
-import { getFuseLeveragedTokenBySymbol } from "../flts";
+import flt from "../../src/services/flt";
 import { ChainId } from "@risedle/types";
 
-describe("getFuseLeveragedTokenBySymbol", () => {
+describe("GetFuseLeveragedTokenBySymbol()", () => {
     describe("given random chainId", () => {
         it("should throw an error", async () => {
             expect.assertions(1);
             try {
-                await getFuseLeveragedTokenBySymbol(1234, "AAA");
+                await flt.GetFuseLeveragedTokenBySymbol(1234, "AAA");
             } catch (e) {
                 expect(e).toBe("Endpoint not defined for chainId 1234");
             }
@@ -16,16 +16,22 @@ describe("getFuseLeveragedTokenBySymbol", () => {
     describe("given BSC as chainId", () => {
         describe("given random symbol", () => {
             it("should return undefined", async () => {
-                const token = await getFuseLeveragedTokenBySymbol(56, "AAA");
+                const token = await flt.GetFuseLeveragedTokenBySymbol(
+                    56,
+                    "AAA"
+                );
                 expect(token).toBeUndefined();
             });
         });
 
         describe("given BNBDROP & BNBRISE", () => {
             it("should return FuseLeveragedTokenInfo", async () => {
-                let token = await getFuseLeveragedTokenBySymbol(56, "BNBDROP");
+                let token = await flt.GetFuseLeveragedTokenBySymbol(
+                    56,
+                    "BNBDROP"
+                );
                 expect(token).toBeDefined();
-                token = await getFuseLeveragedTokenBySymbol(56, "BNBRISE");
+                token = await flt.GetFuseLeveragedTokenBySymbol(56, "BNBRISE");
                 expect(token).toBeDefined();
 
                 // Make sure it returns array of FuseLeveragedTokenInfo

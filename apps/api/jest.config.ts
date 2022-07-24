@@ -8,9 +8,9 @@ const config: Config.InitialOptions = {
     },
     collectCoverage: true,
     collectCoverageFrom: [
-        "src/services/*.ts",
+        "src/services/**/*.ts",
         "src/routers/*.ts",
-        "src/controllers/*.ts",
+        "src/controllers/**/*.ts",
         "src/utils/*.ts",
         "src/server.ts",
     ],
