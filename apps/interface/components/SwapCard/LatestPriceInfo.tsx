@@ -1,30 +1,32 @@
 import {
-    HStack,
     VStack,
+    HStack,
     Text,
-    SimpleGrid,
+    Skeleton,
     useColorModeValue,
     Center,
-    Skeleton,
 } from "@chakra-ui/react";
 
 // Utils
 import { formatUSD } from "../../utils/formatUSD";
 
 // Sub-components
-import { ArrowDownIcon } from "../Icons/ArrowDown";
-import { ArrowUpIcon } from "../Icons/ArrowUp";
+import ArrowDownIcon from "../Icons/ArrowDown";
+import ArrowUpIcon from "../Icons/ArrowUp";
+import InfoTooltip from "../InfoTooltip";
 
-interface TokenCardInfoProps {
+interface SwapCardLatestPriceInfoProps {
     price: number;
-    priceChangePercent: number; // In percentage
-    marketCap: number;
-    isLoaded: boolean;
+    priceChangeUSD: number;
+    priceChangePercent: number;
+    isLoaded?: boolean;
 }
 
-export const TokenCardInfo = (props: TokenCardInfoProps) => {
+export const SwapCardLatestPriceInfo = (
+    props: SwapCardLatestPriceInfoProps
+) => {
     // Data
-    const { price, priceChangePercent, marketCap, isLoaded } = props;
+    const { price, priceChangeUSD, priceChangePercent, isLoaded } = props;
 
     // Styles
     const gray3 = useColorModeValue("gray.light.3", "gray.dark.3");
@@ -40,17 +42,26 @@ export const TokenCardInfo = (props: TokenCardInfoProps) => {
     const priceChangeColor = priceChangePercent > 0 ? green11 : red11;
 
     return (
-        <SimpleGrid columns={3} width="100%" padding="4" gap={2}>
-            <VStack textAlign="left">
-                <Text width="100%" color={gray10} fontSize="xs" lineHeight="4">
-                    Price
-                </Text>
+        <HStack
+            data-testid="SwapCardLatestPriceInfo"
+            width="100%"
+            gap="4"
+            margin="0 !important"
+        >
+            <VStack alignItems="flex-start" gap="2" minW="80px">
+                <HStack gap={1}>
+                    <Text fontSize="sm" lineHeight="4" color={gray10}>
+                        Price
+                    </Text>
+                    <InfoTooltip info="Latest on-chain price" color={gray10} />
+                </HStack>
                 <Skeleton
                     width="100%"
                     startColor={gray3}
                     endColor={gray4}
                     borderRadius="lg"
                     isLoaded={isLoaded}
+                    margin="0 !important"
                 >
                     <Text
                         width="100%"
@@ -65,16 +76,23 @@ export const TokenCardInfo = (props: TokenCardInfoProps) => {
                     </Text>
                 </Skeleton>
             </VStack>
-            <VStack textAlign="left">
-                <Text width="100%" color={gray10} fontSize="xs" lineHeight="4">
-                    24h Changes
-                </Text>
+            <VStack alignItems="flex-start" gap="2">
+                <HStack gap={1}>
+                    <Text fontSize="sm" lineHeight="4" color={gray10}>
+                        24h Price Change
+                    </Text>
+                    <InfoTooltip
+                        info="Based on yesterday open price"
+                        color={gray10}
+                    />
+                </HStack>
                 <Skeleton
                     width="100%"
                     startColor={gray3}
                     endColor={gray4}
                     borderRadius="lg"
                     isLoaded={isLoaded}
+                    margin="0 !important"
                 >
                     <HStack width="100%" color={priceChangeColor} spacing="1">
                         <Center>{priceChangeIcon}</Center>
@@ -88,35 +106,19 @@ export const TokenCardInfo = (props: TokenCardInfoProps) => {
                                 fontFamily="mono"
                                 margin="0 !important"
                             >
-                                {priceChangePercent?.toFixed(2)}%
+                                {priceChangePercent > 0 ? "+" : ""}
+                                {formatUSD(priceChangeUSD)} (
+                                {priceChangePercent > 0
+                                    ? priceChangePercent?.toFixed(2)
+                                    : (priceChangePercent * -1).toFixed(2)}
+                                %)
                             </Text>
                         </Center>
                     </HStack>
                 </Skeleton>
             </VStack>
-            <VStack textAlign="left">
-                <Text width="100%" color={gray10} fontSize="xs" lineHeight="4">
-                    Market Cap
-                </Text>
-                <Skeleton
-                    width="100%"
-                    startColor={gray3}
-                    endColor={gray4}
-                    borderRadius="lg"
-                    isLoaded={isLoaded}
-                >
-                    <Text
-                        width="100%"
-                        fontSize="sm"
-                        fontWeight="semibold"
-                        lineHeight="4"
-                        letterSpacing="tight"
-                        fontFamily="mono"
-                    >
-                        {formatUSD(marketCap)}
-                    </Text>
-                </Skeleton>
-            </VStack>
-        </SimpleGrid>
+        </HStack>
     );
 };
+
+export default SwapCardLatestPriceInfo;
