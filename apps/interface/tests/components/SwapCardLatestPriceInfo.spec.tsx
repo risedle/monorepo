@@ -1,17 +1,15 @@
-import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 
-import "../utils/window.ResizeObserver.mock.ts";
-import { TokenCardInfo } from "../../components/TokenCardInfo";
+import SwapCardLatestPriceInfo from "../../components/SwapCard/LatestPriceInfo";
 
-describe("<TokenCardInfo />", () => {
+describe("<SwapCardLatestPriceInfo />", () => {
     describe("Given positive price change", () => {
         it("should render up icon", () => {
             render(
-                <TokenCardInfo
+                <SwapCardLatestPriceInfo
                     price={10}
                     priceChangePercent={10}
-                    marketCap={20}
+                    priceChangeUSD={20}
                 />
             );
             const up = screen.queryByTestId("ArrowUpIcon");
@@ -24,10 +22,10 @@ describe("<TokenCardInfo />", () => {
     describe("Given negative price change", () => {
         it("should render up icon", () => {
             render(
-                <TokenCardInfo
+                <SwapCardLatestPriceInfo
                     price={10}
                     priceChangePercent={-10}
-                    marketCap={20}
+                    priceChangeUSD={20}
                 />
             );
             const up = screen.queryByTestId("ArrowUpIcon");

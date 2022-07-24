@@ -1,8 +1,8 @@
 import { Icon, IconProps } from "@chakra-ui/react";
 
-export const PriceUpIcon = (props: IconProps) => {
+export const ArrowUpIcon = (props: IconProps) => {
     return (
-        <Icon data-testid="PriceUpIcon" viewBox="0 0 16 16" {...props}>
+        <Icon data-testid="ArrowUpIcon" viewBox="0 0 16 16" {...props}>
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -12,3 +12,5 @@ export const PriceUpIcon = (props: IconProps) => {
         </Icon>
     );
 };
+
+export default ArrowUpIcon;

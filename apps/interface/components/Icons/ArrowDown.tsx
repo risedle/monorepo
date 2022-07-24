@@ -1,8 +1,8 @@
 import { Icon, IconProps } from "@chakra-ui/react";
 
-export const PriceDownIcon = (props: IconProps) => {
+export const ArrowDownIcon = (props: IconProps) => {
     return (
-        <Icon data-testid="PriceDownIcon" viewBox="0 0 16 16" {...props}>
+        <Icon data-testid="ArrowDownIcon" viewBox="0 0 16 16" {...props}>
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -12,3 +12,5 @@ export const PriceDownIcon = (props: IconProps) => {
         </Icon>
     );
 };
+
+export default ArrowDownIcon;
