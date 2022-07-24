@@ -1,5 +1,6 @@
-import flt from "../../src/services/flt";
 import { ChainId } from "@risedle/types";
+
+import flt from "../../src/services/flt";
 
 describe("GetFuseLeveragedTokenBySymbol()", () => {
     describe("given random chainId", () => {

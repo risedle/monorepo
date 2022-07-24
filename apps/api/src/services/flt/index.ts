@@ -1,6 +1,7 @@
 import { ChainId } from "@risedle/types";
 
 import GetFuseLeveragedTokenBySymbol from "./GetFuseLeveragedTokenBySymbol";
+import GetFuseLeveragedTokenUserPositionById from "./GetFuseLeveragedTokenUserPositionById";
 
 // prettier-ignore
 const BSC_GRAPH = "https://api.thegraph.com/subgraphs/name/risedle/risedle-flt-bsc";
@@ -19,6 +20,7 @@ export function getGraphEndpointByChainId(chainId: ChainId): string {
 
 const services = {
     GetFuseLeveragedTokenBySymbol,
+    GetFuseLeveragedTokenUserPositionById,
 };
 
 export default services;

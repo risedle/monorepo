@@ -22,6 +22,8 @@ jobs:
         with:
           node-version: "17.8.0"
           cache: "npm"
+      - name: Remove prepare script
+        run: npm pkg delete scripts.prepare
       - name: Install dependencies
         run: npm install
       - name: Build
