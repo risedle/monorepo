@@ -24,6 +24,8 @@ jobs:
           cache: "npm"
       - name: Remove prepare script
         run: npm pkg delete scripts.prepare
+      - name: Remove postinstall script
+        run: npm pkg delete scripts.postinstall
       - name: Install dependencies
         run: npm install
       - name: Build
