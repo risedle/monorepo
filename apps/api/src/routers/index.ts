@@ -37,7 +37,7 @@ router.get(
 router.get(
     "/:chainId/positions/:positionId",
     fltsController.GetFuseLeveragedTokensByChainIdValidation,
-    fltsController.GetUserPositionById
+    flt.GetFuseLeveragedTokenUserPositionById
 );
 
 export { router };

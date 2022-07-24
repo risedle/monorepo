@@ -1,7 +1,9 @@
 import GetFuseLeveragedTokenBySymbol from "./GetFuseLeveragedTokenBySymbol";
+import GetFuseLeveragedTokenUserPositionById from "./GetFuseLeveragedTokenUserPositionById";
 
-const routers = {
+const controllers = {
     GetFuseLeveragedTokenBySymbol,
+    GetFuseLeveragedTokenUserPositionById,
 };
 
-export default routers;
+export default controllers;
