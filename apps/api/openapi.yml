@@ -198,6 +198,37 @@ paths:
         500:
           description: Internal server error
 
+  /v1/{chainId}/positions/{positionId}:
+    get:
+      tags:
+        - Fuse Leveraged Token
+      operationId: GetFuseLeveragedTokenUserOpenPosition
+      summary: |
+        Get user's open position by the position ID
+      parameters:
+        - in: path
+          name: chainId
+          schema:
+            $ref: "#/components/schemas/ChainId"
+          required: true
+        - in: path
+          name: positionId
+          description: "user address - flt address"
+          type: string
+          example: "0x1418be4753a22b69b613fa8b8144d856c023d46b-0x4f7255178b8f15c2cbe92d09b8a77b53ef4ec9ea"
+          required: true
+      responses:
+        200:
+          description: User's open position
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FuseLeveragedTokenUserOpenPosition"
+        404:
+          description: Chain ID not supported
+        500:
+          description: Internal server error
+
 components:
   schemas:
     Address:
@@ -422,3 +453,24 @@ components:
         valueUSD:
           description: Price at given timestamp
           $ref: "#/components/schemas/USD"
+
+    FuseLeveragedTokenUserOpenPosition:
+      description: User's open position
+      type: object
+      properties:
+        balance:
+          description: Current Fuse Leveraged Token Balance
+          type: number
+          format: float
+          example: 0.6
+        usd:
+          description: USD value
+          $ref: "#/components/schemas/USD"
+        pnlUSD:
+          description: Open p/l in USD
+          $ref: "#/components/schemas/USD"
+        pnlPercent:
+          description: Open p/l in percentage
+          type: number
+          format: float
+          example: 10.03

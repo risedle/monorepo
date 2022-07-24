@@ -162,6 +162,25 @@ const queryFuseLeveragedTokenBackingsBySymbol = gql`
     }
 `;
 
+const queryUserPositionById = gql`
+    query getOpenPosition($id: ID!) {
+        position: openPosition(id: $id) {
+            flt {
+                price: fltHourData(
+                    first: 1
+                    orderBy: periodStartUnix
+                    orderDirection: desc
+                ) {
+                    timestamp: periodStartUnix
+                    close
+                }
+            }
+            amount
+            amountUSD
+        }
+    }
+`;
+
 // prettier-ignore
 const BSC_GRAPH = "https://api.thegraph.com/subgraphs/name/risedle/risedle-flt-bsc";
 
@@ -318,6 +337,13 @@ interface FuseLeveragedTokenBackings {
     backings: Array<FuseLeveragedTokenBacking>;
 }
 
+interface FuseLeveragedTokenUserPosition {
+    balance: number;
+    usd: number; // usd value of current balance
+    pnlUSD: number; // open p/l in USD
+    pnlPercent: number; // open p/l in percentage
+}
+
 /**
  * Get Fuse Leveraged Token historical prices, volumes and fees by symbol
  */
@@ -438,12 +464,36 @@ export async function getFuseLeveragedTokenBackingsBySymbol(
     return { backings };
 }
 
+/**
+ * Get user position by id
+ */
+export async function getUserPositionById(
+    chainId: ChainId,
+    positionId: string
+): Promise<FuseLeveragedTokenUserPosition | undefined> {
+    // Get data from the graph
+    const endpoint = getGraphEndpointByChainId(chainId);
+    const filter = positionId.toLowerCase();
+    const data = await grequest(endpoint, queryUserPositionById, {
+        id: filter,
+    });
+    if (data.position == null) return undefined;
+    const balance = parseFloat(data.position.amount);
+    const price = parseFloat(data.position.flt.price[0].close);
+    const usd = balance * price;
+    const principal = parseFloat(data.position.amountUSD);
+    const pnlUSD = usd - principal;
+    const pnlPercent = (pnlUSD / principal) * 100;
+    return { balance, usd, pnlUSD, pnlPercent };
+}
+
 const flts = {
     getFuseLeveragedTokensByChainId,
     getFuseLeveragedTokenBySymbol,
     getFuseLeveragedTokenChartsBySymbol,
     getFuseLeveragedTokenSwapsBySymbol,
     getFuseLeveragedTokenBackingsBySymbol,
+    getUserPositionById,
 };
 
 export default flts;
