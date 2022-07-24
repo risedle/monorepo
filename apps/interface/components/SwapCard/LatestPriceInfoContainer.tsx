@@ -1,3 +1,6 @@
+import { BoxProps } from "@chakra-ui/react";
+
+// Sub-components
 import { SwapCardLatestPriceInfo } from "./LatestPriceInfo";
 import { useFuseLeveragedTokenInfo } from "../../hooks/useFuseLeveragedTokenInfo";
 
@@ -5,7 +8,7 @@ import { useFuseLeveragedTokenInfo } from "../../hooks/useFuseLeveragedTokenInfo
  * Container is a special component that handle state such as fething data from API
  */
 
-interface SwapCardLatestPriceInfoContainerProps {
+interface SwapCardLatestPriceInfoContainerProps extends BoxProps {
     symbol: string;
 }
 
@@ -24,6 +27,7 @@ export const SwapCardLatestPriceInfoContainer = (
             priceChangeUSD={data?.dailyPriceChangeUSD || 0}
             priceChangePercent={data?.dailyPriceChangePercentage || 0}
             isLoaded={isLoaded}
+            {...props}
         />
     );
 };

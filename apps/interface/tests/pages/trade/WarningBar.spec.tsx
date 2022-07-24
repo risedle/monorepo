@@ -25,7 +25,7 @@ describe("Given a user visit /", () => {
             getBaseConfig.mockImplementation(() => {
                 return { chainId: 1234, supportedChains: [] };
             });
-            render(<Trade />);
+            render(<Trade prices={[]} />);
         });
 
         it("WarningBar should render default icons", async () => {
@@ -49,7 +49,7 @@ describe("Given a user visit /", () => {
                 .mockImplementation(() => {
                     return { chainId: 56, supportedChains: [] };
                 });
-            render(<Trade />);
+            render(<Trade prices={[]} />);
         });
 
         it("WarningBar should render BSC icons", async () => {

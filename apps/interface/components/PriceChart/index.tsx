@@ -8,13 +8,13 @@ import {
     useColorModeValue,
 } from "@chakra-ui/react";
 
-import { TokenCardChartProps, TokenCardChart } from "./chart";
+import { PriceChartLine, PriceChartLineProps } from "./Line";
 
-interface TokenCardChartsProps {
-    timeframes: Record<string, TokenCardChartProps>;
+interface PriceChartProps {
+    timeframes: Record<string, PriceChartLineProps>;
 }
 
-export const TokenCardCharts = (props: TokenCardChartsProps) => {
+export const PriceChart = (props: PriceChartProps) => {
     // Data
     const { timeframes } = props;
 
@@ -54,13 +54,13 @@ export const TokenCardCharts = (props: TokenCardChartsProps) => {
         const [id, chartProp] = timeframe;
         return (
             <TabPanel padding="0" key={id}>
-                <TokenCardChart {...chartProp} />
+                <PriceChartLine {...chartProp} />
             </TabPanel>
         );
     });
 
     return (
-        <Tabs defaultIndex={2} width="100%" marginTop="0 !important">
+        <Tabs defaultIndex={0} width="100%" marginTop="0 !important">
             <TabPanels>{panels}</TabPanels>
             <TabList borderBottom="0" paddingX="4" marginTop="2">
                 <SimpleGrid width="100%" columns={tabs.length} gap="2">
@@ -70,3 +70,5 @@ export const TokenCardCharts = (props: TokenCardChartsProps) => {
         </Tabs>
     );
 };
+
+export default PriceChart;

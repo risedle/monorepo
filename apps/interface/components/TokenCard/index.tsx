@@ -9,7 +9,7 @@ import {
 import type { FuseLeveragedToken } from "../../utils/types";
 
 import { TokenCardTitle } from "./title";
-import { TokenCardCharts } from "./charts";
+import PriceChart from "../PriceChart";
 import { TokenCardInfoContainer } from "../TokenCardInfo/container";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -51,7 +51,7 @@ export const TokenCard = (props: TokenCardProps) => {
             <TokenCardTitle name={name} symbol={symbol} />
 
             {/* Show price chart */}
-            <TokenCardCharts timeframes={timeframes} />
+            <PriceChart timeframes={timeframes} />
 
             {/* Show description */}
             <Text
