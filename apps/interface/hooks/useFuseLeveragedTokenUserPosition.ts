@@ -14,7 +14,9 @@ export function useFuseLeveragedTokenUserPosition(
     const positionId = `${userAddress}-${fltAddress}`;
     // Set URL to null in order to prevent the request
     // https://swr.vercel.app/docs/conditional-fetching#dependent
-    const url = `https://api.risedle.com/v1/${chainId}/positions/${positionId}`;
+    const url = userAddress
+        ? `https://api.risedle.com/v1/${chainId}/positions/${positionId}`
+        : null;
     const { data, error } = useSWR<FuseLeveragedTokenUserPosition, Error>(
         url,
         fetcher
@@ -22,7 +24,7 @@ export function useFuseLeveragedTokenUserPosition(
 
     return {
         data: data,
-        isLoaded: data ? true : false,
+        isLoaded: data || userAddress == null ? true : false,
         error: error,
     };
 }
