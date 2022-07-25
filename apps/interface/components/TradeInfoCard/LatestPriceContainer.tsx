@@ -1,19 +1,19 @@
 import { BoxProps } from "@chakra-ui/react";
 
 // Sub-components
-import { SwapCardLatestPriceInfo } from "./LatestPriceInfo";
+import { TradeInfoCardLatestPrice } from "./LatestPrice";
 import { useFuseLeveragedTokenInfo } from "../../hooks/useFuseLeveragedTokenInfo";
 
 /**
  * Container is a special component that handle state such as fething data from API
  */
 
-interface SwapCardLatestPriceInfoContainerProps extends BoxProps {
+interface TradeInfoCardLatestPriceContainerProps extends BoxProps {
     symbol: string;
 }
 
-export const SwapCardLatestPriceInfoContainer = (
-    props: SwapCardLatestPriceInfoContainerProps
+export const TradeInfoCardLatestPriceContainer = (
+    props: TradeInfoCardLatestPriceContainerProps
 ) => {
     // Data
     const { symbol } = props;
@@ -22,7 +22,7 @@ export const SwapCardLatestPriceInfoContainer = (
     // TODO(pyk): show toast when error happen
 
     return (
-        <SwapCardLatestPriceInfo
+        <TradeInfoCardLatestPrice
             price={data?.priceUSD || 0}
             priceChangeUSD={data?.dailyPriceChangeUSD || 0}
             priceChangePercent={data?.dailyPriceChangePercentage || 0}
@@ -32,4 +32,4 @@ export const SwapCardLatestPriceInfoContainer = (
     );
 };
 
-export default SwapCardLatestPriceInfoContainer;
+export default TradeInfoCardLatestPriceContainer;

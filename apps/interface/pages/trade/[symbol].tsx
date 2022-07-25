@@ -12,7 +12,7 @@ import { NavigationBar } from "../../components/NavigationBar";
 import { FooterBar } from "../../components/FooterBar";
 import { NavigationBarBottom } from "../../components/NavigationBarBottom";
 import { BackgroundGradient } from "../../components/BackgroundGradient";
-import { SwapCard } from "../../components/SwapCard";
+import { TradeInfoCard } from "../../components/TradeInfoCard";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface TradeProps extends FuseLeveragedToken {}
@@ -34,7 +34,7 @@ const Trade: NextPage<TradeProps, unknown> = (props) => {
                     margin="auto"
                     maxW={{ base: "400px", laptop: "730px", desktop: "100%" }}
                 >
-                    <SwapCard {...props} />
+                    <TradeInfoCard {...props} />
                     <Box>1</Box>
                     <Box>1</Box>
                 </SimpleGrid>

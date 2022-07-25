@@ -22,7 +22,7 @@ describe("<TokenCardInfo />", () => {
     });
 
     describe("Given negative price change", () => {
-        it("should render up icon", () => {
+        it("should render down icon", () => {
             render(
                 <TokenCardInfo
                     price={10}

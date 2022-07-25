@@ -35,3 +35,5 @@ export const renderApp = (
 ) => {
     return render(component, { wrapper: Wrapper, ...options });
 };
+
+export default renderApp;

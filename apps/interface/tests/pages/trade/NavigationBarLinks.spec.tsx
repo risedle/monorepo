@@ -1,6 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import nextRouter from "next/router";
 
+import renderApp from "../../utils/renderApp";
 import Trade from "../../../pages/trade/[symbol]";
 
 afterEach(() => {
@@ -15,7 +16,7 @@ describe("Given a user visit /", () => {
             route: "/trade/ethrise",
             pathname: "/trade/ethrise",
         }));
-        render(<Trade prices={[]} />);
+        renderApp(<Trade prices={[]} />);
     });
 
     it("NavigationBar should be rendered", () => {
