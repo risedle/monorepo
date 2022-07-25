@@ -15,7 +15,6 @@ export const TradeInfoCardUserPositionContainer = (
     props: TradeInfoCardUserPositionProps
 ) => {
     const { fltAddress, ...boxProps } = props;
-    console.log("DEBUG: TradeInfoCardUserPositionContainer", fltAddress);
 
     // Get connected user
     const { address } = useAccount();

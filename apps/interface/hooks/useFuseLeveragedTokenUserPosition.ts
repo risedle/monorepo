@@ -7,11 +7,15 @@ import { fetcher } from "../utils/fetcher";
 // Get list of markets using SWR
 export function useFuseLeveragedTokenUserPosition(
     fltAddress: string,
-    userAddress: string
+    userAddress: string | undefined
 ) {
     const { chainId } = getBaseConfig();
     const positionId = `${userAddress}-${fltAddress}`;
-    const url = `https://api.risedle.com/v1/${chainId}/positions/${positionId}`;
+    // Set URL to null in order to prevent the request
+    // https://swr.vercel.app/docs/conditional-fetching#dependent
+    const url = userAddress
+        ? `https://api.risedle.com/v1/${chainId}/positions/${positionId}`
+        : null;
     const { data, error } = useSWR<FuseLeveragedTokenUserPosition, Error>(
         url,
         fetcher

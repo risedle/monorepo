@@ -3,7 +3,6 @@ import {
     HStack,
     Text,
     Flex,
-    Box,
     BoxProps,
     Circle,
     Skeleton,
@@ -24,7 +23,7 @@ import ArrowDownIcon from "../Icons/ArrowDown";
 
 import InfoTooltip from "../InfoTooltip";
 
-interface TradeInfoCardUserPosition extends BoxProps {
+interface TradeInfoCardUserPositionProps extends BoxProps {
     balance: number;
     valueUSD: number;
     pnlPercent: number;
@@ -32,7 +31,9 @@ interface TradeInfoCardUserPosition extends BoxProps {
     isLoaded: boolean;
 }
 
-export const TradeInfoCardUserPosition = (props: BoxProps) => {
+export const TradeInfoCardUserPosition = (
+    props: TradeInfoCardUserPositionProps
+) => {
     const { balance, valueUSD, pnlPercent, pnlUSD, isLoaded, ...boxProps } =
         props;
     const { chainSlug } = getBaseConfig();
