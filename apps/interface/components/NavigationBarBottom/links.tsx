@@ -280,12 +280,13 @@ export const NavigationBarBottomLinks = (props: ButtonProps) => {
                     </MenuList>
                     {/* Backdrop blur */}
                     <Box
-                        data-testid="ChainSwitcherPopupBackground"
+                        data-testid="NavigationBarBottomLinksPopupBackground"
                         position="fixed"
                         width="100%"
                         height="100%"
                         left="0"
                         top="0"
+                        margin="0"
                         background={blur}
                         backdropFilter="blur(12px)"
                         zIndex="10"
