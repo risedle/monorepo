@@ -91,7 +91,7 @@ function App({ Component, pageProps }: AppProps) {
                     site_name: "Risedle",
                     images: [
                         {
-                            url: "https://risedle.com/assets/images/og/Landing.png",
+                            url: "/opengraph/LandingBSC.png",
                         },
                     ],
                 }}
