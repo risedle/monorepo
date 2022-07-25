@@ -1,17 +1,18 @@
-import { VStack, useColorModeValue } from "@chakra-ui/react";
+import { VStack, Box, Divider, useColorModeValue } from "@chakra-ui/react";
 
 import { FuseLeveragedToken } from "../../utils/types";
 
-import SwapCardTitle from "./Title";
-import SwapCardLatestPriceInfoContainer from "./LatestPriceInfoContainer";
+import TradeInfoCardTitle from "./Title";
+import TradeInfoCardLatestPriceContainer from "./LatestPriceContainer";
 import PriceChart from "../PriceChart";
+import TradeInfoCardUserPositionContainer from "./UserPositionContainer";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface SwapProps extends FuseLeveragedToken {}
+interface TradeInfoCardProps extends FuseLeveragedToken {}
 
-export const SwapCard = (props: SwapProps) => {
+export const TradeInfoCard = (props: TradeInfoCardProps) => {
     // Data
-    const { name, symbol, prices } = props;
+    const { name, symbol, prices, address } = props;
 
     // Create timeframes
     const chartPrices = prices.map((price) => ({
@@ -28,17 +29,18 @@ export const SwapCard = (props: SwapProps) => {
 
     // Styles
     const gray2 = useColorModeValue("gray.light.2", "gray.dark.2");
+    const gray5 = useColorModeValue("gray.light.5", "gray.dark.5");
 
     return (
         <VStack
-            data-testid="SwapCard"
+            data-testid="TradeInfoCard"
             alignItems="flex-start"
             background={gray2}
             borderRadius="2xl"
             gap={4}
         >
             {/* Swap Card Title */}
-            <SwapCardTitle
+            <TradeInfoCardTitle
                 name={name}
                 symbol={symbol}
                 paddingX="4"
@@ -46,12 +48,23 @@ export const SwapCard = (props: SwapProps) => {
             />
 
             {/* Swap Card Latest Price Info */}
-            <SwapCardLatestPriceInfoContainer symbol={symbol} paddingX="4" />
+            <TradeInfoCardLatestPriceContainer symbol={symbol} paddingX="4" />
 
             {/* Show price chart */}
             <PriceChart timeframes={timeframes} />
+
+            <Box width="100%" paddingX="4" margin="0 !important">
+                <Divider borderStyle="dashed" borderColor={gray5} />
+            </Box>
+
+            {/* Show user position */}
+            <TradeInfoCardUserPositionContainer
+                paddingX="4"
+                paddingBottom="4"
+                fltAddress={address}
+            />
         </VStack>
     );
 };
 
-export default SwapCard;
+export default TradeInfoCard;

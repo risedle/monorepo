@@ -1,12 +1,12 @@
 import { render, screen } from "@testing-library/react";
 
-import SwapCardLatestPriceInfo from "../../components/SwapCard/LatestPriceInfo";
+import TradeInfoCardLatestPrice from "../../components/TradeInfoCard/LatestPrice";
 
-describe("<SwapCardLatestPriceInfo />", () => {
+describe("<TradeInfoCardLatestPrice />", () => {
     describe("Given positive price change", () => {
         it("should render up icon", () => {
             render(
-                <SwapCardLatestPriceInfo
+                <TradeInfoCardLatestPrice
                     price={10}
                     priceChangePercent={10}
                     priceChangeUSD={20}
@@ -22,7 +22,7 @@ describe("<SwapCardLatestPriceInfo />", () => {
     describe("Given negative price change", () => {
         it("should render up icon", () => {
             render(
-                <SwapCardLatestPriceInfo
+                <TradeInfoCardLatestPrice
                     price={10}
                     priceChangePercent={-10}
                     priceChangeUSD={20}

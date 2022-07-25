@@ -16,18 +16,24 @@ import ArrowDownIcon from "../Icons/ArrowDown";
 import ArrowUpIcon from "../Icons/ArrowUp";
 import InfoTooltip from "../InfoTooltip";
 
-interface SwapCardLatestPriceInfoProps extends BoxProps {
+interface TradeInfoCardLatestPriceProps extends BoxProps {
     price: number;
     priceChangeUSD: number;
     priceChangePercent: number;
     isLoaded?: boolean;
 }
 
-export const SwapCardLatestPriceInfo = (
-    props: SwapCardLatestPriceInfoProps
+export const TradeInfoCardLatestPrice = (
+    props: TradeInfoCardLatestPriceProps
 ) => {
     // Data
-    const { price, priceChangeUSD, priceChangePercent, isLoaded } = props;
+    const {
+        price,
+        priceChangeUSD,
+        priceChangePercent,
+        isLoaded,
+        ...boxProps
+    } = props;
 
     // Styles
     const gray3 = useColorModeValue("gray.light.3", "gray.dark.3");
@@ -44,11 +50,11 @@ export const SwapCardLatestPriceInfo = (
 
     return (
         <HStack
-            data-testid="SwapCardLatestPriceInfo"
+            data-testid="TradeInfoCardLatestPrice"
             width="100%"
             gap="4"
             margin="0 !important"
-            {...props}
+            {...boxProps}
         >
             <VStack alignItems="flex-start" gap="2" minW="80px">
                 <HStack gap={1}>
@@ -123,4 +129,4 @@ export const SwapCardLatestPriceInfo = (
     );
 };
 
-export default SwapCardLatestPriceInfo;
+export default TradeInfoCardLatestPrice;

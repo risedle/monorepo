@@ -11,12 +11,12 @@ import {
 import ChainIcon from "../Icons/Chain";
 import FuseLeveragedTokenIcon from "../Icons/FuseLeveragedToken";
 
-interface SwapCardTitleProps extends BoxProps {
+interface TradeInfoCardTitleProps extends BoxProps {
     name: string;
     symbol: string;
 }
 
-export const SwapCardTitle = (props: SwapCardTitleProps) => {
+export const TradeInfoCardTitle = (props: TradeInfoCardTitleProps) => {
     // Data
     const { name, symbol } = props;
 
@@ -25,7 +25,7 @@ export const SwapCardTitle = (props: SwapCardTitleProps) => {
     const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
 
     return (
-        <Flex data-testid="SwapCardTitle" width="100%" {...props}>
+        <Flex data-testid="TradeInfoCardTitle" width="100%" {...props}>
             <VStack alignItems="flex-start" gap="2">
                 <Text fontSize="sm" lineHeight="4" color={gray10}>
                     {name}
@@ -54,4 +54,4 @@ export const SwapCardTitle = (props: SwapCardTitleProps) => {
     );
 };
 
-export default SwapCardTitle;
+export default TradeInfoCardTitle;
