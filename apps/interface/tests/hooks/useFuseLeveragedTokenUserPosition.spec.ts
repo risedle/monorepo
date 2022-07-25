@@ -4,6 +4,15 @@ import * as SWR from "swr";
 import useFuseLeveragedTokenUserPosition from "../../hooks/useFuseLeveragedTokenUserPosition";
 
 describe("useFuseLeveragedTokenUserPosition", () => {
+    describe("Given undefined userAddress", () => {
+        it("should return isLoaded=true", async () => {
+            const { result } = renderHook(() =>
+                useFuseLeveragedTokenUserPosition("test", undefined)
+            );
+            expect(result.current.isLoaded).toBe(true);
+        });
+    });
+
     describe("Given succesfull response", () => {
         it("should return isLoaded=true", async () => {
             const mock = jest.spyOn(SWR, "default");

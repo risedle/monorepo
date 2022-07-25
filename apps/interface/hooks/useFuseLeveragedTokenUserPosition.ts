@@ -23,7 +23,7 @@ export function useFuseLeveragedTokenUserPosition(
 
     return {
         data: data,
-        isLoaded: data ? true : false,
+        isLoaded: data || userAddress == null ? true : false,
         error: error,
     };
 }
