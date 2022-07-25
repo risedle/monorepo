@@ -9,7 +9,6 @@ export function useFuseLeveragedTokenUserPosition(
     fltAddress: string,
     userAddress: string | undefined
 ) {
-    // Return early if user addy is undefined
     const { chainId } = getBaseConfig();
     const positionId = `${userAddress}-${fltAddress}`;
     // Set URL to null in order to prevent the request
