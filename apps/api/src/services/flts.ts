@@ -23,6 +23,7 @@ const queryFuseLeveragedTokens = gql`
                 totalDebt
             }
             totalVolumeUSD
+            maxSupply
             collateral {
                 name
                 symbol
@@ -152,6 +153,7 @@ function getFuseLeveragedTokenInfo(flt: any): FuseLeveragedTokenInfo {
     const currentVol = parseFloat(flt.dailyData[0].tradeVolumeUSD);
     const prevVol = parseFloat(flt.dailyData[1].tradeVolumeUSD);
     const totalSupply = parseFloat(flt.dailyData[0].totalSupply);
+    const maxSupply = parseFloat(flt.dailyData[0].maxSupply);
     const totalCollateral = parseFloat(flt.dailyData[0].totalCollateral);
     const totalDebt = parseFloat(flt.dailyData[0].totalDebt);
     const collateralPerShare = parseFloat(flt.dailyData[0].collateralPerShare);
@@ -162,6 +164,7 @@ function getFuseLeveragedTokenInfo(flt: any): FuseLeveragedTokenInfo {
     const volChangeUSD = currentVol - prevVol;
     const volChangePercentage = (volChangeUSD / prevVol) * 100 || 0;
     const marketcapUSD = totalSupply * currentPrice;
+    const maxMarketcapUSD = maxSupply * currentPrice;
 
     return {
         name: flt.name,
@@ -175,6 +178,7 @@ function getFuseLeveragedTokenInfo(flt: any): FuseLeveragedTokenInfo {
         dailyVolumeChangeUSD: volChangeUSD,
         dailyVolumeChangePercentage: volChangePercentage,
         marketcapUSD: marketcapUSD,
+        maxMarketcapUSD,
         collateral: {
             name: flt.collateral.name,
             symbol: flt.collateral.symbol,
