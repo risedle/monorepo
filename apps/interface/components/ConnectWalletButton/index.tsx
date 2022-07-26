@@ -2,7 +2,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Box, BoxProps, Button, Icon, IconProps } from "@chakra-ui/react";
 
 import { getBaseConfig } from "../../utils/getBaseConfig";
-import BlueIndicator from "../Icons/BlueIndicator";
+import BlueIndicatorIcon from "../Icons/BlueIndicator";
 
 // TODO(pyk): refactor this
 const RedIndicatorIcon = (props: IconProps) => {
@@ -114,7 +114,7 @@ export const ConnectWalletButton = (props: BoxProps) => {
                                     <Button
                                         onClick={openAccountModal}
                                         leftIcon={
-                                            <BlueIndicator w="6" h="6" />
+                                            <BlueIndicatorIcon w="6" h="6" />
                                         }
                                         width="100%"
                                     >

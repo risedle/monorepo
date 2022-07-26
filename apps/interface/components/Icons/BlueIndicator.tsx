@@ -1,6 +1,6 @@
 import { Icon, IconProps } from "@chakra-ui/react";
 
-export const BlueIndicator = (props: IconProps) => (
+export const BlueIndicatorIcon = (props: IconProps) => (
     <Icon
         data-testid="IndicatorIcon"
         viewBox="0 0 32 32"
@@ -50,4 +50,4 @@ export const BlueIndicator = (props: IconProps) => (
     </Icon>
 );
 
-export default BlueIndicator;
+export default BlueIndicatorIcon;
