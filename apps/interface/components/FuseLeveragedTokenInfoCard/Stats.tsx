@@ -15,8 +15,8 @@ import formatUSD from "../../utils/formatUSD";
 import InfoTooltip from "../InfoTooltip";
 
 interface FuseLeveragedTokenInfoCardStatsProps extends BoxProps {
-    marketCapUSD: number;
-    maxMarketCapUSD: number;
+    marketcapUSD: number;
+    maxMarketcapUSD: number;
     totalVolumeUSD: number;
     collateralSymbol: string;
     debtSymbol: string;
@@ -27,8 +27,8 @@ export const FuseLeveragedTokenInfoCardStats = (
 ) => {
     // Data
     const {
-        marketCapUSD,
-        maxMarketCapUSD,
+        marketcapUSD,
+        maxMarketcapUSD,
         collateralSymbol,
         debtSymbol,
         totalVolumeUSD,
@@ -79,7 +79,7 @@ export const FuseLeveragedTokenInfoCardStats = (
                             color={gray12}
                             minW="24"
                         >
-                            {formatUSD(marketCapUSD)}
+                            {formatUSD(marketcapUSD)}
                         </Text>
                     </Skeleton>
                 </VStack>
@@ -187,7 +187,7 @@ export const FuseLeveragedTokenInfoCardStats = (
                             margin="0 !important"
                             color={gray12}
                         >
-                            {formatUSD(maxMarketCapUSD)}
+                            {formatUSD(maxMarketcapUSD)}
                         </Text>
                     </Skeleton>
                 </VStack>
