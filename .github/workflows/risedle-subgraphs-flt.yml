@@ -33,6 +33,6 @@ jobs:
       - name: Install dependencies
         run: npm install -w=flt --ignore-scripts
       - name: Generate code
-        run: npm run graph:codegen
+        run: npm run codegen
       - name: Test
         run: npm run graph:test
