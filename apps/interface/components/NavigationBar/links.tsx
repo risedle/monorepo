@@ -9,7 +9,12 @@ export const NavigationBarLinks = () => {
                     Trade
                 </Text>
             </NavigationBarLink>
-            <NavigationBarLink to="/earn" data-testid="NavigationBarLinksEarn">
+            <NavigationBarLink
+                to="https://app.midascapital.xyz/56/pool/6"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="NavigationBarLinksEarn"
+            >
                 <Text fontWeight="normal" fontSize="sm" lineHeight="4">
                     Earn
                 </Text>
