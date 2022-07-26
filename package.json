@@ -36,11 +36,6 @@
         "turbo": "latest",
         "typescript": "4.7.3"
     },
-    "nextBundleAnalysis": {
-        "budget": 614400,
-        "budgetPercentIncreaseRed": 20,
-        "showDetails": true
-    },
     "engines": {
         "npm": ">=7.0.0",
         "node": ">=14.0.0"

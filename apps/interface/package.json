@@ -33,6 +33,11 @@
         "swr": "1.3.0",
         "wagmi": "0.5.11"
     },
+    "nextBundleAnalysis": {
+        "budget": 554400,
+        "budgetPercentIncreaseRed": 20,
+        "showDetails": true
+    },
     "devDependencies": {
         "@cypress/code-coverage": "3.10.0",
         "@next/bundle-analyzer": "12.2.2",
