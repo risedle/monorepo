@@ -1,4 +1,10 @@
-import { VStack, Box, Divider, useColorModeValue } from "@chakra-ui/react";
+import {
+    VStack,
+    Box,
+    BoxProps,
+    Divider,
+    useColorModeValue,
+} from "@chakra-ui/react";
 
 import { FuseLeveragedToken } from "../../utils/types";
 
@@ -8,11 +14,14 @@ import PriceChart from "../PriceChart";
 import TradeInfoCardUserPositionContainer from "./UserPositionContainer";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface TradeInfoCardProps extends FuseLeveragedToken {}
+interface TradeInfoCardProps extends BoxProps {
+    flt: FuseLeveragedToken;
+}
 
 export const TradeInfoCard = (props: TradeInfoCardProps) => {
     // Data
-    const { name, symbol, prices, address } = props;
+    const { flt, ...boxProps } = props;
+    const { name, symbol, prices, address } = flt;
 
     // Create timeframes
     const chartPrices = prices.map((price) => ({
@@ -38,6 +47,7 @@ export const TradeInfoCard = (props: TradeInfoCardProps) => {
             background={gray2}
             borderRadius="2xl"
             gap={4}
+            {...boxProps}
         >
             {/* Swap Card Title */}
             <TradeInfoCardTitle

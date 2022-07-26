@@ -5,6 +5,8 @@ interface Chain {
     chainName: string;
     baseURL: string;
     graphEndpoint: string;
+    explorerName: string;
+    explorerURL: string;
 }
 
 interface BaseConfig extends Chain {
@@ -17,6 +19,8 @@ const Arbitrum = {
     chainName: "Arbitrum",
     baseURL: "https://risedle.com/markets",
     graphEndpoint: "",
+    explorerName: "Arbiscan",
+    explorerURL: "https://arbiscan.io",
 };
 
 const BSC = {
@@ -26,6 +30,8 @@ const BSC = {
     baseURL: "https://bsc.risedle.com",
     graphEndpoint:
         "https://api.thegraph.com/subgraphs/name/risedle/risedle-flt-bsc",
+    explorerName: "BscScan",
+    explorerURL: "https://bscscan.com",
 };
 
 const supportedChains = [Arbitrum, BSC];
@@ -44,8 +50,4 @@ export function getBaseConfig(): BaseConfig {
     return { ...baseConfigs[chainSlug], supportedChains };
 }
 
-const config = {
-    getBaseConfig,
-};
-
-export default config;
+export default getBaseConfig;

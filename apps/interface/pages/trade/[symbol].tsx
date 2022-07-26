@@ -1,6 +1,6 @@
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import { NextSeo } from "next-seo";
-import { Container, SimpleGrid, Box } from "@chakra-ui/react";
+import { Container, Flex, Box, VStack } from "@chakra-ui/react";
 
 import { getBaseConfig } from "../../utils/getBaseConfig";
 import { fetchFuseLeveragedTokenSymbols } from "../../utils/fetchFuseLeveragedTokenSymbols";
@@ -13,6 +13,7 @@ import { FooterBar } from "../../components/FooterBar";
 import { NavigationBarBottom } from "../../components/NavigationBarBottom";
 import { BackgroundGradient } from "../../components/BackgroundGradient";
 import { TradeInfoCard } from "../../components/TradeInfoCard";
+import { FuseLeveragedTokenInfoCard } from "../../components/FuseLeveragedTokenInfoCard";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface TradeProps extends FuseLeveragedToken {}
@@ -28,16 +29,15 @@ const Trade: NextPage<TradeProps, unknown> = (props) => {
             <WarningBar />
             <NavigationBar />
             <Container maxW="1136px" py="3" data-testid="TradeContent">
-                <SimpleGrid
-                    columns={{ base: 1, laptop: 2 }}
-                    spacing="6"
-                    margin="auto"
-                    maxW={{ base: "400px", laptop: "730px", desktop: "100%" }}
-                >
-                    <TradeInfoCard {...props} />
-                    <Box>1</Box>
-                    <Box>1</Box>
-                </SimpleGrid>
+                <Flex>
+                    {/* Left Column */}
+                    <VStack flex="1" gap={6}>
+                        <TradeInfoCard flt={props} width="100%" />
+                        <FuseLeveragedTokenInfoCard flt={props} width="100%" />
+                    </VStack>
+                    {/* Right Column */}
+                    <Box flex="1">Test</Box>
+                </Flex>
             </Container>
             <FooterBar />
             <NavigationBarBottom />
