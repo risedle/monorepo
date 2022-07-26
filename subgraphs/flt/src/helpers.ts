@@ -87,6 +87,31 @@ function fetchFLTDebt(tokenAddress: Address): Address {
     return contract.debt();
 }
 
+function fetchMinLeverageRatio(tokenAddress: Address): BigInt {
+    let contract = FLTContract.bind(tokenAddress);
+    return contract.minLeverageRatio();
+}
+
+function fetchMaxLeverageRatio(tokenAddress: Address): BigInt {
+    let contract = FLTContract.bind(tokenAddress);
+    return contract.maxLeverageRatio();
+}
+
+function fetchMaxDrift(tokenAddress: Address): BigInt {
+    let contract = FLTContract.bind(tokenAddress);
+    return contract.maxDrift();
+}
+
+function fetchMaxIncentive(tokenAddress: Address): BigInt {
+    let contract = FLTContract.bind(tokenAddress);
+    return contract.maxIncentive();
+}
+
+function fetchMaxSupply(tokenAddress: Address): BigInt {
+    let contract = FLTContract.bind(tokenAddress);
+    return contract.maxSupply();
+}
+
 export function loadOrInitializeFLT(tokenAddress: Address): FLT {
     let flt = FLT.load(tokenAddress.toHexString());
     if (flt === null) {
@@ -108,6 +133,19 @@ export function loadOrInitializeFLT(tokenAddress: Address): FLT {
         let debtAddress = fetchFLTDebt(tokenAddress);
         let debt = loadOrInitializeToken(debtAddress);
         flt.debt = debt.id;
+
+        // Set params
+        flt.minLeverageRatio = convertETHToDecimal(
+            fetchMinLeverageRatio(tokenAddress)
+        );
+        flt.maxLeverageRatio = convertETHToDecimal(
+            fetchMaxLeverageRatio(tokenAddress)
+        );
+        flt.maxDrift = convertETHToDecimal(fetchMaxDrift(tokenAddress));
+        flt.maxIncentive = convertETHToDecimal(
+            fetchMaxIncentive(tokenAddress)
+        );
+        flt.maxSupply = convertETHToDecimal(fetchMaxSupply(tokenAddress));
 
         flt.totalVolume = ZERO_BD;
         flt.totalVolumeUSD = ZERO_BD;

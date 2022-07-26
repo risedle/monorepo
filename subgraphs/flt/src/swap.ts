@@ -1,5 +1,8 @@
 import { log, BigInt } from "@graphprotocol/graph-ts";
-import { Swap as SwapEvent } from "../generated/templates/FLT/FLT";
+import {
+    Swap as SwapEvent,
+    ParamsUpdated,
+} from "../generated/templates/FLT/FLT";
 import {
     Factory,
     Transaction,
@@ -197,4 +200,17 @@ export function handleSwap(event: SwapEvent): void {
     transaction.save();
     flt.save();
     swap.save();
+}
+
+export function handleParamsUpdated(event: ParamsUpdated): void {
+    let fltId = event.address.toHexString();
+    let flt = FLT.load(fltId)!;
+
+    flt.maxLeverageRatio = convertETHToDecimal(event.params.maxLeverageRatio);
+    flt.minLeverageRatio = convertETHToDecimal(event.params.minLeverageRatio);
+    flt.maxDrift = convertETHToDecimal(event.params.maxDrift);
+    flt.maxIncentive = convertETHToDecimal(event.params.maxIncentive);
+    flt.maxSupply = convertETHToDecimal(event.params.maxSupply);
+
+    flt.save();
 }

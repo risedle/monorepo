@@ -1,4 +1,4 @@
-name: "subgraphs/flt"
+name: "subgraphs-flt"
 
 on:
   push:

@@ -23,6 +23,13 @@ type FLT @entity {
     collateral: Token!
     debt: Token!
 
+    # Metadata
+    minLeverageRatio: BigDecimal!
+    maxLeverageRatio: BigDecimal!
+    maxDrift: BigDecimal!
+    maxIncentive: BigDecimal!
+    maxSupply: BigDecimal!
+
     # Sum of all trade data
     totalVolume: BigDecimal!
     totalVolumeUSD: BigDecimal!

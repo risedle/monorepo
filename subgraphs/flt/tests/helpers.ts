@@ -1,7 +1,10 @@
 import { newMockEvent } from "matchstick-as/assembly/index";
 import { ethereum, BigInt, Address } from "@graphprotocol/graph-ts";
 
-import { Swap as SwapEvent } from "../generated/templates/FLT/FLT";
+import {
+    Swap as SwapEvent,
+    ParamsUpdated,
+} from "../generated/templates/FLT/FLT";
 import { AnswerUpdated } from "../generated/AccessControlledOffchainAggregator/AccessControlledOffchainAggregator";
 import { TokenCreated } from "../generated/Factory/FLTFactory";
 
@@ -132,4 +135,51 @@ export function createAnswerUpdatedEvent(current: string): AnswerUpdated {
     newAnswerUpdated.parameters.push(updatedAtParam);
 
     return newAnswerUpdated;
+}
+
+export function createParamsUpdatedEvent(flt: string): ParamsUpdated {
+    let newParamsUpdated = changetype<ParamsUpdated>(newMockEvent());
+    newParamsUpdated.address = Address.fromString(flt);
+    newParamsUpdated.parameters = new Array();
+
+    // Build params
+    let minLeverageRatioParam = new ethereum.EventParam(
+        "minLeverageRatio",
+        ethereum.Value.fromUnsignedBigInt(
+            BigInt.fromString("1560000000000000000")
+        )
+    );
+    let maxLeverageRatioParam = new ethereum.EventParam(
+        "maxLeverageRatio",
+        ethereum.Value.fromUnsignedBigInt(
+            BigInt.fromString("2260000000000000000")
+        )
+    );
+    let maxDriftParam = new ethereum.EventParam(
+        "maxDrift",
+        ethereum.Value.fromUnsignedBigInt(
+            BigInt.fromString("340000000000000000")
+        )
+    );
+    let maxIncentiveParam = new ethereum.EventParam(
+        "maxIncentive",
+        ethereum.Value.fromUnsignedBigInt(
+            BigInt.fromString("197000000000000000")
+        )
+    );
+    let maxSupplyParam = new ethereum.EventParam(
+        "maxSupply",
+        ethereum.Value.fromUnsignedBigInt(
+            BigInt.fromString("123000000000000000000")
+        )
+    );
+
+    // Push the params
+    newParamsUpdated.parameters.push(maxLeverageRatioParam);
+    newParamsUpdated.parameters.push(minLeverageRatioParam);
+    newParamsUpdated.parameters.push(maxDriftParam);
+    newParamsUpdated.parameters.push(maxIncentiveParam);
+    newParamsUpdated.parameters.push(maxSupplyParam);
+
+    return newParamsUpdated;
 }

@@ -21,7 +21,10 @@ Then you can run the following:
 npm run codegen
 
 # To run the test
-npm run test
+npm run graph:test
+
+# Run test individually
+npm run graph:test -- flt
 ```
 
 ### Deploy
