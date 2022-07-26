@@ -86,6 +86,7 @@ describe("GET /v1/chainId/flts/symbol", () => {
                     token.dailyVolumeChangePercentage
                 ).toBeGreaterThanOrEqual(0);
                 expect(token.marketcapUSD).toBeGreaterThan(0);
+                expect(token.maxMarketcapUSD).toBeGreaterThan(0);
                 expect(token.totalCollateral).toBeGreaterThan(0);
                 expect(token.totalDebt).toBeGreaterThan(0);
                 expect(token.collateral.name).toEqual("Wrapped BNB");

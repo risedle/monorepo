@@ -320,6 +320,9 @@ components:
         marketcapUSD:
           description: Total supply times current price
           $ref: "#/components/schemas/USD"
+        maxMarketcapUSD:
+          description: Max supply times current price
+          $ref: "#/components/schemas/USD"
         collateral:
           description: Collateral of Fuse Leveraged Token
           $ref: "#/components/schemas/FuseLeveragedTokenBackingInfo"

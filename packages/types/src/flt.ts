@@ -17,6 +17,7 @@ export interface FuseLeveragedTokenInfo {
     dailyVolumeChangeUSD: number;
     dailyVolumeChangePercentage: number;
     marketcapUSD: number;
+    maxMarketcapUSD: number;
     collateral: FuseLeveragedTokenBackingInfo;
     debt: FuseLeveragedTokenBackingInfo;
     totalCollateral: number;

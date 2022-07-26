@@ -10,6 +10,7 @@ const queryFuseLeveragedTokenBySymbol = gql`
             symbol
             decimals
             address: id
+            maxSupply
             currentData: fltHourData(
                 first: 1
                 orderBy: periodStartUnix
@@ -86,7 +87,9 @@ export async function GetFuseLeveragedTokenBySymbol(
         (dailyVolumeChangeUSD / prevVolumeUSD) * 100 || 0;
 
     const totalSupply = parseFloat(flt.currentData[0].totalSupply);
+    const maxSupply = parseFloat(flt.maxSupply);
     const marketcapUSD = totalSupply * priceUSD;
+    const maxMarketcapUSD = maxSupply * priceUSD;
 
     const totalCollateral = parseFloat(flt.currentData[0].totalCollateral);
     const totalDebt = parseFloat(flt.currentData[0].totalDebt);
@@ -122,6 +125,7 @@ export async function GetFuseLeveragedTokenBySymbol(
         dailyVolumeChangeUSD,
         dailyVolumeChangePercentage,
         marketcapUSD,
+        maxMarketcapUSD,
         totalCollateral,
         totalDebt,
         collateral,
