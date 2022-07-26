@@ -43,7 +43,7 @@ export const HomeHeading = (props: HomeHeadingProps) => {
                     textAlign={{ base: "center", tablet: "left" }}
                     marginBottom={{ base: "6", tablet: "0" }}
                 >
-                    Leveraged Tokens
+                    Trade Leveraged Tokens
                 </Text>
                 <Spacer />
                 <HStack spacing="6" margin={{ base: "auto", tablet: 0 }}>
