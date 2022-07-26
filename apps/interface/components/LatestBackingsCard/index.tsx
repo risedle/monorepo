@@ -4,7 +4,6 @@ import {
     VStack,
     Text,
     Flex,
-    Divider,
     StackDivider,
     HStack,
 } from "@chakra-ui/react";
@@ -171,7 +170,7 @@ export const LatestBackingsCard = (props: LatestBackingsCardProps) => {
                                 data-testid="LatestBackingsCardCollateralAmount"
                             >
                                 {formatTokenBalance(
-                                    backing.collateralPerShare
+                                    parseFloat(backing.collateralPerShare)
                                 )}
                             </Text>
                         ))}
@@ -222,7 +221,9 @@ export const LatestBackingsCard = (props: LatestBackingsCardProps) => {
                                 key={backing.timestamp}
                                 data-testid="LatestBackingsCardDebtAmount"
                             >
-                                {formatTokenBalance(backing.debtPerShare)}
+                                {formatTokenBalance(
+                                    parseFloat(backing.debtPerShare)
+                                )}
                             </Text>
                         ))}
                     </VStack>

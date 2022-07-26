@@ -1,3 +1,14 @@
+export interface FuseLeveragedTokenDayData {
+    open: string;
+    close: string;
+    tradeVolumeUSD: string;
+    totalSupply: string;
+    collateralPerShare: string;
+    debtPerShare: string;
+    totalCollateral: string;
+    totalDebt: string;
+}
+
 export interface FuseLeveragedTokenPrice {
     timestamp: number;
     open: string;
@@ -42,6 +53,7 @@ export interface FuseLeveragedToken {
     collateral: FuseLeveragedTokenBackingInfo;
     debt: FuseLeveragedTokenBackingInfo;
     backings: Array<FuseLeveragedTokenBacking>;
+    dailyData: Array<FuseLeveragedTokenDayData>;
 }
 
 export interface FuseLeveragedTokens {

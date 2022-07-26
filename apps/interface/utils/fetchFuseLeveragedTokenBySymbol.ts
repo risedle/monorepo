@@ -21,6 +21,20 @@ const queryFuseLeveragedTokenBySymbol = gql`
             totalVolumeUSD
             minLeverageRatio
             maxLeverageRatio
+            dailyData: fltDayData(
+                orderBy: periodStartUnix
+                orderDirection: desc
+                first: 2
+            ) {
+                open
+                close
+                tradeVolumeUSD
+                totalSupply
+                collateralPerShare
+                debtPerShare
+                totalCollateral
+                totalDebt
+            }
             collateral {
                 name
                 symbol
