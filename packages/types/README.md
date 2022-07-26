@@ -1,5 +1,14 @@
 ## @risedle/types
 
+<div align="left">
+  <a href="https://www.npmjs.com/package/@risedle/types">
+    <img src="https://badgen.net/npm/v/@risedle/types?color=black&labelColor=black">
+  </a>
+  <a href="https://www.npmjs.com/package/@risedle/types">
+    <img src="https://badgen.net/badge/icon/Made%20By%20Risedle%20Labs?label&color=black&labelColor=black">
+  </a>
+</div>
+
 Type definitions used across Risedle apps and packages.
 
 ### Installation
