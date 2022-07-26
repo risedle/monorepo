@@ -38,6 +38,13 @@ describe("handleNewFLT()", () => {
             assert.stringEquals(flt.collateral, WETH);
             assert.stringEquals(flt.debt, USDC);
 
+            // Check params
+            assert.stringEquals(flt.minLeverageRatio.toString(), "1.4");
+            assert.stringEquals(flt.maxLeverageRatio.toString(), "2.4");
+            assert.stringEquals(flt.maxDrift.toString(), "0.4");
+            assert.stringEquals(flt.maxIncentive.toString(), "0.2");
+            assert.stringEquals(flt.maxSupply.toString(), "1000000");
+
             let collateral = Token.load(WETH)!;
             assert.stringEquals(collateral.symbol, "WETH");
             assert.bigIntEquals(collateral.decimals, BigInt.fromString("18"));

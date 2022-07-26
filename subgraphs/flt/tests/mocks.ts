@@ -49,6 +49,42 @@ createMockedFunction(
 
 createMockedFunction(
     Address.fromString(ETHRISE),
+    "minLeverageRatio",
+    "minLeverageRatio():(uint256)"
+).returns([
+    ethereum.Value.fromUnsignedBigInt(
+        BigInt.fromString("1400000000000000000")
+    ),
+]);
+
+createMockedFunction(
+    Address.fromString(ETHRISE),
+    "maxLeverageRatio",
+    "maxLeverageRatio():(uint256)"
+).returns([
+    ethereum.Value.fromUnsignedBigInt(
+        BigInt.fromString("2400000000000000000")
+    ),
+]);
+
+createMockedFunction(
+    Address.fromString(ETHRISE),
+    "maxDrift",
+    "maxDrift():(uint256)"
+).returns([
+    ethereum.Value.fromUnsignedBigInt(BigInt.fromString("400000000000000000")),
+]);
+
+createMockedFunction(
+    Address.fromString(ETHRISE),
+    "maxIncentive",
+    "maxIncentive():(uint256)"
+).returns([
+    ethereum.Value.fromUnsignedBigInt(BigInt.fromString("200000000000000000")),
+]);
+
+createMockedFunction(
+    Address.fromString(ETHRISE),
     "maxSupply",
     "maxSupply():(uint256)"
 ).returns([

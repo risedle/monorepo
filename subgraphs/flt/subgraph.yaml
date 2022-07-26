@@ -84,3 +84,5 @@ templates:
             Swap(indexed address,indexed address,indexed
             address,address,uint256,uint256,uint256,uint256)
           handler: handleSwap
+        - event: ParamsUpdated(uint256,uint256,uint256,uint256,uint256)
+          handler: handleParamsUpdated

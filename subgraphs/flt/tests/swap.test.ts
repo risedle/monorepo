@@ -54,6 +54,8 @@ function createDummy(tokenAddress: string): void {
     let flt = loadOrInitializeFLT(Address.fromString(tokenAddress));
     let ethPriceData = new ETHPriceData("latest");
     ethPriceData.priceUSD = BigDecimal.fromString("1088.87");
+    ethPriceData.blockNumber = BigInt.fromString("1088");
+    ethPriceData.timestamp = BigInt.fromString("1088");
     ethPriceData.save();
     factory.save();
     flt.save();
