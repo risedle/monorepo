@@ -3,11 +3,7 @@ import NavigationBarLink from "./link";
 
 export const NavigationBarLinks = () => {
     return (
-        <HStack
-            data-testid="NavigationBarLinks"
-            ml={{ md: "12" }}
-            spacing={{ base: "4", md: "8" }}
-        >
+        <HStack data-testid="NavigationBarLinks" ml={{ md: "12" }} spacing="8">
             <NavigationBarLink to="/" data-testid="NavigationBarLinksTrade">
                 <Text fontWeight="normal" fontSize="sm" lineHeight="4">
                     Trade
