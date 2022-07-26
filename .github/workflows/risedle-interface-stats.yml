@@ -27,10 +27,10 @@ jobs:
           node-version: "17.8.0"
 
       - name: Remove prepare script
-        run: npm pkg delete scripts.prepare
+        run: cd ../../ && npm pkg delete scripts.prepare
 
       - name: Remove postinstall script
-        run: npm pkg delete scripts.postinstall
+        run: cd ../../ && npm pkg delete scripts.postinstall
 
       - name: Install dependencies
         run: npm install
