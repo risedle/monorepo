@@ -15,12 +15,13 @@ import {
     getDefaultWallets,
     RainbowKitProvider,
 } from "@rainbow-me/rainbowkit";
-import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
+import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 
 import { getBaseConfig } from "../utils/getBaseConfig";
 import themes from "../themes";
+import NextNProgress from "nextjs-progressbar";
 
 // TODO(pyk): refactor this
 const bscChain: Chain = {
@@ -99,6 +100,7 @@ function App({ Component, pageProps }: AppProps) {
             <ChakraProvider theme={themes}>
                 <WagmiConfig client={wagmiClient}>
                     <RainbowKitProvider chains={chains}>
+                        <NextNProgress />
                         <Component {...pageProps} />
                     </RainbowKitProvider>
                 </WagmiConfig>

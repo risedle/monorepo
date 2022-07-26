@@ -1,4 +1,4 @@
-name: "Risedle Interface Stats"
+name: "interface-stats"
 
 on:
   pull_request:
