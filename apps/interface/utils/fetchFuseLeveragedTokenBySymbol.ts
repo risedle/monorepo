@@ -18,21 +18,9 @@ const queryFuseLeveragedTokenBySymbol = gql`
             symbol
             decimals
             address: id
-            dailyData: fltDayData(
-                orderBy: periodStartUnix
-                orderDirection: desc
-                first: 2
-            ) {
-                open
-                close
-                tradeVolumeUSD
-                totalSupply
-                collateralPerShare
-                debtPerShare
-                totalCollateral
-                totalDebt
-            }
             totalVolumeUSD
+            minLeverageRatio
+            maxLeverageRatio
             collateral {
                 name
                 symbol
@@ -51,6 +39,15 @@ const queryFuseLeveragedTokenBySymbol = gql`
                 high
                 low
                 close
+            }
+            backings: fltDayData(
+                orderBy: periodStartUnix
+                orderDirection: desc
+                first: 7
+            ) {
+                timestamp: periodStartUnix
+                collateralPerShare
+                debtPerShare
             }
         }
     }

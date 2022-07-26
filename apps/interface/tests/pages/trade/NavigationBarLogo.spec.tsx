@@ -19,6 +19,7 @@ describe("Given a user visit /", () => {
         renderApp(
             <Trade
                 prices={[]}
+                backings={[]}
                 address="0xec448Dcb1FF0A8724EA8cF5c5348d88207d6e9D9"
                 collateral={{ symbol: "A" }}
                 debt={{ symbol: "A" }}
