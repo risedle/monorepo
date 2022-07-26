@@ -32,9 +32,6 @@ jobs:
       - name: Remove postinstall script
         run: cd ../../ && npm pkg delete scripts.postinstall
 
-      - name: Install dependencies
-        run: npm install
-
       - name: Restore next build
         uses: actions/cache@v2
         id: restore-build-cache
@@ -47,12 +44,8 @@ jobs:
           # change this if you prefer a more strict cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}
 
-      - name: Build all SDK
-        run: cd ../../ && npm run build
-
-      - name: Build next.js app
-        # change this if your site requires a custom build command
-        run: npx next build
+      - name: install and build all SDK
+        run: cd ../../ && npm install && npm run build
 
       # Here's the first place where next-bundle-analysis' own script is used
       # This step pulls the raw bundle stats for the current bundle
