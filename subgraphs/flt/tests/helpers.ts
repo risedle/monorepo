@@ -175,8 +175,8 @@ export function createParamsUpdatedEvent(flt: string): ParamsUpdated {
     );
 
     // Push the params
-    newParamsUpdated.parameters.push(maxLeverageRatioParam);
     newParamsUpdated.parameters.push(minLeverageRatioParam);
+    newParamsUpdated.parameters.push(maxLeverageRatioParam);
     newParamsUpdated.parameters.push(maxDriftParam);
     newParamsUpdated.parameters.push(maxIncentiveParam);
     newParamsUpdated.parameters.push(maxSupplyParam);

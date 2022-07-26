@@ -206,8 +206,11 @@ export function handleParamsUpdated(event: ParamsUpdated): void {
     let fltId = event.address.toHexString();
     let flt = FLT.load(fltId)!;
 
-    flt.maxLeverageRatio = convertETHToDecimal(event.params.maxLeverageRatio);
-    flt.minLeverageRatio = convertETHToDecimal(event.params.minLeverageRatio);
+    // NOTE: The contract publish the wrong event params
+    // min -> max
+    flt.maxLeverageRatio = convertETHToDecimal(event.params.minLeverageRatio);
+    flt.minLeverageRatio = convertETHToDecimal(event.params.maxLeverageRatio);
+
     flt.maxDrift = convertETHToDecimal(event.params.maxDrift);
     flt.maxIncentive = convertETHToDecimal(event.params.maxIncentive);
     flt.maxSupply = convertETHToDecimal(event.params.maxSupply);
