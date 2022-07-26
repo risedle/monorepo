@@ -13,7 +13,7 @@ interface FuseLeveragedTokenInfoCardStatsContainerProps extends BoxProps {
 }
 
 const FuseLeveragedTokenInfoCardStatsContainer = (
-    props: FuseLeveragedTokenInfoCardStatsProps
+    props: FuseLeveragedTokenInfoCardStatsContainerProps
 ) => {
     const { symbol, collateralSymbol, debtSymbol, ...boxProps } = props;
     const { data, isLoaded } = useFuseLeveragedTokenInfo(symbol);
