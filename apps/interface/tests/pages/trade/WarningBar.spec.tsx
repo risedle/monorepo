@@ -26,7 +26,14 @@ describe("Given a user visit /", () => {
             getBaseConfig.mockImplementation(() => {
                 return { chainId: 1234, supportedChains: [] };
             });
-            renderApp(<Trade prices={[]} />);
+            renderApp(
+                <Trade
+                    prices={[]}
+                    address="0xec448Dcb1FF0A8724EA8cF5c5348d88207d6e9D9"
+                    collateral={{ symbol: "A" }}
+                    debt={{ symbol: "A" }}
+                />
+            );
         });
 
         it("WarningBar should render default icons", async () => {
@@ -50,7 +57,14 @@ describe("Given a user visit /", () => {
                 .mockImplementation(() => {
                     return { chainId: 56, supportedChains: [] };
                 });
-            renderApp(<Trade prices={[]} />);
+            renderApp(
+                <Trade
+                    prices={[]}
+                    address="0xec448Dcb1FF0A8724EA8cF5c5348d88207d6e9D9"
+                    collateral={{ symbol: "A" }}
+                    debt={{ symbol: "A" }}
+                />
+            );
         });
 
         it("WarningBar should render BSC icons", async () => {
