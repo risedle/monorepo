@@ -111,7 +111,7 @@ class RisedleDocument extends Document {
                     />
                 </Head>
                 <body>
-                    <ColorModeScript initialColorMode="light" />
+                    <ColorModeScript initialColorMode="dark" />
                     <Main />
                     <NextScript />
                 </body>
