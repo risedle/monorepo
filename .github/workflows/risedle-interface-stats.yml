@@ -10,10 +10,6 @@ on:
       - ".github/workflows/risedle-interface-stats.yml"
 
   workflow_dispatch:
-defaults:
-  run:
-    # change this if your nextjs app does not live at the root of the repo
-    working-directory: ./apps/interface
 
 jobs:
   analyze:
@@ -26,8 +22,11 @@ jobs:
         with:
           node-version: "17.8.0"
 
-      - name: Install dependencies
-        uses: npm install
+      - name: Remove prepare script
+        run: npm pkg delete scripts.prepare
+
+      - name: Remove postinstall script
+        run: npm pkg delete scripts.postinstall
 
       - name: Restore next build
         uses: actions/cache@v2
@@ -41,20 +40,20 @@ jobs:
           # change this if you prefer a more strict cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}
 
-      - name: Build next.js app
-        # change this if your site requires a custom build command
-        run: npx next build
+      - name: install and build all SDK
+        run: npm install && npm run build
 
       # Here's the first place where next-bundle-analysis' own script is used
       # This step pulls the raw bundle stats for the current bundle
       - name: Analyze bundle
         run: npx -p nextjs-bundle-analysis report
+        working-directory: ./apps/interface
 
       - name: Upload bundle
         uses: actions/upload-artifact@v2
         with:
           name: bundle
-          path: .next/analyze/__bundle_analysis.json
+          path: ./apps/interface/.next/analyze/__bundle_analysis.json
 
       - name: Download base branch bundle stats
         uses: dawidd6/action-download-artifact@v2
@@ -62,7 +61,7 @@ jobs:
         with:
           workflow: nextjs_bundle_analysis.yml
           branch: ${{ github.event.pull_request.base.ref }}
-          path: .next/analyze/base
+          path: ./apps/interface/.next/analyze/base
 
       # And here's the second place - this runs after we have both the current and
       # base branch bundle stats, and will compare them to determine what changed.
@@ -81,6 +80,7 @@ jobs:
         if: success() && github.event.number
         run:
           ls -laR .next/analyze/base && npx -p nextjs-bundle-analysis compare
+        working-directory: ./apps/interface
 
       - name: Get comment body
         id: get-comment-body
