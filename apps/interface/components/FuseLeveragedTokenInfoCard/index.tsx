@@ -22,7 +22,7 @@ import GlobeIcon from "../Icons/Globe";
 import ArrowTopRightIcon from "../Icons/ArrowTopRight";
 
 // Sub-components
-import FuseLeveragedTokenInfoCardStats from "./Stats";
+import FuseLeveragedTokenInfoCardStatsContainer from "./StatsContainer";
 
 interface FuseLeveragedTokenInfoCardProps extends BoxProps {
     flt: FuseLeveragedToken;
@@ -145,13 +145,10 @@ export const FuseLeveragedTokenInfoCard = (
             />
 
             {/* Stats */}
-            <FuseLeveragedTokenInfoCardStats
-                isLoaded={false}
+            <FuseLeveragedTokenInfoCardStatsContainer
                 paddingX="4"
                 paddingBottom="4"
-                marketCapUSD={0}
-                totalVolumeUSD={0}
-                maxMarketCapUSD={0}
+                symbol={symbol}
                 collateralSymbol={collateral.symbol}
                 debtSymbol={debt.symbol}
             />

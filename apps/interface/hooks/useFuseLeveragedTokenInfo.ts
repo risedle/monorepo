@@ -19,3 +19,5 @@ export function useFuseLeveragedTokenInfo(symbol: string) {
         error: error,
     };
 }
+
+export default useFuseLeveragedTokenInfo;
