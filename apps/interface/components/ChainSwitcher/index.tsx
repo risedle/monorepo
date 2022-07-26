@@ -147,10 +147,14 @@ export const ChainSwitcher = (props: ButtonProps) => {
                         height="100%"
                         left="0"
                         top="0"
+                        margin="0 !important"
                         background={blur}
                         backdropFilter="blur(12px)"
                         zIndex="10"
-                        display={isOpen ? "block" : "none"}
+                        display={{
+                            base: isOpen ? "block" : "none",
+                            tablet: "none",
+                        }}
                     />
                 </>
             )}
