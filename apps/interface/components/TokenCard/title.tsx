@@ -55,7 +55,7 @@ export const TokenCardTitle = (props: TokenCardTitleProps) => {
                 <Spacer />
                 <NextLink href={`/trade/${symbol.toLowerCase()}`} passHref>
                     <Button as="a" data-testid="TokenCardOpen">
-                        <Text>Open</Text>
+                        <Text>Swap</Text>
                     </Button>
                 </NextLink>
             </Flex>
