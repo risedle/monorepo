@@ -1,0 +1,39 @@
+name: "subgraphs/flt"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "subgraphs/flt/**"
+      - ".github/workflows/risedle-subgraphs-flt.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "subgraphs/flt/**"
+      - ".github/workflows/risedle-subgraphs-flt.yml"
+
+defaults:
+  run:
+    working-directory: ./subgraphs/flt
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: "17.8.0"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm install -w=flt --ignore-scripts
+        working-directory: ./apps/api
+      - name: Generate code
+        run: npm run graph:codegen
+      - name: Test
+        run: npm run graph:test
