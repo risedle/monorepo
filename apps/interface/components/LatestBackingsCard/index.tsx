@@ -74,8 +74,8 @@ export const LatestBackingsCard = (props: LatestBackingsCardProps) => {
             >
                 Each {symbol} is backed by {collateral.symbol}/{debt.symbol}{" "}
                 and can be redeemed to {collateral.symbol} or {debt.symbol} at
-                anytime. The backing will be rebalanced if leverage ratio below{" "}
-                {minLeverageRatio}X or above {maxLeverageRatio}X
+                anytime. The underlying assets will be rebalanced if leverage
+                ratio below {minLeverageRatio}X or above {maxLeverageRatio}X
             </Text>
 
             {/* Table header */}
