@@ -17,9 +17,9 @@ import InfoTooltip from "../InfoTooltip";
 interface FuseLeveragedTokenInfoCardStatsProps extends BoxProps {
     marketCapUSD: number;
     maxMarketCapUSD: number;
+    totalVolumeUSD: number;
     collateralSymbol: string;
     debtSymbol: string;
-    totalVolumeUSD: string;
     isLoaded: boolean;
 }
 export const FuseLeveragedTokenInfoCardStats = (

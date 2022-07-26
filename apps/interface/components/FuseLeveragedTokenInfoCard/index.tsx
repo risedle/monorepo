@@ -2,14 +2,12 @@ import {
     BoxProps,
     VStack,
     Text,
-    Box,
     HStack,
     useColorModeValue,
     Link,
     Center,
     Tooltip,
     Divider,
-    Flex,
 } from "@chakra-ui/react";
 import { utils } from "ethers";
 
@@ -129,6 +127,7 @@ export const FuseLeveragedTokenInfoCard = (
                                 fontSize="sm"
                                 lineHeight="4"
                                 letterSpacing="tight"
+                                color={gray12}
                             >
                                 {formatTokenAddress(utils.getAddress(address))}
                             </Text>
@@ -150,9 +149,9 @@ export const FuseLeveragedTokenInfoCard = (
                 isLoaded={false}
                 paddingX="4"
                 paddingBottom="4"
-                //marketCapUSD={2000000}
-                //totalVolumeUSD={3000000000}
-                //maxMarketCapUSD={4000000}
+                marketCapUSD={0}
+                totalVolumeUSD={0}
+                maxMarketCapUSD={0}
                 collateralSymbol={collateral.symbol}
                 debtSymbol={debt.symbol}
             />
