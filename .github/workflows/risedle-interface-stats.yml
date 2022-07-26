@@ -1,12 +1,14 @@
-name: "Next.js Bundle Analysis"
+name: "Risedle Interface Stats"
 
 on:
   pull_request:
   push:
     branches:
       - main # change this if your default branch is named differently
-  workflow_dispatch:
+    paths:
+      - "apps/interface/**"
 
+  workflow_dispatch:
 defaults:
   run:
     # change this if your nextjs app does not live at the root of the repo
@@ -21,7 +23,7 @@ jobs:
       - name: Set up node
         uses: actions/setup-node@v1
         with:
-          node-version: "14.x"
+          node-version: "17.8.0"
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
