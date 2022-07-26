@@ -21,7 +21,12 @@ export const FooterBar = () => {
     const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
 
     return (
-        <Container maxW="7xl" data-testid="FooterBar" marginTop="10">
+        <Container
+            maxW="7xl"
+            data-testid="FooterBar"
+            marginTop="10"
+            display={{ base: "none", tablet: "block" }}
+        >
             <Flex
                 borderTop="1px"
                 borderColor={gray3}

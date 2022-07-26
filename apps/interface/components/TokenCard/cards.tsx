@@ -20,6 +20,7 @@ export const TokenCards = (props: TokenCardsProps) => {
                 spacing="6"
                 margin="auto"
                 maxW={{ base: "400px", laptop: "730px", desktop: "100%" }}
+                marginBottom={{ base: "28", tablet: "0" }}
             >
                 {cards}
             </SimpleGrid>
