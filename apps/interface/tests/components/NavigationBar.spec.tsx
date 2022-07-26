@@ -43,11 +43,14 @@ describe("<NavigationBar />", () => {
                 "NavigationBarLinksEarn"
             );
             expect(navigationBarLinksEarn).toBeInTheDocument();
-            expect(navigationBarLinksEarn).toHaveAttribute("href", "/earn");
             expect(navigationBarLinksEarn).toHaveAttribute(
-                "data-state",
-                "active"
+                "href",
+                "https://app.midascapital.xyz/56/pool/6"
             );
+            // expect(navigationBarLinksEarn).toHaveAttribute(
+            //     "data-state",
+            //     "active"
+            // );
         });
     });
 

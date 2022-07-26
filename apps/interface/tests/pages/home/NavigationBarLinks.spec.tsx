@@ -46,7 +46,10 @@ describe("Given a user visit /", () => {
             "NavigationBarLinksEarn"
         );
         expect(navigationBarLinksEarn).toBeInTheDocument();
-        expect(navigationBarLinksEarn).toHaveAttribute("href", "/earn");
+        expect(navigationBarLinksEarn).toHaveAttribute(
+            "href",
+            "https://app.midascapital.xyz/56/pool/6"
+        );
     });
 
     it("NavigationBarLinksPortfolio should be rendered", () => {
