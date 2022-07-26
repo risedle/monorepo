@@ -2,6 +2,11 @@ name: "interface-stats"
 
 on:
   pull_request:
+    branches:
+      - main # change this if your default branch is named differently
+    paths:
+      - "apps/interface/**"
+      - ".github/workflows/risedle-interface-stats.yml"
   push:
     branches:
       - main # change this if your default branch is named differently
