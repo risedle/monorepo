@@ -47,8 +47,7 @@ jobs:
       # This step pulls the raw bundle stats for the current bundle
       - name: Analyze bundle
         run: npx -p nextjs-bundle-analysis report
-        with:
-          working-directory: ./apps/interface
+        working-directory: ./apps/interface
 
       - name: Upload bundle
         uses: actions/upload-artifact@v2
@@ -83,8 +82,7 @@ jobs:
         if: success() && github.event.number
         run:
           ls -laR .next/analyze/base && npx -p nextjs-bundle-analysis compare
-        with:
-          working-directory: ./apps/interface
+        working-directory: ./apps/interface
 
       - name: Get comment body
         id: get-comment-body
