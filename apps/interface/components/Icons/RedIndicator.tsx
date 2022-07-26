@@ -3,7 +3,7 @@ import { Icon, IconProps } from "@chakra-ui/react";
 export const RedIndicatorIcon = (props: IconProps) => {
     return (
         <Icon
-            data-testid="IndicatorIcon"
+            data-testid="RedIndicatorIcon"
             viewBox="0 0 32 32"
             color="red.dark.10"
             {...props}
