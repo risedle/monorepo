@@ -14,12 +14,12 @@ import { NavigationBarBottom } from "../../components/NavigationBarBottom";
 import { BackgroundGradient } from "../../components/BackgroundGradient";
 import { TradeInfoCard } from "../../components/TradeInfoCard";
 import { FuseLeveragedTokenInfoCard } from "../../components/FuseLeveragedTokenInfoCard";
+import { LatestBackingsCard } from "../../components/LatestBackingsCard";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface TradeProps extends FuseLeveragedToken {}
 
 const Trade: NextPage<TradeProps, unknown> = (props) => {
-    console.debug("DEBUG: Trade: props", props);
     const { chainName } = getBaseConfig();
     const { symbol } = props;
 
@@ -34,6 +34,7 @@ const Trade: NextPage<TradeProps, unknown> = (props) => {
                     <VStack flex="1" gap={6}>
                         <TradeInfoCard flt={props} width="100%" />
                         <FuseLeveragedTokenInfoCard flt={props} width="100%" />
+                        <LatestBackingsCard flt={props} width="100%" />
                     </VStack>
                     {/* Right Column */}
                     <Box flex="1">Test</Box>

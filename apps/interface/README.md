@@ -53,3 +53,11 @@ prevent flash issue for all users by default.
 ### Testing Resources
 
 -   [How to test custom React hooks](https://kentcdodds.com/blog/how-to-test-custom-react-hooks)
+
+### Upgrading internal dependencies
+
+Run the following command to update the internal packages:
+
+```sh
+npm i --save --save-exact @risedle/types@latest -w=interface
+```

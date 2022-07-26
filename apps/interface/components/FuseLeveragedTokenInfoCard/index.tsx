@@ -37,7 +37,6 @@ export const FuseLeveragedTokenInfoCard = (
     // Data
     const { flt, ...boxProps } = props;
     const { name, symbol, address, collateral, debt } = flt;
-    console.log(flt);
 
     // Styles
     const gray2 = useColorModeValue("gray.light.2", "gray.dark.2");
