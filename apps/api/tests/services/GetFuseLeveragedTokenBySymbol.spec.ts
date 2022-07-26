@@ -59,6 +59,7 @@ describe("GetFuseLeveragedTokenBySymbol()", () => {
                     token?.dailyVolumeChangePercentage
                 ).toBeGreaterThanOrEqual(-100);
                 expect(token?.marketcapUSD).toBeGreaterThan(0);
+                expect(token?.maxMarketcapUSD).toBeGreaterThan(0);
                 expect(token?.totalCollateral).toBeGreaterThan(0);
                 expect(token?.totalDebt).toBeGreaterThan(0);
                 expect(token?.collateral.name).toEqual("Wrapped BNB");

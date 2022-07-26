@@ -153,7 +153,7 @@ function getFuseLeveragedTokenInfo(flt: any): FuseLeveragedTokenInfo {
     const currentVol = parseFloat(flt.dailyData[0].tradeVolumeUSD);
     const prevVol = parseFloat(flt.dailyData[1].tradeVolumeUSD);
     const totalSupply = parseFloat(flt.dailyData[0].totalSupply);
-    const maxSupply = parseFloat(flt.dailyData[0].maxSupply);
+    const maxSupply = parseFloat(flt.maxSupply);
     const totalCollateral = parseFloat(flt.dailyData[0].totalCollateral);
     const totalDebt = parseFloat(flt.dailyData[0].totalDebt);
     const collateralPerShare = parseFloat(flt.dailyData[0].collateralPerShare);
