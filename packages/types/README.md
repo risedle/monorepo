@@ -1,5 +1,8 @@
 ## @risedle/types
 
+<img src="https://badgen.net/npm/v/@risedle/types?color=black&labelColor=black">
+<img src="https://badgen.net/badge/icon/Made%20By%20Risedle%20Labs?label&color=black&labelColor=black">
+
 Type definitions used across Risedle apps and packages.
 
 ### Installation
