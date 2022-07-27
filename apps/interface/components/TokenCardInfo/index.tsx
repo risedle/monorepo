@@ -10,6 +10,7 @@ import {
 
 // Utils
 import { formatUSD } from "../../utils/formatUSD";
+import { formatPercent } from "../../utils/formatPercent";
 
 // Sub-components
 import { ArrowDownIcon } from "../Icons/ArrowDown";
@@ -88,7 +89,7 @@ export const TokenCardInfo = (props: TokenCardInfoProps) => {
                                 fontFamily="mono"
                                 margin="0 !important"
                             >
-                                {priceChangePercent?.toFixed(2)}%
+                                {formatPercent(priceChangePercent / 100)}
                             </Text>
                         </Center>
                     </HStack>

@@ -22,6 +22,7 @@ import ArrowUpIcon from "../Icons/ArrowUp";
 import ArrowDownIcon from "../Icons/ArrowDown";
 
 import InfoTooltip from "../InfoTooltip";
+import formatPercent from "../../utils/formatPercent";
 
 interface TradeInfoCardUserPositionProps extends BoxProps {
     balance: number;
@@ -199,8 +200,7 @@ export const TradeInfoCardUserPosition = (
                                         fontFamily="mono"
                                         margin="0 !important"
                                     >
-                                        {pnlPercent >= 0 ? "+" : ""}
-                                        {pnlPercent.toFixed(2)}%
+                                        {formatPercent(pnlPercent)}
                                     </Text>
                                 </Center>
                             </HStack>
