@@ -275,6 +275,20 @@ components:
           type: number
           format: float
           example: 1.2
+        decimals:
+          decription: Asset's decimals
+          type: number
+          example: 18
+        change:
+          description: Last 24h change
+          type: number
+          format: float
+          example: 1.2
+        changePercent:
+          description: Last 24h change in percentage
+          type: number
+          format: float
+          example: 1.2
 
     FuseLeveragedTokenInfo:
       description: Basic information of Fuse Leveraged Token

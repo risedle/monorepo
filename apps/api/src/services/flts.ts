@@ -184,12 +184,18 @@ function getFuseLeveragedTokenInfo(flt: any): FuseLeveragedTokenInfo {
             symbol: flt.collateral.symbol,
             amount: collateralPerShare,
             decimals: parseInt(flt.collateral.decimals),
+            // TODO(pyk): update this
+            change: 0,
+            changePercent: 0,
         },
         debt: {
             name: flt.debt.name,
             symbol: flt.debt.symbol,
             amount: debtPerShare,
             decimals: parseInt(flt.debt.decimals),
+            // TODO(pyk): update this
+            change: 0,
+            changePercent: 0,
         },
         totalCollateral: totalCollateral,
         totalDebt: totalDebt,

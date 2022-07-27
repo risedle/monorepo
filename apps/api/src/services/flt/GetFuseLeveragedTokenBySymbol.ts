@@ -34,6 +34,8 @@ const queryFuseLeveragedTokenBySymbol = gql`
                 timestamp: periodStartUnix
                 price: close
                 tradeVolumeUSD
+                collateralPerShare
+                debtPerShare
             }
             totalVolumeUSD
             collateral {
@@ -97,13 +99,25 @@ export async function GetFuseLeveragedTokenBySymbol(
     const collateralPerShare = parseFloat(
         flt.currentData[0].collateralPerShare
     );
+    const prevCollateralPerShare = parseFloat(
+        flt.previousData[0].collateralPerShare
+    );
+    const collateralChange = collateralPerShare - prevCollateralPerShare;
+    const collateralChangePercent =
+        (collateralChange / prevCollateralPerShare) * 100 || 0;
+
     const debtPerShare = parseFloat(flt.currentData[0].debtPerShare);
+    const prevDebtPerShare = parseFloat(flt.previousData[0].debtPerShare);
+    const debtChange = debtPerShare - prevDebtPerShare;
+    const debtChangePercent = (debtChange / prevDebtPerShare) * 100 || 0;
 
     const collateral = {
         name: flt.collateral.name,
         symbol: flt.collateral.symbol,
         decimals: parseInt(flt.collateral.decimals),
         amount: collateralPerShare,
+        change: collateralChange,
+        changePercent: collateralChangePercent,
     };
 
     const debt = {
@@ -111,6 +125,8 @@ export async function GetFuseLeveragedTokenBySymbol(
         symbol: flt.debt.symbol,
         decimals: parseInt(flt.debt.decimals),
         amount: debtPerShare,
+        change: debtChange,
+        changePercent: debtChangePercent,
     };
 
     return {
