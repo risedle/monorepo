@@ -4,7 +4,7 @@ import { BoxProps, VStack, Text, useColorModeValue } from "@chakra-ui/react";
 import type { FuseLeveragedToken } from "../../utils/types";
 
 // Sub-components
-import BackingCardAllocationTable from "./AllocationTable";
+import BackingCardAllocationTableContainer from "./AllocationTableContainer";
 
 interface BackingCardProps extends BoxProps {
     flt: FuseLeveragedToken;
@@ -56,17 +56,13 @@ export const BackingCard = (props: BackingCardProps) => {
                 redeemed at any time.
             </Text>
 
-            {/* Table Header */}
-            <BackingCardAllocationTable
+            {/* Backing card */}
+            <BackingCardAllocationTableContainer
+                symbol={symbol}
                 collateralSymbol={collateral.symbol}
                 debtSymbol={debt.symbol}
-                collateralAmount={0}
-                debtAmount={0}
-                collateralChangePercent={0}
-                debtChangePercent={0}
                 paddingX="2"
                 paddingBottom="4"
-                isLoaded={false}
             />
         </VStack>
     );

@@ -6,7 +6,6 @@ import {
     useColorModeValue,
     StackDivider,
     Text,
-    Center,
     Skeleton,
 } from "@chakra-ui/react";
 
@@ -112,6 +111,7 @@ export const BackingCardAllocationTable = (
                             fontWeight="semibold"
                             paddingX="2"
                             margin="0 !important"
+                            letterSpacing="tight"
                             data-testid="BackingCardCollateral"
                         >
                             {collateralSymbol}
@@ -130,7 +130,8 @@ export const BackingCardAllocationTable = (
                             fontWeight="semibold"
                             paddingX="2"
                             margin="0 !important"
-                            data-testid="BackingCardCollateral"
+                            letterSpacing="tight"
+                            data-testid="BackingCardDebt"
                         >
                             {debtSymbol}
                         </Text>
@@ -187,6 +188,7 @@ export const BackingCardAllocationTable = (
                             lineHeight="4"
                             fontFamily="mono"
                             fontWeight="semibold"
+                            letterSpacing="tight"
                             data-testid="AllocationTableCollateralAmount"
                         >
                             +{formatTokenBalance(collateralAmount)}
@@ -208,8 +210,7 @@ export const BackingCardAllocationTable = (
                             lineHeight="4"
                             fontFamily="mono"
                             fontWeight="semibold"
-                            paddingX="2"
-                            margin="0 !important"
+                            letterSpacing="tight"
                             data-testid="AllocationTableDebtAmount"
                         >
                             -{formatTokenBalance(debtAmount)}
@@ -235,7 +236,7 @@ export const BackingCardAllocationTable = (
                     borderBottomRightRadius="lg"
                     textAlign="right"
                 >
-                    24h Changes
+                    24h Change
                 </Text>
                 <VStack
                     divider={
@@ -248,7 +249,6 @@ export const BackingCardAllocationTable = (
                     margin="0 !important"
                     gap={4}
                     width="100%"
-                    alignItems="flex-end"
                 >
                     {/* Collateral changes */}
                     <Skeleton
@@ -262,23 +262,18 @@ export const BackingCardAllocationTable = (
                         <HStack
                             color={collateralChangeColor}
                             spacing="1"
-                            paddingRight="2"
+                            justifyContent="flex-end"
                         >
-                            <Center>{collateralChangeIcon}</Center>
-                            <Center>
-                                <Text
-                                    fontSize="sm"
-                                    fontWeight="semibold"
-                                    lineHeight="4"
-                                    letterSpacing="tight"
-                                    fontFamily="mono"
-                                    margin="0 !important"
-                                >
-                                    {formatPercent(
-                                        collateralChangePercent / 100
-                                    )}
-                                </Text>
-                            </Center>
+                            {collateralChangeIcon}
+                            <Text
+                                fontSize="sm"
+                                fontWeight="semibold"
+                                lineHeight="4"
+                                letterSpacing="tight"
+                                fontFamily="mono"
+                            >
+                                {formatPercent(collateralChangePercent / 100)}
+                            </Text>
                         </HStack>
                     </Skeleton>
 
@@ -294,21 +289,18 @@ export const BackingCardAllocationTable = (
                         <HStack
                             color={debtChangeColor}
                             spacing="1"
-                            paddingRight="2"
+                            justifyContent="flex-end"
                         >
-                            <Center>{debtChangeIcon}</Center>
-                            <Center>
-                                <Text
-                                    fontSize="sm"
-                                    fontWeight="semibold"
-                                    lineHeight="4"
-                                    letterSpacing="tight"
-                                    fontFamily="mono"
-                                    margin="0 !important"
-                                >
-                                    {formatPercent(debtChangePercent / 100)}
-                                </Text>
-                            </Center>
+                            {debtChangeIcon}
+                            <Text
+                                fontSize="sm"
+                                fontWeight="semibold"
+                                lineHeight="4"
+                                letterSpacing="tight"
+                                fontFamily="mono"
+                            >
+                                {formatPercent(debtChangePercent / 100)}
+                            </Text>
                         </HStack>
                     </Skeleton>
                 </VStack>
