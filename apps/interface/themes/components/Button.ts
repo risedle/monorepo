@@ -94,14 +94,14 @@ const ButtonGradient = ({ colorMode }: { colorMode: string }) => ({
     py: "3",
     fontWeight: "semibold",
     fontSize: "sm",
+    backgroundSize: "100% 100%",
     lineHeight: "4",
     borderRadius: "full",
-
+    transitionProperty: "all",
+    transitionDuration: ".3s",
+    transitionTimingFunction: "cubic-bezier(.4,0,.2,1)",
     _hover: {
-        backgroundImage:
-            colorMode === "dark"
-                ? `radial-gradient(87.92% 310.85% at 67.86% 186.25%, #C9BBFF 0%, #B2ECFF 30.08%, #FFC1F9 60.28%, #FFF5C1 100%)`
-                : `radial-gradient(158.41% 622.02% at -54.76% 100%, #9D85FF 0%, #7AD4F0 30.08%, #F554E5 60.28%, #E7CF55 100%)`,
+        backgroundSize: "130% 100%",
         boxShadow: "0px 4px 24px rgba(255, 255, 255, 0.12)",
     },
 });
