@@ -38,3 +38,24 @@ import { ChainId, Chain } from "@risedle/types";
 // Or like this
 import { ChainId, Chain } from "@risedle/types/chain";
 ```
+
+### Publish
+
+This package is automatically published using
+[semantic-release](https://semantic-release.gitbook.io/semantic-release/).
+
+To publish new version, simply open pull request with the following format:
+
+```
+feat(@risedle/types): YOUR MESSAGE
+```
+
+to publish minor version, or use the following format:
+
+```
+bump(@risedle/types): YOUR MESSAGE
+```
+
+to release major version.
+
+If the pull request is merged, the semantic-release will be triggered.
