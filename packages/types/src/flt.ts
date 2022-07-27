@@ -3,6 +3,8 @@ export interface FuseLeveragedTokenBackingInfo {
     symbol: string;
     amount: number;
     decimals: number;
+    change: number;
+    changePercent: number;
 }
 
 export interface FuseLeveragedTokenInfo {
