@@ -68,7 +68,13 @@ export const PriceChart = (props: PriceChartProps) => {
         >
             <TabPanels>{panels}</TabPanels>
             <TabList borderBottom="0" paddingX="4" marginTop="2">
-                <SimpleGrid width="100%" columns={tabs.length} gap="2">
+                <SimpleGrid
+                    width="100%"
+                    columns={tabs.length}
+                    gap="2"
+                    display="flex"
+                    justifyContent={{ base: "center", tablet: "start" }}
+                >
                     {tabs}
                 </SimpleGrid>
             </TabList>
