@@ -10,6 +10,7 @@ import {
 
 // Utils
 import { formatUSD } from "../../utils/formatUSD";
+import formatPercent from "../../utils/formatPercent";
 
 // Sub-components
 import ArrowDownIcon from "../Icons/ArrowDown";
@@ -116,10 +117,7 @@ export const TradeInfoCardLatestPrice = (
                             >
                                 {priceChangePercent > 0 ? "+" : ""}
                                 {formatUSD(priceChangeUSD)} (
-                                {priceChangePercent > 0
-                                    ? priceChangePercent?.toFixed(2)
-                                    : (priceChangePercent * -1).toFixed(2)}
-                                %)
+                                {formatPercent(priceChangePercent / 100)})
                             </Text>
                         </Center>
                     </HStack>
