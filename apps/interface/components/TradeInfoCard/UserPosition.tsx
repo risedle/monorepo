@@ -41,6 +41,7 @@ export const TradeInfoCardUserPosition = (
     // Styles
     const gray3 = useColorModeValue("gray.light.3", "gray.dark.3");
     const gray4 = useColorModeValue("gray.light.4", "gray.dark.4");
+    const gray5 = useColorModeValue("gray.light.5", "gray.dark.5");
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     const accent = useColorModeValue(
         `${chainSlug}.button.bg.light`,
@@ -54,9 +55,27 @@ export const TradeInfoCardUserPosition = (
     const pnlColor = pnlPercent >= 0 ? green11 : red11;
 
     return (
-        <VStack width="100%" gap={6} {...boxProps} margin="0 !important">
-            <Flex width="100%">
-                <HStack gap="3" flex="1">
+        <VStack
+            data-testid="TradeInfoCardUserPosition"
+            width="100%"
+            gap={{ base: "4", tablet: "0" }}
+            {...boxProps}
+            margin="0 !important"
+        >
+            <Flex
+                width="100%"
+                borderY={{ base: "none", tablet: "1px" }}
+                borderColor={{ tablet: gray5 }}
+                borderStyle={{ tablet: "dashed" }}
+            >
+                <HStack
+                    gap="3"
+                    flex="1"
+                    py={{ base: "0", tablet: "4" }}
+                    borderRight={{ base: "none", tablet: "1px" }}
+                    borderColor={{ tablet: gray5 }}
+                    borderStyle={{ tablet: "dashed" }}
+                >
                     <Circle size="8" background={gray3}>
                         <PieIcon color={accent} />
                     </Circle>
@@ -95,7 +114,12 @@ export const TradeInfoCardUserPosition = (
                         </Skeleton>
                     </VStack>
                 </HStack>
-                <HStack gap="3" flex="1">
+                <HStack
+                    gap="3"
+                    flex="1"
+                    py={{ base: "0", tablet: "4" }}
+                    ml={{ base: "0", tablet: "4" }}
+                >
                     <Circle size="8" background={gray3}>
                         <CoinIcon color={accent} />
                     </Circle>
@@ -130,7 +154,14 @@ export const TradeInfoCardUserPosition = (
                 </HStack>
             </Flex>
             <Flex width="100%" margin="0 !important">
-                <HStack gap="3" flex="1">
+                <HStack
+                    gap="3"
+                    flex="1"
+                    py={{ base: "0", tablet: "4" }}
+                    borderRight={{ base: "none", tablet: "1px" }}
+                    borderColor={{ tablet: gray5 }}
+                    borderStyle={{ tablet: "dashed" }}
+                >
                     <Circle size="8" background={gray3}>
                         <MetricIcon color={accent} />
                     </Circle>
@@ -176,7 +207,12 @@ export const TradeInfoCardUserPosition = (
                         </Skeleton>
                     </VStack>
                 </HStack>
-                <HStack gap="3" flex="1">
+                <HStack
+                    gap="3"
+                    flex="1"
+                    py={{ base: "0", tablet: "4" }}
+                    ml={{ base: "0", tablet: "4" }}
+                >
                     <Circle size="8" background={gray3}>
                         <DollarIcon color={accent} />
                     </Circle>

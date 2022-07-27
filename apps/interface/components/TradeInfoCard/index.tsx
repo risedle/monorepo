@@ -63,7 +63,12 @@ export const TradeInfoCard = (props: TradeInfoCardProps) => {
             {/* Show price chart */}
             <PriceChart timeframes={timeframes} />
 
-            <Box width="100%" paddingX="4" margin="0 !important">
+            <Box
+                width="100%"
+                paddingX="4"
+                margin="0 !important"
+                display={{ base: "block", tablet: "none" }}
+            >
                 <Divider borderStyle="dashed" borderColor={gray5} />
             </Box>
 
@@ -71,6 +76,7 @@ export const TradeInfoCard = (props: TradeInfoCardProps) => {
             <TradeInfoCardUserPositionContainer
                 paddingX="4"
                 paddingBottom="4"
+                paddingTop="2"
                 fltAddress={address}
             />
         </VStack>
