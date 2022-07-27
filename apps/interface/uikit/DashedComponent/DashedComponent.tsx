@@ -1,5 +1,4 @@
 import {
-    border,
     Box,
     BoxProps,
     Flex,
