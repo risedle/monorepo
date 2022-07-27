@@ -12,10 +12,10 @@ const ButtonSolid = ({ colorMode }: { colorMode: string }) => ({
     lineHeight: "4",
     borderRadius: "full",
     _hover: {
-        background: colorMode == "dark" ? "gray.dark.3" : "gray.light.2",
+        background: colorMode == "dark" ? "gray.dark.3" : "gray.light.3",
     },
     _active: {
-        background: colorMode == "dark" ? "gray.dark.5" : "gray.light.2",
+        background: colorMode == "dark" ? "gray.dark.5" : "gray.light.5",
     },
 });
 
@@ -30,10 +30,10 @@ const ButtonIcon = ({ colorMode }: { colorMode: string }) => ({
     borderRadius: "full",
     padding: 0,
     _hover: {
-        background: colorMode == "dark" ? "gray.dark.3" : "gray.light.2",
+        background: colorMode == "dark" ? "gray.dark.3" : "gray.light.3",
     },
     _active: {
-        background: colorMode == "dark" ? "gray.dark.5" : "gray.light.2",
+        background: colorMode == "dark" ? "gray.dark.5" : "gray.light.5",
     },
 });
 
