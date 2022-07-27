@@ -15,7 +15,6 @@ import { BackgroundGradient } from "../../components/BackgroundGradient";
 import { TradeInfoCard } from "../../components/TradeInfoCard";
 import { FuseLeveragedTokenInfoCard } from "../../components/FuseLeveragedTokenInfoCard";
 import BackingCard from "../../components/BackingCard";
-import { LatestBackingsCard } from "../../components/LatestBackingsCard";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface TradeProps extends FuseLeveragedToken {}
@@ -36,7 +35,6 @@ const Trade: NextPage<TradeProps, unknown> = (props) => {
                         <TradeInfoCard flt={props} width="100%" />
                         <FuseLeveragedTokenInfoCard flt={props} width="100%" />
                         <BackingCard flt={props} width="100%" />
-                        <LatestBackingsCard flt={props} width="100%" />
                     </VStack>
                     {/* Right Column */}
                     <Box flex="1">Test</Box>

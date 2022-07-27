@@ -5,6 +5,7 @@ import type { FuseLeveragedToken } from "../../utils/types";
 
 // Sub-components
 import BackingCardAllocationTableContainer from "./AllocationTableContainer";
+import BackingCardHistory from "./History";
 
 interface BackingCardProps extends BoxProps {
     flt: FuseLeveragedToken;
@@ -13,7 +14,7 @@ interface BackingCardProps extends BoxProps {
 export const BackingCard = (props: BackingCardProps) => {
     // Data
     const { flt, ...boxProps } = props;
-    const { symbol, collateral, debt } = flt;
+    const { symbol, collateral, debt, backings } = flt;
 
     // Styles
     const gray2 = useColorModeValue("gray.light.2", "gray.dark.2");
@@ -56,13 +57,19 @@ export const BackingCard = (props: BackingCardProps) => {
                 redeemed at any time.
             </Text>
 
-            {/* Backing card */}
+            {/* Allocation table */}
             <BackingCardAllocationTableContainer
                 symbol={symbol}
                 collateralSymbol={collateral.symbol}
                 debtSymbol={debt.symbol}
                 paddingX="2"
-                paddingBottom="4"
+            />
+
+            {/* Historical backing */}
+            <BackingCardHistory
+                collateralSymbol={collateral.symbol}
+                debtSymbol={debt.symbol}
+                backings={backings}
             />
         </VStack>
     );
