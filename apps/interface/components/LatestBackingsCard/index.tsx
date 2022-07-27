@@ -4,7 +4,6 @@ import {
     VStack,
     Text,
     Flex,
-    StackDivider,
     HStack,
 } from "@chakra-ui/react";
 
@@ -15,6 +14,7 @@ import formatTokenBalance from "../../utils/formatTokenBalance";
 
 // Sub-components
 import InfoTooltip from "../InfoTooltip";
+import { Dash } from "../../uikit/DashedComponent/DashedComponent";
 
 interface LatestBackingsCardProps extends BoxProps {
     flt: FuseLeveragedToken;
@@ -100,13 +100,7 @@ export const LatestBackingsCard = (props: LatestBackingsCardProps) => {
                         Date
                     </Text>
                     <VStack
-                        divider={
-                            <StackDivider
-                                borderColor={gray5}
-                                borderStyle="dashed"
-                                margin="0 !important"
-                            />
-                        }
+                        divider={<Dash />}
                         margin="0 !important"
                         gap={4}
                         width="100%"
@@ -145,13 +139,7 @@ export const LatestBackingsCard = (props: LatestBackingsCardProps) => {
                         />
                     </HStack>
                     <VStack
-                        divider={
-                            <StackDivider
-                                borderColor={gray5}
-                                borderStyle="dashed"
-                                margin="0 !important"
-                            />
-                        }
+                        divider={<Dash />}
                         margin="0 !important"
                         gap={4}
                         width="100%"
@@ -197,13 +185,7 @@ export const LatestBackingsCard = (props: LatestBackingsCardProps) => {
                         />
                     </HStack>
                     <VStack
-                        divider={
-                            <StackDivider
-                                borderColor={gray5}
-                                borderStyle="dashed"
-                                margin="0 !important"
-                            />
-                        }
+                        divider={<Dash />}
                         margin="0 !important"
                         gap={4}
                         width="100%"

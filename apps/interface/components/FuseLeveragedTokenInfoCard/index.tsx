@@ -23,6 +23,7 @@ import ArrowTopRightIcon from "../Icons/ArrowTopRight";
 
 // Sub-components
 import FuseLeveragedTokenInfoCardStatsContainer from "./StatsContainer";
+import { Dash } from "../../uikit/DashedComponent/DashedComponent";
 
 interface FuseLeveragedTokenInfoCardProps extends BoxProps {
     flt: FuseLeveragedToken;
@@ -135,14 +136,7 @@ export const FuseLeveragedTokenInfoCard = (
                     </Link>
                 </Tooltip>
             </HStack>
-
-            {/* Divider */}
-            <Divider
-                borderStyle="dashed"
-                borderColor={gray5}
-                margin="0 !important"
-            />
-
+            <Dash />
             {/* Stats */}
             <FuseLeveragedTokenInfoCardStatsContainer
                 paddingX="4"
