@@ -1,8 +1,8 @@
 import nextRouter from "next/router";
 import { screen, fireEvent, waitFor } from "@testing-library/react";
-import { renderApp } from "../../utils/renderApp";
+import { renderApp } from "@/tests/utils/renderApp";
 
-import Trade from "../../../pages/trade/[symbol]";
+import Trade from "@/pages/trade/[symbol]";
 
 afterEach(() => {
     // restore the spy created with spyOn
@@ -29,7 +29,6 @@ describe("Given a user visit /", () => {
 
     it("should popup when clicked", async () => {
         const chainSwitcher = screen.getAllByTestId("ChainSwitcher")[0];
-
         fireEvent.click(chainSwitcher);
 
         await waitFor(() => {

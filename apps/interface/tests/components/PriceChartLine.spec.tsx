@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 
 import "../utils/window.ResizeObserver.mock";
 import "../utils/recharts.mock";
-import { PriceChartLine } from "../../components/PriceChart/Line";
+import { PriceChartLine } from "@/components/PriceChart/Line";
 
 describe("<PriceChartLine />", () => {
     describe("Given uptrend price chart", () => {

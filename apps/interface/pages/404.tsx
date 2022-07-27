@@ -7,7 +7,7 @@ import {
     useColorModeValue,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import NavigationBar from "../components/NavigationBar";
+import NavigationBar from "@/components/NavigationBar";
 
 export default function Custom404() {
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");

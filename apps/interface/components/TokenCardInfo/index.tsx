@@ -9,8 +9,8 @@ import {
 } from "@chakra-ui/react";
 
 // Utils
-import { formatUSD } from "../../utils/formatUSD";
-import { formatPercent } from "../../utils/formatPercent";
+import { formatUSD } from "@/utils/formatUSD";
+import { formatPercent } from "@/utils/formatPercent";
 
 // Sub-components
 import { ArrowDownIcon } from "../Icons/ArrowDown";

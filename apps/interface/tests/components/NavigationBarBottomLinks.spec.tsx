@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 
-import { NavigationBarBottomLinks } from "../../components/NavigationBarBottom/links";
+import { NavigationBarBottomLinks } from "@/components/NavigationBarBottom/links";
 
 describe("<NavigationBarBottomLink />", () => {
     describe("When not clicked", () => {

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import TradeInfoCardLatestPrice from "../../components/TradeInfoCard/LatestPrice";
+import TradeInfoCardLatestPrice from "@/components/TradeInfoCard/LatestPrice";
 
 describe("<TradeInfoCardLatestPrice />", () => {
     describe("Given positive price change", () => {

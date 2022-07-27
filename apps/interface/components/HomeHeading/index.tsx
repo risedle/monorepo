@@ -9,7 +9,7 @@ import {
     Divider,
 } from "@chakra-ui/react";
 
-import { formatUSD } from "../../utils/formatUSD";
+import { formatUSD } from "@/utils/formatUSD";
 
 interface HomeHeadingProps {
     totalMarketCap: number;

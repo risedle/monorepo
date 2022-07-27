@@ -12,10 +12,10 @@ import {
 import { utils } from "ethers";
 
 // Utils
-import type { FuseLeveragedToken } from "../../utils/types";
-import getBaseConfig from "../../utils/getBaseConfig";
-import getTokenExplorerURL from "../../utils/getTokenExplorerURL";
-import formatTokenAddress from "../../utils/formatTokenAddress";
+import type { FuseLeveragedToken } from "@/utils/types";
+import getBaseConfig from "@/utils/getBaseConfig";
+import getTokenExplorerURL from "@/utils/getTokenExplorerURL";
+import formatTokenAddress from "@/utils/formatTokenAddress";
 
 // Icons
 import GlobeIcon from "../Icons/Globe";

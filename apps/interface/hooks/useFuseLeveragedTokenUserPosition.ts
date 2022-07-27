@@ -1,8 +1,8 @@
 import useSWR from "swr";
 import { FuseLeveragedTokenUserPosition } from "@risedle/types";
 
-import { getBaseConfig } from "../utils/getBaseConfig";
-import { fetcher } from "../utils/fetcher";
+import { getBaseConfig } from "@/utils/getBaseConfig";
+import { fetcher } from "@/utils/fetcher";
 
 // Get list of markets using SWR
 export function useFuseLeveragedTokenUserPosition(

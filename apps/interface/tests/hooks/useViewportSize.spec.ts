@@ -5,7 +5,7 @@ import {
     useViewportTablet,
     useViewportLaptop,
     useViewportDesktop,
-} from "../../hooks/useViewportSize";
+} from "@/hooks/useViewportSize";
 
 describe("useViewportSize()", () => {
     it("should track screen size", async () => {

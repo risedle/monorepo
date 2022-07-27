@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 import { ChakraProvider } from "@chakra-ui/react";
-import themes from "../../themes";
+import themes from "@/themes";
 
 // Rainbowkit
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";

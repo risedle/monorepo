@@ -18,11 +18,11 @@ import {
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
-
-import { getBaseConfig } from "../utils/getBaseConfig";
-import themes from "../themes";
 import NextNProgress from "nextjs-progressbar";
-import colors from "../themes/colors";
+
+import themes from "@/themes";
+import colors from "@/themes/colors";
+import getBaseConfig from "@/utils/getBaseConfig";
 
 // TODO(pyk): refactor this
 const bscChain: Chain = {

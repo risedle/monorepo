@@ -1,4 +1,4 @@
-import { getBaseConfig } from "../../utils/getBaseConfig";
+import { getBaseConfig } from "@/utils/getBaseConfig";
 
 /**
  * see here: https://stackoverflow.com/a/48042799

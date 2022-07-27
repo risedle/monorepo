@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import LatestBackingsCard from "../../components/LatestBackingsCard";
+import LatestBackingsCard from "@/components/LatestBackingsCard";
 
 describe("<LatestBackingsCard />", () => {
     it("should render backings table correctly", () => {

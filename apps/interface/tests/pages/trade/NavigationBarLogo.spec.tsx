@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/react";
 import nextRouter from "next/router";
 
-import renderApp from "../../utils/renderApp";
-import Trade from "../../../pages/trade/[symbol]";
+import renderApp from "@/tests/utils/renderApp";
+import Trade from "@/pages/trade/[symbol]";
 
 afterEach(() => {
     // restore the spy created with spyOn

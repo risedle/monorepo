@@ -1,4 +1,4 @@
-import { getStaticProps } from "../../../pages/index";
+import { getStaticProps } from "@/pages/index";
 
 describe("Given a user visits /", () => {
     it("should return correct data and revalidate duration", async () => {

@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 
 // Utils
-import formatUSD from "../../utils/formatUSD";
+import formatUSD from "@/utils/formatUSD";
 
 // Sub-components
 import InfoTooltip from "../InfoTooltip";

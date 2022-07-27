@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 
 import ChainIcon from "../Icons/Chain";
-import { getBaseConfig } from "../../utils/getBaseConfig";
+import { getBaseConfig } from "@/utils/getBaseConfig";
 
 const ChevronDownIcon = (props: IconProps) => {
     return (

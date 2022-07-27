@@ -1,7 +1,7 @@
 import { renderHook, waitFor, act } from "@testing-library/react";
 import * as SWR from "swr";
 
-import { useFuseLeveragedTokenInfo } from "../../hooks/useFuseLeveragedTokenInfo";
+import { useFuseLeveragedTokenInfo } from "@/hooks/useFuseLeveragedTokenInfo";
 
 describe("useFuseLeveragedTokenInfo", () => {
     describe("Given succesfull response", () => {

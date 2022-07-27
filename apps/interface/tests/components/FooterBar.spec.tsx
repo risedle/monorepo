@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import { FooterBar } from "../../components/FooterBar";
+import { FooterBar } from "@/components/FooterBar";
 
 describe("<FooterBar />", () => {
     it("should render links correctly", () => {
