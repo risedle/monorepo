@@ -63,7 +63,12 @@ export const TradeInfoCard = (props: TradeInfoCardProps) => {
             {/* Show price chart */}
             <PriceChart timeframes={timeframes} />
 
-            <Box width="100%" paddingX="4" margin="0 !important">
+            <Box
+                width="100%"
+                paddingX="4"
+                margin="0 !important"
+                display={{ base: "block", tablet: "none" }}
+            >
                 <Divider borderStyle="dashed" borderColor={gray5} />
             </Box>
 
