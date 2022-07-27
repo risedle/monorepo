@@ -10,8 +10,8 @@ import {
 } from "@chakra-ui/react";
 
 // Utils
-import formatTokenBalance from "../../utils/formatTokenBalance";
-import formatPercent from "../../utils/formatPercent";
+import formatTokenBalance from "@/utils/formatTokenBalance";
+import formatPercent from "@/utils/formatPercent";
 
 // Sub-components
 import InfoTooltip from "../InfoTooltip";

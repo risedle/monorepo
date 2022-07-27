@@ -10,9 +10,9 @@ import {
     Center,
 } from "@chakra-ui/react";
 
-import { getBaseConfig } from "../../utils/getBaseConfig";
-import formatTokenBalance from "../../utils/formatTokenBalance";
-import formatUSD from "../../utils/formatUSD";
+import { getBaseConfig } from "@/utils/getBaseConfig";
+import formatTokenBalance from "@/utils/formatTokenBalance";
+import formatUSD from "@/utils/formatUSD";
 
 import PieIcon from "../Icons/Pie";
 import CoinIcon from "../Icons/Coin";
@@ -22,7 +22,7 @@ import ArrowUpIcon from "../Icons/ArrowUp";
 import ArrowDownIcon from "../Icons/ArrowDown";
 
 import InfoTooltip from "../InfoTooltip";
-import formatPercent from "../../utils/formatPercent";
+import formatPercent from "@/utils/formatPercent";
 
 interface TradeInfoCardUserPositionProps extends BoxProps {
     balance: number;

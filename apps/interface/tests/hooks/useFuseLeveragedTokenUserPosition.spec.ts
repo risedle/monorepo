@@ -1,7 +1,7 @@
 import { renderHook, waitFor, act } from "@testing-library/react";
 import * as SWR from "swr";
 
-import useFuseLeveragedTokenUserPosition from "../../hooks/useFuseLeveragedTokenUserPosition";
+import useFuseLeveragedTokenUserPosition from "@/hooks/useFuseLeveragedTokenUserPosition";
 
 describe("useFuseLeveragedTokenUserPosition", () => {
     describe("Given undefined userAddress", () => {

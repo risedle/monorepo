@@ -1,6 +1,6 @@
 import { Box, useColorModeValue } from "@chakra-ui/react";
 
-import { getBaseConfig } from "../../utils/getBaseConfig";
+import { getBaseConfig } from "@/utils/getBaseConfig";
 
 interface BackgroundGradientProps {
     page: string; // 'home', 'trade' etc

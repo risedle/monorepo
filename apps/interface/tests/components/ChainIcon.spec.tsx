@@ -1,8 +1,8 @@
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 
-import * as BaseConfig from "../../utils/getBaseConfig";
-import { ChainIcon } from "../../components/Icons/Chain";
+import * as BaseConfig from "@/utils/getBaseConfig";
+import { ChainIcon } from "@/components/Icons/Chain";
 
 afterEach(() => {
     // restore the spy created with spyOn

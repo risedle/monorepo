@@ -2,7 +2,7 @@ import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 
 import "../utils/window.ResizeObserver.mock.ts";
-import { TokenCards } from "../../components/TokenCard/cards";
+import { TokenCards } from "@/components/TokenCard/cards";
 
 describe("<TokenCards />", () => {
     it("should render n number of <TokenCard />", () => {

@@ -1,8 +1,8 @@
 import { HStack, Text, useColorModeValue } from "@chakra-ui/react";
 
 // Utils
-import { formatUSD } from "../../utils/formatUSD";
-import { formatTimestamp } from "../../utils/formatTimestamp";
+import { formatUSD } from "@/utils/formatUSD";
+import { formatTimestamp } from "@/utils/formatTimestamp";
 
 interface PriceChartLineTooltipProps {
     payload?: Array<{ payload: { timestamp: number; price: number } }>;

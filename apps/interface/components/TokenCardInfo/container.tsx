@@ -1,5 +1,5 @@
 import { TokenCardInfo } from "./index";
-import { useFuseLeveragedTokenInfo } from "../../hooks/useFuseLeveragedTokenInfo";
+import { useFuseLeveragedTokenInfo } from "@/hooks/useFuseLeveragedTokenInfo";
 
 /**
  * Container component handle state such as fething data from API

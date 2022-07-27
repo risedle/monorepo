@@ -5,7 +5,7 @@ import { useAccount } from "wagmi";
 import TradeInfoCardUserPosition from "./UserPosition";
 
 // Hooks
-import useFuseLeveragedTokenUserPosition from "../../hooks/useFuseLeveragedTokenUserPosition";
+import useFuseLeveragedTokenUserPosition from "@/hooks/useFuseLeveragedTokenUserPosition";
 
 interface TradeInfoCardUserPositionProps extends BoxProps {
     fltAddress: string;

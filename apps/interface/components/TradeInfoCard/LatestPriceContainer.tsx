@@ -2,7 +2,7 @@ import { BoxProps } from "@chakra-ui/react";
 
 // Sub-components
 import { TradeInfoCardLatestPrice } from "./LatestPrice";
-import { useFuseLeveragedTokenInfo } from "../../hooks/useFuseLeveragedTokenInfo";
+import { useFuseLeveragedTokenInfo } from "@/hooks/useFuseLeveragedTokenInfo";
 
 /**
  * Container is a special component that handle state such as fething data from API

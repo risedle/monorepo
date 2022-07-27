@@ -1,6 +1,6 @@
 import { Container, SimpleGrid } from "@chakra-ui/react";
 
-import type { FuseLeveragedTokens } from "../../utils/types";
+import type { FuseLeveragedTokens } from "@/utils/types";
 import { TokenCard } from "./index";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface

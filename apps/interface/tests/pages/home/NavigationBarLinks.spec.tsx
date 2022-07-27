@@ -2,7 +2,7 @@ import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 import nextRouter from "next/router";
 
-import Home from "../../../pages/index";
+import Home from "@/pages/index";
 
 afterEach(() => {
     // restore the spy created with spyOn

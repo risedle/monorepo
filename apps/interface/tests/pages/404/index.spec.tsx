@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom/extend-expect";
 import nextRouter from "next/router";
 import { render, screen } from "@testing-library/react";
-import Custom404 from "../../../pages/404";
+import Custom404 from "@/pages/404";
 
 afterEach(() => {
     // restore the spy created with spyOn

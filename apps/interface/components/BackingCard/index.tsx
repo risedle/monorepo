@@ -1,7 +1,7 @@
 import { BoxProps, VStack, Text, useColorModeValue } from "@chakra-ui/react";
 
 // Utils
-import type { FuseLeveragedToken } from "../../utils/types";
+import type { FuseLeveragedToken } from "@/utils/types";
 
 // Sub-components
 import BackingCardAllocationTableContainer from "./AllocationTableContainer";

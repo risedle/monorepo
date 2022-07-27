@@ -33,6 +33,9 @@ const customJestConfig = {
     },
     reporters: ["default", "github-actions"],
     setupFilesAfterEnv: ["./jest.setup.ts"],
+    moduleNameMapper: {
+        "^@/(.*)$": "<rootDir>/$1",
+    },
 };
 
 const config = createJestConfig(customJestConfig);

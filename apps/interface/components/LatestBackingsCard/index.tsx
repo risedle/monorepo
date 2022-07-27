@@ -9,9 +9,9 @@ import {
 } from "@chakra-ui/react";
 
 // Utils
-import type { FuseLeveragedToken } from "../../utils/types";
-import formatDate from "../../utils/formatDate";
-import formatTokenBalance from "../../utils/formatTokenBalance";
+import type { FuseLeveragedToken } from "@/utils/types";
+import formatDate from "@/utils/formatDate";
+import formatTokenBalance from "@/utils/formatTokenBalance";
 
 // Sub-components
 import InfoTooltip from "../InfoTooltip";

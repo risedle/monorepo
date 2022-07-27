@@ -1,4 +1,4 @@
-import { getStaticPaths, getStaticProps } from "../../../pages/trade/[symbol]";
+import { getStaticPaths, getStaticProps } from "@/pages/trade/[symbol]";
 
 describe("getStaticPaths", () => {
     it("should return list of symbol", async () => {
