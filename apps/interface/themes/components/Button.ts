@@ -12,10 +12,10 @@ const ButtonSolid = ({ colorMode }: { colorMode: string }) => ({
     lineHeight: "4",
     borderRadius: "full",
     _hover: {
-        background: colorMode == "dark" ? "gray.dark.2" : "gray.light.2",
+        background: colorMode == "dark" ? "gray.dark.3" : "gray.light.2",
     },
     _active: {
-        background: colorMode == "dark" ? "gray.dark.2" : "gray.light.2",
+        background: colorMode == "dark" ? "gray.dark.5" : "gray.light.2",
     },
 });
 
@@ -30,10 +30,10 @@ const ButtonIcon = ({ colorMode }: { colorMode: string }) => ({
     borderRadius: "full",
     padding: 0,
     _hover: {
-        background: colorMode == "dark" ? "gray.dark.2" : "gray.light.2",
+        background: colorMode == "dark" ? "gray.dark.3" : "gray.light.2",
     },
     _active: {
-        background: colorMode == "dark" ? "gray.dark.2" : "gray.light.2",
+        background: colorMode == "dark" ? "gray.dark.5" : "gray.light.2",
     },
 });
 
@@ -51,12 +51,24 @@ const ButtonBSC = ({ colorMode }: { colorMode: string }) => ({
     lineHeight: "4",
     borderRadius: "full",
     _hover: {
+        borderColor:
+            colorMode == "dark"
+                ? "bsc.button.border.darker"
+                : "bsc.button.border.lighter",
         background:
-            colorMode == "dark" ? "bsc.button.bg.dark" : "bsc.button.bg.light",
+            colorMode == "dark"
+                ? "bsc.button.bg.darker"
+                : "bsc.button.bg.lighter",
     },
     _active: {
+        borderColor:
+            colorMode == "dark"
+                ? "bsc.button.border.darker"
+                : "bsc.button.border.lighter",
         background:
-            colorMode == "dark" ? "bsc.button.bg.dark" : "bsc.button.bg.light",
+            colorMode == "dark"
+                ? "bsc.button.bg.darkest"
+                : "bsc.button.bg.lightest",
     },
 });
 
@@ -84,6 +96,14 @@ const ButtonGradient = ({ colorMode }: { colorMode: string }) => ({
     fontSize: "sm",
     lineHeight: "4",
     borderRadius: "full",
+
+    _hover: {
+        backgroundImage:
+            colorMode === "dark"
+                ? `radial-gradient(87.92% 310.85% at 67.86% 186.25%, #C9BBFF 0%, #B2ECFF 30.08%, #FFC1F9 60.28%, #FFF5C1 100%)`
+                : `radial-gradient(158.41% 622.02% at -54.76% 100%, #9D85FF 0%, #7AD4F0 30.08%, #F554E5 60.28%, #E7CF55 100%)`,
+        boxShadow: "0px 4px 24px rgba(255, 255, 255, 0.12)",
+    },
 });
 
 const Button = {

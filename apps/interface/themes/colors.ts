@@ -71,12 +71,18 @@ const baseColors = {
         chainIcon: "#F3BA2C",
         button: {
             bg: {
-                light: "#CF8721",
+                light: "#EB9317",
+                lighter: "#EC9F33",
+                lightest: "#EDB76C",
                 dark: "#EE9D2B",
+                darker: "#DF8C18",
+                darkest: "#C07813",
             },
             border: {
-                light: "#AC6D0D",
+                light: "#D78913",
+                lighter: "#EC9F33",
                 dark: "#F3BA63",
+                darker: "#EFA535",
             },
         },
     },
