@@ -76,6 +76,7 @@ export const TradeInfoCard = (props: TradeInfoCardProps) => {
             <TradeInfoCardUserPositionContainer
                 paddingX="4"
                 paddingBottom="4"
+                paddingTop="2"
                 fltAddress={address}
             />
         </VStack>

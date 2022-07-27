@@ -56,6 +56,7 @@ export const TradeInfoCardUserPosition = (
 
     return (
         <VStack
+            data-testid="TradeInfoCardUserPosition"
             width="100%"
             gap={{ base: "4", tablet: "0" }}
             {...boxProps}
