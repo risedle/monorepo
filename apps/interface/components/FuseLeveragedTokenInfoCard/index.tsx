@@ -7,7 +7,6 @@ import {
     Link,
     Center,
     Tooltip,
-    Divider,
 } from "@chakra-ui/react";
 import { utils } from "ethers";
 
