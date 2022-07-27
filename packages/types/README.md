@@ -57,3 +57,5 @@ bump(@risedle/types): YOUR MESSAGE
 ```
 
 to release major version.
+
+If the pull request is merged, the semantic-release will be triggered.
