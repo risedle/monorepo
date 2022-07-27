@@ -32,5 +32,5 @@ via the following URL:
 Run the following command to update the internal packages:
 
 ```sh
-npm i --save --save-exact @risedle/types@latest @risedle/chains@latest @risedle/tokens@latest -w=api
+npm install -w=api
 ```

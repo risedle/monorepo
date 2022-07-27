@@ -89,12 +89,22 @@ describe("GET /v1/chainId/flts/symbol", () => {
                 expect(token.maxMarketcapUSD).toBeGreaterThan(0);
                 expect(token.totalCollateral).toBeGreaterThan(0);
                 expect(token.totalDebt).toBeGreaterThan(0);
+
                 expect(token.collateral.name).toEqual("Wrapped BNB");
                 expect(token.collateral.symbol).toEqual("WBNB");
                 expect(token.collateral.amount).toBeGreaterThan(0);
+                expect(token.collateral.decimals).toBeGreaterThan(0);
+                expect(typeof token.collateral.change).toBe("number");
+                expect(token.collateral.changePercent).toBeGreaterThan(-100);
+                expect(token.collateral.changePercent).toBeLessThan(100);
+
                 expect(token.debt.name).toEqual("BUSD Token");
                 expect(token.debt.symbol).toEqual("BUSD");
                 expect(token.debt.amount).toBeGreaterThan(0);
+                expect(token.debt.decimals).toBeGreaterThan(0);
+                expect(typeof token.debt.change).toBe("number");
+                expect(token.debt.changePercent).toBeGreaterThan(-100);
+                expect(token.debt.changePercent).toBeLessThan(100);
             });
         });
     });
