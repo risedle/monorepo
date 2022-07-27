@@ -14,6 +14,7 @@ import { NavigationBarBottom } from "../../components/NavigationBarBottom";
 import { BackgroundGradient } from "../../components/BackgroundGradient";
 import { TradeInfoCard } from "../../components/TradeInfoCard";
 import { FuseLeveragedTokenInfoCard } from "../../components/FuseLeveragedTokenInfoCard";
+import BackingCard from "../../components/BackingCard";
 import { LatestBackingsCard } from "../../components/LatestBackingsCard";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -34,6 +35,7 @@ const Trade: NextPage<TradeProps, unknown> = (props) => {
                     <VStack flex="1" gap={6}>
                         <TradeInfoCard flt={props} width="100%" />
                         <FuseLeveragedTokenInfoCard flt={props} width="100%" />
+                        <BackingCard flt={props} width="100%" />
                         <LatestBackingsCard flt={props} width="100%" />
                     </VStack>
                     {/* Right Column */}
