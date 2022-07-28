@@ -61,7 +61,11 @@ export const TradeInfoCard = (props: TradeInfoCardProps) => {
             <TradeInfoCardLatestPriceContainer symbol={symbol} paddingX="4" />
 
             {/* Show price chart */}
-            <PriceChart timeframes={timeframes} />
+            <PriceChart
+                timeframes={timeframes}
+                display="flex"
+                justifyContent={{ base: "center", tablet: "start" }}
+            />
 
             <Box
                 width="100%"
