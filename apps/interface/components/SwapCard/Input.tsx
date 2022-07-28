@@ -7,13 +7,18 @@ import {
     Text,
 } from "@chakra-ui/react";
 
+// Utils
+import isValidInputAmount from "@/utils/isValidInputAmount";
+
 interface SwapCardInputProps extends BoxProps {
     symbol: string;
+    value: string;
+    onAmountChange: (valueAsString: string, valueAsNumber: number) => void;
 }
 
 export const SwapCardInput = (props: SwapCardInputProps) => {
     // Data
-    const { symbol } = props;
+    const { symbol, value, onAmountChange } = props;
 
     // Styles
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
@@ -25,6 +30,10 @@ export const SwapCardInput = (props: SwapCardInputProps) => {
             paddingX="4"
             margin="0 !important"
             width="100%"
+            value={value}
+            onChange={onAmountChange}
+            // Allow user to input comma
+            isValidCharacter={isValidInputAmount}
         >
             <Flex alignItems="center">
                 <NumberInputField
