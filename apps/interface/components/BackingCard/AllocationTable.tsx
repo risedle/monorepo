@@ -224,6 +224,7 @@ export const BackingCardAllocationTable = (
                 alignItems="flex-end"
                 gap={4}
                 data-testid="AllocationTableChange"
+                minW="100px"
             >
                 <Text
                     padding="2"
