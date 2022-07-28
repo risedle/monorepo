@@ -31,7 +31,7 @@ interface BackingCardHistoryProps extends BoxProps {
 
 export const BackingCardHistory = (props: BackingCardHistoryProps) => {
     // Data
-    const { backings, collateralSymbol, debtSymbol, ...boxProps } = props;
+    const { backings, collateralSymbol, debtSymbol } = props;
 
     // Styles
     const gray3 = useColorModeValue("gray.light.3", "gray.dark.3");

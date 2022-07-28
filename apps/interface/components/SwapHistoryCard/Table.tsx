@@ -13,7 +13,6 @@ import TimeAgo from "react-timeago";
 
 // Utils
 import formatUSD from "@/utils/formatUSD";
-import formatTokenAddress from "@/utils/formatTokenAddress";
 import type { FuseLeveragedTokenSwap } from "@/utils/types";
 import getTransactionExplorerURL from "@/utils/getTransactionExplorerURL";
 
@@ -162,7 +161,9 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                                 margin="0 !important"
                                 paddingX="2"
                             >
-                                <TimeAgo date={swap.timestamp * 1000} />
+                                <TimeAgo
+                                    date={parseInt(swap.timestamp) * 1000}
+                                />
                             </Text>
                         </Skeleton>
                     ))}
@@ -221,7 +222,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                                 letterSpacing="tight"
                                 marginX="2"
                             >
-                                {formatUSD(swap.amountInUSD)}
+                                {formatUSD(parseFloat(swap.amountInUSD))}
                             </Text>
                         </Skeleton>
                     ))}

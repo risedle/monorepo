@@ -39,7 +39,7 @@ export interface FuseLeveragedTokenBacking {
     debtPerShare: string;
 }
 
-export interface FuseLeveragedTokenSwaps {
+export interface FuseLeveragedTokenSwap {
     timestamp: string;
     transaction: {
         id: string;
@@ -68,7 +68,7 @@ export interface FuseLeveragedToken {
     debt: FuseLeveragedTokenBackingInfo;
     backings: Array<FuseLeveragedTokenBacking>;
     dailyData: Array<FuseLeveragedTokenDayData>;
-    swaps: Array<FuseLeveragedTokenSwaps>;
+    swaps: Array<FuseLeveragedTokenSwap>;
 }
 
 export interface FuseLeveragedTokens {
