@@ -12,7 +12,7 @@ import { FuseLeveragedToken } from "./types";
  */
 
 const queryFuseLeveragedTokenBySymbol = gql`
-    query getFuseLeveagedTokenBySymbol($symbol: String) {
+    query getFuseLeveragedTokenBySymbol($symbol: String) {
         flts(orderBy: symbol, where: { symbol: $symbol }) {
             name
             symbol
@@ -62,6 +62,19 @@ const queryFuseLeveragedTokenBySymbol = gql`
                 timestamp: periodStartUnix
                 collateralPerShare
                 debtPerShare
+            }
+            swaps: swaps(orderBy: timestamp, orderDirection: desc, first: 50) {
+                timestamp
+                transaction {
+                    id
+                }
+                amountInUSD
+                tokenIn {
+                    symbol
+                }
+                tokenOut {
+                    symbol
+                }
             }
         }
     }
