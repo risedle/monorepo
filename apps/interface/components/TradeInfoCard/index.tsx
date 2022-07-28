@@ -64,7 +64,6 @@ export const TradeInfoCard = (props: TradeInfoCardProps) => {
             {/* The props 'display' and 'justifyContent' is used to prevent timeframes stretch in trade page */}
             <PriceChart
                 timeframes={timeframes}
-                displayChart="block"
                 display="flex"
                 justifyContent={{ base: "center", tablet: "start" }}
             />

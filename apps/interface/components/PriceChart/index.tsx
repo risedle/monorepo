@@ -14,7 +14,7 @@ import { PriceChartLine, PriceChartLineProps } from "./Line";
 
 interface PriceChartProps extends BoxProps {
     timeframes: Record<string, PriceChartLineProps>;
-    displayChart: ResponsiveValue<"block" | "none">;
+    displayChart?: ResponsiveValue<"block" | "none">;
 }
 
 export const PriceChart = (props: PriceChartProps) => {
