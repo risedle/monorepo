@@ -1,8 +1,8 @@
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import { NextSeo } from "next-seo";
-import { Container, Flex, Box, VStack } from "@chakra-ui/react";
+import { Container, Flex, VStack } from "@chakra-ui/react";
 
-import { getBaseConfig } from "@/utils/getBaseConfig";
+import getBaseConfig from "@/utils/getBaseConfig";
 import { fetchFuseLeveragedTokenSymbols } from "@/utils/fetchFuseLeveragedTokenSymbols";
 import { fetchFuseLeveragedTokenBySymbol } from "@/utils/fetchFuseLeveragedTokenBySymbol";
 import type { FuseLeveragedToken } from "@/utils/types";
@@ -16,6 +16,7 @@ import { TradeInfoCard } from "@/components/TradeInfoCard";
 import { FuseLeveragedTokenInfoCard } from "@/components/FuseLeveragedTokenInfoCard";
 import BackingCard from "@/components/BackingCard";
 import SwapHistoryCard from "@/components/SwapHistoryCard";
+import SwapCard from "@/components/SwapCard";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface TradeProps extends FuseLeveragedToken {}
@@ -45,7 +46,7 @@ const Trade: NextPage<TradeProps, unknown> = (props) => {
             <WarningBar />
             <NavigationBar />
             <Container maxW="1136px" py="3" data-testid="TradeContent">
-                <Flex>
+                <Flex gap={6}>
                     {/* Left Column */}
                     <VStack flex="1" gap={6}>
                         <TradeInfoCard flt={props} width="100%" />
@@ -54,7 +55,9 @@ const Trade: NextPage<TradeProps, unknown> = (props) => {
                         <SwapHistoryCard flt={props} width="100%" />
                     </VStack>
                     {/* Right Column */}
-                    <Box flex="1">Test</Box>
+                    <VStack flex="1" alignItems="flex-start">
+                        <SwapCard symbol={symbol} />
+                    </VStack>
                 </Flex>
             </Container>
             <FooterBar />
