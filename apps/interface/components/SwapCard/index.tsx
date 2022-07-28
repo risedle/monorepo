@@ -35,6 +35,7 @@ export const SwapCard = (props: SwapCardProps) => {
             borderRadius="2xl"
             border="1px"
             borderColor={gray2}
+            width="360px"
         >
             <VStack alignItems="flex-start" gap={6}>
                 <TabList
@@ -85,6 +86,7 @@ export const SwapCard = (props: SwapCardProps) => {
                     gap={2}
                     margin="0 !important"
                     alignItems="flex-start"
+                    width="100%"
                 >
                     <SwapCardInput symbol={symbol} />
                     {/* Container here; Balance only show data only */}

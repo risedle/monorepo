@@ -24,6 +24,7 @@ export const SwapCardInput = (props: SwapCardInputProps) => {
             data-testid="SwapCardInputAmount"
             paddingX="4"
             margin="0 !important"
+            width="100%"
         >
             <Flex alignItems="center">
                 <NumberInputField
