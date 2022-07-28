@@ -9,18 +9,23 @@ import {
     VStack,
 } from "@chakra-ui/react";
 
+// Utils
+import type { FuseLeveragedToken } from "@/utils/types";
+
 // Sub-components
 import SwapCardBalance from "./Balance";
 import SwapCardBuyAmountContainer from "./BuyAmountContainer";
+import SwapCardBuyBalanceContainer from "./BuyBalanceContainer";
 import SwapCardSellAmountContainer from "./SellAmountContainer";
 
 interface SwapCardProps extends BoxProps {
-    symbol: string;
+    flt: FuseLeveragedToken;
 }
 
 export const SwapCard = (props: SwapCardProps) => {
     // Data
-    const { symbol } = props;
+    const { flt } = props;
+    const { symbol, address } = flt;
 
     // Styles
     const gray1 = useColorModeValue("gray.light.1", "gray.dark.1");
@@ -93,11 +98,8 @@ export const SwapCard = (props: SwapCardProps) => {
                             width="100%"
                         >
                             <SwapCardBuyAmountContainer symbol={symbol} />
-                            {/* Container here; Balance only show data only */}
-                            <SwapCardBalance
-                                amount={0}
-                                amountUSD={0}
-                                isLoaded={true}
+                            <SwapCardBuyBalanceContainer
+                                fltAddress={address}
                             />
                         </VStack>
                     </TabPanel>
