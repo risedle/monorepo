@@ -28,6 +28,7 @@ export const SwapCardBuyBalanceContainer = (
             amount={data?.balance || 0}
             amountUSD={data?.usd || 0}
             isLoaded={isLoaded}
+            paddingX="4"
             {...boxProps}
         />
     );

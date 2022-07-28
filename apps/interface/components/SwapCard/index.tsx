@@ -13,10 +13,10 @@ import {
 import type { FuseLeveragedToken } from "@/utils/types";
 
 // Sub-components
-import SwapCardBalance from "./Balance";
 import SwapCardBuyAmountContainer from "./BuyAmountContainer";
 import SwapCardBuyBalanceContainer from "./BuyBalanceContainer";
 import SwapCardSellAmountContainer from "./SellAmountContainer";
+import SwapCardSellBalanceContainer from "./SellBalanceContainer";
 
 interface SwapCardProps extends BoxProps {
     flt: FuseLeveragedToken;
@@ -115,11 +115,8 @@ export const SwapCard = (props: SwapCardProps) => {
                             width="100%"
                         >
                             <SwapCardSellAmountContainer symbol={symbol} />
-                            {/* Container here; Balance only show data only */}
-                            <SwapCardBalance
-                                amount={0}
-                                amountUSD={0}
-                                isLoaded={true}
+                            <SwapCardSellBalanceContainer
+                                fltAddress={address}
                             />
                         </VStack>
                     </TabPanel>
