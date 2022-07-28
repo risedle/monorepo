@@ -36,7 +36,7 @@ export const SwapCardInput = (props: SwapCardInputProps) => {
                     letterSpacing="tight"
                     lineHeight="6"
                     height="6"
-                    placeholder={0}
+                    placeholder="0"
                     borderRadius="0"
                     _placeholder={{ color: gray10 }}
                     _focusVisible={{ border: "0", color: gray12 }}

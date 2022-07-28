@@ -6,8 +6,6 @@ import {
     TabPanels,
     TabPanel,
     useColorModeValue,
-    NumberInput,
-    NumberInputField,
     VStack,
 } from "@chakra-ui/react";
 

@@ -1,6 +1,6 @@
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import { NextSeo } from "next-seo";
-import { Container, Flex, Box, VStack } from "@chakra-ui/react";
+import { Container, Flex, VStack } from "@chakra-ui/react";
 
 import getBaseConfig from "@/utils/getBaseConfig";
 import { fetchFuseLeveragedTokenSymbols } from "@/utils/fetchFuseLeveragedTokenSymbols";
