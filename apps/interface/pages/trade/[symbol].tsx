@@ -2,19 +2,20 @@ import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import { NextSeo } from "next-seo";
 import { Container, Flex, Box, VStack } from "@chakra-ui/react";
 
-import { getBaseConfig } from "../../utils/getBaseConfig";
-import { fetchFuseLeveragedTokenSymbols } from "../../utils/fetchFuseLeveragedTokenSymbols";
-import { fetchFuseLeveragedTokenBySymbol } from "../../utils/fetchFuseLeveragedTokenBySymbol";
-import type { FuseLeveragedToken } from "../../utils/types";
+import { getBaseConfig } from "@/utils/getBaseConfig";
+import { fetchFuseLeveragedTokenSymbols } from "@/utils/fetchFuseLeveragedTokenSymbols";
+import { fetchFuseLeveragedTokenBySymbol } from "@/utils/fetchFuseLeveragedTokenBySymbol";
+import type { FuseLeveragedToken } from "@/utils/types";
 
-import { WarningBar } from "../../components/WarningBar";
-import { NavigationBar } from "../../components/NavigationBar";
-import { FooterBar } from "../../components/FooterBar";
-import { NavigationBarBottom } from "../../components/NavigationBarBottom";
-import { BackgroundGradient } from "../../components/BackgroundGradient";
-import { TradeInfoCard } from "../../components/TradeInfoCard";
-import { FuseLeveragedTokenInfoCard } from "../../components/FuseLeveragedTokenInfoCard";
-import BackingCard from "../../components/BackingCard";
+import { WarningBar } from "@/components/WarningBar";
+import { NavigationBar } from "@/components/NavigationBar";
+import { FooterBar } from "@/components/FooterBar";
+import { NavigationBarBottom } from "@/components/NavigationBarBottom";
+import { BackgroundGradient } from "@/components/BackgroundGradient";
+import { TradeInfoCard } from "@/components/TradeInfoCard";
+import { FuseLeveragedTokenInfoCard } from "@/components/FuseLeveragedTokenInfoCard";
+import BackingCard from "@/components/BackingCard";
+import SwapHistoryCard from "@/components/SwapHistoryCard";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface TradeProps extends FuseLeveragedToken {}
@@ -35,6 +36,7 @@ const Trade: NextPage<TradeProps, unknown> = (props) => {
                         <TradeInfoCard flt={props} width="100%" />
                         <FuseLeveragedTokenInfoCard flt={props} width="100%" />
                         <BackingCard flt={props} width="100%" />
+                        <SwapHistoryCard flt={props} width="100%" />
                     </VStack>
                     {/* Right Column */}
                     <Box flex="1">Test</Box>

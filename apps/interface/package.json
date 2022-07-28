@@ -30,6 +30,7 @@
         "nextjs-progressbar": "^0.0.14",
         "react": "18.2.0",
         "react-dom": "18.2.0",
+        "react-timeago": "7.1.0",
         "recharts": "2.1.12",
         "swr": "1.3.0",
         "wagmi": "0.5.11"
