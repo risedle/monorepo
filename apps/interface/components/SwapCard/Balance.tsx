@@ -1,0 +1,63 @@
+import {
+    BoxProps,
+    HStack,
+    Text,
+    useColorModeValue,
+    Skeleton,
+    Box,
+} from "@chakra-ui/react";
+
+// Utils
+import formatUSD from "@/utils/formatUSD";
+import formatTokenBalance from "@/utils/formatTokenBalance";
+
+// Icons
+import WalletIcon from "@/components/Icons/Wallet";
+
+interface SwapCardBalanceProps extends BoxProps {
+    amount: number;
+    amountUSD: number;
+    isLoaded: boolean;
+}
+
+export const SwapCardBalance = (props: SwapCardBalanceProps) => {
+    // Data
+    const { amount, amountUSD, isLoaded, ...boxProps } = props;
+
+    // Styles
+    const gray3 = useColorModeValue("gray.light.3", "gray.dark.3");
+    const gray4 = useColorModeValue("gray.light.4", "gray.dark.4");
+    const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
+
+    return (
+        <Box
+            data-testid="SwapCardBalance"
+            margin="0 !important"
+            paddingX="4"
+            {...boxProps}
+        >
+            <Skeleton
+                isLoaded={isLoaded}
+                startColor={gray3}
+                endColor={gray4}
+                borderRadius="lg"
+                minW="100px"
+            >
+                <HStack gap={1}>
+                    <WalletIcon w="4" h="4" color={gray10} />
+                    <Text
+                        fontSize="xs"
+                        lineHeight="4"
+                        color={gray10}
+                        margin="0 !important"
+                    >
+                        {formatTokenBalance(amount)} &bull;{" "}
+                        {formatUSD(amountUSD)}
+                    </Text>
+                </HStack>
+            </Skeleton>
+        </Box>
+    );
+};
+
+export default SwapCardBalance;
