@@ -8,7 +8,7 @@ interface BuyAmountState {
 
 export const useBuyAmountStore = create<BuyAmountState>()(
     persist((set) => ({
-        amount: "0",
+        amount: "", // Set to empty string to display the placeholder form
         setAmount: (amount) => set((state) => ({ amount })),
     }))
 );
