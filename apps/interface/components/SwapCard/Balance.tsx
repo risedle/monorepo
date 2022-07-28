@@ -4,7 +4,6 @@ import {
     Text,
     useColorModeValue,
     Skeleton,
-    Box,
 } from "@chakra-ui/react";
 
 // Utils
@@ -30,33 +29,27 @@ export const SwapCardBalance = (props: SwapCardBalanceProps) => {
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
 
     return (
-        <Box
+        <Skeleton
             data-testid="SwapCardBalance"
             margin="0 !important"
-            paddingX="4"
             {...boxProps}
+            isLoaded={isLoaded}
+            startColor={gray3}
+            endColor={gray4}
+            borderRadius="lg"
         >
-            <Skeleton
-                isLoaded={isLoaded}
-                startColor={gray3}
-                endColor={gray4}
-                borderRadius="lg"
-                minW="100px"
-            >
-                <HStack gap={1}>
-                    <WalletIcon w="4" h="4" color={gray10} />
-                    <Text
-                        fontSize="xs"
-                        lineHeight="4"
-                        color={gray10}
-                        margin="0 !important"
-                    >
-                        {formatTokenBalance(amount)} &bull;{" "}
-                        {formatUSD(amountUSD)}
-                    </Text>
-                </HStack>
-            </Skeleton>
-        </Box>
+            <HStack gap={1}>
+                <WalletIcon w="4" h="4" color={gray10} />
+                <Text
+                    fontSize="xs"
+                    lineHeight="4"
+                    color={gray10}
+                    margin="0 !important"
+                >
+                    {formatTokenBalance(amount)} &bull; {formatUSD(amountUSD)}
+                </Text>
+            </HStack>
+        </Skeleton>
     );
 };
 
