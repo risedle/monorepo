@@ -7,17 +7,19 @@ import {
     SimpleGrid,
     useColorModeValue,
     BoxProps,
+    ResponsiveValue,
 } from "@chakra-ui/react";
 
 import { PriceChartLine, PriceChartLineProps } from "./Line";
 
 interface PriceChartProps extends BoxProps {
     timeframes: Record<string, PriceChartLineProps>;
+    displayChart: ResponsiveValue<"block" | "none">;
 }
 
 export const PriceChart = (props: PriceChartProps) => {
     // Data
-    const { timeframes, ...boxProps } = props;
+    const { timeframes, displayChart, ...boxProps } = props;
 
     // Styles
     const gray2 = useColorModeValue("gray.light.2", "gray.dark.2");
@@ -65,7 +67,7 @@ export const PriceChart = (props: PriceChartProps) => {
             defaultIndex={0}
             width="100%"
             marginTop="0 !important"
-            display={{ base: "none", tablet: "block" }}
+            display={displayChart}
         >
             <TabPanels>{panels}</TabPanels>
             <TabList borderBottom="0" paddingX="4" marginTop="2">
