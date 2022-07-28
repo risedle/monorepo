@@ -56,7 +56,7 @@ const Trade: NextPage<TradeProps, unknown> = (props) => {
                     </VStack>
                     {/* Right Column */}
                     <VStack flex="1" alignItems="flex-start">
-                        <SwapCard symbol={symbol} />
+                        <SwapCard flt={props} />
                     </VStack>
                 </Flex>
             </Container>
