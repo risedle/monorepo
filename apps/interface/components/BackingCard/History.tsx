@@ -63,6 +63,7 @@ export const BackingCardHistory = (props: BackingCardHistoryProps) => {
                                     isExpanded ? "none" : "lg"
                                 }
                                 _hover={{ background: green2 }}
+                                data-testid="BackingCardHistoryButton"
                             >
                                 <HStack gap={2}>
                                     <CheckmarkIcon w="4" h="4" />
@@ -137,7 +138,7 @@ export const BackingCardHistory = (props: BackingCardHistoryProps) => {
                                                 margin="0 !important"
                                                 letterSpacing="tight"
                                                 key={backing.timestamp}
-                                                data-testid="LatestBackingsCardDate"
+                                                data-testid="BackingCardHistoryDate"
                                             >
                                                 {formatDate(
                                                     backing.timestamp * 1000
