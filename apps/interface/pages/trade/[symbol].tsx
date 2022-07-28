@@ -21,12 +21,27 @@ import SwapHistoryCard from "@/components/SwapHistoryCard";
 interface TradeProps extends FuseLeveragedToken {}
 
 const Trade: NextPage<TradeProps, unknown> = (props) => {
-    const { chainName } = getBaseConfig();
+    const { chainName, baseURL, chainSlug } = getBaseConfig();
     const { symbol } = props;
 
     return (
         <>
-            <NextSeo title={`Buy and Sell ${symbol} on ${chainName}`} />
+            <NextSeo
+                title={`Buy and Sell ${symbol} on ${chainName}`}
+                openGraph={{
+                    type: "website",
+                    url: baseURL,
+                    title: `Buy and Sell ${symbol} on ${chainName}`,
+                    description:
+                        "Trade, earn and build on the decentralized crypto leveraged token protocol",
+                    site_name: "Risedle",
+                    images: [
+                        {
+                            url: `https://${chainSlug}.risedle.com/opengraph/trade-${symbol}.png`,
+                        },
+                    ],
+                }}
+            />
             <WarningBar />
             <NavigationBar />
             <Container maxW="1136px" py="3" data-testid="TradeContent">
