@@ -12,6 +12,7 @@ import {
 // Sub-components
 import SwapCardBalance from "./Balance";
 import SwapCardBuyAmountContainer from "./BuyAmountContainer";
+import SwapCardSellAmountContainer from "./SellAmountContainer";
 
 interface SwapCardProps extends BoxProps {
     symbol: string;
@@ -85,7 +86,7 @@ export const SwapCard = (props: SwapCardProps) => {
                     <TabPanel data-testid="BuyTabPanel" padding="0">
                         {/* Form input and balance*/}
                         <VStack
-                            data-testid="SwapCardInputBalance"
+                            data-testid="SwapCardBuyInputBalance"
                             gap={2}
                             margin="0 !important"
                             alignItems="flex-start"
@@ -103,7 +104,22 @@ export const SwapCard = (props: SwapCardProps) => {
 
                     {/* Sell */}
                     <TabPanel data-testid="SellTabPanel" padding="0">
-                        <p>Sell</p>
+                        {/* Form input and balance*/}
+                        <VStack
+                            data-testid="SwapCardSellInputBalance"
+                            gap={2}
+                            margin="0 !important"
+                            alignItems="flex-start"
+                            width="100%"
+                        >
+                            <SwapCardSellAmountContainer symbol={symbol} />
+                            {/* Container here; Balance only show data only */}
+                            <SwapCardBalance
+                                amount={0}
+                                amountUSD={0}
+                                isLoaded={true}
+                            />
+                        </VStack>
                     </TabPanel>
                 </TabPanels>
             </VStack>
