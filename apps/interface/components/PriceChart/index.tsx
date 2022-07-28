@@ -6,17 +6,18 @@ import {
     Tab,
     SimpleGrid,
     useColorModeValue,
+    BoxProps,
 } from "@chakra-ui/react";
 
 import { PriceChartLine, PriceChartLineProps } from "./Line";
 
-interface PriceChartProps {
+interface PriceChartProps extends BoxProps {
     timeframes: Record<string, PriceChartLineProps>;
 }
 
 export const PriceChart = (props: PriceChartProps) => {
     // Data
-    const { timeframes } = props;
+    const { timeframes, ...boxProps } = props;
 
     // Styles
     const gray2 = useColorModeValue("gray.light.2", "gray.dark.2");
@@ -68,7 +69,12 @@ export const PriceChart = (props: PriceChartProps) => {
         >
             <TabPanels>{panels}</TabPanels>
             <TabList borderBottom="0" paddingX="4" marginTop="2">
-                <SimpleGrid width="100%" columns={tabs.length} gap="2">
+                <SimpleGrid
+                    width="100%"
+                    columns={tabs.length}
+                    gap="2"
+                    {...boxProps}
+                >
                     {tabs}
                 </SimpleGrid>
             </TabList>

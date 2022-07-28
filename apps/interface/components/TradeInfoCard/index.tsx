@@ -61,7 +61,12 @@ export const TradeInfoCard = (props: TradeInfoCardProps) => {
             <TradeInfoCardLatestPriceContainer symbol={symbol} paddingX="4" />
 
             {/* Show price chart */}
-            <PriceChart timeframes={timeframes} />
+            {/* The props 'display' and 'justifyContent' is used to prevent timeframes stretch in trade page */}
+            <PriceChart
+                timeframes={timeframes}
+                display="flex"
+                justifyContent={{ base: "center", tablet: "start" }}
+            />
 
             <Box
                 width="100%"
