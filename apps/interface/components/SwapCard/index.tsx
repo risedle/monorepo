@@ -10,8 +10,8 @@ import {
 } from "@chakra-ui/react";
 
 // Sub-components
-import SwapCardInput from "./Input";
 import SwapCardBalance from "./Balance";
+import SwapCardBuyAmountContainer from "./BuyAmountContainer";
 
 interface SwapCardProps extends BoxProps {
     symbol: string;
@@ -80,32 +80,33 @@ export const SwapCard = (props: SwapCardProps) => {
                     </Tab>
                 </TabList>
 
-                {/* Form input and balance*/}
-                <VStack
-                    data-testid="SwapCardInputBalance"
-                    gap={2}
-                    margin="0 !important"
-                    alignItems="flex-start"
-                    width="100%"
-                >
-                    <SwapCardInput symbol={symbol} />
-                    {/* Container here; Balance only show data only */}
-                    <SwapCardBalance
-                        amount={0}
-                        amountUSD={0}
-                        isLoaded={true}
-                    />
-                </VStack>
-            </VStack>
+                <TabPanels margin="0 !important">
+                    {/* Buy */}
+                    <TabPanel data-testid="BuyTabPanel" padding="0">
+                        {/* Form input and balance*/}
+                        <VStack
+                            data-testid="SwapCardInputBalance"
+                            gap={2}
+                            margin="0 !important"
+                            alignItems="flex-start"
+                            width="100%"
+                        >
+                            <SwapCardBuyAmountContainer symbol={symbol} />
+                            {/* Container here; Balance only show data only */}
+                            <SwapCardBalance
+                                amount={0}
+                                amountUSD={0}
+                                isLoaded={true}
+                            />
+                        </VStack>
+                    </TabPanel>
 
-            <TabPanels>
-                <TabPanel>
-                    <p>Buy</p>
-                </TabPanel>
-                <TabPanel>
-                    <p>Sell</p>
-                </TabPanel>
-            </TabPanels>
+                    {/* Sell */}
+                    <TabPanel data-testid="SellTabPanel" padding="0">
+                        <p>Sell</p>
+                    </TabPanel>
+                </TabPanels>
+            </VStack>
         </Tabs>
     );
 };

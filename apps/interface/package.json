@@ -33,7 +33,8 @@
         "react-timeago": "7.1.0",
         "recharts": "2.1.12",
         "swr": "1.3.0",
-        "wagmi": "0.5.11"
+        "wagmi": "0.5.11",
+        "zustand": "4.0.0"
     },
     "nextBundleAnalysis": {
         "budget": 563200,
