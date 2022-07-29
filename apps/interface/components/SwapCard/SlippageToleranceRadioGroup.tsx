@@ -10,19 +10,19 @@ import { useRadioGroup, HStack } from "@chakra-ui/react";
 import SlippageToleranceRadio from "./SlippageToleranceRadio";
 
 interface SlippageToleranceRadioGroupProps {
-    defaultSlippage: string;
+    slippage: string;
     slippages: Array<string>;
-    onChange?: (value: string) => void;
+    setSlippage: (value: string) => void;
 }
 
 export const SlippageToleranceRadioGroup = (
     props: SlippageToleranceRadioGroupProps
 ) => {
     // Data
-    const { defaultSlippage, slippages, onChange } = props;
+    const { slippage, slippages, setSlippage } = props;
     const { getRadioProps, getRootProps } = useRadioGroup({
-        defaultValue: defaultSlippage,
-        onChange,
+        onChange: setSlippage,
+        value: slippage,
     });
 
     return (

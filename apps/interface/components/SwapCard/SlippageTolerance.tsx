@@ -20,15 +20,20 @@ import ChevronUpIcon from "@/components/Icons/ChevronUp";
 import InfoTooltip from "@/components/InfoTooltip";
 import SlippageToleranceRadioGroup from "./SlippageToleranceRadioGroup";
 
+// Utils
+import isValidInputAmount from "@/utils/isValidInputAmount";
+import parseSlippageTolerance from "@/utils/parseSlippageTolerance";
+
 interface SwapCardSlippageToleranceProps {
-    slippage: number; // 0 -> 0%, 1 -> 100%
+    slippage: string; // "0" -> 0%, "100" -> 100%
+    setSlippage: (slippage: string) => void;
 }
 
 export const SwapCardSlippageTolerance = (
     props: SwapCardSlippageToleranceProps
 ) => {
     // Data
-    const { slippage } = props;
+    const { slippage, setSlippage } = props;
 
     // Styles
     const gray2 = useColorModeValue("gray.light.2", "gray.dark.2");
@@ -92,7 +97,10 @@ export const SwapCardSlippageTolerance = (
                                             fontWeight="semibold"
                                             fontFamily="mono"
                                         >
-                                            {(slippage * 100).toFixed(2)}%
+                                            {parseFloat(
+                                                slippage || "0"
+                                            ).toFixed(2)}
+                                            %
                                         </Text>
                                     </HStack>
                                 </Flex>
@@ -107,16 +115,24 @@ export const SwapCardSlippageTolerance = (
                             <Flex alignItems="center" gap="2">
                                 {/* Pre-defined slippage */}
                                 <SlippageToleranceRadioGroup
-                                    defaultSlippage="0.0001"
-                                    slippages={["0.001", "0.005", "0.01"]}
+                                    slippage={slippage}
+                                    slippages={["0.1", "0.5", "1"]}
+                                    setSlippage={setSlippage}
                                 />
 
                                 {/* Custom slippage input */}
                                 <NumberInput
                                     data-testid="SlippageToleranceCustomInput"
-                                    // value="0.7%"
+                                    precision={2}
+                                    step={0.01}
+                                    value={slippage}
+                                    onChange={parseSlippageTolerance(
+                                        setSlippage
+                                    )}
                                     max={100}
                                     min={0}
+                                    // Allow user to input comma
+                                    isValidCharacter={isValidInputAmount}
                                 >
                                     <NumberInputField
                                         data-testid="SlippageToleranceCustomInputField"
