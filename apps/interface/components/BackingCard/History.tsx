@@ -43,7 +43,7 @@ export const BackingCardHistory = (props: BackingCardHistoryProps) => {
 
     return (
         <Accordion
-            allowMultiple
+            allowToggle
             data-testid="BackingCardHistory"
             width="100%"
             margin="0 !important"
