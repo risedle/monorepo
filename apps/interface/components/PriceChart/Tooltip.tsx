@@ -68,7 +68,7 @@ export const PriceChartLineTooltip = (props: PriceChartLineTooltipProps) => {
                         lineHeight="4"
                         fontWeight="semibold"
                         color={change > 0 ? "green.dark.11" : "red.dark.11"}
-                        data-testid="PriceChartLineTooltipPrice"
+                        data-testid="PriceChartLineTooltipPriceChange"
                     >
                         {formatUSD(change)} ({formatPercent(changePercent)})
                     </Text>
