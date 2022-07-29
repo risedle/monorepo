@@ -33,12 +33,14 @@ export const PriceChartLineTooltip = (props: PriceChartLineTooltipProps) => {
             borderRadius="lg"
             spacing="3"
             boxShadow="sm"
-            divider={<StackDivider borderStyle="dashed" />}
+            divider={
+                <StackDivider borderStyle="dashed" borderColor="gray.dark.5" />
+            }
             minWidth="181px"
             align="start"
         >
             <Text
-                fontSize="10px"
+                fontSize="xs"
                 lineHeight="4"
                 data-testid="PriceChartLineTooltipTimestamp"
             >
@@ -67,7 +69,7 @@ export const PriceChartLineTooltip = (props: PriceChartLineTooltipProps) => {
                         fontSize="xs"
                         lineHeight="4"
                         fontWeight="semibold"
-                        color={change > 0 ? "green.dark.11" : "red.dark.11"}
+                        color={change >= 0 ? "green.dark.11" : "red.dark.11"}
                         data-testid="PriceChartLineTooltipPriceChange"
                     >
                         {formatUSD(change)} ({formatPercent(changePercent)})
