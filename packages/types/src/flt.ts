@@ -32,3 +32,21 @@ export interface FuseLeveragedTokenUserPosition {
     pnlUSD: number; // open p/l in USD
     pnlPercent: number; // open p/l in percentage
 }
+
+export interface FuseLeveragedTokenSwap {
+    hash: string;
+    user: string;
+    timestamp: number;
+    tokenIn: {
+        name: string;
+        symbol: string;
+    };
+    amountIn: number;
+    amountInUSD: number;
+    tokenOut: {
+        name: string;
+        symbol: string;
+    };
+    amountOut: number;
+    amountOutUSD: number;
+}
