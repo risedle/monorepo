@@ -2,7 +2,8 @@ import { Text, VStack, StackDivider, HStack } from "@chakra-ui/react";
 
 // Utils
 import { formatUSD } from "@/utils/formatUSD";
-import { formatTimestamp } from "@/utils/formatTimestamp";
+import { getDateFromTimestamp } from "@/utils/getDateFromTimestamp";
+import { getHourFromTimestamp } from "@/utils/getHourFromTimestamp";
 import formatPercent from "@/utils/formatPercent";
 
 interface PriceChartLineTooltipProps {
@@ -44,7 +45,9 @@ export const PriceChartLineTooltip = (props: PriceChartLineTooltipProps) => {
                 lineHeight="4"
                 data-testid="PriceChartLineTooltipTimestamp"
             >
-                {point && formatTimestamp(point.timestamp * 1000)}
+                {point && getHourFromTimestamp(point.timestamp * 1000)}{" "}
+                &middot;{" "}
+                {point && getDateFromTimestamp(point.timestamp * 1000)}
             </Text>
             <VStack align="start">
                 <HStack spacing="2">
