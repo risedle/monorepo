@@ -8,6 +8,7 @@ describe("<PriceChartLineTooltip />", () => {
         render(
             <PriceChartLineTooltip
                 payload={[{ payload: { timestamp: 1658471219, price: 5.6 } }]}
+                oldestPrice={5.8}
             />
         );
         const tooltip = screen.queryByTestId("PriceChartLineTooltip");
@@ -15,6 +16,11 @@ describe("<PriceChartLineTooltip />", () => {
 
         const price = screen.queryByTestId("PriceChartLineTooltipPrice");
         expect(price).toHaveTextContent("$5.60");
+
+        const change = screen.queryByTestId(
+            "PriceChartLineTooltipPriceChange"
+        );
+        expect(change).toHaveTextContent("-$0.20 (-3.45%)");
 
         const ts = screen.queryByTestId("PriceChartLineTooltipTimestamp");
         expect(ts).toHaveTextContent("Jul 22, 2022");

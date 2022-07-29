@@ -1,48 +1,85 @@
-import { HStack, Text, useColorModeValue } from "@chakra-ui/react";
+import { Text, VStack, StackDivider, HStack } from "@chakra-ui/react";
 
 // Utils
 import { formatUSD } from "@/utils/formatUSD";
-import { formatTimestamp } from "@/utils/formatTimestamp";
+import { getDateFromTimestamp } from "@/utils/getDateFromTimestamp";
+import { getHourFromTimestamp } from "@/utils/getHourFromTimestamp";
+import formatPercent from "@/utils/formatPercent";
 
 interface PriceChartLineTooltipProps {
     payload?: Array<{ payload: { timestamp: number; price: number } }>;
+    oldestPrice: number;
 }
 
 export const PriceChartLineTooltip = (props: PriceChartLineTooltipProps) => {
     // Data
-    const { payload } = props;
+    const { payload, oldestPrice } = props;
     if (payload == null) return <div>PriceChartLineTooltip undefined</div>;
     const p = payload.at(0);
     if (p == null) return <div>undefined</div>;
     const point = p.payload;
 
-    // Styles
-    const gray2 = useColorModeValue("gray.light.2", "gray.dark.2");
-    const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
+    const change = point.price - oldestPrice;
+    const changePercent = change / oldestPrice;
 
     return (
-        <HStack
+        <VStack
             data-testid="PriceChartLineTooltip"
-            background={gray12}
-            color={gray2}
-            padding="2"
+            background="gray.dark.3"
+            color="gray.dark.10"
+            paddingY="2"
+            paddingX="3"
+            border="1px"
+            borderColor="gray.dark.4"
             borderRadius="lg"
+            spacing="3"
+            boxShadow="sm"
+            divider={
+                <StackDivider borderStyle="dashed" borderColor="gray.dark.5" />
+            }
+            minWidth="181px"
+            align="start"
         >
             <Text
-                fontSize="sm"
-                lineHeight="4"
-                data-testid="PriceChartLineTooltipPrice"
-            >
-                {point && formatUSD(point.price)}
-            </Text>
-            <Text
-                fontSize="sm"
+                fontSize="xs"
                 lineHeight="4"
                 data-testid="PriceChartLineTooltipTimestamp"
             >
-                {point && formatTimestamp(point.timestamp * 1000)}
+                {point && getHourFromTimestamp(point.timestamp * 1000)}{" "}
+                &middot;{" "}
+                {point && getDateFromTimestamp(point.timestamp * 1000)}
             </Text>
-        </HStack>
+            <VStack align="start">
+                <HStack spacing="2">
+                    <Text fontSize="xs" lineHeight="4">
+                        Price
+                    </Text>
+                    <Text
+                        fontSize="xs"
+                        lineHeight="4"
+                        fontWeight="semibold"
+                        color="gray.dark.12"
+                        data-testid="PriceChartLineTooltipPrice"
+                    >
+                        {point && formatUSD(point.price)}
+                    </Text>
+                </HStack>
+                <HStack spacing="2">
+                    <Text fontSize="xs" lineHeight="4">
+                        Changes
+                    </Text>
+                    <Text
+                        fontSize="xs"
+                        lineHeight="4"
+                        fontWeight="semibold"
+                        color={change >= 0 ? "green.dark.11" : "red.dark.11"}
+                        data-testid="PriceChartLineTooltipPriceChange"
+                    >
+                        {formatUSD(change)} ({formatPercent(changePercent)})
+                    </Text>
+                </HStack>
+            </VStack>
+        </VStack>
     );
 };
 
