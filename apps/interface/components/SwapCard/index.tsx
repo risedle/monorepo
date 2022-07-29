@@ -17,7 +17,7 @@ import SwapCardBuyAmountContainer from "./BuyAmountContainer";
 import SwapCardBuyBalanceContainer from "./BuyBalanceContainer";
 import SwapCardSellAmountContainer from "./SellAmountContainer";
 import SwapCardSellBalanceContainer from "./SellBalanceContainer";
-import SwapCardSlippageTolerance from "./SlippageTolerance";
+import SwapCardSlippageToleranceContainer from "./SlippageToleranceContainer";
 
 interface SwapCardProps extends BoxProps {
     flt: FuseLeveragedToken;
@@ -105,7 +105,7 @@ export const SwapCard = (props: SwapCardProps) => {
                                 />
                             </VStack>
                             {/* Slippage tolerance */}
-                            <SwapCardSlippageTolerance slippage={0.005} />
+                            <SwapCardSlippageToleranceContainer />
                         </VStack>
                     </TabPanel>
 
@@ -126,7 +126,7 @@ export const SwapCard = (props: SwapCardProps) => {
                                 />
                             </VStack>
                             {/* Slippage tolerance */}
-                            <SwapCardSlippageTolerance slippage={0.005} />
+                            <SwapCardSlippageToleranceContainer />
                         </VStack>
                     </TabPanel>
                 </TabPanels>

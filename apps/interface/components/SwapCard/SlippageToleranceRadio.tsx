@@ -56,7 +56,7 @@ export const SlippageToleranceRadio = (props: SlippageToleranceRadioProps) => {
                     fontFamily="mono"
                     letterSpacing="tight"
                 >
-                    {parseFloat(slippage) * 100}%
+                    {parseFloat(slippage).toFixed(2)}%
                 </Text>
             </Box>
         </chakra.label>
