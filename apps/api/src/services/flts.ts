@@ -1,5 +1,9 @@
 import { request as grequest, gql } from "graphql-request";
-import { ChainId, FuseLeveragedTokenInfo } from "@risedle/types";
+import {
+    ChainId,
+    FuseLeveragedTokenInfo,
+    FuseLeveragedTokenSwap,
+} from "@risedle/types";
 
 const queryFuseLeveragedTokens = gql`
     {
@@ -244,24 +248,6 @@ interface FuseLeveragedTokenChart {
     prices: Array<FuseLeveragedTokenPrice>;
     volumes: Array<FuseLeveragedTokenVolume>;
     fees: Array<FuseLeveragedTokenFee>;
-}
-
-interface FuseLeveragedTokenSwap {
-    hash: string;
-    user: string;
-    timestamp: number;
-    tokenIn: {
-        name: string;
-        symbol: string;
-    };
-    amountIn: number;
-    amountInUSD: number;
-    tokenOut: {
-        name: string;
-        symbol: string;
-    };
-    amountOut: number;
-    amountOutUSD: number;
 }
 
 interface FuseLeveragedTokenSwaps {
