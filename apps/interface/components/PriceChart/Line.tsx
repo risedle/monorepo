@@ -68,7 +68,11 @@ export const PriceChartLine = (props: PriceChartLineProps) => {
                     />
                     <Tooltip
                         cursor={false}
-                        content={<PriceChartLineTooltip />}
+                        content={
+                            <PriceChartLineTooltip
+                                oldestPrice={oldest.price}
+                            />
+                        }
                     />
                     <defs>
                         <linearGradient
