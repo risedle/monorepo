@@ -94,7 +94,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                                 target="_blank"
                                 data-testid="SwapHistoryCardTableTransactionLink"
                             >
-                                <HStack paddingX="2">
+                                <HStack>
                                     <Text
                                         color={gray12}
                                         fontSize="sm"
@@ -159,7 +159,6 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                                 fontSize="sm"
                                 lineHeight="4"
                                 margin="0 !important"
-                                paddingX="2"
                             >
                                 <TimeAgo
                                     date={parseInt(swap.timestamp) * 1000}
@@ -220,7 +219,6 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                                 lineHeight="4"
                                 fontFamily="mono"
                                 letterSpacing="tight"
-                                marginX="2"
                             >
                                 {formatUSD(parseFloat(swap.amountInUSD))}
                             </Text>
