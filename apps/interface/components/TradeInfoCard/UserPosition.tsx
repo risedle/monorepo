@@ -200,7 +200,7 @@ export const TradeInfoCardUserPosition = (
                                         fontFamily="mono"
                                         margin="0 !important"
                                     >
-                                        {formatPercent(pnlPercent)}
+                                        {formatPercent(pnlPercent / 100)}
                                     </Text>
                                 </Center>
                             </HStack>
