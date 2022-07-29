@@ -17,6 +17,7 @@ import SwapCardBuyAmountContainer from "./BuyAmountContainer";
 import SwapCardBuyBalanceContainer from "./BuyBalanceContainer";
 import SwapCardSellAmountContainer from "./SellAmountContainer";
 import SwapCardSellBalanceContainer from "./SellBalanceContainer";
+import SwapCardSlippageTolerance from "./SlippageTolerance";
 
 interface SwapCardProps extends BoxProps {
     flt: FuseLeveragedToken;
@@ -89,35 +90,43 @@ export const SwapCard = (props: SwapCardProps) => {
                 <TabPanels margin="0 !important">
                     {/* Buy */}
                     <TabPanel data-testid="BuyTabPanel" padding="0">
-                        {/* Form input and balance*/}
-                        <VStack
-                            data-testid="SwapCardBuyInputBalance"
-                            gap={2}
-                            margin="0 !important"
-                            alignItems="flex-start"
-                            width="100%"
-                        >
-                            <SwapCardBuyAmountContainer symbol={symbol} />
-                            <SwapCardBuyBalanceContainer
-                                fltAddress={address}
-                            />
+                        <VStack data-testid="BuyTabPanelStack" gap={6}>
+                            {/* Form input and balance*/}
+                            <VStack
+                                data-testid="SwapCardBuyInputBalance"
+                                gap={2}
+                                margin="0 !important"
+                                alignItems="flex-start"
+                                width="100%"
+                            >
+                                <SwapCardBuyAmountContainer symbol={symbol} />
+                                <SwapCardBuyBalanceContainer
+                                    fltAddress={address}
+                                />
+                            </VStack>
+                            {/* Slippage tolerance */}
+                            <SwapCardSlippageTolerance slippage={0.005} />
                         </VStack>
                     </TabPanel>
 
                     {/* Sell */}
                     <TabPanel data-testid="SellTabPanel" padding="0">
-                        {/* Form input and balance*/}
-                        <VStack
-                            data-testid="SwapCardSellInputBalance"
-                            gap={2}
-                            margin="0 !important"
-                            alignItems="flex-start"
-                            width="100%"
-                        >
-                            <SwapCardSellAmountContainer symbol={symbol} />
-                            <SwapCardSellBalanceContainer
-                                fltAddress={address}
-                            />
+                        <VStack data-testid="SellTabPanelStack" gap={6}>
+                            {/* Form input and balance*/}
+                            <VStack
+                                data-testid="SwapCardSellInputBalance"
+                                gap={2}
+                                margin="0 !important"
+                                alignItems="flex-start"
+                                width="100%"
+                            >
+                                <SwapCardSellAmountContainer symbol={symbol} />
+                                <SwapCardSellBalanceContainer
+                                    fltAddress={address}
+                                />
+                            </VStack>
+                            {/* Slippage tolerance */}
+                            <SwapCardSlippageTolerance slippage={0.005} />
                         </VStack>
                     </TabPanel>
                 </TabPanels>
