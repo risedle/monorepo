@@ -3,7 +3,6 @@ import {
     AccordionItem,
     AccordionPanel,
     AccordionButton,
-    Box,
     useColorModeValue,
     Flex,
     Spacer,
@@ -38,9 +37,6 @@ export const SwapCardSlippageTolerance = (
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
     const red11 = useColorModeValue("red.light.11", "red.dark.11");
-
-    // Utils
-    const format = (val) => val + "%";
 
     return (
         <Accordion

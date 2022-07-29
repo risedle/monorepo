@@ -9,10 +9,10 @@ import { useRadioGroup, HStack } from "@chakra-ui/react";
 // Sub-components
 import SlippageToleranceRadio from "./SlippageToleranceRadio";
 
-interface SlippageToleranceRadioGroup {
+interface SlippageToleranceRadioGroupProps {
     defaultSlippage: string;
     slippages: Array<string>;
-    onChange: (value: string) => void;
+    onChange?: (value: string) => void;
 }
 
 export const SlippageToleranceRadioGroup = (
