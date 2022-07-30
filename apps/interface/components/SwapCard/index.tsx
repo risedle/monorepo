@@ -20,6 +20,7 @@ import SwapCardSellAmountContainer from "./SellAmountContainer";
 import SwapCardSellBalanceContainer from "./SellBalanceContainer";
 import SwapCardSellQuoteContainer from "./SellQuoteContainer";
 import SwapCardSlippageToleranceContainer from "./SlippageToleranceContainer";
+import SwapCardQuoteBalanceContainer from "./QuoteBalanceContainer";
 
 interface SwapCardProps extends BoxProps {
     flt: FuseLeveragedToken;
@@ -110,6 +111,7 @@ export const SwapCard = (props: SwapCardProps) => {
                                 data-testid="SlippageAndQuote"
                                 margin="0 !important"
                                 width="100%"
+                                alignItems="flex-start"
                             >
                                 {/* Slippage tolerance */}
                                 <SwapCardSlippageToleranceContainer />
@@ -117,6 +119,8 @@ export const SwapCard = (props: SwapCardProps) => {
                                 <SwapCardBuyQuoteContainer
                                     fltAddress={address}
                                 />
+                                {/* Quote token balance */}
+                                <SwapCardQuoteBalanceContainer />
                             </VStack>
                         </VStack>
                     </TabPanel>
@@ -148,6 +152,8 @@ export const SwapCard = (props: SwapCardProps) => {
                                 <SwapCardSellQuoteContainer
                                     fltAddress={address}
                                 />
+                                {/* Quote token balance */}
+                                <SwapCardQuoteBalanceContainer />
                             </VStack>
                         </VStack>
                     </TabPanel>

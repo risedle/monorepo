@@ -1,5 +1,6 @@
 import { useContractReads } from "wagmi";
 import { utils } from "ethers";
+import { useEffect, useState } from "react";
 
 // Utils
 import getBaseConfig from "@/utils/getBaseConfig";
@@ -32,6 +33,11 @@ export const SwapCardBuyQuoteContainer = (
         routerAddress,
     } = getBaseConfig();
     const { fltAddress } = props;
+
+    // States
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [quoteAmount, setQuoteAmount] = useState(0);
+    const [quoteAmountUSD, setQuoteAmountUSD] = useState(0);
     const amount = useBuyAmountStore((state) => state.amount);
     const buyAmount = amount == "" ? "0" : `${parseFloat(amount)}`;
     const amountOut = utils.parseUnits(buyAmount, "ether").toString();
@@ -52,26 +58,48 @@ export const SwapCardBuyQuoteContainer = (
             },
         ],
         watch: true,
+        cacheOnBlock: true,
+        onError(error) {
+            console.error("SwapCardBuyQuoteContainer: error", error);
+        },
     });
 
-    // console.debug("SwapCardBuyQuoteContainer: buyAmount", buyAmount);
-    // console.debug("SwapCardBuyQuoteContainer: amountOut", amountOut);
-    // console.debug("SwapCardBuyQuoteContainer: data", data);
+    // NOTE: we use useEffect here to prevent React Hydration Error
+    // read more: https://nextjs.org/docs/messages/react-hydration-error
+    useEffect(() => {
+        console.debug(
+            "SwapCardBuyQuoteContainer: routerAddress",
+            routerAddress
+        );
+        console.debug("SwapCardBuyQuoteContainer: fltAddress", fltAddress);
+        console.debug(
+            "SwapCardBuyQuoteContainer: defaultQuoteAddress",
+            defaultQuoteAddress
+        );
+        console.debug("SwapCardBuyQuoteContainer: buyAmount", buyAmount);
+        console.debug("SwapCardBuyQuoteContainer: amountOut", amountOut);
+        console.debug("SwapCardBuyQuoteContainer: data", data);
 
-    // Parse data from contracts
-    let quoteAmount = 0;
-    let quoteAmountUSD = 0;
-    let isLoaded = false;
-    if (data && data.length == 2) {
-        isLoaded = true;
-        quoteAmount = parseFloat(
-            utils.formatUnits(data[0], defaultQuoteDecimals)
-        );
-        const quotePrice = parseFloat(
-            utils.formatUnits(data[1], defaultQuoteChainlinkDecimals)
-        );
-        quoteAmountUSD = quoteAmount * quotePrice;
-    }
+        // Parse data from contracts
+        if (data && data[0] == null) {
+            setIsLoaded(true);
+            setQuoteAmount(0);
+            setQuoteAmountUSD(0);
+        }
+        if (data && data.length == 2) {
+            const quoteAmount = parseFloat(
+                utils.formatUnits(data[0], defaultQuoteDecimals)
+            );
+            const quotePrice = parseFloat(
+                utils.formatUnits(data[1], defaultQuoteChainlinkDecimals)
+            );
+            const quoteAmountUSD = quoteAmount * quotePrice;
+
+            setIsLoaded(true);
+            setQuoteAmount(quoteAmount);
+            setQuoteAmountUSD(quoteAmountUSD);
+        }
+    });
 
     return (
         <Quote
