@@ -59,27 +59,11 @@ export const SwapCardBuyQuoteContainer = (
         ],
         watch: true,
         cacheOnBlock: true,
-        onError(error) {
-            console.error("SwapCardBuyQuoteContainer: error", error);
-        },
     });
 
     // NOTE: we use useEffect here to prevent React Hydration Error
     // read more: https://nextjs.org/docs/messages/react-hydration-error
     useEffect(() => {
-        console.debug(
-            "SwapCardBuyQuoteContainer: routerAddress",
-            routerAddress
-        );
-        console.debug("SwapCardBuyQuoteContainer: fltAddress", fltAddress);
-        console.debug(
-            "SwapCardBuyQuoteContainer: defaultQuoteAddress",
-            defaultQuoteAddress
-        );
-        console.debug("SwapCardBuyQuoteContainer: buyAmount", buyAmount);
-        console.debug("SwapCardBuyQuoteContainer: amountOut", amountOut);
-        console.debug("SwapCardBuyQuoteContainer: data", data);
-
         // Parse data from contracts
         if (data && data[0] == null) {
             setIsLoaded(true);

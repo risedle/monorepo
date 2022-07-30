@@ -31,9 +31,10 @@ describe("Given a user visit /", () => {
                     backings={[]}
                     prices={[]}
                     swaps={[]}
+                    symbol="OK"
                     address="0xec448Dcb1FF0A8724EA8cF5c5348d88207d6e9D9"
-                    collateral={{ symbol: "A" }}
-                    debt={{ symbol: "A" }}
+                    collateral={{ symbol: "A", address: "tess" }}
+                    debt={{ symbol: "A", address: "test" }}
                 />
             );
         });
@@ -65,8 +66,8 @@ describe("Given a user visit /", () => {
                     backings={[]}
                     swaps={[]}
                     address="0xec448Dcb1FF0A8724EA8cF5c5348d88207d6e9D9"
-                    collateral={{ symbol: "A" }}
-                    debt={{ symbol: "A" }}
+                    collateral={{ symbol: "A", address: "a" }}
+                    debt={{ symbol: "A", address: "b" }}
                 />
             );
         });

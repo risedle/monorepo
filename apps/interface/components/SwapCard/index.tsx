@@ -16,6 +16,7 @@ import type { FuseLeveragedToken } from "@/utils/types";
 import SwapCardBuyAmountContainer from "./BuyAmountContainer";
 import SwapCardBuyBalanceContainer from "./BuyBalanceContainer";
 import SwapCardBuyQuoteContainer from "./BuyQuoteContainer";
+import SwapCardBuyCTAContainer from "./BuyCTAContainer";
 import SwapCardSellAmountContainer from "./SellAmountContainer";
 import SwapCardSellBalanceContainer from "./SellBalanceContainer";
 import SwapCardSellQuoteContainer from "./SellQuoteContainer";
@@ -29,7 +30,7 @@ interface SwapCardProps extends BoxProps {
 export const SwapCard = (props: SwapCardProps) => {
     // Data
     const { flt } = props;
-    const { symbol, address } = flt;
+    const { symbol, address, debt } = flt;
 
     // Styles
     const gray1 = useColorModeValue("gray.light.1", "gray.dark.1");
@@ -121,6 +122,11 @@ export const SwapCard = (props: SwapCardProps) => {
                                 />
                                 {/* Quote token balance */}
                                 <SwapCardQuoteBalanceContainer />
+                                <SwapCardBuyCTAContainer
+                                    fltAddress={address}
+                                    fltSymbol={symbol}
+                                    fltDebtAddress={debt.address}
+                                />
                             </VStack>
                         </VStack>
                     </TabPanel>

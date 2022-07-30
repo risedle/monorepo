@@ -4,7 +4,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import themes from "@/themes";
 
 // Rainbowkit
-import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import * as rainbowkit from "@rainbow-me/rainbowkit";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 import { InjectedConnector } from "wagmi/connectors/injected";
@@ -21,6 +21,8 @@ const wagmiClient = createClient({
     provider,
 });
 
+// NOTE: RaibowKitProvider is a problematic, don't use in wrapper
+// Better to mock the function one by one
 const Wrapper: FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
         <ChakraProvider theme={themes}>

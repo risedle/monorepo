@@ -105,12 +105,32 @@ const ButtonGradient = ({ colorMode }: { colorMode: string }) => ({
     },
 });
 
+const ButtonGreen = ({ colorMode }: { colorMode: string }) => ({
+    background: colorMode == "dark" ? "green.dark.10" : "green.light.10",
+    borderColor: colorMode == "dark" ? "green.dark.11" : "green.light.11",
+    borderWidth: "1px",
+    color: colorMode == "dark" ? "blue.light.1" : "gray.light.1",
+    fontWeight: "semibold",
+    fontSize: "sm",
+    lineHeight: "4",
+    borderRadius: "full",
+    _hover: {
+        borderColor: colorMode == "dark" ? "green.dark.10" : "green.light.10",
+        background: colorMode == "dark" ? "green.dark.9" : "green.light.9",
+    },
+    _active: {
+        borderColor: colorMode == "dark" ? "green.dark.9" : "green.light.9",
+        background: colorMode == "dark" ? "green.dark.8" : "green.light.8",
+    },
+});
+
 const Button = {
     variants: {
         solid: ButtonSolid,
         icon: ButtonIcon,
         bsc: ButtonBSC,
         gradient: ButtonGradient,
+        green: ButtonGreen,
     },
 };
 

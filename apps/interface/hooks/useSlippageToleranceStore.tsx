@@ -8,7 +8,7 @@ interface SlippageToleranceState {
 
 export const useSlippageToleranceStore = create<SlippageToleranceState>()(
     persist((set) => ({
-        slippage: "0.5", // 0.5%
+        slippage: "2", // 2%
         setSlippage: (slippage) => set((state) => ({ slippage })),
     }))
 );
