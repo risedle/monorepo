@@ -46,7 +46,7 @@ export const SwapCardBalance = (props: SwapCardBalanceProps) => {
                     color={gray10}
                     margin="0 !important"
                 >
-                    {formatTokenBalance(amount)} &bull; {formatUSD(amountUSD)}
+                    {formatTokenBalance(amount)} &asymp; {formatUSD(amountUSD)}
                 </Text>
             </HStack>
         </Skeleton>
