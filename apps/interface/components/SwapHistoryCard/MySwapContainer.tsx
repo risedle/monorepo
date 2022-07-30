@@ -6,13 +6,14 @@ import useFuseLeveragedTokenSwap from "@/hooks/useFuseLeveragedTokenSwap";
 
 // Sub-components
 import SwapHistoryCardTable from "./Table";
-import type { FuseLeveragedTokenSwap } from "@/utils/types";
+import type { FuseLeveragedTokenSwap as IsgFuse } from "@/utils/types";
+import { FuseLeveragedTokenSwap } from "@/../../packages/types/dist";
 
 interface MySwapHisotryContainerProps {
     symbol: string;
 }
 
-const dummyData: FuseLeveragedTokenSwap = {
+const dummyData: IsgFuse = {
     amountInUSD: "0",
     timestamp: "0",
     tokenIn: {
@@ -30,14 +31,14 @@ export const MySwapHistoryContainer = (props: MySwapHisotryContainerProps) => {
     const { symbol } = props;
     const { address } = useAccount();
     const { data, isLoaded } = useFuseLeveragedTokenSwap(symbol, address);
-    const [loadedData, setLoadedData] = useState<FuseLeveragedTokenSwap[]>(
+    const [loadedData, setLoadedData] = useState<IsgFuse[]>(
         Array.from(Array(5).keys()).map(() => dummyData)
     );
 
     useEffect(() => {
         if (isLoaded && data) {
-            const mappedData: Array<FuseLeveragedTokenSwap> = data.user.map(
-                (userData) => ({
+            const mappedData: Array<IsgFuse> = data.user.map(
+                (userData: FuseLeveragedTokenSwap) => ({
                     amountInUSD: userData.amountInUSD.toString(),
                     timestamp: userData.timestamp.toString(),
                     tokenIn: {
