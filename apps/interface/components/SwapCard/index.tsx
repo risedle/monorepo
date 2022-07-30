@@ -15,10 +15,10 @@ import type { FuseLeveragedToken } from "@/utils/types";
 // Sub-components
 import SwapCardBuyAmountContainer from "./BuyAmountContainer";
 import SwapCardBuyBalanceContainer from "./BuyBalanceContainer";
+import SwapCardBuyQuoteContainer from "./BuyQuoteContainer";
 import SwapCardSellAmountContainer from "./SellAmountContainer";
 import SwapCardSellBalanceContainer from "./SellBalanceContainer";
 import SwapCardSlippageToleranceContainer from "./SlippageToleranceContainer";
-import SwapCardQuote from "./Quote";
 
 interface SwapCardProps extends BoxProps {
     flt: FuseLeveragedToken;
@@ -113,11 +113,8 @@ export const SwapCard = (props: SwapCardProps) => {
                                 {/* Slippage tolerance */}
                                 <SwapCardSlippageToleranceContainer />
                                 {/* Quote */}
-                                <SwapCardQuote
-                                    label="You will send"
-                                    quoteAmount="1.123123"
-                                    quoteSymbol="BUSD"
-                                    isLoaded={false}
+                                <SwapCardBuyQuoteContainer
+                                    fltAddress={address}
                                 />
                             </VStack>
                         </VStack>

@@ -29,10 +29,10 @@ export const TradeInfoCard = (props: TradeInfoCardProps) => {
         price: parseFloat(price.close),
     }));
     const timeframes = {
-        "1D": { prices: chartPrices.slice(0, 24).reverse() },
-        "1W": { prices: chartPrices.slice(0, 24 * 7).reverse() },
-        "2W": { prices: chartPrices.slice(0, 24 * 7 * 2).reverse() },
-        "3W": { prices: chartPrices.slice(0, 24 * 7 * 3).reverse() },
+        "1D": { prices: chartPrices.slice(0, 25).reverse() },
+        "1W": { prices: chartPrices.slice(0, 24 * 7 + 1).reverse() },
+        "2W": { prices: chartPrices.slice(0, 24 * 7 * 2 + 1).reverse() },
+        "3W": { prices: chartPrices.slice(0, 24 * 7 * 3 + 1).reverse() },
         "1M": { prices: chartPrices.reverse() },
     };
 

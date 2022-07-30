@@ -7,6 +7,12 @@ interface Chain {
     graphEndpoint: string;
     explorerName: string;
     explorerURL: string;
+    defaultQuoteAddress: string;
+    defaultQuoteSymbol: string;
+    defaultQuoteDecimals: number;
+    defaultQuoteChainlinkAddress: string;
+    defaultQuoteChainlinkDecimals: number;
+    routerAddress: string;
 }
 
 interface BaseConfig extends Chain {
@@ -21,6 +27,12 @@ const Arbitrum = {
     graphEndpoint: "",
     explorerName: "Arbiscan",
     explorerURL: "https://arbiscan.io",
+    defaultQuoteAddress: "",
+    defaultQuoteSymbol: "",
+    defaultQuoteDecimals: 18,
+    defaultQuoteChainlinkAddress: "",
+    defaultQuoteChainlinkDecimals: 8,
+    routerAddress: "",
 };
 
 const BSC = {
@@ -32,6 +44,12 @@ const BSC = {
         "https://api.thegraph.com/subgraphs/name/risedle/risedle-flt-bsc",
     explorerName: "BscScan",
     explorerURL: "https://bscscan.com",
+    defaultQuoteAddress: "0xe9e7cea3dedca5984780bafc599bd69add087d56",
+    defaultQuoteSymbol: "BUSD",
+    defaultQuoteDecimals: 18,
+    defaultQuoteChainlinkAddress: "0xcBb98864Ef56E9042e7d2efef76141f15731B82f",
+    defaultQuoteChainlinkDecimals: 8,
+    routerAddress: "0x8888888C0A5BE14f3FC72a8c97eC489DEE9c4460",
 };
 
 const supportedChains = [Arbitrum, BSC];
