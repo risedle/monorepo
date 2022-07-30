@@ -28,7 +28,13 @@
         "email": "bayu@risedle.com",
         "url": "https://github.com/pyk"
     },
-    "contributors": [],
+    "contributors": [
+        {
+            "email": "adam@risedle.com",
+            "name": "Adam",
+            "url": "https://github.com/asaadam"
+        }
+    ],
     "dependencies": {},
     "devDependencies": {
         "@semantic-release/git": "10.0.1",
