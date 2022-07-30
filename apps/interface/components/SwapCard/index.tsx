@@ -18,6 +18,7 @@ import SwapCardBuyBalanceContainer from "./BuyBalanceContainer";
 import SwapCardBuyQuoteContainer from "./BuyQuoteContainer";
 import SwapCardSellAmountContainer from "./SellAmountContainer";
 import SwapCardSellBalanceContainer from "./SellBalanceContainer";
+import SwapCardSellQuoteContainer from "./SellQuoteContainer";
 import SwapCardSlippageToleranceContainer from "./SlippageToleranceContainer";
 
 interface SwapCardProps extends BoxProps {
@@ -136,8 +137,18 @@ export const SwapCard = (props: SwapCardProps) => {
                                     fltAddress={address}
                                 />
                             </VStack>
-                            {/* Slippage tolerance */}
-                            <SwapCardSlippageToleranceContainer />
+                            <VStack
+                                data-testid="SlippageAndQuote"
+                                margin="0 !important"
+                                width="100%"
+                            >
+                                {/* Slippage tolerance */}
+                                <SwapCardSlippageToleranceContainer />
+                                {/* Quote */}
+                                <SwapCardSellQuoteContainer
+                                    fltAddress={address}
+                                />
+                            </VStack>
                         </VStack>
                     </TabPanel>
                 </TabPanels>
