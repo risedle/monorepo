@@ -116,7 +116,7 @@ export const SwapCardSlippageTolerance = (
                                 {/* Pre-defined slippage */}
                                 <SlippageToleranceRadioGroup
                                     slippage={slippage}
-                                    slippages={["0.1", "0.5", "1"]}
+                                    slippages={["0.8", "1", "2"]}
                                     setSlippage={setSlippage}
                                 />
 

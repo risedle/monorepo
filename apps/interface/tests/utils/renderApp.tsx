@@ -24,7 +24,11 @@ const wagmiClient = createClient({
 const Wrapper: FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
         <ChakraProvider theme={themes}>
-            <WagmiConfig client={wagmiClient}>{children}</WagmiConfig>
+            <WagmiConfig client={wagmiClient}>
+                <RainbowKitProvider chains={chains}>
+                    {children}
+                </RainbowKitProvider>
+            </WagmiConfig>
         </ChakraProvider>
     );
 };

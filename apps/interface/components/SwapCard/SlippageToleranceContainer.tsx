@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 // Hooks
 import useSlippageToleranceStore from "@/hooks/useSlippageToleranceStore";
 
@@ -5,13 +7,26 @@ import useSlippageToleranceStore from "@/hooks/useSlippageToleranceStore";
 import SlippageTolerance from "./SlippageTolerance";
 
 export const SlippageToleranceContainer = () => {
-    // State
-    const slippage = useSlippageToleranceStore((state) => state.slippage);
-    const setSlippage = useSlippageToleranceStore(
+    // Hooks
+    const persistedSlippage = useSlippageToleranceStore(
+        (state) => state.slippage
+    );
+    const setPersistedSlippage = useSlippageToleranceStore(
         (state) => state.setSlippage
     );
+    const [slippage, setSlippage] = useState("");
 
-    return <SlippageTolerance slippage={slippage} setSlippage={setSlippage} />;
+    // NOTE: This is to enable server-side rendering when we persist state
+    useEffect(() => {
+        setSlippage(persistedSlippage);
+    }, [persistedSlippage]);
+
+    return (
+        <SlippageTolerance
+            slippage={slippage}
+            setSlippage={setPersistedSlippage}
+        />
+    );
 };
 
 export default SlippageToleranceContainer;

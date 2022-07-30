@@ -30,7 +30,8 @@ export interface FuseLeveragedTokenFee {
 export interface FuseLeveragedTokenBackingInfo {
     name: string;
     symbol: string;
-    decimal: string;
+    decimals: string;
+    address: string;
 }
 
 export interface FuseLeveragedTokenBacking {

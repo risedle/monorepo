@@ -16,7 +16,6 @@ import {
     RainbowKitProvider,
 } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
-import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import NextNProgress from "nextjs-progressbar";
 
@@ -57,10 +56,7 @@ const bscChain: Chain = {
 };
 
 // Rainbowkit configuration
-const { chains, provider } = configureChains(
-    [bscChain],
-    [alchemyProvider({ alchemyId: process.env.ALCHEMY_ID }), publicProvider()]
-);
+const { chains, provider } = configureChains([bscChain], [publicProvider()]);
 
 const { connectors } = getDefaultWallets({
     appName: "Risedle",

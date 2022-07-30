@@ -38,10 +38,12 @@ const queryFuseLeveragedTokenBySymbol = gql`
             collateral {
                 name
                 symbol
+                address: id
             }
             debt {
                 name
                 symbol
+                address: id
             }
             prices: fltHourData(
                 first: 672
