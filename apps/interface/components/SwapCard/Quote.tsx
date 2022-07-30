@@ -60,6 +60,7 @@ export const SwapCardQuote = (props: SwapCardQuoteProps) => {
                 >
                     <HStack gap={2}>
                         <Text
+                            data-testid="QuoteAmount"
                             fontFamily="mono"
                             fontWeight="semibold"
                             fontSize="xl"
@@ -69,6 +70,7 @@ export const SwapCardQuote = (props: SwapCardQuoteProps) => {
                             {formatTokenBalance(quoteAmount)}
                         </Text>
                         <Text
+                            data-testid="QuoteAmountUSD"
                             fontSize="md"
                             lineHeight="4"
                             letterSpacing="tight"

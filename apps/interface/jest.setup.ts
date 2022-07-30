@@ -15,4 +15,7 @@ jest.mock("@rainbow-me/rainbowkit", () => ({
         Custom: jest.fn(),
     },
     RainbowKitProvider: jest.fn(),
+    useConnectModal: () => ({
+        openConnectModal: jest.fn(),
+    }),
 }));
