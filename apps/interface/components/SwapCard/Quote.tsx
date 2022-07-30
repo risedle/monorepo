@@ -7,21 +7,25 @@ import {
     useColorModeValue,
     Spacer,
     Skeleton,
+    HStack,
 } from "@chakra-ui/react";
 
 // Utils
 import formatTokenBalance from "@/utils/formatTokenBalance";
+import formatUSD from "@/utils/formatUSD";
 
 interface SwapCardQuoteProps {
     label: string;
-    quoteAmount: string;
+    quoteAmount: number;
+    quoteAmountUSD: number;
     quoteSymbol: string;
     isLoaded: boolean;
 }
 
 export const SwapCardQuote = (props: SwapCardQuoteProps) => {
     // Data
-    const { label, quoteAmount, quoteSymbol, isLoaded } = props;
+    const { label, quoteAmount, quoteAmountUSD, quoteSymbol, isLoaded } =
+        props;
 
     // Styles
     const gray2 = useColorModeValue("gray.light.2", "gray.dark.2");
@@ -54,15 +58,27 @@ export const SwapCardQuote = (props: SwapCardQuoteProps) => {
                     borderRadius="lg"
                     minW="60px"
                 >
-                    <Text
-                        fontFamily="mono"
-                        fontWeight="semibold"
-                        fontSize="xl"
-                        letterSpacing="tight"
-                        lineHeight="6"
-                    >
-                        {formatTokenBalance(parseFloat(quoteAmount) || 0)}
-                    </Text>
+                    <HStack gap={2}>
+                        <Text
+                            fontFamily="mono"
+                            fontWeight="semibold"
+                            fontSize="xl"
+                            letterSpacing="tight"
+                            lineHeight="6"
+                        >
+                            {formatTokenBalance(quoteAmount)}
+                        </Text>
+                        <Text
+                            fontSize="md"
+                            lineHeight="4"
+                            letterSpacing="tight"
+                            fontFamily="mono"
+                            color={gray10}
+                            margin="0 !important"
+                        >
+                            &asymp;{formatUSD(quoteAmountUSD)}
+                        </Text>
+                    </HStack>
                 </Skeleton>
                 <Spacer />
                 <Text
