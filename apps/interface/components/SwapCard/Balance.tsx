@@ -41,6 +41,7 @@ export const SwapCardBalance = (props: SwapCardBalanceProps) => {
             <HStack gap={1}>
                 <WalletIcon w="4" h="4" color={gray10} />
                 <Text
+                    data-testid="BalanceAmount"
                     fontSize="xs"
                     lineHeight="4"
                     color={gray10}

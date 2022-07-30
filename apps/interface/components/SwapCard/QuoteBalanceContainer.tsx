@@ -48,16 +48,11 @@ export const SwapCardQuoteBalanceContainer = (props: BoxProps) => {
         ],
         watch: true,
         cacheOnBlock: true,
-        onError(error) {
-            console.error("SwapCardQuoteBalanceContainer: error", error);
-        },
     });
 
     // NOTE: we use useEffect here to prevent React Hydration Error
     // read more: https://nextjs.org/docs/messages/react-hydration-error
     useEffect(() => {
-        console.debug("SwapCardQuoteBalanceContainer: data", data);
-
         // show zero balance if account is not connected
         if (data && data[0] == null) {
             setIsLoaded(true);

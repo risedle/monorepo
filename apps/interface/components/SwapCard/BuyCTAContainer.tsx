@@ -136,8 +136,7 @@ export const SwapCardBuyCTAContainer = (
                 args: [address, routerAddress],
             },
         ],
-        // watch: true,
-        // cacheTime: 5_000, // Cache 5s
+        watch: true,
     });
 
     // Contract writes
@@ -150,32 +149,20 @@ export const SwapCardBuyCTAContainer = (
     const sendApproval = useContractWrite(prepareApproval.config);
     const waitApproval = useWaitForTransaction({
         hash: sendApproval.data?.hash,
+        confirmations: 3,
     });
 
     // Get max amount in
     const quoteAmount =
         data && data[0] != null ? data[0] : ethers.BigNumber.from("0");
-    console.log(
-        "SwapCardBuyCTAContainer: quoteAmount",
-        quoteAmount.toString()
-    );
-    console.log("SwapCardBuyCTAContainer: slippage", slippage);
     const normalizedSlippage = `${parseFloat(slippage) / 100}`;
     const slippageInEther = ethers.utils.parseUnits(
         normalizedSlippage,
         "ether"
     );
     const oneEther = ethers.utils.parseUnits("1", "ether");
-    console.log(
-        "SwapCardBuyCTAContainer: slippageInETher",
-        slippageInEther.toString()
-    );
     const slippageTolerance = quoteAmount.mul(slippageInEther).div(oneEther);
     const maxAmountIn = quoteAmount.add(slippageTolerance);
-    console.log(
-        "SwapCardBuyCTAContainer: maxAmountIn",
-        maxAmountIn.toString()
-    );
 
     const prepareBuy = usePrepareContractWrite({
         addressOrName: routerAddress,
@@ -186,6 +173,7 @@ export const SwapCardBuyCTAContainer = (
     const sendBuy = useContractWrite(prepareBuy.config);
     const waitBuy = useWaitForTransaction({
         hash: sendBuy.data?.hash,
+        confirmations: 3,
     });
 
     // Styles
@@ -198,10 +186,6 @@ export const SwapCardBuyCTAContainer = (
     // NOTE: we use useEffect here to prevent React Hydration Error
     // read more: https://nextjs.org/docs/messages/react-hydration-error
     useEffect(() => {
-        console.debug("SwapCardBuyCTAContainer: ===========================");
-        console.debug("SwapCardBuyCTAContainer: sendApproval", sendApproval);
-        console.debug("SwapCardBuyCTAContainer: waitApproval", waitApproval);
-
         if (address == null) {
             setCTAState(CTAState.ShowConnectWalletButton);
             return;
