@@ -14,7 +14,7 @@ interface MySwapHisotryContainerProps {
 
 const dummyData: FuseLeveragedTokenSwap = {
     amountInUSD: "0",
-    timestamp: "0",
+    timestamp: (new Date().getTime() / 1000).toString(),
     tokenIn: {
         symbol: "",
     },

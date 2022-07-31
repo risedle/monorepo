@@ -76,7 +76,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                     width="100%"
                     alignItems="flex-start"
                 >
-                    {swaps.map((swap) => (
+                    {swaps.map((swap, index) => (
                         <Skeleton
                             isLoaded={isLoaded}
                             startColor={gray3}
@@ -84,7 +84,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                             borderRadius="lg"
                             marginX="2"
                             minW="60px"
-                            key={swap.timestamp}
+                            key={`${swap.timestamp} ${index}`}
                         >
                             <Link
                                 _hover={{ textDecoration: "none" }}
@@ -143,7 +143,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                     width="100%"
                     alignItems="flex-start"
                 >
-                    {swaps.map((swap) => (
+                    {swaps.map((swap, index) => (
                         <Skeleton
                             isLoaded={isLoaded}
                             startColor={gray3}
@@ -152,7 +152,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                             marginX="2"
                             minW="60px"
                             data-testid="SwapHistoryCardTableTime"
-                            key={swap.timestamp}
+                            key={`${swap.timestamp} ${index}`}
                         >
                             <Text
                                 color={gray12}
@@ -202,7 +202,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                     width="100%"
                     alignItems="flex-end"
                 >
-                    {swaps.map((swap) => (
+                    {swaps.map((swap, index) => (
                         <Skeleton
                             isLoaded={isLoaded}
                             startColor={gray3}
@@ -211,7 +211,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                             marginX="2"
                             minW="60px"
                             data-testid="SwapHistoryCardTableTotalValue"
-                            key={swap.timestamp}
+                            key={`${swap.timestamp} ${index}`}
                         >
                             <Text
                                 color={gray12}
