@@ -47,7 +47,7 @@ export const SwapCard = (props: SwapCardProps) => {
             borderRadius="2xl"
             border="1px"
             borderColor={gray2}
-            width="360px"
+            width="100%"
         >
             <VStack alignItems="flex-start" gap={6}>
                 <TabList

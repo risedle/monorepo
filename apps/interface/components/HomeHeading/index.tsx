@@ -27,30 +27,30 @@ export const HomeHeading = (props: HomeHeadingProps) => {
 
     return (
         <Container
-            maxW="7xl"
+            maxW="5xl"
             py="3"
             data-testid="Heading"
-            marginTop={{ base: "52px", tablet: "108px" }}
+            marginTop={{ base: "52px", laptop: "108px" }}
         >
-            <Flex flexDirection={{ base: "column", tablet: "row" }}>
+            <Flex flexDirection={{ base: "column", laptop: "row" }}>
                 <Text
                     fontWeight="bold"
-                    fontSize={{ base: "24px", tablet: "32px" }}
+                    fontSize={{ base: "24px", laptop: "32px" }}
                     lineHeight="32px"
                     letterSpacing="tight"
                     color={gray12}
                     marginTop="auto" // align vertical bottom
-                    textAlign={{ base: "center", tablet: "left" }}
-                    marginBottom={{ base: "6", tablet: "0" }}
+                    textAlign={{ base: "center", laptop: "left" }}
+                    marginBottom={{ base: "6", laptop: "0" }}
                 >
                     Trade Leveraged Tokens
                 </Text>
                 <Spacer />
-                <HStack spacing="6" margin={{ base: "auto", tablet: 0 }}>
+                <HStack spacing="6" margin={{ base: "auto", laptop: 0 }}>
                     <VStack
                         spacing="2"
                         minW="100px"
-                        textAlign={{ base: "center", tablet: "right" }}
+                        textAlign={{ base: "center", laptop: "right" }}
                     >
                         <Text
                             fontSize="xs"
@@ -61,9 +61,9 @@ export const HomeHeading = (props: HomeHeadingProps) => {
                             Total Market Cap
                         </Text>
                         <Text
-                            fontSize={{ base: "sm", tablet: "20px" }}
+                            fontSize={{ base: "sm", laptop: "20px" }}
                             fontWeight="semibold"
-                            lineHeight={{ base: "4", tablet: "7" }}
+                            lineHeight={{ base: "4", laptop: "7" }}
                             color={gray12}
                             fontFamily="mono"
                             letterSpacing="tight"
@@ -75,7 +75,7 @@ export const HomeHeading = (props: HomeHeadingProps) => {
                     <VStack
                         spacing="2"
                         minW="100px"
-                        textAlign={{ base: "center", tablet: "right" }}
+                        textAlign={{ base: "center", laptop: "right" }}
                     >
                         <Text
                             fontSize="xs"
@@ -86,9 +86,9 @@ export const HomeHeading = (props: HomeHeadingProps) => {
                             Total Volume
                         </Text>
                         <Text
-                            fontSize={{ base: "sm", tablet: "20px" }}
+                            fontSize={{ base: "sm", laptop: "20px" }}
                             fontWeight="semibold"
-                            lineHeight={{ base: "4", tablet: "7" }}
+                            lineHeight={{ base: "4", laptop: "7" }}
                             color={gray12}
                             fontFamily="mono"
                             letterSpacing="tight"
@@ -105,8 +105,8 @@ export const HomeHeading = (props: HomeHeadingProps) => {
                 borderStyle="dashed"
                 borderColor={gray9}
                 opacity="0.3"
-                marginTop={{ base: "7", tablet: "10" }}
-                marginBottom={{ base: "7", tablet: "10" }}
+                marginTop={{ base: "7", laptop: "10" }}
+                marginBottom={{ base: "7", laptop: "10" }}
             />
         </Container>
     );

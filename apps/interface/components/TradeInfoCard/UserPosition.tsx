@@ -59,23 +59,23 @@ export const TradeInfoCardUserPosition = (
         <VStack
             data-testid="TradeInfoCardUserPosition"
             width="100%"
-            gap={{ base: "4", tablet: "0" }}
+            gap={{ base: "4", laptop: "0" }}
             {...boxProps}
             margin="0 !important"
         >
             <Flex
                 width="100%"
-                borderY={{ base: "none", tablet: "1px" }}
-                borderColor={{ tablet: gray5 }}
-                borderStyle={{ tablet: "dashed" }}
+                borderY={{ base: "none", laptop: "1px" }}
+                borderColor={{ laptop: gray5 }}
+                borderStyle={{ laptop: "dashed" }}
             >
                 <HStack
                     gap="3"
                     flex="1"
-                    py={{ base: "0", tablet: "4" }}
-                    borderRight={{ base: "none", tablet: "1px" }}
-                    borderColor={{ tablet: gray5 }}
-                    borderStyle={{ tablet: "dashed" }}
+                    py={{ base: "0", laptop: "4" }}
+                    borderRight={{ base: "none", laptop: "1px" }}
+                    borderColor={{ laptop: gray5 }}
+                    borderStyle={{ laptop: "dashed" }}
                 >
                     <Circle size="8" background={gray3}>
                         <PieIcon color={accent} />
@@ -118,8 +118,8 @@ export const TradeInfoCardUserPosition = (
                 <HStack
                     gap="3"
                     flex="1"
-                    py={{ base: "0", tablet: "4" }}
-                    ml={{ base: "0", tablet: "4" }}
+                    py={{ base: "0", laptop: "4" }}
+                    ml={{ base: "0", laptop: "4" }}
                 >
                     <Circle size="8" background={gray3}>
                         <CoinIcon color={accent} />
@@ -158,10 +158,10 @@ export const TradeInfoCardUserPosition = (
                 <HStack
                     gap="3"
                     flex="1"
-                    py={{ base: "0", tablet: "4" }}
-                    borderRight={{ base: "none", tablet: "1px" }}
-                    borderColor={{ tablet: gray5 }}
-                    borderStyle={{ tablet: "dashed" }}
+                    py={{ base: "0", laptop: "4" }}
+                    borderRight={{ base: "none", laptop: "1px" }}
+                    borderColor={{ laptop: gray5 }}
+                    borderStyle={{ laptop: "dashed" }}
                 >
                     <Circle size="8" background={gray3}>
                         <MetricIcon color={accent} />
@@ -210,8 +210,8 @@ export const TradeInfoCardUserPosition = (
                 <HStack
                     gap="3"
                     flex="1"
-                    py={{ base: "0", tablet: "4" }}
-                    ml={{ base: "0", tablet: "4" }}
+                    py={{ base: "0", laptop: "4" }}
+                    ml={{ base: "0", laptop: "4" }}
                 >
                     <Circle size="8" background={gray3}>
                         <DollarIcon color={accent} />

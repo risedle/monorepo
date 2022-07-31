@@ -31,19 +31,19 @@ export const NavigationBarLogo = () => {
     return (
         <Box data-testid="NavigationBarLogo">
             <Link href="https://risedle.com" minW="max" _hover={{}}>
-                <HStack minW={{ base: "42px", tablet: "max" }}>
+                <HStack minW={{ base: "42px", laptop: "max" }}>
                     <NavigationBarLogoIcon
-                        w={{ base: "8", tablet: "6" }}
-                        h={{ base: "8", tablet: "6" }}
+                        w={{ base: "8", laptop: "6" }}
+                        h={{ base: "8", laptop: "6" }}
                     />
-                    {/* Show text only on tablet or above */}
+                    {/* Show text only on laptop or above */}
                     <Text
                         data-testid="NavigationBarLogoText"
                         fontWeight="bold"
                         fontSize="md"
                         lineHeight="4"
                         letterSpacing="tight"
-                        display={{ base: "none", tablet: "block" }}
+                        display={{ base: "none", laptop: "block" }}
                     >
                         Risedle
                     </Text>

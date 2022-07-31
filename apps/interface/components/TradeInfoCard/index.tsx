@@ -4,14 +4,28 @@ import {
     BoxProps,
     Divider,
     useColorModeValue,
+    Button,
+    useDisclosure,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalCloseButton,
+    ModalBody,
+    ModalFooter,
+    Text,
 } from "@chakra-ui/react";
 
-import { FuseLeveragedToken } from "@/utils/types";
+// Utils
+import type { FuseLeveragedToken } from "@/utils/types";
+import getBaseConfig from "@/utils/getBaseConfig";
 
+// Sub-components
 import TradeInfoCardTitle from "./Title";
 import TradeInfoCardLatestPriceContainer from "./LatestPriceContainer";
 import PriceChart from "../PriceChart";
 import TradeInfoCardUserPositionContainer from "./UserPositionContainer";
+import SwapCard from "@/components/SwapCard";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface TradeInfoCardProps extends BoxProps {
@@ -20,8 +34,12 @@ interface TradeInfoCardProps extends BoxProps {
 
 export const TradeInfoCard = (props: TradeInfoCardProps) => {
     // Data
+    const { chainSlug } = getBaseConfig();
     const { flt, ...boxProps } = props;
     const { name, symbol, prices, address } = flt;
+
+    // Hooks
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
     // Create timeframes
     const chartPrices = prices.map((price) => ({
@@ -39,6 +57,7 @@ export const TradeInfoCard = (props: TradeInfoCardProps) => {
     // Styles
     const gray2 = useColorModeValue("gray.light.2", "gray.dark.2");
     const gray5 = useColorModeValue("gray.light.5", "gray.dark.5");
+    const blur = useColorModeValue("rgba(22,22,22,0.6)", "rgba(0,0,0,0.6)");
 
     return (
         <VStack
@@ -65,14 +84,14 @@ export const TradeInfoCard = (props: TradeInfoCardProps) => {
             <PriceChart
                 timeframes={timeframes}
                 display="flex"
-                justifyContent={{ base: "center", tablet: "start" }}
+                justifyContent={{ base: "center", laptop: "start" }}
             />
 
             <Box
                 width="100%"
                 paddingX="4"
                 margin="0 !important"
-                display={{ base: "block", tablet: "none" }}
+                display={{ base: "block", laptop: "none" }}
             >
                 <Divider borderStyle="dashed" borderColor={gray5} />
             </Box>
@@ -80,10 +99,42 @@ export const TradeInfoCard = (props: TradeInfoCardProps) => {
             {/* Show user position */}
             <TradeInfoCardUserPositionContainer
                 paddingX="4"
-                paddingBottom="4"
                 paddingTop="2"
+                paddingBottom={{ base: "0", laptop: "4" }}
                 fltAddress={address}
             />
+
+            {/* Show swap button on tablet or smaller */}
+            <Box
+                width="100%"
+                paddingX="4"
+                paddingBottom="4"
+                margin="0 !important"
+                display={{ base: "block", laptop: "none" }}
+            >
+                <Button width="100%" variant={chainSlug} onClick={onOpen}>
+                    Swap
+                </Button>
+                <Modal isOpen={isOpen} onClose={onClose}>
+                    <ModalOverlay
+                        background={blur}
+                        backdropFilter="blur(12px)"
+                        display={{ base: "block", laptop: "none" }}
+                    />
+                    <ModalContent
+                        position="absolute"
+                        bottom="0"
+                        marginBottom="64px"
+                        background="transparent"
+                        width="100%"
+                        paddingX="4"
+                        maxWidth="none"
+                        display={{ base: "block", laptop: "none" }}
+                    >
+                        <SwapCard flt={flt} />
+                    </ModalContent>
+                </Modal>
+            </Box>
         </VStack>
     );
 };
