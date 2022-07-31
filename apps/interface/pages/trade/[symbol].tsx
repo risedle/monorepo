@@ -44,7 +44,6 @@ const Trade: NextPage<TradeProps, unknown> = (props) => {
                     ],
                 }}
             />
-            <WarningBar />
             <NavigationBar />
             <Container
                 maxW="5xl"
