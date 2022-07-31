@@ -20,6 +20,7 @@ import SwapCardBuyCTAContainer from "./BuyCTAContainer";
 import SwapCardSellAmountContainer from "./SellAmountContainer";
 import SwapCardSellBalanceContainer from "./SellBalanceContainer";
 import SwapCardSellQuoteContainer from "./SellQuoteContainer";
+import SwapCardSellCTAContainer from "./SellCTAContainer";
 import SwapCardSlippageToleranceContainer from "./SlippageToleranceContainer";
 import SwapCardQuoteBalanceContainer from "./QuoteBalanceContainer";
 
@@ -160,6 +161,9 @@ export const SwapCard = (props: SwapCardProps) => {
                                 />
                                 {/* Quote token balance */}
                                 <SwapCardQuoteBalanceContainer />
+                                <SwapCardSellCTAContainer
+                                    fltAddress={address}
+                                />
                             </VStack>
                         </VStack>
                     </TabPanel>
