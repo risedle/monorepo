@@ -14,8 +14,8 @@ processes = []
 [experimental]
   allowed_public_ports = []
   auto_rollback = true
-  cmd = ["npm", "run", "start", "-w", "interface"]
-  entrypoint = ["npm", "run", "start", "-w", "interface"]
+  cmd = ["npm", "run", "start", "-w=interface"]
+  # entrypoint = ["npm", "run", "start", "-w=interface"]
 
 [[services]]
   http_checks = []
