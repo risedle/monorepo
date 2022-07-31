@@ -10,6 +10,7 @@ TODO(pyk): Add docs about how to run here
 -   [Known Issues](#known-issues)
 -   [Development Resources](#development-resources)
 -   [Testing Resources](#testing-resources)
+-   [Deployment](#deployment)
 
 ### Data Fetching Strategy
 
@@ -61,3 +62,32 @@ Run the following command to update the internal packages:
 ```sh
 npm i --save --save-exact @risedle/types@latest -w=interface
 ```
+
+### Deployment
+
+Risedle Interface will be deployed on each chain when the pull request is
+merged on main branch.
+
+| Network | URL                     |
+| ------- | ----------------------- |
+| BSC     | https://bsc.risedle.com |
+
+Risedle Interface is hosted on [fly.io](https://fly.io/).
+
+To deploy Risedle Interface to a new chain, follow the step by step below.
+
+Create new fly app:
+
+```
+fly launch
+```
+
+use the following name format: `risedle-interface-CHAINSLUG`.
+
+Then set the environment variable:
+
+```
+NEXT_PUBLIC_CHAIN_SLUG="polygon"
+```
+
+Then create new workflow. see `bsc-prod.yml` workflow for example.
