@@ -53,7 +53,7 @@ export const TokenCard = (props: TokenCardProps) => {
             {/* Show price chart */}
             <PriceChart
                 timeframes={timeframes}
-                displayChart={{ base: "none", tablet: "block" }}
+                displayChart={{ base: "none", laptop: "block" }}
             />
 
             {/* Show description */}

@@ -14,12 +14,11 @@ export const TokenCards = (props: TokenCardsProps) => {
     ));
 
     return (
-        <Container maxW="7xl" py="3" data-testid="TokenCards">
+        <Container maxW="5xl" py="3" data-testid="TokenCards">
             <SimpleGrid
-                columns={{ base: 1, laptop: 2, desktop: 3 }}
+                columns={{ base: 1, tablet: 2 }}
                 spacing="6"
                 margin="auto"
-                maxW={{ base: "400px", laptop: "730px", desktop: "100%" }}
                 marginBottom={{ base: "28", tablet: "0" }}
             >
                 {cards}
