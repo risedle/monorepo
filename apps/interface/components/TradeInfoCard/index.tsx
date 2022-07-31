@@ -12,7 +12,6 @@ import {
     ModalHeader,
     ModalCloseButton,
     ModalBody,
-    Lorem,
     ModalFooter,
     Text,
 } from "@chakra-ui/react";
@@ -116,11 +115,7 @@ export const TradeInfoCard = (props: TradeInfoCardProps) => {
                 <Button width="100%" variant={chainSlug} onClick={onOpen}>
                     Swap
                 </Button>
-                <Modal
-                    isOpen={isOpen}
-                    onClose={onClose}
-                    display={{ base: "block", laptop: "none" }}
-                >
+                <Modal isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay
                         background={blur}
                         backdropFilter="blur(12px)"
