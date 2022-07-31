@@ -8,7 +8,7 @@ import { DarkmodeToggle } from "../DarkmodeToggle";
 
 export const NavigationBar = () => {
     return (
-        <Container maxW="7xl" py="3" data-testid="NavigationBar">
+        <Container maxW="5xl" py="3" data-testid="NavigationBar">
             <Flex>
                 <Center>
                     <NavigationBarLogo />

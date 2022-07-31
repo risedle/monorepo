@@ -17,6 +17,7 @@ import { FuseLeveragedTokenInfoCard } from "@/components/FuseLeveragedTokenInfoC
 import BackingCard from "@/components/BackingCard";
 import SwapHistoryCard from "@/components/SwapHistoryCard";
 import SwapCard from "@/components/SwapCard";
+import StickyFooterBar from "@/components/FooterBar/Sticky";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface TradeProps extends FuseLeveragedToken {}
@@ -43,9 +44,13 @@ const Trade: NextPage<TradeProps, unknown> = (props) => {
                     ],
                 }}
             />
-            <WarningBar />
             <NavigationBar />
-            <Container maxW="1136px" py="3" data-testid="TradeContent">
+            <Container
+                maxW="5xl"
+                py="3"
+                data-testid="TradeContent"
+                marginTop="16"
+            >
                 <Flex gap={6}>
                     {/* Left Column */}
                     <VStack flex="1" gap={6}>
@@ -55,12 +60,18 @@ const Trade: NextPage<TradeProps, unknown> = (props) => {
                         <SwapHistoryCard flt={props} width="100%" />
                     </VStack>
                     {/* Right Column */}
-                    <VStack flex="1" alignItems="flex-start">
+                    <VStack
+                        alignItems="flex-start"
+                        gap={6}
+                        height="400px"
+                        position="sticky"
+                        top="32px"
+                    >
                         <SwapCard flt={props} />
+                        <StickyFooterBar />
                     </VStack>
                 </Flex>
             </Container>
-            <FooterBar />
             <NavigationBarBottom />
             <BackgroundGradient page="trade" />
         </>

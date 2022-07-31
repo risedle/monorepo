@@ -1,4 +1,3 @@
-// Implement footer bar
 import {
     Container,
     Flex,
@@ -11,8 +10,9 @@ import {
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 
-import ArrowTopRightIcon from "../Icons/ArrowTopRight";
-import GitbookIcon from "../Icons/Gitbook";
+// Icons
+import ArrowTopRightIcon from "@/components/Icons/ArrowTopRight";
+import GitbookIcon from "@/components/Icons/Gitbook";
 
 export const FooterBar = () => {
     // Styles
