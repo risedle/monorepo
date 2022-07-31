@@ -23,7 +23,7 @@ export const StickyFooterBar = () => {
     return (
         <VStack
             data-testid="StickyFooterBar"
-            margin="0 !important"
+            marginTop="4"
             width="100%"
             alignItems="center"
         >

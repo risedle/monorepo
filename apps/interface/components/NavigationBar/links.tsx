@@ -5,7 +5,11 @@ import NavigationBarLink from "./link";
 export const NavigationBarLinks = () => {
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     return (
-        <HStack data-testid="NavigationBarLinks" ml={{ md: "12" }} spacing="8">
+        <HStack
+            data-testid="NavigationBarLinks"
+            ml={{ laptop: "12" }}
+            spacing="8"
+        >
             <NavigationBarLink to="/" data-testid="NavigationBarLinksTrade">
                 <Text fontWeight="normal" fontSize="sm" lineHeight="4">
                     Trade

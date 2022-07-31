@@ -14,16 +14,16 @@ export const NavigationBar = () => {
                     <NavigationBarLogo />
                 </Center>
                 {/* Center links on mobile */}
-                <Center flex={{ base: "1", tablet: "0" }}>
+                <Center flex={{ base: "1", laptop: "0" }}>
                     <NavigationBarLinks />
                 </Center>
-                <Spacer display={{ base: "none", tablet: "block" }} />
-                <HStack spacing={{ tablet: "2" }}>
+                <Spacer display={{ base: "none", laptop: "block" }} />
+                <HStack spacing={{ laptop: "2" }}>
                     <ChainSwitcher
-                        display={{ base: "none", tablet: "flex" }}
+                        display={{ base: "none", laptop: "flex" }}
                     />
                     <ConnectWalletButton
-                        display={{ base: "none", tablet: "block" }}
+                        display={{ base: "none", laptop: "block" }}
                     />
                     <DarkmodeToggle />
                 </HStack>

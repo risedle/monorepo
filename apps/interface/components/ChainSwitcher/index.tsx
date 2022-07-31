@@ -82,35 +82,35 @@ export const ChainSwitcher = (props: ButtonProps) => {
                                 color="bsc"
                                 w="4"
                                 h="4"
-                                display={{ base: "none", tablet: "block" }}
+                                display={{ base: "none", laptop: "block" }}
                             />
                         }
                         rightIcon={
                             <ChevronDownIcon
                                 w="4"
                                 h="4"
-                                display={{ base: "none", tablet: "block" }}
+                                display={{ base: "none", laptop: "block" }}
                             />
                         }
                         data-testid="ChainSwitcher"
-                        margin={{ base: "0 !important", tablet: "auto" }}
+                        margin={{ base: "0 !important", laptop: "auto" }}
                         variant={{ base: "icon" }}
-                        paddingX={{ base: "0", tablet: "4" }}
+                        paddingX={{ base: "0", laptop: "4" }}
                         zIndex={isOpen ? 11 : 0}
                         {...props}
                     >
                         <Center>
                             <Circle
-                                display={{ base: "block", tablet: "none" }}
+                                display={{ base: "block", laptop: "none" }}
                             >
                                 <ChainIcon color="bsc" w="4" h="4" />
                             </Circle>
                         </Center>
                         <Text
-                            display={{ base: "none", tablet: "block" }}
+                            display={{ base: "none", laptop: "block" }}
                             margin={{
                                 base: "0 !important",
-                                tablet: "auto",
+                                laptop: "auto",
                             }}
                         >
                             {chainName}
@@ -153,7 +153,7 @@ export const ChainSwitcher = (props: ButtonProps) => {
                         zIndex="10"
                         display={{
                             base: isOpen ? "block" : "none",
-                            tablet: "none",
+                            laptop: "none",
                         }}
                     />
                 </>

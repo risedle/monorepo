@@ -1,14 +1,14 @@
-import { Box, useColorModeValue } from "@chakra-ui/react";
+import { BoxProps, Box, useColorModeValue } from "@chakra-ui/react";
 
 import { getBaseConfig } from "@/utils/getBaseConfig";
 
-interface BackgroundGradientProps {
+interface BackgroundGradientProps extends BoxProps {
     page: string; // 'home', 'trade' etc
 }
 
 export const BackgroundGradient = (props: BackgroundGradientProps) => {
     const { chainSlug } = getBaseConfig();
-    const { page } = props;
+    const { page, ...boxProps } = props;
 
     const bg = useColorModeValue(
         `url(/backgrounds/${page}-${chainSlug}-light.png)`,
@@ -27,6 +27,7 @@ export const BackgroundGradient = (props: BackgroundGradientProps) => {
             width="100%"
             height="100%"
             zIndex="-99999"
+            {...boxProps}
         />
     );
 };

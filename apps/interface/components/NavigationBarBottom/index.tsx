@@ -13,7 +13,7 @@ export const NavigationBarBottom = () => {
             maxW="full"
             centerContent
             py="3"
-            display={{ tablet: "none" }}
+            display={{ laptop: "none" }}
             position="fixed"
             bottom="0"
             bg={gray2}

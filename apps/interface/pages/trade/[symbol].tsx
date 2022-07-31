@@ -49,11 +49,11 @@ const Trade: NextPage<TradeProps, unknown> = (props) => {
                 maxW="5xl"
                 py="3"
                 data-testid="TradeContent"
-                marginTop="16"
+                marginTop={{ base: "20px", laptop: "16" }}
             >
                 <Flex gap={6}>
                     {/* Left Column */}
-                    <VStack flex="1" gap={6}>
+                    <VStack gap={6} width="100%">
                         <TradeInfoCard flt={props} width="100%" />
                         <FuseLeveragedTokenInfoCard flt={props} width="100%" />
                         <BackingCard flt={props} width="100%" />
@@ -64,8 +64,10 @@ const Trade: NextPage<TradeProps, unknown> = (props) => {
                         alignItems="flex-start"
                         gap={6}
                         height="400px"
+                        minW="360px"
                         position="sticky"
                         top="32px"
+                        display={{ base: "none", laptop: "block" }}
                     >
                         <SwapCard flt={props} />
                         <StickyFooterBar />
@@ -73,7 +75,10 @@ const Trade: NextPage<TradeProps, unknown> = (props) => {
                 </Flex>
             </Container>
             <NavigationBarBottom />
-            <BackgroundGradient page="trade" />
+            <BackgroundGradient
+                page="trade"
+                display={{ base: "none", laptop: "block" }}
+            />
         </>
     );
 };
