@@ -13,7 +13,7 @@ export const getFuseLeveragedTokensSummary = (
         const totalSupply = parseFloat(flt.dailyData[0].totalSupply);
         const price = parseFloat(flt.dailyData[0].close);
         const mcap = totalSupply * price;
-        const tradeVolume = parseFloat(flt.dailyData[0].tradeVolumeUSD);
+        const tradeVolume = parseFloat(flt.totalVolumeUSD);
         return {
             totalMarketCap: sum.totalMarketCap + mcap,
             totalVolume: sum.totalVolume + tradeVolume,

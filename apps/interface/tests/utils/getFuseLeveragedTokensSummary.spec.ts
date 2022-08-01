@@ -17,6 +17,7 @@ describe("getFuseLeveragedTokensSummary", () => {
                             tradeVolumeUSD: 30,
                         },
                     ],
+                    totalVolumeUSD: 50,
                 },
                 {
                     dailyData: [
@@ -31,11 +32,12 @@ describe("getFuseLeveragedTokensSummary", () => {
                             tradeVolumeUSD: 30,
                         },
                     ],
+                    totalVolumeUSD: 50,
                 },
             ],
         });
 
         expect(summary.totalMarketCap).toBe(200);
-        expect(summary.totalVolume).toBe(40);
+        expect(summary.totalVolume).toBe(100);
     });
 });
