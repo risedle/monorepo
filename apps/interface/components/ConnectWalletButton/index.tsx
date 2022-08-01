@@ -1,8 +1,8 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Box, BoxProps, Button } from "@chakra-ui/react";
 import { getBaseConfig } from "@/utils/getBaseConfig";
-import BlueIndicatorIcon from "../Icons/BlueIndicator";
-import { RedIndicatorIcon } from "../Icons/RedIndicator";
+import { BlueIndicatorIcon } from "@/components/Icons/BlueIndicator";
+import { RedIndicatorIcon } from "@/components/Icons/RedIndicator";
 
 export const ConnectWalletButton = (props: BoxProps) => {
     const baseConfig = getBaseConfig();
