@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 
 // Hooks
-import useFuseLeveragedTokenSwap from "@/hooks/useFuseLeveragedTokenSwap";
+import { useFuseLeveragedTokenMySwap } from "@/hooks/useFuseLeveragedTokenMySwap";
 
 // Sub-components
 import SwapHistoryCardTable from "./Table";
+
+// Utils
 import type { FuseLeveragedTokenSwap } from "@/utils/types";
+import { Heading } from "@chakra-ui/react";
 
 interface MySwapHisotryContainerProps {
     symbol: string;
@@ -14,12 +17,12 @@ interface MySwapHisotryContainerProps {
 
 const dummyData: FuseLeveragedTokenSwap = {
     amountInUSD: "0",
-    timestamp: (new Date().getTime() / 1000).toString(),
+    timestamp: "1659328398",
     tokenIn: {
-        symbol: "",
+        symbol: "BNBRISE",
     },
     tokenOut: {
-        symbol: "",
+        symbol: "BUSD",
     },
     transaction: {
         id: "",
@@ -29,13 +32,13 @@ const dummyData: FuseLeveragedTokenSwap = {
 export const MySwapHistoryContainer = (props: MySwapHisotryContainerProps) => {
     const { symbol } = props;
     const { address } = useAccount();
-    const { data, isLoaded } = useFuseLeveragedTokenSwap(symbol, address);
+    const { data, isLoaded } = useFuseLeveragedTokenMySwap(symbol, address);
     const [loadedData, setLoadedData] = useState<FuseLeveragedTokenSwap[]>(
         Array.from(Array(5).keys()).map(() => dummyData)
     );
 
     useEffect(() => {
-        if (isLoaded && data) {
+        if (data) {
             const mappedData: Array<FuseLeveragedTokenSwap> = data.user.map(
                 (userData) => ({
                     amountInUSD: userData.amountInUSD.toString(),
@@ -53,7 +56,22 @@ export const MySwapHistoryContainer = (props: MySwapHisotryContainerProps) => {
             );
             setLoadedData(mappedData);
         }
-    }, [data, isLoaded]);
+    }, [data]);
+
+    if (!address) {
+        return (
+            <Heading data-testid="walletNotConnectedWarning">
+                Wallet Not Connected
+            </Heading>
+        );
+    }
+    if (!data && !isLoaded) {
+        return (
+            <Heading data-testid="noSwapHistoryWarning">
+                No Swap History
+            </Heading>
+        );
+    }
 
     return <SwapHistoryCardTable swaps={loadedData} isLoaded={isLoaded} />;
 };

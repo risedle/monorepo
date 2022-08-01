@@ -4,15 +4,14 @@ import { FuseLeverageSwapsHistory } from "@risedle/types";
 import { fetcher } from "@/utils/fetcher";
 
 // Get list of markets using SWR
-export function useFuseLeveragedTokenSwap(
+export function useFuseLeveragedTokenMySwap(
     symbol: string,
     userAddress: string | undefined
 ) {
-    let url = `https://api.risedle.com/v1/${symbol}/swaps/`;
+    const url = userAddress
+        ? `https://api.risedle.com/v1/${symbol}/swaps/${userAddress}`
+        : null;
 
-    if (userAddress) {
-        url += `${userAddress}/`;
-    }
     const { data, error } = useSWR<FuseLeverageSwapsHistory, Error>(
         url,
         fetcher
@@ -20,9 +19,9 @@ export function useFuseLeveragedTokenSwap(
 
     return {
         data: data,
-        isLoaded: data?.user !== undefined ? true : false,
+        isLoaded: data?.user || userAddress === null ? true : false,
         error: error,
     };
 }
 
-export default useFuseLeveragedTokenSwap;
+export default useFuseLeveragedTokenMySwap;
