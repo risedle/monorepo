@@ -13,15 +13,15 @@ import {
 } from "@chakra-ui/react";
 
 // Utils
-import type { FuseLeveragedTokenBacking } from "../../utils/types";
-import formatDate from "../../utils/formatDate";
-import formatTokenBalance from "../../utils/formatTokenBalance";
+import type { FuseLeveragedTokenBacking } from "@/utils/types";
+import formatDate from "@/utils/formatDate";
+import formatTokenBalance from "@/utils/formatTokenBalance";
 
 // Icons
-import CheckmarkIcon from "../Icons/Checkmark";
+import CheckmarkIcon from "@/components/Icons/Checkmark";
 
 // Sub-components
-import InfoTooltip from "../InfoTooltip";
+import InfoTooltip from "@/components/InfoTooltip";
 
 interface BackingCardHistoryProps extends BoxProps {
     collateralSymbol: string;
