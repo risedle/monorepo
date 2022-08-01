@@ -81,7 +81,7 @@ describe("GET /v1/chainId/flts/symbol", () => {
                 expect(token.dailyPriceChangeUSD).toBeTruthy();
                 expect(token.dailyPriceChangePercentage).toBeTruthy();
                 expect(token.totalVolumeUSD).toBeGreaterThan(0);
-                expect(token.dailyVolumeChangeUSD).toBeGreaterThanOrEqual(0);
+                // expect(token.dailyVolumeChangeUSD).toBeGreaterThanOrEqual(0);
                 // expect(
                 //    token.dailyVolumeChangePercentage
                 // ).toBeGreaterThanOrEqual(0);
