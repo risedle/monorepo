@@ -14,9 +14,9 @@ import formatTokenBalance from "@/utils/formatTokenBalance";
 import formatPercent from "@/utils/formatPercent";
 
 // Sub-components
-import InfoTooltip from "../InfoTooltip";
-import ArrowUpIcon from "../Icons/ArrowUp";
-import ArrowDownIcon from "../Icons/ArrowDown";
+import InfoTooltip from "@/components/InfoTooltip";
+import ArrowUpIcon from "@/components/Icons/ArrowUp";
+import ArrowDownIcon from "@/components/Icons/ArrowDown";
 
 interface BackingCardAllocationTableProps extends BoxProps {
     collateralSymbol: string;

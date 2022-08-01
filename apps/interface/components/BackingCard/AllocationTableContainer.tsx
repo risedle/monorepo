@@ -1,7 +1,7 @@
 import { BoxProps } from "@chakra-ui/react";
 
 // Hooks
-import useFuseLeveragedTokenInfo from "../../hooks/useFuseLeveragedTokenInfo";
+import useFuseLeveragedTokenInfo from "@/hooks/useFuseLeveragedTokenInfo";
 
 // Sub-components
 import BackingCardAllocationTable from "./AllocationTable";
