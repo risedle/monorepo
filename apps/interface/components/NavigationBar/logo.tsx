@@ -8,6 +8,9 @@ import {
     Text,
 } from "@chakra-ui/react";
 
+// utils
+import getBaseConfig from "@/utils/getBaseConfig";
+
 const NavigationBarLogoIcon = (props: IconProps) => {
     const color = useColorModeValue("black", "white");
     return (
@@ -28,9 +31,10 @@ const NavigationBarLogoIcon = (props: IconProps) => {
 };
 
 export const NavigationBarLogo = () => {
+    const { baseURL } = getBaseConfig();
     return (
         <Box data-testid="NavigationBarLogo">
-            <Link href="https://risedle.com" minW="max" _hover={{}}>
+            <Link href={baseURL} minW="max" _hover={{}}>
                 <HStack minW={{ base: "42px", laptop: "max" }}>
                     <NavigationBarLogoIcon
                         w={{ base: "8", laptop: "6" }}
