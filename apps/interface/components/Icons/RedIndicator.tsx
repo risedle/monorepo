@@ -51,3 +51,5 @@ export const RedIndicatorIcon = (props: IconProps) => {
         </Icon>
     );
 };
+
+export default RedIndicatorIcon;
