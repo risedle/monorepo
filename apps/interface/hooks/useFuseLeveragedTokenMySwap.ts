@@ -27,7 +27,7 @@ export function useFuseLeveragedTokenMySwap(
 ) {
     const { chainId } = getBaseConfig();
     const url = userAddress
-        ? `https://api.risedle.com/v1/${chainId}/flts/${symbol}/swaps/${userAddress}`
+        ? `https://api.risedle.com/v1/${chainId}/flts/${symbol}/swaps?userAddress=${userAddress}`
         : null;
 
     const { data, error } = useSWR<FuseLeverageSwapsHistory, Error>(
