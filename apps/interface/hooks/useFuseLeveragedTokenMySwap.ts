@@ -9,7 +9,7 @@ export function useFuseLeveragedTokenMySwap(
     userAddress: string | undefined
 ) {
     const url = userAddress
-        ? `https://api.risedle.com/v1/${symbol}/swaps/${userAddress}`
+        ? `https://api.risedle.com/v1/${chaindId}/flts/${symbol}/swaps/${userAddress}`
         : null;
 
     const { data, error } = useSWR<FuseLeverageSwapsHistory, Error>(
