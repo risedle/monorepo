@@ -65,7 +65,7 @@ export const MySwapHistoryContainer = (props: MySwapHisotryContainerProps) => {
             </Heading>
         );
     }
-    if (!data && !isLoaded) {
+    if (!data && isLoaded) {
         return (
             <Heading data-testid="noSwapHistoryWarning">
                 No Swap History
