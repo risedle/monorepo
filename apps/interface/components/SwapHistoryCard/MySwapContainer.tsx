@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAccount } from "wagmi";
+import { chainId, useAccount } from "wagmi";
 
 // Hooks
 import { useFuseLeveragedTokenMySwap } from "@/hooks/useFuseLeveragedTokenMySwap";
@@ -10,12 +10,13 @@ import SwapHistoryCardTable from "./Table";
 // Utils
 import type { FuseLeveragedTokenSwap } from "@/utils/types";
 import { Heading } from "@chakra-ui/react";
+import getBaseConfig from "@/utils/getBaseConfig";
 
 interface MySwapHisotryContainerProps {
     symbol: string;
 }
 
-const dummyData: FuseLeveragedTokenSwap = {
+const dummyData = {
     amountInUSD: "0",
     timestamp: "1659328398",
     tokenIn: {
@@ -38,7 +39,7 @@ export const MySwapHistoryContainer = (props: MySwapHisotryContainerProps) => {
     );
 
     useEffect(() => {
-        if (data) {
+        if (data?.user && !isLoaded) {
             const mappedData: Array<FuseLeveragedTokenSwap> = data.user.map(
                 (userData) => ({
                     amountInUSD: userData.amountInUSD.toString(),
@@ -56,7 +57,7 @@ export const MySwapHistoryContainer = (props: MySwapHisotryContainerProps) => {
             );
             setLoadedData(mappedData);
         }
-    }, [data]);
+    }, [data?.user, isLoaded]);
 
     if (!address) {
         return (
@@ -65,7 +66,7 @@ export const MySwapHistoryContainer = (props: MySwapHisotryContainerProps) => {
             </Heading>
         );
     }
-    if (!data && isLoaded) {
+    if (!data?.user && !isLoaded) {
         return (
             <Heading data-testid="noSwapHistoryWarning">
                 No Swap History
