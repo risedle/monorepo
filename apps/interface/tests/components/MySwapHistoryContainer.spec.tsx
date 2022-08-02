@@ -11,32 +11,32 @@ afterEach(() => {
 });
 
 describe("<MySwapHistoryContainer />", () => {
-    // describe("Given valid data", () => {
-    //     it("should render data", () => {
-    //         const useAccount = jest.spyOn(wagmi, "useAccount");
-    //         useAccount.mockImplementation(() => ({
-    //             address: "addy",
-    //         }));
-    //         const mock = jest.spyOn(SWR, "default");
-    //         mock.mockReturnValueOnce({
-    //             data: {
-    //                 user: [
-    //                     {
-    //                         timestamp: "1",
-    //                         transaction: { id: "1" },
-    //                         amountInUSD: "1",
-    //                         tokenIn: { symbol: "A" },
-    //                         tokenOut: { symbol: "B" },
-    //                     },
-    //                 ],
-    //             },
-    //         });
+    describe("Given valid data", () => {
+        it("should render data", () => {
+            const useAccount = jest.spyOn(wagmi, "useAccount");
+            useAccount.mockImplementation(() => ({
+                address: "addy",
+            }));
+            const mock = jest.spyOn(SWR, "default");
+            mock.mockReturnValueOnce({
+                data: {
+                    user: [
+                        {
+                            timestamp: "1",
+                            transaction: { id: "1" },
+                            amountInUSD: "1",
+                            tokenIn: { symbol: "A" },
+                            tokenOut: { symbol: "B" },
+                        },
+                    ],
+                },
+            });
 
-    //         renderApp(<MySwapHistoryContainer symbol="test" />);
-    //         const tableData = screen.queryByTestId("SwapHistoryCardTable");
-    //         expect(tableData).toBeInTheDocument();
-    //     });
-    // });
+            renderApp(<MySwapHistoryContainer symbol="test" />);
+            const tableData = screen.queryByTestId("SwapHistoryCardTable");
+            expect(tableData).toBeInTheDocument();
+        });
+    });
 
     describe("Given null address", () => {
         it("should render warning ", () => {
@@ -59,7 +59,19 @@ describe("<MySwapHistoryContainer />", () => {
             }));
             const mock = jest.spyOn(SWR, "default");
             mock.mockReturnValueOnce({
-                data: null,
+                data: {
+                    flt: [
+                        {
+                            timestamp: "1",
+                            transaction: { id: "1" },
+                            amountInUSD: "1",
+                            tokenIn: { symbol: "A" },
+                            tokenOut: { symbol: "B" },
+                        },
+                    ],
+                    user: null,
+                },
+                isLoaded: true,
             });
             render(<MySwapHistoryContainer symbol="test" />);
             const tableData = screen.queryByTestId("noSwapHistoryWarning");
