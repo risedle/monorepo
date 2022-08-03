@@ -25,7 +25,7 @@ router.get(
 router.get(
     "/:chainId/flts/:symbol/swaps",
     fltsController.GetFuseLeveragedTokensByChainIdValidation,
-    fltsController.GetFuseLeveragedTokenSwapsBySymbol
+    flt.GetFuseLeveragedTokenSwapsBySymbol
 );
 
 router.get(
