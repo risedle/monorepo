@@ -20,7 +20,7 @@ describe("<TradeInfoCardLatestPrice />", () => {
     });
 
     describe("Given negative price change", () => {
-        it("should render up icon", () => {
+        it("should render down icon", () => {
             render(
                 <TradeInfoCardLatestPrice
                     price={10}
