@@ -142,7 +142,7 @@ describe("GetFuseLeveragedTokenSwapsBySymbol", () => {
                 expect(userSwaps[0].hash.length).toBe(66);
                 expect(typeof userSwaps[0].user).toBe("string");
                 expect(userSwaps[0].user.length).toBe(42);
-                expect(userSwaps[0].user).toBe(addy);
+                expect(userSwaps[0].user).toBe(addy.toLowerCase());
                 expect(typeof userSwaps[0].tokenIn.name).toBe("string");
                 expect(typeof userSwaps[0].tokenIn.symbol).toBe("string");
                 expect(typeof userSwaps[0].amountIn).toBe("number");

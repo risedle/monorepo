@@ -1,5 +1,5 @@
 import { request as grequest, gql } from "graphql-request";
-import { ChainId, FuseLeveragedTokenInfo } from "@risedle/types";
+import { ChainId, FuseLeveragedTokenSwaps } from "@risedle/types";
 
 import { getGraphEndpointByChainId } from "./index";
 
@@ -48,20 +48,19 @@ const queryFuseLeveragedTokenSwapsBySymbol = gql`
 /**
  * Get Fuse Leveraged Token swaps activity
  */
-export async function getFuseLeveragedTokenSwapsBySymbol(
+export async function GetFuseLeveragedTokenSwapsBySymbol(
     chainId: ChainId,
     fltSymbol: string,
     userAddress: string | undefined
 ): Promise<FuseLeveragedTokenSwaps | undefined> {
     // Get data from the graph
     const endpoint = getGraphEndpointByChainId(chainId);
-    const filter = fltSymbol.toUpperCase();
     const data = await grequest(
         endpoint,
         queryFuseLeveragedTokenSwapsBySymbol,
         {
-            symbol: filter,
-            user: userAddress,
+            symbol: fltSymbol.toUpperCase(),
+            user: userAddress?.toLowerCase(),
         }
     );
     if (data.flts.length == 0) return undefined;
@@ -93,3 +92,5 @@ export async function getFuseLeveragedTokenSwapsBySymbol(
     });
     return { flt, user };
 }
+
+export default GetFuseLeveragedTokenSwapsBySymbol;
