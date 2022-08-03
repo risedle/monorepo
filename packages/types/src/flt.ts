@@ -51,7 +51,7 @@ export interface FuseLeveragedTokenSwap {
     amountOutUSD: number;
 }
 
-export interface FuseLeverageSwapsHistory {
+export interface FuseLeveragedTokenSwaps {
     flt: Array<FuseLeveragedTokenSwap>;
     user: Array<FuseLeveragedTokenSwap>;
 }
