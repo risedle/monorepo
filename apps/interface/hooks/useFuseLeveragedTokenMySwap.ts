@@ -4,22 +4,6 @@ import { FuseLeverageSwapsHistory } from "@risedle/types";
 import { fetcher } from "@/utils/fetcher";
 import getBaseConfig from "@/utils/getBaseConfig";
 
-const dummyData = {
-    amountInUSD: "0",
-    timestamp: "1659328398",
-    tokenIn: {
-        symbol: "BNBRISE",
-    },
-    tokenOut: {
-        symbol: "BUSD",
-    },
-    transaction: {
-        id: "",
-    },
-};
-
-const dummySwaps = Array.from(Array(5).keys()).map(() => dummyData);
-
 // Get list of markets using SWR
 export function useFuseLeveragedTokenMySwap(
     symbol: string,
