@@ -15,7 +15,11 @@ import type { FuseLeveragedToken } from "@/utils/types";
 
 // Sub-components
 import SwapHistoryCardTable from "./Table";
-import MySwapHistoryContainer from "./MySwapContainer";
+import dynamic from "next/dynamic";
+
+const MySwapHistoryContainer = dynamic(() => import("./MySwapContainer"), {
+    ssr: false,
+});
 
 interface SwapHistoryCardProps extends BoxProps {
     flt: FuseLeveragedToken;

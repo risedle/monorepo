@@ -10,7 +10,6 @@ import SwapHistoryCardTable from "./Table";
 // Utils
 import type { FuseLeveragedTokenSwap } from "@/utils/types";
 import { Heading } from "@chakra-ui/react";
-import getBaseConfig from "@/utils/getBaseConfig";
 
 interface MySwapHisotryContainerProps {
     symbol: string;
@@ -39,7 +38,7 @@ export const MySwapHistoryContainer = (props: MySwapHisotryContainerProps) => {
     );
 
     useEffect(() => {
-        if (data?.user && !isLoaded) {
+        if (data?.user.length && isLoaded) {
             const mappedData: Array<FuseLeveragedTokenSwap> = data.user.map(
                 (userData) => ({
                     amountInUSD: userData.amountInUSD.toString(),
@@ -55,7 +54,7 @@ export const MySwapHistoryContainer = (props: MySwapHisotryContainerProps) => {
                     },
                 })
             );
-            setLoadedData(mappedData);
+            setLoadedData(() => mappedData);
         }
     }, [data?.user, isLoaded]);
 
@@ -66,7 +65,7 @@ export const MySwapHistoryContainer = (props: MySwapHisotryContainerProps) => {
             </Heading>
         );
     }
-    if (!data?.user && !isLoaded) {
+    if (!data?.user.length && isLoaded) {
         return (
             <Heading data-testid="noSwapHistoryWarning">
                 No Swap History
