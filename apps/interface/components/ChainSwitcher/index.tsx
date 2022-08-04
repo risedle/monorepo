@@ -34,7 +34,7 @@ const ChevronDownIcon = (props: IconProps) => {
 };
 
 export const ChainSwitcher = (props: ButtonProps) => {
-    const { chainId, supportedChains, chainName } = getBaseConfig();
+    const { chainId, supportedChains, chainName, chainSlug } = getBaseConfig();
 
     // Styles
     const popupBackground = useColorModeValue("gray.light.2", "gray.dark.2");
@@ -79,7 +79,7 @@ export const ChainSwitcher = (props: ButtonProps) => {
                         // TODO(pyk): Update 'color' to specific chain
                         leftIcon={
                             <ChainIcon
-                                color="bsc"
+                                color={`${chainSlug}.chainIcon`}
                                 w="4"
                                 h="4"
                                 display={{ base: "none", laptop: "block" }}
