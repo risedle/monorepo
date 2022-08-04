@@ -23,7 +23,7 @@ describe("getBaseConfig", () => {
 
             expect(baseConfig.chainId).toBe(56);
             expect(baseConfig.chainSlug).toBe("bsc");
-            expect(baseConfig.chainName).toBe("BNB Smart Chain");
+            expect(baseConfig.chainName).toBe("BSC");
             expect(baseConfig.baseURL).toBe("https://bsc.risedle.com");
         });
     });
@@ -32,12 +32,12 @@ describe("getBaseConfig", () => {
         it("should return correct base config", () => {
             process.env.NEXT_PUBLIC_CHAIN_SLUG = "bsc";
             process.env.NEXT_PUBLIC_CHAIN_ID = 56;
-            process.env.NEXT_PUBLIC_CHAIN_NAME = "BNB Smart Chain";
+            process.env.NEXT_PUBLIC_CHAIN_NAME = "BSC";
             const baseConfig = getBaseConfig();
 
             expect(baseConfig.chainId).toBe(56);
             expect(baseConfig.chainSlug).toBe("bsc");
-            expect(baseConfig.chainName).toBe("BNB Smart Chain");
+            expect(baseConfig.chainName).toBe("BSC");
             expect(baseConfig.baseURL).toBe("https://bsc.risedle.com");
         });
     });
