@@ -22,7 +22,7 @@ export const FooterBar = () => {
 
     return (
         <Container
-            maxW="7xl"
+            maxW="5xl"
             data-testid="FooterBar"
             marginTop="10"
             display={{ base: "none", tablet: "block" }}
