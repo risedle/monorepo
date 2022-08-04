@@ -38,7 +38,7 @@ const Arbitrum = {
 const BSC = {
     chainSlug: "bsc",
     chainId: 56,
-    chainName: "BNB Smart Chain",
+    chainName: "BSC",
     baseURL: "https://bsc.risedle.com",
     graphEndpoint:
         "https://api.thegraph.com/subgraphs/name/risedle/risedle-flt-bsc",
