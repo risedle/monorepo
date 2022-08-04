@@ -1,3 +1,4 @@
+import NextLink from "next/link";
 import {
     HStack,
     Link,
@@ -7,9 +8,6 @@ import {
     useColorModeValue,
     Text,
 } from "@chakra-ui/react";
-
-// utils
-import getBaseConfig from "@/utils/getBaseConfig";
 
 const NavigationBarLogoIcon = (props: IconProps) => {
     const color = useColorModeValue("black", "white");
@@ -31,28 +29,29 @@ const NavigationBarLogoIcon = (props: IconProps) => {
 };
 
 export const NavigationBarLogo = () => {
-    const { baseURL } = getBaseConfig();
     return (
         <Box data-testid="NavigationBarLogo">
-            <Link href={baseURL} minW="max" _hover={{}}>
-                <HStack minW={{ base: "42px", laptop: "max" }}>
-                    <NavigationBarLogoIcon
-                        w={{ base: "8", laptop: "6" }}
-                        h={{ base: "8", laptop: "6" }}
-                    />
-                    {/* Show text only on laptop or above */}
-                    <Text
-                        data-testid="NavigationBarLogoText"
-                        fontWeight="bold"
-                        fontSize="md"
-                        lineHeight="4"
-                        letterSpacing="tight"
-                        display={{ base: "none", laptop: "block" }}
-                    >
-                        Risedle
-                    </Text>
-                </HStack>
-            </Link>
+            <NextLink href="/" passHref>
+                <Link minW="max" _hover={{}}>
+                    <HStack minW={{ base: "42px", laptop: "max" }}>
+                        <NavigationBarLogoIcon
+                            w={{ base: "8", laptop: "6" }}
+                            h={{ base: "8", laptop: "6" }}
+                        />
+                        {/* Show text only on laptop or above */}
+                        <Text
+                            data-testid="NavigationBarLogoText"
+                            fontWeight="bold"
+                            fontSize="md"
+                            lineHeight="4"
+                            letterSpacing="tight"
+                            display={{ base: "none", laptop: "block" }}
+                        >
+                            Risedle
+                        </Text>
+                    </HStack>
+                </Link>
+            </NextLink>
         </Box>
     );
 };
