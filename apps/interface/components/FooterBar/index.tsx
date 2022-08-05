@@ -112,7 +112,7 @@ export const FooterBar = () => {
                             color={gray10}
                             _hover={{ color: gray12 }}
                             target="_blank"
-                            data-testid="FooterBarLinkTwitter"
+                            data-testid="FooterBarLinkDocs"
                         >
                             <Center>
                                 Docs
