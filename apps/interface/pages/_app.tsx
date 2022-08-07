@@ -14,6 +14,7 @@ import {
     Chain,
     getDefaultWallets,
     RainbowKitProvider,
+    darkTheme,
 } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
@@ -22,6 +23,8 @@ import NextNProgress from "nextjs-progressbar";
 import themes from "@/themes";
 import colors from "@/themes/colors";
 import getBaseConfig from "@/utils/getBaseConfig";
+import { useChakraThemeStore } from "@/hooks/useChakraThemeStore";
+import shallow from "zustand/shallow";
 
 // TODO(pyk): refactor this
 const bscChain: Chain = {
@@ -72,6 +75,13 @@ const wagmiClient = createClient({
 function App({ Component, pageProps }: AppProps) {
     const baseConfig = getBaseConfig();
 
+    const { theme } = useChakraThemeStore(
+        (state) => ({ theme: state.theme }),
+        shallow
+    );
+
+    console.log(theme);
+
     return (
         <>
             <DefaultSeo
@@ -100,7 +110,10 @@ function App({ Component, pageProps }: AppProps) {
             />
             <ChakraProvider theme={themes}>
                 <WagmiConfig client={wagmiClient}>
-                    <RainbowKitProvider chains={chains}>
+                    <RainbowKitProvider
+                        chains={chains}
+                        theme={theme === "dark" ? darkTheme() : undefined}
+                    >
                         <NextNProgress color={colors.amber.light[11]} />
                         <Component {...pageProps} />
                     </RainbowKitProvider>

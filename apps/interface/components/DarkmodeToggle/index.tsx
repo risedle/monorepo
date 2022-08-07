@@ -1,3 +1,4 @@
+import { useChakraThemeStore } from "@/hooks/useChakraThemeStore";
 import {
     Button,
     useColorMode,
@@ -5,6 +6,7 @@ import {
     IconProps,
     Circle,
 } from "@chakra-ui/react";
+import shallow from "zustand/shallow";
 
 const DarkmodeIcon = (props: IconProps) => {
     return (
@@ -20,11 +22,22 @@ const DarkmodeIcon = (props: IconProps) => {
 };
 
 export const DarkmodeToggle = () => {
-    const { toggleColorMode } = useColorMode();
+    const { colorMode, setColorMode } = useColorMode();
+    const { setter } = useChakraThemeStore(
+        (state) => ({ setter: state.setTheme }),
+        shallow
+    );
+
+    const handleColorModeChange = () => {
+        const nextColorMode = colorMode === "light" ? "dark" : "light";
+        setColorMode(nextColorMode);
+        setter(nextColorMode);
+    };
+
     return (
         <Button
             data-testid="DarkmodeToggle"
-            onClick={toggleColorMode}
+            onClick={handleColorModeChange}
             variant="icon"
         >
             <Circle size="40px">
