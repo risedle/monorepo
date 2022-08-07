@@ -80,8 +80,6 @@ function App({ Component, pageProps }: AppProps) {
         shallow
     );
 
-    console.log(theme);
-
     return (
         <>
             <DefaultSeo
