@@ -4,7 +4,6 @@ import {
     Spacer,
     Link,
     HStack,
-    Text,
     useColorModeValue,
     Center,
 } from "@chakra-ui/react";
@@ -12,7 +11,6 @@ import NextLink from "next/link";
 
 // Icons
 import ArrowTopRightIcon from "@/components/Icons/ArrowTopRight";
-import GitbookIcon from "@/components/Icons/Gitbook";
 
 export const FooterBar = () => {
     // Styles
@@ -30,51 +28,27 @@ export const FooterBar = () => {
             <Flex
                 borderTop="1px"
                 borderColor={gray3}
-                py="4"
+                py="5"
                 direction={{ base: "column", tablet: "row" }}
-                gap={{ base: "2", tablet: "0" }}
             >
-                <HStack margin={{ base: "auto", tablet: "0" }}>
-                    <NextLink href="https://risedle.com" passHref>
-                        <Link
-                            fontSize="sm"
-                            lineHeight="4"
-                            color={gray10}
-                            _hover={{ color: gray12 }}
-                            data-testid="FooterBarLinkLabs"
-                        >
-                            Risedle Labs
-                        </Link>
-                    </NextLink>
-                    <Text color={gray10}>&bull;</Text>
-                    <NextLink href="https://docs.risedle.com" passHref>
-                        <Link
-                            fontSize="sm"
-                            lineHeight="4"
-                            color={gray12}
-                            _hover={{ color: gray12 }}
-                            target="_blank"
-                            data-testid="FooterBarLinkDocs"
-                        >
-                            <Center>
-                                <GitbookIcon w="4" h="4" marginRight="2" />
-                                Docs
-                                <ArrowTopRightIcon
-                                    w="4"
-                                    h="4"
-                                    color={gray10}
-                                />
-                            </Center>
-                        </Link>
-                    </NextLink>
-                </HStack>
+                <NextLink href="https://risedle.com" passHref>
+                    <Link
+                        fontSize="sm"
+                        lineHeight="4"
+                        color={gray10}
+                        _hover={{ color: gray12 }}
+                        data-testid="FooterBarLinkLabs"
+                    >
+                        Risedle Labs
+                    </Link>
+                </NextLink>
                 <Spacer />
-                <HStack spacing="2" margin={{ base: "auto", tablet: "0" }}>
+                <HStack spacing="6" margin={{ base: "auto", tablet: "0" }}>
                     <NextLink href="https://twitter.com/risedle" passHref>
                         <Link
                             fontSize="sm"
                             lineHeight="4"
-                            color={gray12}
+                            color={gray10}
                             _hover={{ color: gray12 }}
                             target="_blank"
                             data-testid="FooterBarLinkTwitter"
@@ -96,7 +70,7 @@ export const FooterBar = () => {
                         <Link
                             fontSize="sm"
                             lineHeight="4"
-                            color={gray12}
+                            color={gray10}
                             _hover={{ color: gray12 }}
                             target="_blank"
                             data-testid="FooterBarLinkDiscord"
@@ -115,13 +89,32 @@ export const FooterBar = () => {
                         <Link
                             fontSize="sm"
                             lineHeight="4"
-                            color={gray12}
+                            color={gray10}
                             _hover={{ color: gray12 }}
                             target="_blank"
                             data-testid="FooterBarLinkGithub"
                         >
                             <Center>
                                 Github
+                                <ArrowTopRightIcon
+                                    w="4"
+                                    h="4"
+                                    color={gray10}
+                                />
+                            </Center>
+                        </Link>
+                    </NextLink>
+                    <NextLink href="https://docs.risedle.com" passHref>
+                        <Link
+                            fontSize="sm"
+                            lineHeight="4"
+                            color={gray10}
+                            _hover={{ color: gray12 }}
+                            target="_blank"
+                            data-testid="FooterBarLinkDocs"
+                        >
+                            <Center>
+                                Docs
                                 <ArrowTopRightIcon
                                     w="4"
                                     h="4"
