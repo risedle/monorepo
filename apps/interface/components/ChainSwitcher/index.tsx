@@ -18,6 +18,7 @@ import {
 } from "@chakra-ui/react";
 
 import ChainIcon from "@/components/Icons/Chain";
+import BlueIndicatorIcon from "@/components/Icons/BlueIndicator";
 import { getBaseConfig } from "@/utils/getBaseConfig";
 
 const ChevronDownIcon = (props: IconProps) => {
@@ -44,8 +45,7 @@ export const ChainSwitcher = (props: ButtonProps) => {
     const blur = useColorModeValue("rgba(22,22,22,0.6)", "rgba(0,0,0,0.6)");
 
     // Dropdown selections
-    const chains = supportedChains.filter((c) => c.chainId != chainId);
-    const menuItems = chains.map((chain) => {
+    const menuItems = supportedChains.map((chain) => {
         return (
             <MenuItem
                 as={Link}
@@ -55,14 +55,27 @@ export const ChainSwitcher = (props: ButtonProps) => {
                 borderRadius="lg"
                 fontSize="sm"
                 lineHeight="4"
+                maxH="8"
                 _hover={{ background: popupBorder, textDecoration: "none" }}
                 p="2"
             >
                 <Flex w="100%">
                     <Center w="100%">
                         <Text>{chain.chainName}</Text>
+                        <BlueIndicatorIcon
+                            h="6"
+                            w="6"
+                            display={
+                                chain.chainId === chainId ? "block" : "none"
+                            }
+                        />
                         <Spacer />
-                        <ChainIcon chainId={chain.chainId} w="4" h="4" />
+                        <ChainIcon
+                            color={`${chainSlug}.chainIcon`}
+                            chainId={chain.chainId}
+                            w="4"
+                            h="4"
+                        />
                     </Center>
                 </Flex>
             </MenuItem>
