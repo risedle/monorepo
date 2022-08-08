@@ -29,7 +29,6 @@ export const FooterBar = () => {
                 borderTop="1px"
                 borderColor={gray3}
                 py="5"
-                px="4"
                 direction={{ base: "column", tablet: "row" }}
             >
                 <NextLink href="https://risedle.com" passHref>
