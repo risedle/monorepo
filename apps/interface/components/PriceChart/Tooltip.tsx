@@ -1,4 +1,10 @@
-import { Text, VStack, StackDivider, HStack } from "@chakra-ui/react";
+import {
+    Text,
+    VStack,
+    StackDivider,
+    HStack,
+    useColorModeValue,
+} from "@chakra-ui/react";
 
 // Utils
 import { formatUSD } from "@/utils/formatUSD";
@@ -22,11 +28,15 @@ export const PriceChartLineTooltip = (props: PriceChartLineTooltipProps) => {
     const change = point.price - oldestPrice;
     const changePercent = change / oldestPrice;
 
+    // Style
+    const background = useColorModeValue("gray.dark.2", "gray.dark.3");
+    const text = useColorModeValue("gray.light.9", "gray.dark.10");
+
     return (
         <VStack
             data-testid="PriceChartLineTooltip"
-            background="gray.dark.3"
-            color="gray.dark.10"
+            background={background}
+            color={text}
             paddingY="2"
             paddingX="3"
             border="1px"
