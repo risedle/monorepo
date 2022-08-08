@@ -24,29 +24,12 @@ export const StickyFooterBar = () => {
         <VStack
             data-testid="StickyFooterBar"
             marginTop="4"
+            gap="4"
             width="100%"
             alignItems="center"
+            py="6"
         >
-            <HStack gap={2}>
-                <NextLink href="https://docs.risedle.com" passHref>
-                    <Link
-                        fontSize="sm"
-                        lineHeight="4"
-                        color={gray10}
-                        _hover={{ color: gray12 }}
-                        target="_blank"
-                        data-testid="FooterBarLinkDocs"
-                    >
-                        <Center>
-                            Docs
-                            <ArrowTopRightIcon
-                                w="14px"
-                                h="14px"
-                                color={gray10}
-                            />
-                        </Center>
-                    </Link>
-                </NextLink>
+            <HStack gap="6">
                 <NextLink href="https://twitter.com/risedle" passHref>
                     <Link
                         fontSize="sm"
@@ -99,6 +82,25 @@ export const StickyFooterBar = () => {
                     >
                         <Center>
                             Github
+                            <ArrowTopRightIcon
+                                w="14px"
+                                h="14px"
+                                color={gray10}
+                            />
+                        </Center>
+                    </Link>
+                </NextLink>
+                <NextLink href="https://docs.risedle.com" passHref>
+                    <Link
+                        fontSize="sm"
+                        lineHeight="4"
+                        color={gray10}
+                        _hover={{ color: gray12 }}
+                        target="_blank"
+                        data-testid="FooterBarLinkDocs"
+                    >
+                        <Center>
+                            Docs
                             <ArrowTopRightIcon
                                 w="14px"
                                 h="14px"
