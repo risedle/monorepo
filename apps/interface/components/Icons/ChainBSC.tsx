@@ -1,14 +1,9 @@
-import { Icon, IconProps, useColorModeValue } from "@chakra-ui/react";
+import { Icon, IconProps } from "@chakra-ui/react";
 
 export const ChainBSCIcon = (props: IconProps) => {
-    const colorChain = useColorModeValue(
-        "bsc.chainIcon.light",
-        "bsc.chainIcon.dark"
-    );
-
     return (
         <Icon
-            fill={colorChain}
+            fill="currentcolor"
             data-testid="ChainIconBSC"
             viewBox="0 0 16 16"
             {...props}

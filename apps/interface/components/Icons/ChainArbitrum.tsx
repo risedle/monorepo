@@ -1,13 +1,9 @@
-import { Icon, IconProps, useColorModeValue } from "@chakra-ui/react";
+import { Icon, IconProps } from "@chakra-ui/react";
 
 export const ChainArbitrumIcon = (props: IconProps) => {
-    const colorChain = useColorModeValue(
-        "arbitrum.chainIcon.light",
-        "arbitrum.chainIcon.dark"
-    );
     return (
         <Icon
-            fill={colorChain}
+            fill="currentcolor"
             data-testid="ChainIconArbitrum"
             viewBox="0 0 17 19"
             {...props}
