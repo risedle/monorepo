@@ -35,7 +35,6 @@ export const SwapCard = (props: SwapCardProps) => {
 
     // Styles
     const gray1 = useColorModeValue("gray.light.1", "gray.dark.1");
-    const gray2 = useColorModeValue("gray.light.2", "gray.dark.2");
     const gray3 = useColorModeValue("gray.light.3", "gray.dark.3");
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
@@ -43,10 +42,10 @@ export const SwapCard = (props: SwapCardProps) => {
     return (
         <Tabs
             data-testid="SwapCard"
-            background={gray1}
+            background={gray3}
             borderRadius="2xl"
             border="1px"
-            borderColor={gray2}
+            borderColor={gray3}
             width="100%"
         >
             <VStack alignItems="flex-start" gap={6}>
@@ -67,7 +66,7 @@ export const SwapCard = (props: SwapCardProps) => {
                         _selected={{
                             color: gray12,
                             fontWeight: "semibold",
-                            background: gray3,
+                            background: gray1,
                         }}
                         _active={{ background: gray3 }}
                     >
@@ -84,7 +83,7 @@ export const SwapCard = (props: SwapCardProps) => {
                         _selected={{
                             color: gray12,
                             fontWeight: "semibold",
-                            background: gray3,
+                            background: gray1,
                         }}
                         _active={{ background: gray3 }}
                     >

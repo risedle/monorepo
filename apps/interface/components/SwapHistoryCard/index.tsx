@@ -27,10 +27,9 @@ export const SwapHistoryCard = (props: SwapHistoryCardProps) => {
     // Styles
     const gray1 = useColorModeValue("gray.light.1", "gray.dark.1");
     const gray2 = useColorModeValue("gray.light.2", "gray.dark.2");
-    const gray4 = useColorModeValue("gray.light.4", "gray.dark.4");
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
-
+    const gray3 = useColorModeValue("gray.light.3", "gray.dark.3");
     return (
         <VStack
             data-testid="SwapHistoryCard"
@@ -60,7 +59,7 @@ export const SwapHistoryCard = (props: SwapHistoryCardProps) => {
                 margin="0 !important"
             >
                 <TabList
-                    background={gray1}
+                    background={gray3}
                     padding="1"
                     borderRadius="12px"
                     border="0"
@@ -71,10 +70,11 @@ export const SwapHistoryCard = (props: SwapHistoryCardProps) => {
                     <Tab
                         fontSize="xs"
                         lineHeight="4"
+                        fontWeight="semibold"
                         _selected={{
                             color: gray12,
                             fontWeight: "semibold",
-                            background: gray4,
+                            background: gray1,
                         }}
                         padding="2"
                         borderRadius="lg"
@@ -85,12 +85,13 @@ export const SwapHistoryCard = (props: SwapHistoryCardProps) => {
                         All swaps
                     </Tab>
                     <Tab
+                        fontWeight="semibold"
                         fontSize="xs"
                         lineHeight="4"
                         _selected={{
                             color: gray12,
                             fontWeight: "semibold",
-                            background: gray4,
+                            background: gray1,
                         }}
                         padding="2"
                         borderRadius="lg"
