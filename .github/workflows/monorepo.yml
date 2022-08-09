@@ -4,9 +4,15 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - "apps/interface/**"
+      - ".github/workflows/risedle-interface.yml"
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - "apps/interface/**"
+      - ".github/workflows/risedle-interface.yml"
 
 jobs:
   build:
