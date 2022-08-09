@@ -34,18 +34,22 @@ export const SwapCard = (props: SwapCardProps) => {
     const { symbol, address, debt } = flt;
 
     // Styles
-    const gray1 = useColorModeValue("gray.light.1", "gray.dark.1");
-    const gray3 = useColorModeValue("gray.light.3", "gray.dark.3");
+    const backgroundTabColor = useColorModeValue(
+        "gray.light.3",
+        "gray.dark.2 "
+    );
+    const selectedTabColor = useColorModeValue("gray.light.1", "gray.dark.3");
+    const borderTabColor = useColorModeValue("gray.light.3", "gray.dark.2");
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
 
     return (
         <Tabs
             data-testid="SwapCard"
-            background={gray3}
+            background={backgroundTabColor}
             borderRadius="2xl"
             border="1px"
-            borderColor={gray3}
+            borderColor={borderTabColor}
             width="100%"
         >
             <VStack alignItems="flex-start" gap={6}>
@@ -66,9 +70,9 @@ export const SwapCard = (props: SwapCardProps) => {
                         _selected={{
                             color: gray12,
                             fontWeight: "semibold",
-                            background: gray1,
+                            background: selectedTabColor,
                         }}
-                        _active={{ background: gray3 }}
+                        _active={{ background: backgroundTabColor }}
                     >
                         Buy
                     </Tab>
@@ -83,9 +87,9 @@ export const SwapCard = (props: SwapCardProps) => {
                         _selected={{
                             color: gray12,
                             fontWeight: "semibold",
-                            background: gray1,
+                            background: selectedTabColor,
                         }}
-                        _active={{ background: gray3 }}
+                        _active={{ background: backgroundTabColor }}
                     >
                         Sell
                     </Tab>
