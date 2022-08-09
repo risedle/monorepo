@@ -83,8 +83,17 @@ const baseColors = {
             1: "#FBFDFF",
         },
     },
+    arbitrum: {
+        chainIcon: {
+            dark: "#7C66DC",
+            light: "#644FC1",
+        },
+    },
     bsc: {
-        chainIcon: "#F3BA2C",
+        chainIcon: {
+            dark: "#F3BA2C",
+            light: "#EB9317",
+        },
         button: {
             bg: {
                 light: "#EB9317",
