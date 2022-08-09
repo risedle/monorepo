@@ -1,0 +1,52 @@
+name: "interface"
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "apps/interface/**"
+      - ".github/workflows/risedle-interface.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "apps/interface/**"
+      - ".github/workflows/risedle-interface.yml"
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "17.8.0"
+      - name: Cache node_modules
+        id: cache-nodemodules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key:
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{
+            hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Install dependencies
+        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
+        run: npm install
+      - name: Build apps/interface
+        run: npm run build -w=interface
+      - name: Lint
+        run: npm run lint
+      - name: Check code formatting
+        run: npm run check
+      - name: Test
+        run: npm run test
+        working-directory: ./apps/interface
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        working-directory: ./apps/interface
