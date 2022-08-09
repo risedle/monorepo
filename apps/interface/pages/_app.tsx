@@ -10,11 +10,7 @@ import "@fontsource/ibm-plex-mono/600.css";
 import "@rainbow-me/rainbowkit/styles.css";
 
 // Rainbowkit
-import {
-    Chain,
-    getDefaultWallets,
-    RainbowKitProvider,
-} from "@rainbow-me/rainbowkit";
+import { Chain, getDefaultWallets } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 import NextNProgress from "nextjs-progressbar";
@@ -22,6 +18,7 @@ import NextNProgress from "nextjs-progressbar";
 import themes from "@/themes";
 import colors from "@/themes/colors";
 import getBaseConfig from "@/utils/getBaseConfig";
+import RainbowKitContainer from "@/components/RainbowKitContainer";
 
 // TODO(pyk): refactor this
 const bscChain: Chain = {
@@ -100,10 +97,10 @@ function App({ Component, pageProps }: AppProps) {
             />
             <ChakraProvider theme={themes}>
                 <WagmiConfig client={wagmiClient}>
-                    <RainbowKitProvider chains={chains}>
+                    <RainbowKitContainer>
                         <NextNProgress color={colors.amber.light[11]} />
                         <Component {...pageProps} />
-                    </RainbowKitProvider>
+                    </RainbowKitContainer>
                 </WagmiConfig>
             </ChakraProvider>
         </>
