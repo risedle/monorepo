@@ -2,24 +2,12 @@ import {
     BoxProps,
     VStack,
     Text,
-    HStack,
     useColorModeValue,
-    Link,
-    Center,
-    Tooltip,
     Divider,
 } from "@chakra-ui/react";
-import { utils } from "ethers";
 
 // Utils
 import type { FuseLeveragedToken } from "@/utils/types";
-import getBaseConfig from "@/utils/getBaseConfig";
-import getTokenExplorerURL from "@/utils/getTokenExplorerURL";
-import formatTokenAddress from "@/utils/formatTokenAddress";
-
-// Icons
-import GlobeIcon from "../Icons/Globe";
-import ArrowTopRightIcon from "../Icons/ArrowTopRight";
 
 // Sub-components
 import FuseLeveragedTokenInfoCardStatsContainer from "./StatsContainer";
@@ -31,9 +19,6 @@ interface FuseLeveragedTokenInfoCardProps extends BoxProps {
 export const FuseLeveragedTokenInfoCard = (
     props: FuseLeveragedTokenInfoCardProps
 ) => {
-    // Global config
-    const { explorerName } = getBaseConfig();
-
     // Data
     const { flt, ...boxProps } = props;
     const { name, symbol, address, collateral, debt } = flt;
@@ -91,7 +76,7 @@ export const FuseLeveragedTokenInfoCard = (
                 </Text>
             </VStack>
 
-            {/* Contract Link */}
+            {/* Contract Link
             <HStack margin="0 !important" paddingX="4" gap={2}>
                 <GlobeIcon w="4" h="4" />
                 <Text
@@ -134,7 +119,7 @@ export const FuseLeveragedTokenInfoCard = (
                         </Center>
                     </Link>
                 </Tooltip>
-            </HStack>
+            </HStack> */}
 
             {/* Divider */}
             <Divider
@@ -150,6 +135,7 @@ export const FuseLeveragedTokenInfoCard = (
                 symbol={symbol}
                 collateralSymbol={collateral.symbol}
                 debtSymbol={debt.symbol}
+                address={address}
             />
         </VStack>
     );

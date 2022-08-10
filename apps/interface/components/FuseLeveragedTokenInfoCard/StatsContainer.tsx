@@ -10,12 +10,14 @@ interface FuseLeveragedTokenInfoCardStatsContainerProps extends BoxProps {
     symbol: string;
     collateralSymbol: string;
     debtSymbol: string;
+    address: string;
 }
 
 const FuseLeveragedTokenInfoCardStatsContainer = (
     props: FuseLeveragedTokenInfoCardStatsContainerProps
 ) => {
-    const { symbol, collateralSymbol, debtSymbol, ...boxProps } = props;
+    const { symbol, collateralSymbol, debtSymbol, address, ...boxProps } =
+        props;
     const { data, isLoaded } = useFuseLeveragedTokenInfo(symbol);
     // TODO: add toast when error is not null
 
@@ -27,6 +29,7 @@ const FuseLeveragedTokenInfoCardStatsContainer = (
             totalVolumeUSD={data?.totalVolumeUSD || 0}
             collateralSymbol={collateralSymbol}
             debtSymbol={debtSymbol}
+            address={address}
             {...boxProps}
         />
     );
