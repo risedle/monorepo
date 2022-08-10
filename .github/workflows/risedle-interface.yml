@@ -15,7 +15,8 @@ on:
       - ".github/workflows/risedle-interface.yml"
 
 jobs:
-  build:
+  setup:
+    name: Install dependencies
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -29,21 +30,44 @@ jobs:
         with:
           path: node_modules
           key:
-            ${{ runner.os }}-build-${{ env.cache-name }}-${{
-            hashFiles('**/package-lock.json') }}
+            # prettier-ignore
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Install dependencies
-        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: npm install
+  build:
+    name: Build apps/interface
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
       - name: Build apps/interface
         run: npm run build -w=interface
-      - name: Lint
-        run: npm run lint
+  format:
+    name: Check code format
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
       - name: Check code formatting
         run: npm run check
+  lint:
+    name: Lint
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Lint
+        run: npm run lint
+  test:
+    name: Test
+    needs: [setup, build, format, lint]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
       - name: Test
         run: npm run test
         working-directory: ./apps/interface
