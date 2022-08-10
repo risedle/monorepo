@@ -15,7 +15,7 @@ on:
       - ".github/workflows/risedle-interface.yml"
 
 jobs:
-  analyze:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
