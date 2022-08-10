@@ -15,7 +15,7 @@ on:
       - ".github/workflows/risedle-interface.yml"
 
 jobs:
-  analyze:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -38,8 +38,8 @@ jobs:
       - name: Install dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: npm install
-      - name: Build apps/interface
-        run: npm run build -w=interface
+      - name: Build monorepo
+        run: npm run build
       - name: Lint
         run: npm run lint
       - name: Check code formatting
