@@ -20,7 +20,6 @@ import {
 import ChainIcon from "@/components/Icons/Chain";
 import BlueIndicatorIcon from "@/components/Icons/BlueIndicator";
 import { getBaseConfig } from "@/utils/getBaseConfig";
-import { chain } from "wagmi";
 
 const ChevronDownIcon = (props: IconProps) => {
     return (
