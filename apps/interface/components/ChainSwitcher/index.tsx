@@ -43,8 +43,21 @@ export const ChainSwitcher = (props: ButtonProps) => {
     const labelColor = useColorModeValue("gray.light.9", "gray.dark.9");
     const textColor = useColorModeValue("gray.light.12", "gray.dark.12");
     const blur = useColorModeValue("rgba(22,22,22,0.6)", "rgba(0,0,0,0.6)");
+    const arbitrumColorChain = useColorModeValue(
+        "arbitrum.chainIcon.light",
+        "arbitrum.chainIcon.dark"
+    );
+    const bscColorChain = useColorModeValue(
+        "bsc.chainIcon.light",
+        "bsc.chainIcon.dark"
+    );
+    const chainColor = {
+        arbitrum: arbitrumColorChain,
+        bsc: bscColorChain,
+    };
 
-    // Dropdown selections
+    type ChainColorKeys = keyof typeof chainColor;
+
     const menuItems = supportedChains.map((chain) => {
         return (
             <MenuItem
@@ -71,7 +84,9 @@ export const ChainSwitcher = (props: ButtonProps) => {
                         />
                         <Spacer />
                         <ChainIcon
-                            color={`${chainSlug}.chainIcon`}
+                            color={
+                                chainColor[chain.chainSlug as ChainColorKeys]
+                            }
                             chainId={chain.chainId}
                             w="4"
                             h="4"
@@ -92,7 +107,7 @@ export const ChainSwitcher = (props: ButtonProps) => {
                         // TODO(pyk): Update 'color' to specific chain
                         leftIcon={
                             <ChainIcon
-                                color={`${chainSlug}.chainIcon`}
+                                color={chainColor[chainSlug as ChainColorKeys]}
                                 w="4"
                                 h="4"
                                 display={{ base: "none", laptop: "block" }}

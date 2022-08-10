@@ -79,7 +79,7 @@ export const BackingCardAllocationTable = (
             >
                 <Text
                     padding="2"
-                    background={gray3}
+                    background={gray4}
                     width="100%"
                     borderTopLeftRadius="lg"
                     borderBottomLeftRadius="lg"
@@ -151,7 +151,7 @@ export const BackingCardAllocationTable = (
             >
                 <Text
                     padding="2"
-                    background={gray3}
+                    background={gray4}
                     fontSize="xs"
                     lineHeight="4"
                     color={gray10}
@@ -228,7 +228,7 @@ export const BackingCardAllocationTable = (
             >
                 <Text
                     padding="2"
-                    background={gray3}
+                    background={gray4}
                     width="100%"
                     fontSize="xs"
                     lineHeight="4"

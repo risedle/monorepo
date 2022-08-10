@@ -6,13 +6,20 @@ import {
     Skeleton,
     useColorModeValue,
     HStack,
+    Link,
+    Center,
 } from "@chakra-ui/react";
+import { utils } from "ethers";
 
 // Utils
+import getBaseConfig from "@/utils/getBaseConfig";
 import formatUSD from "@/utils/formatUSD";
+import getTokenExplorerURL from "@/utils/getTokenExplorerURL";
+import formatTokenAddress from "@/utils/formatTokenAddress";
 
 // Sub-components
 import InfoTooltip from "../InfoTooltip";
+import ArrowTopRightIcon from "../Icons/ArrowTopRight";
 
 interface FuseLeveragedTokenInfoCardStatsProps extends BoxProps {
     marketcapUSD: number;
@@ -21,10 +28,14 @@ interface FuseLeveragedTokenInfoCardStatsProps extends BoxProps {
     collateralSymbol: string;
     debtSymbol: string;
     isLoaded: boolean;
+    address: string;
 }
 export const FuseLeveragedTokenInfoCardStats = (
     props: FuseLeveragedTokenInfoCardStatsProps
 ) => {
+    // Global config
+    const { explorerName } = getBaseConfig();
+
     // Data
     const {
         marketcapUSD,
@@ -33,6 +44,7 @@ export const FuseLeveragedTokenInfoCardStats = (
         debtSymbol,
         totalVolumeUSD,
         isLoaded,
+        address,
         ...boxProps
     } = props;
 
@@ -166,9 +178,8 @@ export const FuseLeveragedTokenInfoCardStats = (
                 <VStack flex="1" alignItems="flex-start" gap={2}>
                     <HStack gap={1}>
                         <Text fontSize="sm" lineHeight="4" color={gray10}>
-                            Capacity
+                            {explorerName}
                         </Text>
-                        <InfoTooltip info="Max Market cap" color={gray10} />
                     </HStack>
                     <Skeleton
                         startColor={gray3}
@@ -178,17 +189,31 @@ export const FuseLeveragedTokenInfoCardStats = (
                         margin="0 !important"
                         minW="24"
                     >
-                        <Text
-                            fontFamily="mono"
-                            fontSize="sm"
-                            lineHeight="4"
-                            fontWeight="semibold"
-                            letterSpacing="tight"
+                        <Link
+                            href={getTokenExplorerURL(address)}
+                            target="_blank"
                             margin="0 !important"
-                            color={gray12}
+                            _hover={{ textDecoration: "none" }}
                         >
-                            {formatUSD(maxMarketcapUSD)}
-                        </Text>
+                            <Center>
+                                <Text
+                                    fontFamily="mono"
+                                    fontSize="sm"
+                                    lineHeight="4"
+                                    letterSpacing="tight"
+                                    color={gray12}
+                                >
+                                    {formatTokenAddress(
+                                        utils.getAddress(address)
+                                    )}
+                                </Text>
+                                <ArrowTopRightIcon
+                                    w="4"
+                                    h="4"
+                                    color={gray10}
+                                />
+                            </Center>
+                        </Link>
                     </Skeleton>
                 </VStack>
             </Flex>
