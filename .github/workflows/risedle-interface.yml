@@ -29,21 +29,20 @@ jobs:
         with:
           path: node_modules
           key:
-            ${{ runner.os }}-build-${{ env.cache-name }}-${{
-            hashFiles('**/package-lock.json') }}
+            # prettier-ignore
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Install dependencies
-        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: npm install
       - name: Build apps/interface
         run: npm run build -w=interface
-      - name: Lint
-        run: npm run lint
       - name: Check code formatting
         run: npm run check
+      - name: Lint
+        run: npm run lint
       - name: Test
         run: npm run test
         working-directory: ./apps/interface
