@@ -20,6 +20,7 @@ import {
 import ChainIcon from "@/components/Icons/Chain";
 import BlueIndicatorIcon from "@/components/Icons/BlueIndicator";
 import { getBaseConfig } from "@/utils/getBaseConfig";
+import { chain } from "wagmi";
 
 const ChevronDownIcon = (props: IconProps) => {
     return (
@@ -51,6 +52,13 @@ export const ChainSwitcher = (props: ButtonProps) => {
         "bsc.chainIcon.light",
         "bsc.chainIcon.dark"
     );
+    const chainColor = {
+        arbitrum: arbitrumColorChain,
+        bsc: bscColorChain,
+    };
+
+    type ChainColorKeys = keyof typeof chainColor;
+
     const menuItems = supportedChains.map((chain) => {
         return (
             <MenuItem
@@ -78,9 +86,7 @@ export const ChainSwitcher = (props: ButtonProps) => {
                         <Spacer />
                         <ChainIcon
                             color={
-                                chain.chainSlug === "bsc"
-                                    ? bscColorChain
-                                    : arbitrumColorChain
+                                chainColor[chain.chainSlug as ChainColorKeys]
                             }
                             chainId={chain.chainId}
                             w="4"
@@ -102,11 +108,7 @@ export const ChainSwitcher = (props: ButtonProps) => {
                         // TODO(pyk): Update 'color' to specific chain
                         leftIcon={
                             <ChainIcon
-                                color={
-                                    chainSlug === "bsc"
-                                        ? bscColorChain
-                                        : arbitrumColorChain
-                                }
+                                color={chainColor[chainSlug as ChainColorKeys]}
                                 w="4"
                                 h="4"
                                 display={{ base: "none", laptop: "block" }}
