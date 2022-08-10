@@ -76,51 +76,6 @@ export const FuseLeveragedTokenInfoCard = (
                 </Text>
             </VStack>
 
-            {/* Contract Link
-            <HStack margin="0 !important" paddingX="4" gap={2}>
-                <GlobeIcon w="4" h="4" />
-                <Text
-                    color={gray10}
-                    fontSize="sm"
-                    lineHeight="4"
-                    margin="0 !important"
-                >
-                    {explorerName}
-                </Text>
-                <Tooltip
-                    label="Don't trust, verify"
-                    placement="top"
-                    background={gray12}
-                    color={gray2}
-                    boxShadow="none"
-                    data-testid="InfoTooltip"
-                    fontSize="sm"
-                    lineHeight="4"
-                    borderRadius="lg"
-                    padding="2"
-                >
-                    <Link
-                        href={getTokenExplorerURL(address)}
-                        target="_blank"
-                        margin="0 !important"
-                        _hover={{ textDecoration: "none" }}
-                    >
-                        <Center>
-                            <Text
-                                fontFamily="mono"
-                                fontSize="sm"
-                                lineHeight="4"
-                                letterSpacing="tight"
-                                color={gray12}
-                            >
-                                {formatTokenAddress(utils.getAddress(address))}
-                            </Text>
-                            <ArrowTopRightIcon w="4" h="4" color={gray10} />
-                        </Center>
-                    </Link>
-                </Tooltip>
-            </HStack> */}
-
             {/* Divider */}
             <Divider
                 borderStyle="dashed"
