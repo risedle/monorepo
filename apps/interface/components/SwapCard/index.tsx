@@ -36,7 +36,7 @@ export const SwapCard = (props: SwapCardProps) => {
     // Styles
     const backgroundTabColor = useColorModeValue(
         "gray.light.3",
-        "gray.dark.2 "
+        "gray.dark.1 "
     );
     const selectedTabColor = useColorModeValue("gray.light.1", "gray.dark.3");
     const borderTabColor = useColorModeValue("gray.light.3", "gray.dark.2");
@@ -72,7 +72,7 @@ export const SwapCard = (props: SwapCardProps) => {
                             fontWeight: "semibold",
                             background: selectedTabColor,
                         }}
-                        _active={{ background: backgroundTabColor }}
+                        _active={{ background: selectedTabColor }}
                     >
                         Buy
                     </Tab>
@@ -89,7 +89,7 @@ export const SwapCard = (props: SwapCardProps) => {
                             fontWeight: "semibold",
                             background: selectedTabColor,
                         }}
-                        _active={{ background: backgroundTabColor }}
+                        _active={{ background: selectedTabColor }}
                     >
                         Sell
                     </Tab>

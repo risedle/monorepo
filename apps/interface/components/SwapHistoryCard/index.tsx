@@ -30,6 +30,12 @@ export const SwapHistoryCard = (props: SwapHistoryCardProps) => {
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
     const gray3 = useColorModeValue("gray.light.3", "gray.dark.3");
+    const selectedTabColor = useColorModeValue("gray.light.1", "gray.dark.4");
+    const backgroundTabColor = useColorModeValue(
+        "gray.light.3",
+        "gray.dark.1"
+    );
+
     return (
         <VStack
             data-testid="SwapHistoryCard"
@@ -59,7 +65,7 @@ export const SwapHistoryCard = (props: SwapHistoryCardProps) => {
                 margin="0 !important"
             >
                 <TabList
-                    background={gray3}
+                    background={backgroundTabColor}
                     padding="1"
                     borderRadius="12px"
                     border="0"
@@ -74,7 +80,7 @@ export const SwapHistoryCard = (props: SwapHistoryCardProps) => {
                         _selected={{
                             color: gray12,
                             fontWeight: "semibold",
-                            background: gray1,
+                            background: selectedTabColor,
                         }}
                         padding="2"
                         borderRadius="lg"
@@ -91,7 +97,7 @@ export const SwapHistoryCard = (props: SwapHistoryCardProps) => {
                         _selected={{
                             color: gray12,
                             fontWeight: "semibold",
-                            background: gray1,
+                            background: selectedTabColor,
                         }}
                         padding="2"
                         borderRadius="lg"
