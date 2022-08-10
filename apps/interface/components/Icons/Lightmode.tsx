@@ -2,7 +2,7 @@ import { Icon, IconProps } from "@chakra-ui/react";
 
 const LightmodeIcon = (props: IconProps) => {
     return (
-        <Icon viewBox="0 0 16 16" {...props}>
+        <Icon viewBox="0 0 16 16" {...props} data-testid="LightmodeIcon">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
