@@ -53,7 +53,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
             >
                 <Text
                     padding="2"
-                    background={gray3}
+                    background={gray4}
                     width="100%"
                     borderTopLeftRadius="lg"
                     borderBottomLeftRadius="lg"
@@ -122,7 +122,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
             <VStack gap={4} data-testid="TableAccount">
                 <Text
                     padding="2"
-                    background={gray3}
+                    background={gray4}
                     width="100%"
                     fontSize="xs"
                     lineHeight="4"
@@ -178,7 +178,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
             >
                 <Text
                     padding="2"
-                    background={gray3}
+                    background={gray4}
                     width="100%"
                     fontSize="xs"
                     lineHeight="4"
