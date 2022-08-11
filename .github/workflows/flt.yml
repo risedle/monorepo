@@ -6,13 +6,13 @@ on:
       - main
     paths:
       - "contracts/flt/**"
-      - ".github/workflows/risedle-flt.yml"
+      - ".github/workflows/flt.yml"
   pull_request:
     branches:
       - main
     paths:
       - "contracts/flt/**"
-      - ".github/workflows/risedle-flt.yml"
+      - ".github/workflows/flt.yml"
 
 jobs:
   bsc:
