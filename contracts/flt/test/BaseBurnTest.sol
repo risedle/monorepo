@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import { FixedPointMathLib } from "solmate/utils/FixedPointMathLib.sol";
 import { ERC20 } from "solmate/tokens/ERC20.sol";
 
-import { IFLT } from "src/interfaces/IFLT.sol";
+import { IFLT } from "src/IFLT.sol";
 
 import { BaseTest } from "test/BaseTest.sol";
 
