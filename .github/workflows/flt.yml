@@ -47,8 +47,12 @@ jobs:
         with:
           version: nightly
       - name: Check contract sizes
+        working-directory: ./contracts/flt
         run: forge build --sizes >> $GITHUB_STEP_SUMMARY
       - name: Check gas snapshots
+        env:
+          BSCSCAN_API_KEY: ${{ secrets.BSCSCAN_API_KEY }}
+        working-directory: ./contracts/flt
         run: |
           forge snapshot --fork-url https://bsc-dataseed1.binance.org \
             --fork-block-number $(cast block-number --rpc-url https://bsc-dataseed1.binance.org) \
@@ -58,10 +62,10 @@ jobs:
       - name: Test
         env:
           BSCSCAN_API_KEY: ${{ secrets.BSCSCAN_API_KEY }}
+        working-directory: ./contracts/flt
         run: |
           forge test --gas-report --fork-url https://bsc-dataseed1.binance.org \
             --fork-block-number $(cast block-number --rpc-url https://bsc-dataseed1.binance.org) \
             --match-path "test/bsc/*" \
             --etherscan-api-key $BSCSCAN_API_KEY \
             -vvv >> $GITHUB_STEP_SUMMARY
-        working-directory: ./contracts/flt
