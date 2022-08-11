@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.0;
 
-import { IRariFusePriceOracle } from "./IRariFusePriceOracle.sol";
+import { IRariFusePriceOracle } from "src/interfaces/IRariFusePriceOracle.sol";
 
 /**
  * @title Rari Fuse Price Oracle Adapter

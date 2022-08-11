@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.0;
 
-import { Ownable } from "openzeppelin/access/Ownable.sol";
+import { Owned } from "solmate/auth/Owned.sol";
 import { FixedPointMathLib } from "solmate/utils/FixedPointMathLib.sol";
 
 import { IRariFusePriceOracleAdapter } from "./IRariFusePriceOracleAdapter.sol";
@@ -12,7 +12,7 @@ import { IRariFusePriceOracle } from "src/interfaces/IRariFusePriceOracle.sol";
  * @author bayu <bayu@risedle.com> <https://github.com/pyk>
  * @notice Adapter for Rari Fuse Price Oracle
  */
-contract RariFusePriceOracleAdapter is IRariFusePriceOracleAdapter, Ownable {
+contract RariFusePriceOracleAdapter is IRariFusePriceOracleAdapter, Owned {
     /// ███ Libraries ████████████████████████████████████████████████████████
 
     using FixedPointMathLib for uint256;
@@ -21,6 +21,9 @@ contract RariFusePriceOracleAdapter is IRariFusePriceOracleAdapter, Ownable {
 
     /// @notice Map token to Rari Fuse Price oracle contract
     mapping(address => OracleMetadata) public oracles;
+
+    /// ███ Constructor ██████████████████████████████████████████████████████
+    constructor() Owned(msg.sender) {}
 
     /// ███ Owner actions ████████████████████████████████████████████████████
 

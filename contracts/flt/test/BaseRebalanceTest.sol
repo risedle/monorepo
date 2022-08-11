@@ -140,8 +140,8 @@ abstract contract BaseRebalanceTest is BaseTest {
         // 1.6 min; 0.4 max drift; 0.2 max incentive;
         // when lr = 1.5, the incentives should be 0.05 or 5%
         uint256 maxIncentive = uint256(0.05 ether).mulWadDown(amountOut); // 5%
-        assertLt(incentive, maxIncentive + 2, "incentive too high");
-        assertGt(incentive, maxIncentive - 2, "incentive too low");
+        assertLt(incentive, maxIncentive + 5, "incentive too high");
+        assertGt(incentive, maxIncentive - 5, "incentive too low");
 
         // Make sure leverage ratio is up
         assertGt(flt.leverageRatio(), lr, "too low");
