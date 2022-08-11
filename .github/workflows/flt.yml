@@ -1,0 +1,61 @@
+name: flt
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "contracts/flt/**"
+      - ".github/workflows/flt.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "contracts/flt/**"
+      - ".github/workflows/flt.yml"
+
+jobs:
+  bsc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Set up node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "17.8.0"
+      - name: Cache node_modules
+        id: cache-nodemodules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key:
+            # prettier-ignore
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Install dependencies
+        run: npm install
+      - name: Check format
+        run: npm run check
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+      - name: Check contract sizes
+        working-directory: ./contracts/flt
+        run: forge build --sizes >> $GITHUB_STEP_SUMMARY
+      - name: Test
+        env:
+          BSCSCAN_API_KEY: ${{ secrets.BSCSCAN_API_KEY }}
+        working-directory: ./contracts/flt
+        run: |
+          forge test --gas-report --fork-url https://bsc-dataseed1.binance.org \
+            --fork-block-number $(cast block-number --rpc-url https://bsc-dataseed1.binance.org) \
+            --match-path "test/bsc/*" \
+            --etherscan-api-key $BSCSCAN_API_KEY \
+            -vvv >> $GITHUB_STEP_SUMMARY
