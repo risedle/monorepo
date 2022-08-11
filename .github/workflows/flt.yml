@@ -46,13 +46,22 @@ jobs:
         uses: foundry-rs/foundry-toolchain@v1
         with:
           version: nightly
+      - name: Check contract sizes
+        run: forge build --sizes >> $GITHUB_STEP_SUMMARY
+      - name: Check gas snapshots
+        run: |
+          forge snapshot --fork-url https://bsc-dataseed1.binance.org \
+            --fork-block-number $(cast block-number --rpc-url https://bsc-dataseed1.binance.org) \
+            --match-path "test/bsc/*" \
+            --etherscan-api-key $BSCSCAN_API_KEY \
+            -vvv --check >> $GITHUB_STEP_SUMMARY
       - name: Test
         env:
           BSCSCAN_API_KEY: ${{ secrets.BSCSCAN_API_KEY }}
         run: |
-          forge test --fork-url https://bsc-dataseed1.binance.org \
+          forge test --gas-report --fork-url https://bsc-dataseed1.binance.org \
             --fork-block-number $(cast block-number --rpc-url https://bsc-dataseed1.binance.org) \
             --match-path "test/bsc/*" \
             --etherscan-api-key $BSCSCAN_API_KEY \
-            -vvv
+            -vvv >> $GITHUB_STEP_SUMMARY
         working-directory: ./contracts/flt
