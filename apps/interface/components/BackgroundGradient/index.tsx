@@ -17,7 +17,7 @@ export const BackgroundGradient = (props: BackgroundGradientProps) => {
 
     return (
         <Box
-            data-testid="BackgroundGradientHome"
+            data-testid="BackgroundGradient"
             data-chainslug={chainSlug}
             backgroundImage={bg}
             backgroundRepeat="no-repeat"
@@ -31,3 +31,5 @@ export const BackgroundGradient = (props: BackgroundGradientProps) => {
         />
     );
 };
+
+export default BackgroundGradient;
