@@ -34,6 +34,7 @@ export async function GetFuseLeveragedTokenBySymbol(
         }
         return res.status(200).json(flt);
     } catch (e) {
+        console.error(e);
         return res.status(500).json({ error: e });
     }
 }

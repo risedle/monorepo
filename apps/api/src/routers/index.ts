@@ -6,16 +6,19 @@ const router = express.Router();
 
 router.get(
     "/:chainId/flts",
+    // TODO(pyk): refactor this
     fltsController.GetFuseLeveragedTokensByChainIdValidation,
-    fltsController.GetFuseLeveragedTokensByChainId
+    flt.GetFuseLeveragedTokensByChainId
 );
 
 router.get(
     "/:chainId/flts/:symbol",
+    // TODO(pyk): refactor this
     fltsController.GetFuseLeveragedTokensByChainIdValidation,
     flt.GetFuseLeveragedTokenBySymbol
 );
 
+// TODO(pyk): refactor this
 router.get(
     "/:chainId/flts/:symbol/charts",
     fltsController.GetFuseLeveragedTokensByChainIdValidation,
@@ -24,10 +27,12 @@ router.get(
 
 router.get(
     "/:chainId/flts/:symbol/swaps",
+    // TODO(pyk): refactor this
     fltsController.GetFuseLeveragedTokensByChainIdValidation,
     flt.GetFuseLeveragedTokenSwapsBySymbol
 );
 
+// TODO(pyk): refactor this
 router.get(
     "/:chainId/flts/:symbol/backings",
     fltsController.GetFuseLeveragedTokensByChainIdValidation,
@@ -36,6 +41,7 @@ router.get(
 
 router.get(
     "/:chainId/positions/:positionId",
+    // TODO(pyk): refactor this
     fltsController.GetFuseLeveragedTokensByChainIdValidation,
     flt.GetFuseLeveragedTokenUserPositionById
 );
