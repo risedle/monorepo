@@ -11,6 +11,7 @@ import type { FuseLeveragedToken } from "@/utils/types";
 
 // Sub-components
 import FuseLeveragedTokenInfoCardStatsContainer from "./StatsContainer";
+import FuseLeveragedTokenInfoCardDescription from "./Description";
 
 interface FuseLeveragedTokenInfoCardProps extends BoxProps {
     flt: FuseLeveragedToken;
@@ -26,7 +27,6 @@ export const FuseLeveragedTokenInfoCard = (
     // Styles
     const gray2 = useColorModeValue("gray.light.2", "gray.dark.2");
     const gray5 = useColorModeValue("gray.light.5", "gray.dark.5");
-    const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
 
     return (
@@ -52,29 +52,10 @@ export const FuseLeveragedTokenInfoCard = (
             </Text>
 
             {/* Description */}
-            <VStack margin="0 !important" paddingX="4" gap={6}>
-                <Text color={gray10} fontSize="sm" lineHeight="6">
-                    {symbol} ({name}) is a derivatives product with no margin
-                    or liquidation risks. It provides you with leveraged
-                    exposure to the underlying asset, which may amplify
-                    profitability and potential losses. {symbol} is backed by
-                    real assets and can be redeemed at anytime.
-                </Text>
-                <Text
-                    color={gray10}
-                    fontSize="sm"
-                    lineHeight="6"
-                    margin="0 !important"
-                >
-                    Due to the rebalancing mechanism, the {symbol} are more
-                    suitable for short-term investment in a one-sided market.
-                    In a volatile market, the actual leverage may frequently
-                    exceed the target leverage range. This means that the
-                    rebalancing mechanism will be triggered accordingly in
-                    order to maintain leverage within the target range. Thus,{" "}
-                    {symbol} are not suitable for long-term investments.
-                </Text>
-            </VStack>
+            <FuseLeveragedTokenInfoCardDescription
+                symbol={symbol}
+                name={name}
+            />
 
             {/* Divider */}
             <Divider
