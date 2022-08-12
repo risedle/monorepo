@@ -16,12 +16,17 @@ describe("<FuseLeveragedTokenInfoCardDescription />", () => {
         const secondParagraph = screen.queryByTestId(
             "FLTInfoCardDescSecondParagraph"
         );
+        const showLessLink = screen.queryByTestId(
+            "FLTInfoCardShowLessDescLink"
+        );
+
         expect(firstParagraph).toBeVisible();
         expect(showMoreLink).toBeVisible();
         expect(secondParagraph).not.toBeVisible();
+        expect(showLessLink).not.toBeVisible();
     });
 
-    it("should show second paragraph when show more link is clicked", () => {
+    it("should show the right content when show more or show less clicked", () => {
         const firstParagraph = screen.queryByTestId(
             "FLTInfoCardDescFirstParagraph"
         );
@@ -31,11 +36,26 @@ describe("<FuseLeveragedTokenInfoCardDescription />", () => {
         const secondParagraph = screen.queryByTestId(
             "FLTInfoCardDescSecondParagraph"
         );
+        const showLessLink = screen.queryByTestId(
+            "FLTInfoCardShowLessDescLink"
+        );
 
+        // Press show more link
         fireEvent.click(showMoreLink);
 
+        // Expect to show second paragraph and hide show more link
         expect(firstParagraph).toBeVisible();
         expect(showMoreLink).not.toBeVisible();
         expect(secondParagraph).toBeVisible();
+        expect(showLessLink).toBeVisible();
+
+        // Press show less link
+        fireEvent.click(showLessLink);
+
+        // Expect to show initial state (default)
+        expect(firstParagraph).toBeVisible();
+        expect(showMoreLink).toBeVisible();
+        expect(secondParagraph).not.toBeVisible();
+        expect(showLessLink).not.toBeVisible();
     });
 });
