@@ -1,5 +1,6 @@
 import { ChainId } from "@risedle/types";
 
+import GetFuseLeveragedTokensByChainId from "./GetFuseLeveragedTokensByChainId";
 import GetFuseLeveragedTokenBySymbol from "./GetFuseLeveragedTokenBySymbol";
 import GetFuseLeveragedTokenUserPositionById from "./GetFuseLeveragedTokenUserPositionById";
 import GetFuseLeveragedTokenSwapsBySymbol from "./GetFuseLeveragedTokenSwapsBySymbol";
@@ -20,6 +21,7 @@ export function getGraphEndpointByChainId(chainId: ChainId): string {
 }
 
 const services = {
+    GetFuseLeveragedTokensByChainId,
     GetFuseLeveragedTokenBySymbol,
     GetFuseLeveragedTokenUserPositionById,
     GetFuseLeveragedTokenSwapsBySymbol,
