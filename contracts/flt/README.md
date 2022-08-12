@@ -37,6 +37,9 @@ forge build
 
 ### Test
 
+You need to create an account in bscscan in order to get the
+`ETHERSCAN_API_KEY`.
+
 Pin the recent block first to speed up the test:
 
 ```sh
@@ -53,7 +56,42 @@ forge test --fork-url https://bsc-dataseed1.binance.org \
            -vv
 ```
 
-Get the latest `BLOCK_NUMBER` via [bscscan](https://bscscan.com/).
+### Create new FLT
 
-You need to create an account in bscscan in order to get the
-`ETHERSCAN_API_KEY`.
+First thing first, run the script to configure the oracle. For example:
+
+```sh
+forge script ./script/CAKERISEConfigureOracle.s.sol \
+    --interactives 1 \
+    --sender 0xA8CD19675F8106Ba923F2B62816824d599593e3E \
+    --rpc-url https://bsc-dataseed.binance.org \
+    --etherscan-api-key HYFY76AWF4SFP98X2NE4EYZXBJ5SF8EM2M \
+    --gas-estimate-multiplier 200 \
+    --broadcast
+```
+
+Then create the token, for example:
+
+```sh
+forge script ./script/CAKERISECreate.s.sol \
+    --interactives 1 \
+    --sender 0x1418bE4753a22b69b613fA8B8144D856C023D46B \
+    --rpc-url https://bsc-dataseed.binance.org \
+    --etherscan-api-key HYFY76AWF4SFP98X2NE4EYZXBJ5SF8EM2M \
+    --gas-estimate-multiplier 200 \
+    --broadcast
+```
+
+Then initialize the token, for example:
+
+```sh
+forge script ./script/CAKERISEInitialize.s.sol \
+    --interactives 1 \
+    --sender 0x1418bE4753a22b69b613fA8B8144D856C023D46B \
+    --rpc-url https://bsc-dataseed.binance.org \
+    --etherscan-api-key HYFY76AWF4SFP98X2NE4EYZXBJ5SF8EM2M \
+    --gas-estimate-multiplier 200 \
+    --broadcast
+```
+
+Make sure FLT factory deployer have enough balance to initialize the token.
