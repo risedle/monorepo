@@ -30,10 +30,11 @@ export const FuseLeveragedTokenInfoCardDescription = (
                     data-testid="FLTInfoCardShowMoreDescLink"
                     onClick={() => setShowMore(true)}
                     as="button"
-                    color={gray12}
                     display={showMore ? "none" : "inline"}
                 >
-                    Show more...
+                    <Text color={gray12} fontWeight="semibold">
+                        Show more...
+                    </Text>
                 </Link>
             </Text>
             <Text
@@ -52,11 +53,13 @@ export const FuseLeveragedTokenInfoCardDescription = (
                 leverage within the target range. Thus, {symbol} are not
                 suitable for long-term investments.{" "}
                 <Link
+                    data-testid="FLTInfoCardShowLessDescLink"
                     onClick={() => setShowMore(false)}
                     as="button"
-                    color={gray12}
                 >
-                    Show less
+                    <Text color={gray12} fontWeight="semibold">
+                        Show less
+                    </Text>
                 </Link>
             </Text>
         </VStack>
