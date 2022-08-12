@@ -16,12 +16,18 @@ export const FuseLeveragedTokenInfoCardDescription = (
     const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
     return (
         <VStack margin="0 !important" paddingX="4" gap={6}>
-            <Text color={gray10} fontSize="sm" lineHeight="6">
+            <Text
+                data-testid="FLTInfoCardDescFirstParagraph"
+                color={gray10}
+                fontSize="sm"
+                lineHeight="6"
+            >
                 {symbol} ({name}) is a derivatives product with no margin or
                 liquidation risks. It provides you with leveraged exposure to
                 the underlying asset, which may amplify profitability and
                 potential losses.{" "}
                 <Link
+                    data-testid="FLTInfoCardShowMoreDescLink"
                     onClick={() => setShowMore(true)}
                     as="button"
                     color={gray12}
@@ -31,6 +37,7 @@ export const FuseLeveragedTokenInfoCardDescription = (
                 </Link>
             </Text>
             <Text
+                data-testid="FLTInfoCardDescSecondParagraph"
                 color={gray10}
                 fontSize="sm"
                 lineHeight="6"
