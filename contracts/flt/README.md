@@ -81,3 +81,17 @@ forge script ./script/CAKERISECreate.s.sol \
     --gas-estimate-multiplier 200 \
     --broadcast
 ```
+
+Then initialize the token, for example:
+
+```sh
+forge script ./script/CAKERISEInitialize.s.sol \
+    --interactives 1 \
+    --sender 0x1418bE4753a22b69b613fA8B8144D856C023D46B \
+    --rpc-url https://bsc-dataseed.binance.org \
+    --etherscan-api-key HYFY76AWF4SFP98X2NE4EYZXBJ5SF8EM2M \
+    --gas-estimate-multiplier 200 \
+    --broadcast
+```
+
+Make sure FLT factory deployer have enough balance to initialize the token.
