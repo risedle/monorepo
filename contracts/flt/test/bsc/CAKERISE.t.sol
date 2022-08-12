@@ -73,7 +73,7 @@ contract CAKERISE is
             // Params
             debtSlot: 1,
             collateralSlot: 1,
-            totalCollateral: 100 ether, // 100 CAKE
+            totalCollateral: 200 ether, // 200 CAKE
             initialPriceInETH: 0.3 ether, // 0.3 BNB
             // Fuse params
             debtSupplyAmount: 1_000_000 ether // 1M BUSD
