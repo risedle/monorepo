@@ -61,8 +61,11 @@ describe("<MySwapHistoryContainer />", () => {
             }));
 
             render(<MySwapHistoryContainer symbol="test" />);
-            const warning = screen.queryByTestId("walletNotConnectedWarning");
+            const warning = screen.queryByTestId("warningErrorBox");
             expect(warning).toBeInTheDocument();
+            expect(
+                screen.getByText(/wallet not connected/i)
+            ).toBeInTheDocument();
         });
     });
 
@@ -89,8 +92,9 @@ describe("<MySwapHistoryContainer />", () => {
                 isLoaded: true,
             });
             render(<MySwapHistoryContainer symbol="test" />);
-            const tableData = screen.queryByTestId("noSwapHistoryWarning");
-            expect(tableData).toBeInTheDocument();
+            const warning = screen.queryByTestId("warningErrorBox");
+            expect(warning).toBeInTheDocument();
+            expect(screen.getByText(/No Swap History/i)).toBeInTheDocument();
         });
     });
 });

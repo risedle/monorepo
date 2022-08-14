@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { chainId, useAccount } from "wagmi";
+import { useAccount } from "wagmi";
 
 // Hooks
 import { useFuseLeveragedTokenMySwap } from "@/hooks/useFuseLeveragedTokenMySwap";
@@ -9,7 +9,7 @@ import SwapHistoryCardTable from "./Table";
 
 // Utils
 import type { FuseLeveragedTokenSwap } from "@/utils/types";
-import { Heading } from "@chakra-ui/react";
+import { Box, Center, Text, useColorModeValue } from "@chakra-ui/react";
 
 interface MySwapHisotryContainerProps {
     symbol: string;
@@ -27,6 +27,25 @@ const dummyData = {
     transaction: {
         id: "",
     },
+};
+
+const ErrorMessageBox = ({ children }: { children: React.ReactNode }) => {
+    const gray3 = useColorModeValue("gray.light.3", "gray.dark.3");
+    const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
+    return (
+        <Center>
+            <Box
+                fontSize="sm"
+                background={gray3}
+                px={"16px"}
+                py={"8px"}
+                borderRadius={"xl"}
+                data-testid="warningErrorBox"
+            >
+                <Text color={gray10}>{children}</Text>
+            </Box>
+        </Center>
+    );
 };
 
 export const MySwapHistoryContainer = (props: MySwapHisotryContainerProps) => {
@@ -59,18 +78,10 @@ export const MySwapHistoryContainer = (props: MySwapHisotryContainerProps) => {
     }, [data?.user, isLoaded]);
 
     if (!address) {
-        return (
-            <Heading data-testid="walletNotConnectedWarning">
-                Wallet Not Connected
-            </Heading>
-        );
+        return <ErrorMessageBox>Wallet Not Connected</ErrorMessageBox>;
     }
     if (!data?.user.length && isLoaded) {
-        return (
-            <Heading data-testid="noSwapHistoryWarning">
-                No Swap History
-            </Heading>
-        );
+        return <ErrorMessageBox>No Swap History</ErrorMessageBox>;
     }
 
     return <SwapHistoryCardTable swaps={loadedData} isLoaded={isLoaded} />;
