@@ -57,7 +57,7 @@ export const MySwapHistoryContainer = (props: MySwapHisotryContainerProps) => {
     );
 
     useEffect(() => {
-        if (data?.user.length && isLoaded) {
+        if (data?.user && isLoaded) {
             const mappedData: Array<FuseLeveragedTokenSwap> = data.user.map(
                 (userData) => ({
                     amountInUSD: userData.amountInUSD.toString(),
@@ -80,7 +80,7 @@ export const MySwapHistoryContainer = (props: MySwapHisotryContainerProps) => {
     if (!address) {
         return <ErrorMessageBox>Wallet Not Connected</ErrorMessageBox>;
     }
-    if (!data?.user.length && isLoaded) {
+    if (!data?.user?.length && isLoaded) {
         return <ErrorMessageBox>No Swap History</ErrorMessageBox>;
     }
 

@@ -1,13 +1,8 @@
-import {
-    render,
-    screen,
-    waitForElementToBeRemoved,
-} from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import * as wagmi from "wagmi";
 import * as SWR from "swr";
 
 import MySwapHistoryContainer from "@/components/SwapHistoryCard/MySwapContainer";
-import renderApp from "../utils/renderApp";
 
 afterEach(() => {
     // restore the spy created with spyOn
