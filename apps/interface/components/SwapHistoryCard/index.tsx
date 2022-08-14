@@ -116,7 +116,11 @@ export const SwapHistoryCard = (props: SwapHistoryCardProps) => {
 
                 <TabPanels>
                     <TabPanel paddingX="2" paddingTop="6" paddingBottom="4">
-                        <SwapHistoryCardTable swaps={swaps} isLoaded={true} />
+                        <SwapHistoryCardTable
+                            swaps={swaps}
+                            isLoaded={true}
+                            symbol={symbol}
+                        />
                     </TabPanel>
                     <TabPanel paddingX="2" paddingTop="6" paddingBottom="4">
                         <MySwapHistoryContainer symbol={symbol} />

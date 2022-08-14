@@ -9,7 +9,6 @@ import {
     Link,
     Skeleton,
     useColorMode,
-    Box,
 } from "@chakra-ui/react";
 import TimeAgo from "react-timeago";
 import NextImage from "next/image";
@@ -21,11 +20,11 @@ import getTransactionExplorerURL from "@/utils/getTransactionExplorerURL";
 
 // Icons
 import ArrowTopRight from "@/components/Icons/ArrowTopRight";
-import { useRouter } from "next/router";
 
 interface SwapHistoryCardTableProps extends BoxProps {
     swaps: Array<FuseLeveragedTokenSwap>;
     isLoaded: boolean;
+    symbol: string;
 }
 
 type TokenSupported = "bnbdrop" | "bnbrise" | "cakedrop" | "cakerise";
@@ -37,18 +36,21 @@ const pairsOfCollateral: Record<TokenSupported, string> = {
     cakerise: "BUSD",
 };
 
-const TransactionData = ({ swap }: { swap: FuseLeveragedTokenSwap }) => {
-    const { query } = useRouter();
+const TransactionData = ({
+    swap,
+    symbol,
+}: {
+    swap: FuseLeveragedTokenSwap;
+    symbol: string;
+}) => {
     const { colorMode } = useColorMode();
-
     const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     const currentCollateral = pairsOfCollateral[
-        query.symbol as TokenSupported
+        symbol.toLocaleLowerCase() as TokenSupported
     ] as string;
     const transactionType =
         swap.tokenIn.symbol === currentCollateral ? "Buy" : "Sell";
-
     return (
         <HStack alignItems={"center"} height="48px">
             <NextImage
@@ -79,7 +81,7 @@ const TransactionData = ({ swap }: { swap: FuseLeveragedTokenSwap }) => {
 };
 
 export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
-    const { swaps, isLoaded, ...boxProps } = props;
+    const { swaps, isLoaded, symbol, ...boxProps } = props;
 
     // Styles
     const gray3 = useColorModeValue("gray.light.3", "gray.dark.3");
@@ -148,7 +150,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                                 target="_blank"
                                 data-testid="SwapHistoryCardTableTransactionLink"
                             >
-                                <TransactionData swap={swap} />
+                                <TransactionData swap={swap} symbol={symbol} />
                             </Link>
                         </Skeleton>
                     ))}
