@@ -21,7 +21,13 @@ describe("<SwapHistoryCardTable />", () => {
                 tokenOut: { symbol: "B" },
             },
         ];
-        render(<SwapHistoryCardTable swaps={swaps} isLoaded={true} />);
+        render(
+            <SwapHistoryCardTable
+                swaps={swaps}
+                isLoaded={true}
+                symbol="ETHRISE"
+            />
+        );
         const txs = screen.queryAllByTestId(
             "SwapHistoryCardTableTransactionLink"
         );

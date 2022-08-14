@@ -84,7 +84,13 @@ export const MySwapHistoryContainer = (props: MySwapHisotryContainerProps) => {
         return <ErrorMessageBox>No Swap History</ErrorMessageBox>;
     }
 
-    return <SwapHistoryCardTable swaps={loadedData} isLoaded={isLoaded} />;
+    return (
+        <SwapHistoryCardTable
+            symbol={symbol}
+            swaps={loadedData}
+            isLoaded={isLoaded}
+        />
+    );
 };
 
 export default MySwapHistoryContainer;
