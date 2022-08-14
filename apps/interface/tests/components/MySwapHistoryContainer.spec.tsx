@@ -10,43 +10,43 @@ afterEach(() => {
 });
 
 describe("<MySwapHistoryContainer />", () => {
-    // describe("Given valid data", () => {
-    //     it("should render data", async () => {
-    //         const useAccount = jest.spyOn(wagmi, "useAccount");
-    //         useAccount.mockImplementation(() => ({
-    //             address: "addy",
-    //         }));
-    //         const mock = jest.spyOn(SWR, "default");
-    //         mock.mockReturnValueOnce({
-    //             isLoaded: true,
-    //             data: {
-    //                 user: [
-    //                     {
-    //                         timestamp: 1657868400,
-    //                         hash: "0x5b0824785cc2370f5d903532eb6b26f4154e90e2faa5864c9dac9ebb9a25d3df",
-    //                         user: "0x1418be4753a22b69b613fa8b8144d856c023d46b",
-    //                         tokenIn: {
-    //                             name: "2X Long ETH Risedle",
-    //                             symbol: "ETHRISE",
-    //                         },
-    //                         amountIn: 0.6,
-    //                         amountInUSD: 12.9879,
-    //                         tokenOut: {
-    //                             name: "2X Long ETH Risedle",
-    //                             symbol: "ETHRISE",
-    //                         },
-    //                         amountOut: 0.6,
-    //                         amountOutUSD: 12.9879,
-    //                     },
-    //                 ],
-    //             },
-    //         });
+    describe("Given valid data", () => {
+        it("should render data", async () => {
+            const useAccount = jest.spyOn(wagmi, "useAccount");
+            useAccount.mockImplementation(() => ({
+                address: "addy",
+            }));
+            const mock = jest.spyOn(SWR, "default");
+            mock.mockReturnValue({
+                isLoaded: true,
+                data: {
+                    user: [
+                        {
+                            timestamp: 1657868400,
+                            hash: "0x5b0824785cc2370f5d903532eb6b26f4154e90e2faa5864c9dac9ebb9a25d3df",
+                            user: "0x1418be4753a22b69b613fa8b8144d856c023d46b",
+                            tokenIn: {
+                                name: "2X Long ETH Risedle",
+                                symbol: "ETHRISE",
+                            },
+                            amountIn: 0.6,
+                            amountInUSD: 12.9879,
+                            tokenOut: {
+                                name: "2X Long ETH Risedle",
+                                symbol: "ETHRISE",
+                            },
+                            amountOut: 0.6,
+                            amountOutUSD: 12.9879,
+                        },
+                    ],
+                },
+            });
 
-    //         renderApp(<MySwapHistoryContainer symbol="test" />);
-    //         const tableData = screen.queryByTestId("SwapHistoryCardTable");
-    //         expect(tableData).toBeInTheDocument();
-    //     });
-    // });
+            render(<MySwapHistoryContainer symbol="test" />);
+            const tableData = screen.queryByTestId("SwapHistoryCardTable");
+            expect(tableData).toBeInTheDocument();
+        });
+    });
 
     describe("Given null address", () => {
         it("should render warning ", () => {
@@ -71,7 +71,7 @@ describe("<MySwapHistoryContainer />", () => {
                 address: "address",
             }));
             const mock = jest.spyOn(SWR, "default");
-            mock.mockReturnValueOnce({
+            mock.mockReturnValue({
                 data: {
                     flt: [
                         {
@@ -82,7 +82,7 @@ describe("<MySwapHistoryContainer />", () => {
                             tokenOut: { symbol: "B" },
                         },
                     ],
-                    user: null,
+                    user: [],
                 },
                 isLoaded: true,
             });
