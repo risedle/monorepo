@@ -7,8 +7,6 @@ import "@fontsource/inter/600.css";
 import "@fontsource/inter/700.css";
 import "@fontsource/ibm-plex-mono/600.css";
 
-import "@rainbow-me/rainbowkit/styles.css";
-
 import NextNProgress from "nextjs-progressbar";
 
 import themes from "@/themes";

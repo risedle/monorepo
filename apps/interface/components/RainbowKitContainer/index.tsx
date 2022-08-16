@@ -1,13 +1,21 @@
+import { ReactNode } from "react";
+
+// RainbowKit
 import {
     RainbowKitProvider,
     lightTheme,
     darkTheme,
+    Chain,
+    getDefaultWallets,
 } from "@rainbow-me/rainbowkit";
-import { useColorMode } from "@chakra-ui/react";
-import { ReactNode } from "react";
-import { Chain, getDefaultWallets } from "@rainbow-me/rainbowkit";
+import "@rainbow-me/rainbowkit/styles.css";
+
+// Wagmi
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
+
+// Chakra
+import { useColorMode } from "@chakra-ui/react";
 
 const bscChain: Chain = {
     id: 56,
