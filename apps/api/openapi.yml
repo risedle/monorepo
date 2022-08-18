@@ -229,6 +229,32 @@ paths:
         500:
           description: Internal server error
 
+  /v1/generator/insights/{timeframe}:
+    get:
+      tags:
+        - Insight Generator
+      operationID: GenerateFuseLeveragedTokenInsightImage
+      summary: |
+        Generate Fuse Leveraged Token's insight image
+      parameters:
+        - in: path
+          name: timeframe
+          schema:
+            $ref: "#/components/schemas/Timeframe"
+          required: true
+      repsponses:
+        200:
+          description: Latest insight image
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        404:
+          description: Failed to generate insight image
+        500:
+          description: Internal server error
+
 components:
   schemas:
     Address:
@@ -245,6 +271,11 @@ components:
       description: Chain ID
       type: number
       example: 42161
+
+    Timeframe:
+      description: Timeframe, daily or weekly
+      type: string
+      example: "daily"
 
     USD:
       description: Price in USD terms
