@@ -235,7 +235,7 @@ paths:
         - Insight Generator
       operationID: GenerateFuseLeveragedTokenInsightImage
       summary: |
-        Get latest fuse leveraged token insight image
+        Generate Fuse Leveraged Token's insight image
       parameters:
         - in: path
           name: timeframe
