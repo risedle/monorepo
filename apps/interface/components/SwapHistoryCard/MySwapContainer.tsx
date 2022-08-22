@@ -29,7 +29,7 @@ const dummyData = {
     },
 };
 
-const ErrorMessageBox = ({ children }: { children: React.ReactNode }) => {
+const ErrorMessageBox = ({ children }: { children?: React.ReactNode }) => {
     const gray3 = useColorModeValue("gray.light.3", "gray.dark.3");
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     return (

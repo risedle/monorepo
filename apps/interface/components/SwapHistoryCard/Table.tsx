@@ -27,15 +27,6 @@ interface SwapHistoryCardTableProps extends BoxProps {
     symbol: string;
 }
 
-type TokenSupported = "bnbdrop" | "bnbrise" | "cakedrop" | "cakerise";
-
-const pairsOfCollateral: Record<TokenSupported, string> = {
-    bnbdrop: "BUSD",
-    bnbrise: "BUSD",
-    cakedrop: "BUSD",
-    cakerise: "BUSD",
-};
-
 const TransactionData = ({
     swap,
     symbol,
@@ -46,11 +37,7 @@ const TransactionData = ({
     const { colorMode } = useColorMode();
     const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
-    const currentCollateral = pairsOfCollateral[
-        symbol.toLocaleLowerCase() as TokenSupported
-    ] as string;
-    const transactionType =
-        swap.tokenIn.symbol === currentCollateral ? "Buy" : "Sell";
+    const transactionType = swap.tokenIn.symbol === symbol ? "Sell" : "Buy";
     return (
         <HStack alignItems={"center"} height="48px">
             <NextImage
@@ -66,9 +53,9 @@ const TransactionData = ({
                 margin="0 !important"
                 data-testid="BackingCardCollateral"
             >
-                {swap.tokenIn.symbol === currentCollateral
-                    ? `${transactionType} ${swap.tokenOut.symbol} `
-                    : `${transactionType} ${swap.tokenIn.symbol}`}
+                {swap.tokenIn.symbol === symbol
+                    ? `${transactionType} ${swap.tokenIn.symbol} `
+                    : `${transactionType} ${swap.tokenOut.symbol}`}
             </Text>
             <ArrowTopRight
                 w="14px"
