@@ -7,67 +7,12 @@ import "@fontsource/inter/600.css";
 import "@fontsource/inter/700.css";
 import "@fontsource/ibm-plex-mono/600.css";
 
-import "@rainbow-me/rainbowkit/styles.css";
-
-// Rainbowkit
-import {
-    Chain,
-    getDefaultWallets,
-    RainbowKitProvider,
-} from "@rainbow-me/rainbowkit";
-import { configureChains, createClient, WagmiConfig } from "wagmi";
-import { publicProvider } from "wagmi/providers/public";
 import NextNProgress from "nextjs-progressbar";
 
 import themes from "@/themes";
 import colors from "@/themes/colors";
 import getBaseConfig from "@/utils/getBaseConfig";
-
-// TODO(pyk): refactor this
-const bscChain: Chain = {
-    id: 56,
-    name: "BNB Smart Chain",
-    network: "bsc",
-    iconUrl: "https://example.com/icon.svg",
-    iconBackground: "#fff",
-    nativeCurrency: {
-        decimals: 18,
-        name: "BNB",
-        symbol: "BNB",
-    },
-    rpcUrls: {
-        default: "https://bscrpc.com",
-    },
-    blockExplorers: {
-        etherscan: {
-            name: "BNB Smart Chain Explorer",
-            url: "https://bscscan.com",
-        },
-        default: {
-            name: "BNB Smart Chain Explorer",
-            url: "https://bscscan.com",
-        },
-    },
-    testnet: false,
-    multicall: {
-        address: "0xca11bde05977b3631167028862be2a173976ca11",
-        blockCreated: 15921452,
-    },
-};
-
-// Rainbowkit configuration
-const { chains, provider } = configureChains([bscChain], [publicProvider()]);
-
-const { connectors } = getDefaultWallets({
-    appName: "Risedle",
-    chains,
-});
-
-const wagmiClient = createClient({
-    autoConnect: true,
-    connectors,
-    provider,
-});
+import RainbowKitContainer from "@/components/RainbowKitContainer";
 
 function App({ Component, pageProps }: AppProps) {
     const baseConfig = getBaseConfig();
@@ -99,12 +44,10 @@ function App({ Component, pageProps }: AppProps) {
                 }}
             />
             <ChakraProvider theme={themes}>
-                <WagmiConfig client={wagmiClient}>
-                    <RainbowKitProvider chains={chains}>
-                        <NextNProgress color={colors.amber.light[11]} />
-                        <Component {...pageProps} />
-                    </RainbowKitProvider>
-                </WagmiConfig>
+                <RainbowKitContainer>
+                    <NextNProgress color={colors.amber.light[11]} />
+                    <Component {...pageProps} />
+                </RainbowKitContainer>
             </ChakraProvider>
         </>
     );

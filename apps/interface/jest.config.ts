@@ -25,6 +25,7 @@ const customJestConfig = {
         "!pages/_app.tsx",
         "!pages/_document.tsx",
         "!components/ConnectWalletButton/index.tsx",
+        "!components/RainbowKitContainer/index.tsx",
     ],
     coverageThreshold: {
         global: {
