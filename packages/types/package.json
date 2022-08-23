@@ -12,7 +12,7 @@
     "scripts": {
         "clean": "rm -rf dist",
         "build": "tsc",
-        "lint": "eslint --ext=.tsx,.ts ."
+        "lint": "eslint ."
     },
     "prepublish": "tsc",
     "homepage": "https://risedle.com",

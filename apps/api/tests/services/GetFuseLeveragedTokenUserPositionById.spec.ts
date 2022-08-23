@@ -1,5 +1,3 @@
-import { ChainId } from "@risedle/types";
-
 import service from "../../src/services/flt";
 
 describe("getFuseLeveragedTokenUserPositionById", () => {

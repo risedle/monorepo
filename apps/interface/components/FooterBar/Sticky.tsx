@@ -1,8 +1,5 @@
 import {
     VStack,
-    Container,
-    Flex,
-    Spacer,
     Link,
     HStack,
     Text,
@@ -16,7 +13,6 @@ import ArrowTopRightIcon from "@/components/Icons/ArrowTopRight";
 
 export const StickyFooterBar = () => {
     // Styles
-    const gray3 = useColorModeValue("gray.light.3", "gray.dark.3");
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
 
