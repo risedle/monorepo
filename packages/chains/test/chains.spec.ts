@@ -17,9 +17,6 @@ describe("isChainIdSupported", () => {
             let chainId = 56;
             expect(isChainIdSupported(chainId)).toBe(true);
 
-            const chainIdString = "56";
-            expect(isChainIdSupported(chainIdString)).toBe(true);
-
             chainId = ChainId.BSC;
             expect(isChainIdSupported(chainId)).toBe(true);
         });
