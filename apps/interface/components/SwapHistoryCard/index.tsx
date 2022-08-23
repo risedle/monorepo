@@ -25,11 +25,9 @@ export const SwapHistoryCard = (props: SwapHistoryCardProps) => {
     const { swaps } = flt;
 
     // Styles
-    const gray1 = useColorModeValue("gray.light.1", "gray.dark.1");
     const gray2 = useColorModeValue("gray.light.2", "gray.dark.2");
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
-    const gray3 = useColorModeValue("gray.light.3", "gray.dark.3");
     const selectedTabColor = useColorModeValue("gray.light.1", "gray.dark.4");
     const backgroundTabColor = useColorModeValue(
         "gray.light.3",

@@ -58,7 +58,8 @@ export default function Custom404() {
                         align="center"
                         color={gray10}
                     >
-                        Uh oh, seems the page you're searching is not there
+                        Uh oh, seems the page you&apos;re searching is not
+                        there
                     </Text>
                 </VStack>
                 <NextLink href="/" passHref>

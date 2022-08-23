@@ -1,5 +1,5 @@
 import { request as grequest, gql } from "graphql-request";
-import { ChainId, FuseLeveragedTokenInfo } from "@risedle/types";
+import { ChainId } from "@risedle/types";
 
 const queryFuseLeveragedTokenChartsBySymbol = gql`
     query getFuseLeveagedTokenCharts($symbol: String) {
@@ -91,29 +91,6 @@ interface FuseLeveragedTokenChart {
     fees: Array<FuseLeveragedTokenFee>;
 }
 
-interface FuseLeveragedTokenSwap {
-    hash: string;
-    user: string;
-    timestamp: number;
-    tokenIn: {
-        name: string;
-        symbol: string;
-    };
-    amountIn: number;
-    amountInUSD: number;
-    tokenOut: {
-        name: string;
-        symbol: string;
-    };
-    amountOut: number;
-    amountOutUSD: number;
-}
-
-interface FuseLeveragedTokenSwaps {
-    flt: Array<FuseLeveragedTokenSwap>;
-    user: Array<FuseLeveragedTokenSwap>;
-}
-
 interface FuseLeveragedTokenBacking {
     timestamp: number;
     collateralPerShare: number;
@@ -143,27 +120,39 @@ export async function getFuseLeveragedTokenChartsBySymbol(
         }
     );
     if (data.flts.length == 0) return undefined;
-    const prices = data.flts[0].prices.map((price: any) => {
-        return {
-            timestamp: price.timestamp,
-            open: parseFloat(price.open),
-            high: parseFloat(price.high),
-            low: parseFloat(price.low),
-            close: parseFloat(price.close),
-        };
-    });
-    const volumes = data.flts[0].volumes.map((volume: any) => {
-        return {
-            timestamp: volume.timestamp,
-            usd: parseFloat(volume.usd),
-        };
-    });
-    const fees = data.flts[0].fees.map((fee: any) => {
-        return {
-            timestamp: fee.timestamp,
-            usd: parseFloat(fee.usd),
-        };
-    });
+    const prices = data.flts[0].prices.map(
+        (price: {
+            timestamp: number;
+            open: string;
+            high: string;
+            low: string;
+            close: string;
+        }) => {
+            return {
+                timestamp: price.timestamp,
+                open: parseFloat(price.open),
+                high: parseFloat(price.high),
+                low: parseFloat(price.low),
+                close: parseFloat(price.close),
+            };
+        }
+    );
+    const volumes = data.flts[0].volumes.map(
+        (volume: { timestamp: number; usd: string }) => {
+            return {
+                timestamp: volume.timestamp,
+                usd: parseFloat(volume.usd),
+            };
+        }
+    );
+    const fees = data.flts[0].fees.map(
+        (fee: { timestamp: number; usd: string }) => {
+            return {
+                timestamp: fee.timestamp,
+                usd: parseFloat(fee.usd),
+            };
+        }
+    );
     return { prices, volumes, fees };
 }
 
@@ -185,14 +174,21 @@ export async function getFuseLeveragedTokenBackingsBySymbol(
         }
     );
     if (data.flts.length == 0) return undefined;
-    const backings = data.flts[0].backings.map((backing: any) => {
-        return {
-            timestamp: backing.timestamp,
-            collateralPerShare: parseFloat(backing.collateralPerShare),
-            debtPerShare: parseFloat(backing.debtPerShare),
-            valueUSD: parseFloat(backing.valueUSD),
-        };
-    });
+    const backings = data.flts[0].backings.map(
+        (backing: {
+            timestamp: number;
+            collateralPerShare: string;
+            debtPerShare: string;
+            valueUSD: string;
+        }) => {
+            return {
+                timestamp: backing.timestamp,
+                collateralPerShare: parseFloat(backing.collateralPerShare),
+                debtPerShare: parseFloat(backing.debtPerShare),
+                valueUSD: parseFloat(backing.valueUSD),
+            };
+        }
+    );
     return { backings };
 }
 
