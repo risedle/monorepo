@@ -25,7 +25,7 @@ export const PriceChartLine = (props: PriceChartLineProps) => {
     const { prices } = props;
     const latest = prices.at(-1);
     const oldest = prices.at(0);
-    const priceChange = latest.price - oldest.price;
+    const priceChange = latest && oldest ? latest.price - oldest.price : 0;
 
     // Styles
     // NOTE: need to use raw hex value for chart

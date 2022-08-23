@@ -120,27 +120,39 @@ export async function getFuseLeveragedTokenChartsBySymbol(
         }
     );
     if (data.flts.length == 0) return undefined;
-    const prices = data.flts[0].prices.map((price) => {
-        return {
-            timestamp: price.timestamp,
-            open: parseFloat(price.open),
-            high: parseFloat(price.high),
-            low: parseFloat(price.low),
-            close: parseFloat(price.close),
-        };
-    });
-    const volumes = data.flts[0].volumes.map((volume) => {
-        return {
-            timestamp: volume.timestamp,
-            usd: parseFloat(volume.usd),
-        };
-    });
-    const fees = data.flts[0].fees.map((fee) => {
-        return {
-            timestamp: fee.timestamp,
-            usd: parseFloat(fee.usd),
-        };
-    });
+    const prices = data.flts[0].prices.map(
+        (price: {
+            timestamp: number;
+            open: string;
+            high: string;
+            low: string;
+            close: string;
+        }) => {
+            return {
+                timestamp: price.timestamp,
+                open: parseFloat(price.open),
+                high: parseFloat(price.high),
+                low: parseFloat(price.low),
+                close: parseFloat(price.close),
+            };
+        }
+    );
+    const volumes = data.flts[0].volumes.map(
+        (volume: { timestamp: number; usd: string }) => {
+            return {
+                timestamp: volume.timestamp,
+                usd: parseFloat(volume.usd),
+            };
+        }
+    );
+    const fees = data.flts[0].fees.map(
+        (fee: { timestamp: number; usd: string }) => {
+            return {
+                timestamp: fee.timestamp,
+                usd: parseFloat(fee.usd),
+            };
+        }
+    );
     return { prices, volumes, fees };
 }
 
@@ -162,14 +174,21 @@ export async function getFuseLeveragedTokenBackingsBySymbol(
         }
     );
     if (data.flts.length == 0) return undefined;
-    const backings = data.flts[0].backings.map((backing) => {
-        return {
-            timestamp: backing.timestamp,
-            collateralPerShare: parseFloat(backing.collateralPerShare),
-            debtPerShare: parseFloat(backing.debtPerShare),
-            valueUSD: parseFloat(backing.valueUSD),
-        };
-    });
+    const backings = data.flts[0].backings.map(
+        (backing: {
+            timestamp: number;
+            collateralPerShare: string;
+            debtPerShare: string;
+            valueUSD: string;
+        }) => {
+            return {
+                timestamp: backing.timestamp,
+                collateralPerShare: parseFloat(backing.collateralPerShare),
+                debtPerShare: parseFloat(backing.debtPerShare),
+                valueUSD: parseFloat(backing.valueUSD),
+            };
+        }
+    );
     return { backings };
 }
 

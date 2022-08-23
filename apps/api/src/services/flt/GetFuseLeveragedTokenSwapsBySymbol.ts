@@ -64,32 +64,56 @@ export async function GetFuseLeveragedTokenSwapsBySymbol(
         }
     );
     if (data.flts.length == 0) return undefined;
-    const flt = data.flts[0].swaps.map((swap) => {
-        return {
-            timestamp: parseInt(swap.timestamp),
-            hash: swap.transaction.id,
-            user: swap.user.id,
-            tokenIn: swap.tokenIn,
-            amountIn: parseFloat(swap.amountIn),
-            amountInUSD: parseFloat(swap.amountInUSD),
-            tokenOut: swap.tokenOut,
-            amountOut: parseFloat(swap.amountOut),
-            amountOutUSD: parseFloat(swap.amountOutUSD),
-        };
-    });
-    const user = data.user[0].swaps.map((swap) => {
-        return {
-            timestamp: parseInt(swap.timestamp),
-            hash: swap.transaction.id,
-            user: swap.user.id,
-            tokenIn: swap.tokenIn,
-            amountIn: parseFloat(swap.amountIn),
-            amountInUSD: parseFloat(swap.amountInUSD),
-            tokenOut: swap.tokenOut,
-            amountOut: parseFloat(swap.amountOut),
-            amountOutUSD: parseFloat(swap.amountOutUSD),
-        };
-    });
+    const flt = data.flts[0].swaps.map(
+        (swap: {
+            timestamp: string;
+            user: { id: string };
+            transaction: { id: string };
+            tokenIn: string;
+            amountIn: string;
+            amountInUSD: string;
+            tokenOut: string;
+            amountOut: string;
+            amountOutUSD: string;
+        }) => {
+            return {
+                timestamp: parseInt(swap.timestamp),
+                hash: swap.transaction.id,
+                user: swap.user.id,
+                tokenIn: swap.tokenIn,
+                amountIn: parseFloat(swap.amountIn),
+                amountInUSD: parseFloat(swap.amountInUSD),
+                tokenOut: swap.tokenOut,
+                amountOut: parseFloat(swap.amountOut),
+                amountOutUSD: parseFloat(swap.amountOutUSD),
+            };
+        }
+    );
+    const user = data.user[0].swaps.map(
+        (swap: {
+            timestamp: string;
+            user: { id: string };
+            transaction: { id: string };
+            tokenIn: string;
+            amountIn: string;
+            amountInUSD: string;
+            tokenOut: string;
+            amountOut: string;
+            amountOutUSD: string;
+        }) => {
+            return {
+                timestamp: parseInt(swap.timestamp),
+                hash: swap.transaction.id,
+                user: swap.user.id,
+                tokenIn: swap.tokenIn,
+                amountIn: parseFloat(swap.amountIn),
+                amountInUSD: parseFloat(swap.amountInUSD),
+                tokenOut: swap.tokenOut,
+                amountOut: parseFloat(swap.amountOut),
+                amountOutUSD: parseFloat(swap.amountOutUSD),
+            };
+        }
+    );
     return { flt, user };
 }
 
