@@ -46,4 +46,10 @@ router.get(
     flt.GetFuseLeveragedTokenUserPositionById
 );
 
+router.get(
+    "/:chainId/flts/insight/gains",
+    fltsController.GetFuseLeveragedTokensByChainIdValidation,
+    fltsController.GetFuseLeveragedTokensGains
+);
+
 export { router };
