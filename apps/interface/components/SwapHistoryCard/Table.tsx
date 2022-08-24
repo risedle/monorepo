@@ -47,6 +47,7 @@ const TransactionData = ({
                 alt={`${transactionType} logo`}
             />
             <Text
+                fontFamily="mono"
                 color={gray12}
                 fontSize="sm"
                 lineHeight="4"
@@ -79,22 +80,22 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
 
     return (
         <Flex
-            width="100%"
-            alignItems="flex-start"
             margin="0 !important"
             data-testid="SwapHistoryCardTable"
-            minH="200px"
+            minH="180px"
+            overflowX={"scroll"}
             {...boxProps}
         >
             {/* Transaction */}
             <VStack
+                minW="180px"
                 flex="1"
                 alignItems="flex-start"
-                width="100%"
                 gap={4}
                 data-testid="TableTransaction"
             >
                 <Text
+                    fontFamily="mono"
                     padding="2"
                     background={gray4}
                     width="100%"
@@ -145,11 +146,12 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
             </VStack>
 
             {/* Account */}
-            <VStack gap={4} data-testid="TableAccount">
+            <VStack width={"120px"} gap={4} data-testid="TableAccount">
                 <Text
+                    fontFamily="mono"
                     padding="2"
                     background={gray4}
-                    width="100%"
+                    width={"120px"}
                     fontSize="xs"
                     lineHeight="4"
                     color={gray10}
@@ -182,7 +184,8 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                         >
                             <Flex minH={"48px"} alignItems={"center"}>
                                 <Text
-                                    color={gray12}
+                                    fontFamily="mono"
+                                    color={gray10}
                                     fontSize="sm"
                                     lineHeight="4"
                                     margin="0 !important"
@@ -202,10 +205,12 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                 alignItems="flex-end"
                 gap={4}
                 data-testid="TableTotalValue"
-                minW="100px"
+                width={"120px"}
             >
                 <Text
+                    fontFamily="mono"
                     padding="2"
+                    paddingLeft="1px"
                     background={gray4}
                     width="100%"
                     fontSize="xs"
@@ -213,7 +218,6 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                     color={gray10}
                     borderTopRightRadius="lg"
                     borderBottomRightRadius="lg"
-                    textAlign="right"
                 >
                     Total value
                 </Text>
@@ -227,7 +231,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                     }
                     margin="0 !important"
                     gap={4}
-                    width="100%"
+                    width={"120px"}
                     alignItems="flex-end"
                 >
                     {swaps.map((swap, index) => (
@@ -236,14 +240,13 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                             startColor={gray3}
                             endColor={gray4}
                             borderRadius="lg"
-                            marginX="2"
-                            minW="60px"
+                            width={"120px"}
                             data-testid="SwapHistoryCardTableTotalValue"
                             key={`${swap.timestamp} ${index}`}
                         >
                             <Flex minH={"48px"} alignItems={"center"}>
                                 <Text
-                                    textAlign={"center"}
+                                    paddingLeft="2"
                                     color={gray12}
                                     fontSize="sm"
                                     lineHeight="4"
