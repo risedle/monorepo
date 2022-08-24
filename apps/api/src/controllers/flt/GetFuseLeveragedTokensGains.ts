@@ -9,7 +9,7 @@ async function GetFuseLeveragedTokensGains(req: Request, res: Response) {
         return res.status(404).json({ errors: errors.array() });
     }
     try {
-        const gains = services.GetFuseLeveragedTokensGains(
+        const gains = await services.GetFuseLeveragedTokensGains(
             req.params.chainId as unknown as ChainId
         );
         return res.status(200).json(gains);

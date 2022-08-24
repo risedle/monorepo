@@ -1,37 +1,83 @@
 import { ChainId } from "@risedle/types";
+import { request as grequest, gql } from "graphql-request";
+import { getGraphEndpointByChainId } from "../flts";
 
-const GetFuseLeveragedTokensGains = (chainId: ChainId) => {
-    if (chainId) {
-        return [
-            {
-                symbol: "BNBRISE",
-                name: "2x Long BNB Risedle",
-                dailyGain: {
-                    timestamp: 1657868400,
-                    gain: 4.12,
-                },
-                weeklyGain: {
-                    timestampStart: 1657868400,
-                    timestampEnd: 1657868401,
-                    gain: 10.22,
-                },
-            },
-            {
-                symbol: "CAKERISE",
-                name: "2x Long CAKE Risedle",
-                dailyGain: {
-                    timestamp: 1657868400,
-                    gain: 4.12,
-                },
-                weeklyGain: {
-                    timestampStart: 1657868400,
-                    timestampEnd: 1657868401,
-                    gain: 10.22,
-                },
-            },
-        ];
+const queryFuseLeveragedTokenSwapsBySymbol = gql`
+    {
+        flts {
+            id
+            symbol
+            name
+            daily: fltDayData(
+                orderDirection: desc
+                orderBy: periodStartUnix
+                first: 1
+            ) {
+                open
+                close
+                timestmap: periodStartUnix
+            }
+            prevWeek: fltDayData(
+                orderDirection: desc
+                orderBy: periodStartUnix
+                skip: 7
+                first: 1
+            ) {
+                open
+                close
+                timestmap: periodStartUnix
+            }
+        }
     }
-    return;
+`;
+
+type FltDataType = {
+    open: string;
+    close: string;
+    timestmap: number;
+};
+
+const GetFuseLeveragedTokensGains = async (chainId: ChainId) => {
+    const endpoint = getGraphEndpointByChainId(chainId);
+    const data = await grequest(
+        endpoint,
+        queryFuseLeveragedTokenSwapsBySymbol
+    );
+    if (data.flts) {
+        return data.flts.map?.(
+            (token: {
+                id: string;
+                symbol: string;
+                name: string;
+                daily: Array<FltDataType>;
+                prevWeek: Array<FltDataType>;
+            }) => {
+                const openToday = parseFloat(token?.daily[0]?.open);
+                const closeToday = parseFloat(token?.daily[0]?.close);
+                const openPrevWeek = parseFloat(token?.prevWeek[0].open);
+                return {
+                    symbol: token.symbol,
+                    name: token.name,
+                    dailyGains: {
+                        gains: (
+                            ((closeToday - openToday) / openToday) *
+                            100
+                        ).toFixed(2),
+                        date: token.daily[0]?.timestmap,
+                    },
+                    weeklyGains: {
+                        gains: (
+                            ((closeToday - openPrevWeek) / openPrevWeek) *
+                            100
+                        ).toFixed(2),
+                        startDate: token.prevWeek[0]?.timestmap,
+                        endDate: token.daily[0]?.timestmap,
+                    },
+                };
+            }
+        );
+    }
+    throw "Something went wrong";
 };
 
 export default GetFuseLeveragedTokensGains;
