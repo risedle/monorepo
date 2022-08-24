@@ -8,7 +8,7 @@
         "test": "jest --testTimeout 20000",
         "dev:server": "node dist/index.js",
         "dev": "nodemon",
-        "lint": "eslint --ext=.tsx,.ts ."
+        "lint": "eslint ."
     },
     "author": {
         "name": "bayu",

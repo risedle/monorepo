@@ -39,7 +39,6 @@ export const FuseLeveragedTokenInfoCardStats = (
     // Data
     const {
         marketcapUSD,
-        maxMarketcapUSD,
         collateralSymbol,
         debtSymbol,
         totalVolumeUSD,

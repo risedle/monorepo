@@ -25,6 +25,13 @@ export const PriceChartLine = (props: PriceChartLineProps) => {
     const { prices } = props;
     const latest = prices.at(-1);
     const oldest = prices.at(0);
+    const priceChange = latest && oldest ? latest.price - oldest.price : 0;
+
+    // Styles
+    // NOTE: need to use raw hex value for chart
+    const green11 = useColorModeValue("#18794E", "#4CC38A");
+    const red11 = useColorModeValue("#CD2B31", "#FF6369");
+
     if (latest == null || oldest == null) {
         return (
             <div data-testid="PriceChartLineUndefined">
@@ -32,12 +39,6 @@ export const PriceChartLine = (props: PriceChartLineProps) => {
             </div>
         );
     }
-    const priceChange = latest.price - oldest.price;
-
-    // Styles
-    // NOTE: need to use raw hex value for chart
-    const green11 = useColorModeValue("#18794E", "#4CC38A");
-    const red11 = useColorModeValue("#CD2B31", "#FF6369");
 
     return (
         <Box data-testid="PriceChartLine" w="100%" h="192px">

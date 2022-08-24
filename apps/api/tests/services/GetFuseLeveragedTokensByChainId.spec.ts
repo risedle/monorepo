@@ -1,5 +1,3 @@
-import { ChainId } from "@risedle/types";
-
 import flt from "../../src/services/flt";
 
 describe("GetFuseLeveragedTokensByChainId()", () => {
@@ -23,7 +21,7 @@ describe("GetFuseLeveragedTokensByChainId()", () => {
             expect(tokens.length).toBeGreaterThan(2);
 
             // Make sure it returns array of FuseLeveragedTokenInfo
-            for (let token of tokens) {
+            for (const token of tokens) {
                 expect(typeof token.name).toBe("string");
                 expect(typeof token.symbol).toBe("string");
                 expect(token.decimals).toEqual(18);

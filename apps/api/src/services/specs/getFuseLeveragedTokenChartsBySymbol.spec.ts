@@ -1,5 +1,4 @@
 import { getFuseLeveragedTokenChartsBySymbol } from "../flts";
-import { ChainId } from "@risedle/types";
 
 describe("getFuseLeveragedTokenChartsBySymbol", () => {
     describe("given random chainId", () => {

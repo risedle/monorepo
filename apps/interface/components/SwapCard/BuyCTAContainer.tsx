@@ -4,8 +4,6 @@ import {
     useColorModeValue,
     Spinner,
     Text,
-    useToast,
-    Box,
     HStack,
     Link,
 } from "@chakra-ui/react";
@@ -28,15 +26,11 @@ import getTransactionExplorerURL from "@/utils/getTransactionExplorerURL";
 
 // ABI
 import RouterABI from "@/abis/RouterABI";
-import ChainlinkABI from "@/abis/ChainlinkABI";
 import FuseLeveragedTokenABI from "@/abis/FuseLeveragedTokenABI";
 
 // Hooks
 import useBuyAmountStore from "@/hooks/useBuyAmountStore";
 import useSlippageToleranceStore from "@/hooks/useSlippageToleranceStore";
-
-// Toasts
-import ErrorToast from "@/components/Toasts/Error";
 
 // Icons
 import ArrowTopRightIcon from "@/components/Icons/ArrowTopRight";
@@ -66,19 +60,13 @@ export const SwapCardBuyCTAContainer = (
 ) => {
     // Data
     const { fltAddress, fltSymbol, fltDebtAddress } = props;
-    const {
-        chainSlug,
-        defaultQuoteAddress,
-        routerAddress,
-        defaultQuoteChainlinkAddress,
-    } = getBaseConfig();
+    const { chainSlug, defaultQuoteAddress, routerAddress } = getBaseConfig();
     const fuseTokenDebtAddress = getFuseDebtAddress(fltSymbol);
 
     // States
     const [ctaState, setCTAState] = useState(CTAState.ShowConnectWalletButton);
 
     // Hooks
-    const toast = useToast();
     const { address } = useAccount();
     const { openConnectModal } = useConnectModal();
     const amount = useBuyAmountStore((state) => state.amount);
@@ -180,8 +168,6 @@ export const SwapCardBuyCTAContainer = (
     const gray2 = useColorModeValue("gray.light.2", "gray.dark.2");
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
-    const green2 = useColorModeValue("green.light.2", "green.dark.2");
-    const green12 = useColorModeValue("green.light.12", "green.dark.12");
 
     // NOTE: we use useEffect here to prevent React Hydration Error
     // read more: https://nextjs.org/docs/messages/react-hydration-error
@@ -241,7 +227,14 @@ export const SwapCardBuyCTAContainer = (
 
         // Otherwise show swap button
         setCTAState(CTAState.ShowSwapButton);
-    });
+    }, [
+        address,
+        amount,
+        data,
+        amountOut,
+        waitApproval.isLoading,
+        waitBuy.isLoading,
+    ]);
 
     return (
         <VStack

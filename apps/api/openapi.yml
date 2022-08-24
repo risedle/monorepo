@@ -229,29 +229,33 @@ paths:
         500:
           description: Internal server error
 
-  /v1/generator/insights/{timeframe}:
+  /v1/{chainId}/flts/gains:
     get:
       tags:
         - Insight Generator
-      operationID: GenerateFuseLeveragedTokenInsightImage
+      operationID: GetFuseLeveragedTokensGains
       summary: |
-        Generate Fuse Leveraged Token's insight image
+        Get daily and weekly FLTs gains
       parameters:
         - in: path
-          name: timeframe
+          name: chainId
           schema:
-            $ref: "#/components/schemas/Timeframe"
+            $ref: "#/components/schemas/ChainId"
           required: true
       repsponses:
         200:
-          description: Latest insight image
+          description: Fuse Leveraged Tokens gains data
           content:
-            image/png:
+            application/json:
               schema:
-                type: string
-                format: binary
+                type: object
+                properties:
+                  tokens:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/FuseLeveragedTokenGains"
         404:
-          description: Failed to generate insight image
+          description: Chain ID not supported
         500:
           description: Internal server error
 
@@ -271,11 +275,6 @@ components:
       description: Chain ID
       type: number
       example: 42161
-
-    Timeframe:
-      description: Timeframe, daily or weekly
-      type: string
-      example: "daily"
 
     USD:
       description: Price in USD terms
@@ -428,6 +427,25 @@ components:
           description: Trade fee in USD
           $ref: "#/components/schemas/USD"
 
+    FuseLeveragedTokenGains:
+      description: Fuse Leveraged Token's gain for daily and weekly timeframe
+      type: object
+      properties:
+        symbol:
+          description: Token's Symbol
+          type: string
+          example: "BNBRISE"
+        name:
+          description: Token's name
+          type: string
+          example: "2X Long ETH Risedle"
+        dailyGain:
+          description: Token's daily gain data
+          $ref: "#/components/schemas/FuseLeveragedTokenDailyGain"
+        weeklyGain:
+          description: Token's weekly gain data
+          $ref: "#/components/schemas/FuseLeveragedTokenWeeklyGain"
+
     SwapTokenInfo:
       description: Swap token info
       type: object
@@ -522,3 +540,33 @@ components:
           type: number
           format: float
           example: 10.03
+
+    FuseLeveragedTokenDailyGain:
+      description: Daily FLT's gain data
+      type: object
+      properties:
+        timestamp:
+          description: Unix timestamp in seconds
+          type: number
+          example: 1657868400
+        gain:
+          description: Price gain in percentage
+          type: float
+          example: 4.12
+
+    FuseLeveragedTokenWeeklyGain:
+      description: Weekly FLT's gain data
+      type: object
+      properties:
+        timestampStart:
+          description: Unix timestamp in seconds
+          type: number
+          example: 1657868400
+        timestampEnd:
+          description: Unix timestamp in seconds
+          type: number
+          example: 1657868400
+        gain:
+          description: Price gain in percentage
+          type: float
+          example: 4.12

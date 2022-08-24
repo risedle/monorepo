@@ -7,9 +7,7 @@ import { fetchFuseLeveragedTokenSymbols } from "@/utils/fetchFuseLeveragedTokenS
 import { fetchFuseLeveragedTokenBySymbol } from "@/utils/fetchFuseLeveragedTokenBySymbol";
 import type { FuseLeveragedToken } from "@/utils/types";
 
-import { WarningBar } from "@/components/WarningBar";
 import { NavigationBar } from "@/components/NavigationBar";
-import { FooterBar } from "@/components/FooterBar";
 import { NavigationBarBottom } from "@/components/NavigationBarBottom";
 import { BackgroundGradient } from "@/components/BackgroundGradient";
 import { TradeInfoCard } from "@/components/TradeInfoCard";

@@ -83,7 +83,7 @@ export const SwapCardBuyQuoteContainer = (
             setQuoteAmount(quoteAmount);
             setQuoteAmountUSD(quoteAmountUSD);
         }
-    });
+    }, [data, defaultQuoteDecimals, defaultQuoteChainlinkDecimals]);
 
     return (
         <Quote
