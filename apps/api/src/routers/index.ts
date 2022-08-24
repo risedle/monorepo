@@ -49,7 +49,7 @@ router.get(
 router.get(
     "/:chainId/flts/insight/gains",
     fltsController.GetFuseLeveragedTokensByChainIdValidation,
-    fltsController.GetFuseLeveragedTokensGains
+    flt.GetFuseLeveragedTokensGains
 );
 
 export { router };
