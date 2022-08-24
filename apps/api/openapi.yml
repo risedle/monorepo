@@ -229,7 +229,7 @@ paths:
         500:
           description: Internal server error
 
-  /v1/{chainId}/flts/gains:
+  /v1/{chainId}/flts/insight/gains:
     get:
       tags:
         - Insight Generator
