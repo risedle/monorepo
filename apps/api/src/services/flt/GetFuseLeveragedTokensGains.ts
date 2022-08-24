@@ -58,20 +58,15 @@ const GetFuseLeveragedTokensGains = async (chainId: ChainId) => {
                 return {
                     symbol: token.symbol,
                     name: token.name,
-                    dailyGains: {
-                        gains: (
-                            ((closeToday - openToday) / openToday) *
-                            100
-                        ).toFixed(2),
-                        date: token.daily[0]?.timestmap,
+                    dailyGain: {
+                        gain: ((closeToday - openToday) / openToday) * 100,
+                        timestamp: token.daily[0]?.timestmap,
                     },
-                    weeklyGains: {
-                        gains: (
-                            ((closeToday - openPrevWeek) / openPrevWeek) *
-                            100
-                        ).toFixed(2),
-                        startDate: token.prevWeek[0]?.timestmap,
-                        endDate: token.daily[0]?.timestmap,
+                    weeklyGain: {
+                        gain:
+                            ((closeToday - openPrevWeek) / openPrevWeek) * 100,
+                        timestampStart: token.prevWeek[0]?.timestmap,
+                        timestampEnd: token.daily[0]?.timestmap,
                     },
                 };
             }
