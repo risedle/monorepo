@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Forward all request to running node; we need this in order to enable private
+# networking in fly.io. The app will be accessible via :8800 and so on
+socat TCP6-LISTEN:9000,crlf,reuseaddr,fork tcp:localhost:8000 &
+socat TCP6-LISTEN:9001,crlf,reuseaddr,fork tcp:localhost:8001 &
+socat TCP6-LISTEN:9020,crlf,reuseaddr,fork tcp:localhost:8020 &
+socat TCP6-LISTEN:9030,crlf,reuseaddr,fork tcp:localhost:8030 &
+socat TCP6-LISTEN:9040,crlf,reuseaddr,fork tcp:localhost:8040 &
+
+# Start node
+start
