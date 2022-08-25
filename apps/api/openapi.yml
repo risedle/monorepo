@@ -62,7 +62,8 @@ paths:
           required: true
         - in: path
           name: symbol
-          type: string
+          schema:
+            type: string
           example: "ETHRISE"
           required: true
       responses:
@@ -92,7 +93,8 @@ paths:
           required: true
         - in: path
           name: symbol
-          type: string
+          schema:
+            type: string
           example: "ETHRISE"
           required: true
       responses:
@@ -135,12 +137,14 @@ paths:
           required: true
         - in: path
           name: symbol
-          type: string
+          schema:
+            type: string
           example: "ETHRISE"
           required: true
         - in: query
           name: userAddress
-          type: string
+          schema:
+            type: string
           example: "0x1418be4753a22b69b613fa8b8144d856c023d46b"
       responses:
         200:
@@ -178,7 +182,8 @@ paths:
           required: true
         - in: path
           name: symbol
-          type: string
+          schema:
+            type: string
           example: "ETHRISE"
           required: true
       responses:
@@ -214,7 +219,8 @@ paths:
         - in: path
           name: positionId
           description: "user address - flt address"
-          type: string
+          schema:
+            type: string
           example: "0x1418be4753a22b69b613fa8b8144d856c023d46b-0x4f7255178b8f15c2cbe92d09b8a77b53ef4ec9ea"
           required: true
       responses:
@@ -233,7 +239,7 @@ paths:
     get:
       tags:
         - Insight Generator
-      operationID: GetFuseLeveragedTokensGains
+      operationId: GetFuseLeveragedTokensGains
       summary: |
         Get daily and weekly FLTs gains
       parameters:
@@ -242,7 +248,7 @@ paths:
           schema:
             $ref: "#/components/schemas/ChainId"
           required: true
-      repsponses:
+      responses:
         200:
           description: Fuse Leveraged Tokens gains data
           content:
@@ -306,7 +312,7 @@ components:
           format: float
           example: 1.2
         decimals:
-          decription: Asset's decimals
+          description: Asset's decimals
           type: number
           example: 18
         change:
@@ -551,7 +557,7 @@ components:
           example: 1657868400
         gain:
           description: Price gain in percentage
-          type: float
+          type: number
           example: 4.12
 
     FuseLeveragedTokenWeeklyGain:
@@ -568,5 +574,5 @@ components:
           example: 1657868400
         gain:
           description: Price gain in percentage
-          type: float
+          type: number
           example: 4.12
