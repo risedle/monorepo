@@ -1,10 +1,10 @@
 {
-    "name": "exchange",
-    "license": "UNLICENSED",
+    "name": "@subgraphs/exchange",
+    "private": true,
     "scripts": {
         "codegen": "graph codegen",
-        "build": "graph build",
-        "deploy": "graph deploy --node https://api.thegraph.com/deploy/ risedle/exchange",
+        "graph:build": "graph build",
+        "graph:deploy": "graph deploy --node https://api.thegraph.com/deploy/ risedle/exchange",
         "create-local": "graph create --node http://localhost:8020/ risedle/exchange",
         "remove-local": "graph remove --node http://localhost:8020/ risedle/exchange",
         "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 risedle/exchange",

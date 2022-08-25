@@ -1,0 +1,49 @@
+name: "subgraphs-exchange"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "subgraphs/exchange/**"
+      - ".github/workflows/risedle-subgraphs-exchange.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "subgraphs/exchange/**"
+      - ".github/workflows/risedle-subgraphs-exchange.yml"
+
+defaults:
+  run:
+    working-directory: ./subgraphs/exchange
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18.7.0"
+          cache: "npm"
+      - name: Cache node_modules
+        id: cache-nodemodules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key:
+            # prettier-ignore
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('../../package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Install dependencies
+        run: npm install -w=@subgraphs/exchange --ignore-scripts
+      - name: Generate code
+        run: npm run codegen
+      - name: Test
+        run: npm run graph:test
