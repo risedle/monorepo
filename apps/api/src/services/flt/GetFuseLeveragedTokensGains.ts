@@ -2,7 +2,7 @@ import { ChainId } from "@risedle/types";
 import { request as grequest, gql } from "graphql-request";
 import { getGraphEndpointByChainId } from "../flts";
 
-const queryFuseLeveragedTokenSwapsBySymbol = gql`
+const queryFuseLeveragedTokenPriceData = gql`
     {
         flts {
             id
@@ -39,10 +39,7 @@ type FltDataType = {
 
 const GetFuseLeveragedTokensGains = async (chainId: ChainId) => {
     const endpoint = getGraphEndpointByChainId(chainId);
-    const data = await grequest(
-        endpoint,
-        queryFuseLeveragedTokenSwapsBySymbol
-    );
+    const data = await grequest(endpoint, queryFuseLeveragedTokenPriceData);
     if (data.flts) {
         return data.flts.map?.(
             (token: {
