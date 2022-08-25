@@ -1,9 +1,13 @@
-import { Divider, Flex, Text } from "@chakra-ui/react";
+import { Divider, Flex, FlexProps, Text } from "@chakra-ui/react";
 import { RisedleLogo, BscLogo } from "./logo";
 
-type InsightType = "daily" | "weekly";
+interface InsightImageDOMProps extends FlexProps {
+    type: "daily" | "weekly";
+    containerWidth: number | undefined;
+}
 
-const InsightImageDOM = ({ type }: { type: InsightType }) => {
+const InsightImageDOM = (props: InsightImageDOMProps) => {
+    const { type, containerWidth, ...restProps } = props;
     const description = {
         daily: "24H",
         weekly: "Weekly",
@@ -38,6 +42,9 @@ const InsightImageDOM = ({ type }: { type: InsightType }) => {
             width="1200px"
             height="627px"
             borderRadius="3xl"
+            transform={`scale(${containerWidth ? containerWidth / 1200 : 1})`}
+            transformOrigin="top left"
+            {...restProps}
         >
             {/* Left side */}
             <Flex

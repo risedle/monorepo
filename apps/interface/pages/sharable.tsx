@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import { NavigationBar } from "@/components/NavigationBar";
-import { NavigationBarBottom } from "@/components/NavigationBarBottom";
 import { FooterBar } from "@/components/FooterBar";
 import InsightGenerator from "@/components/InsightGenerator";
 
@@ -11,7 +10,6 @@ const Sharable: NextPage<SharableProps> = () => {
     return (
         <>
             <NavigationBar />
-            <NavigationBarBottom />
             <InsightGenerator />
             <FooterBar />
         </>

@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import {
     Container,
     Flex,
@@ -8,6 +9,7 @@ import {
     Tabs,
     useColorModeValue,
     Button,
+    useDimensions,
 } from "@chakra-ui/react";
 import InsightImageDOM from "@/components/InsightImageDOM";
 
@@ -19,8 +21,11 @@ const InsightGenerator = () => {
         "gray.light.12",
         "gray.dark.12"
     );
+    const containerRef = useRef(null);
+    const containerDimension = useDimensions(containerRef, true);
     return (
         <Container
+            ref={containerRef}
             maxW="5xl"
             py="3"
             marginTop={{ base: "152px", laptop: "60px" }}
@@ -73,11 +78,21 @@ const InsightGenerator = () => {
                     </Button>
                 </Flex>
                 <TabPanels>
-                    <TabPanel p="0">
-                        <InsightImageDOM type="daily" />
+                    <TabPanel p="0" position="relative">
+                        <InsightImageDOM
+                            type="daily"
+                            containerWidth={
+                                containerDimension?.contentBox.width
+                            }
+                        />
                     </TabPanel>
                     <TabPanel p="0">
-                        <InsightImageDOM type="weekly" />
+                        <InsightImageDOM
+                            type="weekly"
+                            containerWidth={
+                                containerDimension?.contentBox.width
+                            }
+                        />
                     </TabPanel>
                 </TabPanels>
             </Tabs>
