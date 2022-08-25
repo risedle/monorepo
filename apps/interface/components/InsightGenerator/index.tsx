@@ -9,6 +9,7 @@ import {
     useColorModeValue,
     Button,
 } from "@chakra-ui/react";
+import InsightImageDOM from "@/components/InsightImageDOM";
 
 const InsightGenerator = () => {
     const tabsColor = useColorModeValue("gray.light.3", "gray.dark.2");
@@ -73,26 +74,10 @@ const InsightGenerator = () => {
                 </Flex>
                 <TabPanels>
                     <TabPanel p="0">
-                        <Flex
-                            alignItems="center"
-                            justifyContent="center"
-                            border="1px"
-                            borderRadius="2xl"
-                            h="96"
-                        >
-                            Daily Insight Image Here
-                        </Flex>
+                        <InsightImageDOM type="daily" />
                     </TabPanel>
                     <TabPanel p="0">
-                        <Flex
-                            alignItems="center"
-                            justifyContent="center"
-                            border="1px"
-                            borderRadius="2xl"
-                            h="96"
-                        >
-                            Weekly Insight Image Here
-                        </Flex>
+                        <InsightImageDOM type="weekly" />
                     </TabPanel>
                 </TabPanels>
             </Tabs>
