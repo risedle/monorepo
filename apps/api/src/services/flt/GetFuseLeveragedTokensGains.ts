@@ -15,7 +15,7 @@ const queryFuseLeveragedTokenPriceData = gql`
             ) {
                 open
                 close
-                timestmap: periodStartUnix
+                timestamp: periodStartUnix
             }
             prevWeek: fltDayData(
                 orderDirection: desc
@@ -25,7 +25,7 @@ const queryFuseLeveragedTokenPriceData = gql`
             ) {
                 open
                 close
-                timestmap: periodStartUnix
+                timestamp: periodStartUnix
             }
         }
     }
@@ -34,7 +34,7 @@ const queryFuseLeveragedTokenPriceData = gql`
 type FltDataType = {
     open: string;
     close: string;
-    timestmap: number;
+    timestamp: number;
 };
 
 const GetFuseLeveragedTokensGains = async (chainId: ChainId) => {
@@ -57,13 +57,13 @@ const GetFuseLeveragedTokensGains = async (chainId: ChainId) => {
                     name: token.name,
                     dailyGain: {
                         gain: ((closeToday - openToday) / openToday) * 100,
-                        timestamp: token.daily[0]?.timestmap,
+                        timestamp: token.daily[0]?.timestamp,
                     },
                     weeklyGain: {
                         gain:
                             ((closeToday - openPrevWeek) / openPrevWeek) * 100,
-                        timestampStart: token.prevWeek[0]?.timestmap,
-                        timestampEnd: token.daily[0]?.timestmap,
+                        timestampStart: token.prevWeek[0]?.timestamp,
+                        timestampEnd: token.daily[0]?.timestamp,
                     },
                 };
             }
