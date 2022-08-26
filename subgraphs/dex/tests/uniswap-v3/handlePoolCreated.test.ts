@@ -8,10 +8,10 @@ import { logStore, clearStore } from "matchstick-as/assembly/store";
 import { Address, BigInt } from "@graphprotocol/graph-ts";
 
 // Schema
-import { Token } from "../generated/schema";
+import { Token } from "../../generated/schema";
 
 // Handler
-import { handlePoolCreated } from "../src/handlePoolCreated";
+import { handlePoolCreated } from "../../protocols/uniswap-v3/handlers/handlePoolCreated";
 
 // Utils
 import { createPoolCreatedEvent } from "./utils/createPoolCreatedEvent";

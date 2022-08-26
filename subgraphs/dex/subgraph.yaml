@@ -7,7 +7,7 @@ dataSources:
     network: arbitrum-one
     source:
       address: "0x1F98431c8aD98523631AE4a59f267346ea31F984"
-      abi: UniswapV3Factory
+      abi: Factory
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -17,8 +17,8 @@ dataSources:
         - LiquidityPool
         - TokenLiquidityPool
       abis:
-        - name: UniswapV3Factory
-          file: ./abis/UniswapV3Factory.json
+        - name: Factory
+          file: ./abis/uniswap-v3/Factory.json
       eventHandlers:
         - event: FeeAmountEnabled(indexed uint24,indexed int24)
           handler: handleFeeAmountEnabled
@@ -28,4 +28,4 @@ dataSources:
             # prettier-ignore
             PoolCreated(indexed address,indexed address,indexed uint24,int24,address)
           handler: handlePoolCreated
-      file: ./src/factory.ts
+      file: ./protocols/uniswap-v3/handlers/handlePoolCreated.ts

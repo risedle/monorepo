@@ -42,6 +42,16 @@ then deploy the subgraph using the following command:
 graph deploy --product hosted-service risedle/risedle-flt-bsc --network bsc
 ```
 
+### Integrate Protocol
+
+Here is step by step to integrate new dex:
+
+1. Add ABI to `abis/protocol-name`
+2. Create new `configs`, `templates` and `handlers` inside
+   `protocols/protocol-name`.
+
+TODO(pyk): elaborate on this
+
 ### Useful links
 
 -   [Get Started with The Graph](https://thegraph.com/docs/en/)
