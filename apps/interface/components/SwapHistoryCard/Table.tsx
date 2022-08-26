@@ -42,8 +42,8 @@ const TransactionData = ({
         <HStack alignItems={"center"} height="48px">
             <NextImage
                 src={`/icons/${transactionType.toLocaleUpperCase()}-${colorMode}.svg`}
-                width="48px"
-                height="48px"
+                width="24px"
+                height="24px"
                 alt={`${transactionType} logo`}
             />
             <Text
@@ -51,7 +51,7 @@ const TransactionData = ({
                 color={gray12}
                 fontSize="sm"
                 lineHeight="4"
-                margin="0 !important"
+                margin="8px !important"
                 data-testid="BackingCardCollateral"
             >
                 {swap.tokenIn.symbol === symbol
@@ -95,7 +95,6 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                 data-testid="TableTransaction"
             >
                 <Text
-                    fontFamily="mono"
                     padding="2"
                     background={gray4}
                     width="100%"
@@ -148,7 +147,6 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
             {/* Account */}
             <VStack width={"120px"} gap={4} data-testid="TableAccount">
                 <Text
-                    fontFamily="mono"
                     padding="2"
                     background={gray4}
                     width={"120px"}
@@ -208,7 +206,6 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                 width={"120px"}
             >
                 <Text
-                    fontFamily="mono"
                     padding="2"
                     paddingLeft="1px"
                     background={gray4}
