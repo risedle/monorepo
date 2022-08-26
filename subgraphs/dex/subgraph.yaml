@@ -13,9 +13,9 @@ dataSources:
       apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
-        - FeeAmountEnabled
-        - OwnerChanged
-        - PoolCreated
+        - Token
+        - LiquidityPool
+        - TokenLiquidityPool
       abis:
         - name: UniswapV3Factory
           file: ./abis/UniswapV3Factory.json
@@ -24,6 +24,8 @@ dataSources:
           handler: handleFeeAmountEnabled
         - event: OwnerChanged(indexed address,indexed address)
           handler: handleOwnerChanged
-        - event: PoolCreated(indexed address,indexed address,indexed uint24,int24,address)
+        - event:
+            # prettier-ignore
+            PoolCreated(indexed address,indexed address,indexed uint24,int24,address)
           handler: handlePoolCreated
-      file: ./src/uniswap-v-3-factory.ts
+      file: ./src/factory.ts
