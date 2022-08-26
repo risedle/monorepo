@@ -1,22 +1,22 @@
-name: "subgraphs-exchange"
+name: "subgraphs-uniswap-v3"
 
 on:
   push:
     branches:
       - main
     paths:
-      - "subgraphs/exchange/**"
-      - ".github/workflows/risedle-subgraphs-exchange.yml"
+      - "subgraphs/uniswap-v3/**"
+      - ".github/workflows/risedle-subgraphs-uniswap-v3.yml"
   pull_request:
     branches:
       - main
     paths:
-      - "subgraphs/exchange/**"
-      - ".github/workflows/risedle-subgraphs-exchange.yml"
+      - "subgraphs/uniswap-v3/**"
+      - ".github/workflows/risedle-subgraphs-uniswap-v3.yml"
 
 defaults:
   run:
-    working-directory: ./subgraphs/exchange
+    working-directory: ./subgraphs/uniswap-v3
 
 jobs:
   test:
@@ -42,7 +42,7 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Install dependencies
-        run: npm install -w=@subgraphs/exchange --ignore-scripts
+        run: npm install -w=@subgraphs/uniswap-v3 --ignore-scripts
       - name: Generate code
         run: npm run codegen
       - name: Test
