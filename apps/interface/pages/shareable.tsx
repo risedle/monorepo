@@ -4,9 +4,9 @@ import { FooterBar } from "@/components/FooterBar";
 import InsightGenerator from "@/components/InsightGenerator";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface SharableProps {}
+interface ShareableProps {}
 
-const Sharable: NextPage<SharableProps> = () => {
+const Shareable: NextPage<ShareableProps> = () => {
     return (
         <>
             <NavigationBar />
@@ -16,4 +16,4 @@ const Sharable: NextPage<SharableProps> = () => {
     );
 };
 
-export default Sharable;
+export default Shareable;
