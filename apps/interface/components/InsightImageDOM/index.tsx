@@ -1,4 +1,4 @@
-import { Divider, Flex, FlexProps, Text } from "@chakra-ui/react";
+import { Divider, Flex, FlexProps, Image, Text } from "@chakra-ui/react";
 import { RisedleLogo, BscLogo } from "./logo";
 
 interface InsightImageDOMProps extends FlexProps {
@@ -50,8 +50,12 @@ const InsightImageDOM = (props: InsightImageDOMProps) => {
             <Flex
                 direction="column"
                 justifyContent="space-between"
+                grow="1"
                 py="16"
                 pl="20"
+                backgroundImage="url(/shareable/dot-background.svg)"
+                backgroundRepeat="no-repeat"
+                backgroundPosition="center top"
             >
                 {/* Header */}
                 <Flex direction="row" gap="3" alignItems="center">
@@ -90,6 +94,13 @@ const InsightImageDOM = (props: InsightImageDOMProps) => {
                 justifyContent="end"
                 borderLeft="1px solid rgba(255, 255, 255, 0.06)"
             >
+                <Flex
+                    justifyContent="center"
+                    grow="1"
+                    backgroundImage="url(/shareable/bsc-background.svg)"
+                    backgroundRepeat="no-repeat"
+                    backgroundPosition="center 37%"
+                />
                 <Divider borderColor="rgba(255, 255, 255, 0.06)" />
                 <Flex direction="column" pb="8" pt="18px" gap="18px">
                     {dummyData.map((item, index) => {
