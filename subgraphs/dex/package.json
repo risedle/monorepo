@@ -1,13 +1,13 @@
 {
-    "name": "@subgraphs/uniswap-v3",
+    "name": "@subgraphs/dex",
     "private": true,
     "scripts": {
         "codegen": "graph codegen",
         "graph:build": "graph build",
-        "graph:deploy": "graph deploy --node https://api.thegraph.com/deploy/ risedle/uniswap-v3",
-        "create-local": "graph create --node http://localhost:8020/ risedle/uniswap-v3",
-        "remove-local": "graph remove --node http://localhost:8020/ risedle/uniswap-v3",
-        "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 risedle/uniswap-v3",
+        "graph:deploy": "graph deploy --node https://api.thegraph.com/deploy/ risedle/dex",
+        "create-local": "graph create --node http://localhost:8020/ risedle/dex",
+        "remove-local": "graph remove --node http://localhost:8020/ risedle/dex",
+        "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 risedle/dex",
         "graph:test": "graph test"
     },
     "dependencies": {
