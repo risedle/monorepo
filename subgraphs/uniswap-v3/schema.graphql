@@ -1,6 +1,54 @@
-type ExampleEntity @entity {
-  id: ID!
-  count: BigInt!
-  fee: Int! # uint24
-  tickSpacing: Int! # int24
+type Token @entity {
+    # Token address
+    id: ID!
+
+    # Token basic metadata
+    symbol: String!
+    name: String!
+    decimals: BigInt!
+    totalSupply: BigInt!
+
+    # Token aggregated data across liquidity pools
+    volume: BigDecimal!
+    volumeUSD: BigDecimal!
+    feesUSD: BigDecimal!
+    totalValueLocked: BigDecimal!
+    totalValueLockedUSD: BigDecimal!
+
+    # Latest token price in ETH
+    derivedETH: BigDecimal!
+
+    # Liquidity pools
+    liquidityPools: [TokenLiquidityPool!]! @derivedFrom(field: "token")
+}
+
+type LiquidityPool @entity {
+    # Liquidity pool address
+    id: ID!
+
+    # Liquidity creation
+    createdAtTimestamp: BigInt!
+    createdAtBlockNumber: BigInt!
+
+    # fee in 1e18 units; 1% is 0.1 * 1e18
+    fee: BigInt!
+
+    # Liquidity pool swap data
+    volumeUSD: BigDecimal!
+    feesUSD: BigDecimal!
+
+    # Liquidity pool TVL data
+    totalValueLockedETH: BigDecimal!
+    totalValueLockedUSD: BigDecimal!
+
+    # List of token available in the pool
+    tokens: [TokenLiquidityPool!]! @derivedFrom(field: "liquidityPool")
+}
+
+type TokenLiquidityPool @entity {
+    # token.id.concat(pool.id)
+    id: ID!
+
+    token: Token!
+    liquidityPool: LiquidityPool!
 }
