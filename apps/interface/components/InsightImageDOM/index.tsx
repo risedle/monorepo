@@ -1,4 +1,4 @@
-import { Divider, Flex, FlexProps, Image, Text } from "@chakra-ui/react";
+import { Divider, Flex, FlexProps, Text } from "@chakra-ui/react";
 import { RisedleLogo, BscLogo } from "./logo";
 
 interface InsightImageDOMProps extends FlexProps {
