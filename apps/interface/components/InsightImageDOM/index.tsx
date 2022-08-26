@@ -104,6 +104,7 @@ const InsightImageDOM = (props: InsightImageDOMProps) => {
                 <Divider borderColor="rgba(255, 255, 255, 0.06)" />
                 <Flex direction="column" pb="8" pt="18px" gap="18px">
                     {dummyData.map((item, index) => {
+                        const rank = index + 1;
                         return (
                             <>
                                 <Flex
@@ -123,16 +124,31 @@ const InsightImageDOM = (props: InsightImageDOMProps) => {
                                             justifyContent="center"
                                             h="8"
                                             w="8"
-                                            background="rgba(255, 255, 255, 0.03)"
+                                            background={
+                                                rank !== 1
+                                                    ? `rgba(255, 255, 255, 0.03)`
+                                                    : "transparent"
+                                            }
+                                            backgroundImage={
+                                                rank === 1
+                                                    ? "url(/shareable/star-icon.svg)"
+                                                    : "none"
+                                            }
                                             borderRadius="lg"
                                         >
                                             <Text
-                                                color="white"
+                                                color={
+                                                    rank === 1
+                                                        ? "black"
+                                                        : "white"
+                                                }
                                                 fontSize="medium"
                                                 fontWeight="bold"
-                                                opacity="0.6"
+                                                opacity={
+                                                    rank === 1 ? "1" : "0.6"
+                                                }
                                             >
-                                                {index + 1}
+                                                {rank}
                                             </Text>
                                         </Flex>
                                         {/* Token Symbol */}
