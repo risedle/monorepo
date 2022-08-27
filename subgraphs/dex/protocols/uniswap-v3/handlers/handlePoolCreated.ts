@@ -1,4 +1,4 @@
-import { PoolCreated } from "../../../generated/UniswapV3Factory/Factory";
+import { PoolCreated } from "../../../generated/Factory/Factory";
 
 import { getOrCreateProtocol } from "../../../shared/getOrCreateProtocol";
 import { getOrCreateToken } from "../../../shared/getOrCreateToken";

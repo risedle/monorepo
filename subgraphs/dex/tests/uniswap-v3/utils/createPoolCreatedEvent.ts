@@ -1,7 +1,7 @@
 import { newMockEvent } from "matchstick-as/assembly/index";
 import { ethereum, BigInt, Address } from "@graphprotocol/graph-ts";
 
-import { PoolCreated } from "../../../generated/UniswapV3Factory/Factory";
+import { PoolCreated } from "../../../generated/Factory/Factory";
 
 export function createPoolCreatedEvent(
     token0Address: Address,
