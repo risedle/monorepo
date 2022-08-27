@@ -22,7 +22,7 @@ export function createPoolCreatedEvent(
     );
     let fee = new ethereum.EventParam(
         "fee",
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromString("300"))
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromString("3000"))
     );
     let tickSpacing = new ethereum.EventParam(
         "tickSpacing",

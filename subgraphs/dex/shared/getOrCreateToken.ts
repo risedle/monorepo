@@ -32,6 +32,7 @@ export function getOrCreateToken(
         token.latestPriceETHBlockNumber = ZERO_BI;
         token.latestMarketCapETH = ZERO_BD;
         token.totalValueLockedUSD = ZERO_BD;
+        token.totalLiquidityPoolCount = 0;
         token.protocol = protocol.id;
 
         token.save();

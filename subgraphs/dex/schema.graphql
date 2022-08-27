@@ -1,3 +1,5 @@
+# This schema is adapted from uniswap/v3-subgraph and messari/subgraph
+
 # ████ Protocol ██████████████████████████████████████████████████████████████
 
 type Protocol @entity {
@@ -78,6 +80,9 @@ type Token @entity {
     # Current TVL (Total Value Locked) of the entire liquidity pools
     totalValueLockedUSD: BigDecimal!
 
+    # Total number of liquidity pools
+    totalLiquidityPoolCount: Int!
+
     # ████ Relations █████████████████████████████████████████████████████████
 
     # Protocol info
@@ -93,17 +98,20 @@ type LiquidityPool @entity {
     # Liquidity pool contract address
     id: ID!
 
-    # Name of liquidity pool (e.g. Curve.fi DAI/USDC/USDT)
+    # Name of liquidity pool (e.g. Uniswap V3 USDC/ETH 0.3%)
     name: String!
 
-    # Symbol of liquidity pool (e.g. 3CRV)
-    symbol: String!
+    # Slug of liquidity pool (e.g. uniswap-v3-usdc-eth-0.3)
+    slug: String!
+
+    # Token count
+    tokenCount: Int!
 
     # Creation timestamp
-    createdTimestamp: BigInt!
+    createdAtTimestamp: BigInt!
 
     # Creation block number
-    createdBlockNumber: BigInt!
+    createdAtBlockNumber: BigInt!
 
     # Current TVL (Total Value Locked) of this pool in USD
     totalValueLockedUSD: BigDecimal!
@@ -131,6 +139,13 @@ type LiquidityPool @entity {
     # List of token available in the pool
     tokens: [TokenLiquidityPool!]! @derivedFrom(field: "pool")
 
+    # Fees per trade incurred to the user.
+    # Should include all fees that apply to a pool.
+    # For example Curve has a trading fee AND an admin fee, which is a portion
+    # of the trading fee. Uniswap only has a trading fee and no protocol fee.
+    fees: [LiquidityPoolFee!]! @derivedFrom(field: "pool")
+
+    # TODO(pyk): add fee
     # TODO(pyk): add reward token
     # TODO(pyk): add snapshots
     # TODO(pyk): track price snapshot
@@ -138,10 +153,72 @@ type LiquidityPool @entity {
 
 # Many to many relationship
 type TokenLiquidityPool @entity {
-    # token.id.concat(pool.id)
+    # {token_id}-{pool_id}
     id: ID!
+
+    # Weight percentage
+    weightPercentage: BigDecimal!
 
     # ████ Relations █████████████████████████████████████████████████████████
     token: Token!
+    pool: LiquidityPool!
+}
+
+# Note that trading fee is the fee paid *by* the users, whereas LP fee and
+# protocol fee are fees paid *to* the corresponding parties.
+# Most of the time, trading fee = liquidity provider fee + protocol fee,
+# but not always. Thus we explicitly specify all different fee types.
+enum LiquidityPoolFeeType {
+    # Total fixed fee paid by the user per trade, as a percentage of the traded
+    # amount. e.g. 0.3% for Uniswap v2, 0.3% for Sushiswap, 0.04% for Curve v1.
+    FIXED_SWAP_FEE
+
+    # Some protocols use tiered fees instead of fixed fee (e.g. DYDX, DODO).
+    # Set `feePercentage` as 0 but handle the tiered fees in the mapping code.
+    TIERED_SWAP_FEE
+
+    # Some protocols use dynamic fees instead of fixed fee (e.g. Balancer v2).
+    # Set `feePercentage` as 0 but handle the dynamic fees in the mapping code.
+    DYNAMIC_SWAP_FEE
+
+    # Fixed fee that's paid to the LP, as a percentage of the traded amount.
+    # e.g. 0.25% for Sushiswap, 0.02% for Curve v1.
+    FIXED_LP_FEE
+
+    # Some protocols use dynamic LP fees (e.g., Bancor v2).
+    # Set `feePercentage` as 0 but handle the dynamic fees in the mapping code.
+    DYNAMIC_LP_FEE
+
+    # Fixed fee that's paid to the protocol, as a percentage of the traded
+    # amount. e.g. 0.05% for Sushiswap, 0.02% for Curve v1.
+    FIXED_PROTOCOL_FEE
+
+    # Some protocols use dynamic protocol fees (e.g., Bancor v2).
+    # Set `feePercentage` as 0 but handle the dynamic fees in the mapping code.
+    DYNAMIC_PROTOCOL_FEE
+
+    # One-time fee charged by the protocol during deposit, in percentages of
+    # the deposit token
+    DEPOSIT_FEE
+
+    # One-time fee charged by the protocol (e.g. Bancor v3) during withdrawal,
+    # in percentages of the withdrawal token
+    WITHDRAWAL_FEE
+}
+
+type LiquidityPoolFee @entity(immutable: true) {
+    # {pool_address}-lp -> LP fees
+    # {pool_address}-protocol -> Protocol fees
+    # {pool_address}-trading -> Trading fees = LP fees + Protocol fees
+    id: ID!
+
+    # Fee as a percentage of the trade (swap) amount. Does not always apply
+    percentage: BigDecimal!
+
+    # Type of fee this pool uses
+    type: LiquidityPoolFeeType!
+
+    # ████ Relations █████████████████████████████████████████████████████████
+
     pool: LiquidityPool!
 }
