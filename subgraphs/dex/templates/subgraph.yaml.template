@@ -1,0 +1,31 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Factory
+    network: {{ chain_slug }}
+    source:
+      address: "{{ factory_address }}"
+      abi: Factory
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Token
+        - LiquidityPool
+        - TokenLiquidityPool
+      abis:
+        - name: Factory
+          file: {{{ factory_abi }}}
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: ERC20SymbolBytes
+          file: ./abis/ERC20SymbolBytes.json
+        - name: ERC20NameBytes
+          file: ./abis/ERC20NameBytes.json
+      eventHandlers:
+        - event: {{ pool_created_event }}
+          handler: handlePoolCreated
+      file: {{{ pool_created_handler }}}

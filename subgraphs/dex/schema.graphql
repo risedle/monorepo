@@ -1,7 +1,7 @@
 # ████ Protocol ██████████████████████████████████████████████████████████████
 
 type Protocol @entity {
-    # This will set as "latest"
+    # This will set as "1"
     id: ID!
 
     # Name of the protocol, including version. e.g. Uniswap v3
@@ -11,7 +11,7 @@ type Protocol @entity {
     slug: String!
 
     # The blockchain this subgraph is indexing on
-    chainID: String!
+    chainId: String!
     chainSlug: String!
     chainName: String!
 
@@ -71,6 +71,9 @@ type Token @entity {
 
     # Block number of the last token price
     latestPriceETHBlockNumber: BigInt!
+
+    # Latest market cap in ETH; price * total supply
+    latestMarketCapETH: BigDecimal!
 
     # Current TVL (Total Value Locked) of the entire liquidity pools
     totalValueLockedUSD: BigDecimal!

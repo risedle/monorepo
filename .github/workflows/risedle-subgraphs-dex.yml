@@ -19,7 +19,8 @@ defaults:
     working-directory: ./subgraphs/dex
 
 jobs:
-  test:
+  uniswap-v3-arbitrum-one:
+    name: "Uniswap V3 / Arbitrum One"
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -43,7 +44,11 @@ jobs:
             ${{ runner.os }}-
       - name: Install dependencies
         run: npm install -w=@subgraphs/dex --ignore-scripts
+      - name: Generate subgraph.yaml
+        run: npm run yamlgen --protocol=uniswap-v3 --network=arbitrum-one
       - name: Generate code
         run: npm run codegen
+      - name: Generate generated/protocol.ts
+        run: npm run constgen --protocol=uniswap-v3 --network=arbitrum-one
       - name: Test
         run: npm run graph:test

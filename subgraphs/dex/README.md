@@ -1,4 +1,4 @@
-## Risedle Exchange Subgraph
+## Risedle DEX Subgraph
 
 Source code of Risedle Exchange subgraph. This subgraph index various
 activities on Uniswap V3, SushiSwap and Curve.
@@ -18,8 +18,17 @@ You should run `npm install` on monorepo root.
 Then you can run the following:
 
 ```sh
-# generate the types
+# Generate subgraph.yaml for protocol on specific chain
+npm run yamlgen --protocol=uniswap-v3 --network=arbitrum-one
+
+# Generate the types
 npm run codegen
+
+# Generate constants of the protocol on specific chain
+npm run constgen --protocol=uniswap-v3 --network=arbitrum-one
+
+# Build the subgraph
+npm run graph:build
 
 # To run the test
 npm run graph:test

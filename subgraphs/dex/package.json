@@ -2,7 +2,9 @@
     "name": "@subgraphs/dex",
     "private": true,
     "scripts": {
+        "yamlgen": "mustache protocols/${npm_config_protocol}/configs/${npm_config_network}.json templates/subgraph.yaml.template > subgraph.yaml",
         "codegen": "graph codegen",
+        "constgen": "mustache protocols/${npm_config_protocol}/configs/${npm_config_network}.json templates/protocol.ts.template > generated/protocol.ts",
         "graph:build": "graph build",
         "graph:deploy": "graph deploy --node https://api.thegraph.com/deploy/ risedle/dex",
         "create-local": "graph create --node http://localhost:8020/ risedle/dex",
@@ -15,6 +17,7 @@
         "@graphprotocol/graph-ts": "0.27.0"
     },
     "devDependencies": {
-        "matchstick-as": "0.5.0"
+        "matchstick-as": "0.5.0",
+        "mustache": "4.2.0"
     }
 }

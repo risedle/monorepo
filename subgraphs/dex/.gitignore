@@ -1,3 +1,4 @@
 node_modules/
 generated/
 tests/.bin
+subgraph.yaml
