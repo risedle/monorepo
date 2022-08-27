@@ -1,25 +1,26 @@
-name: "subgraphs-uniswap-v3"
+name: "subgraphs-dex"
 
 on:
   push:
     branches:
       - main
     paths:
-      - "subgraphs/uniswap-v3/**"
-      - ".github/workflows/risedle-subgraphs-uniswap-v3.yml"
+      - "subgraphs/dex/**"
+      - ".github/workflows/risedle-subgraphs-dex.yml"
   pull_request:
     branches:
       - main
     paths:
-      - "subgraphs/uniswap-v3/**"
-      - ".github/workflows/risedle-subgraphs-uniswap-v3.yml"
+      - "subgraphs/dex/**"
+      - ".github/workflows/risedle-subgraphs-dex.yml"
 
 defaults:
   run:
-    working-directory: ./subgraphs/uniswap-v3
+    working-directory: ./subgraphs/dex
 
 jobs:
-  test:
+  uniswap-v3-arbitrum-one:
+    name: "Uniswap V3 / Arbitrum One"
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -42,8 +43,12 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Install dependencies
-        run: npm install -w=@subgraphs/uniswap-v3 --ignore-scripts
+        run: npm install -w=@subgraphs/dex --ignore-scripts
+      - name: Generate subgraph.yaml
+        run: npm run yamlgen --protocol=uniswap-v3 --network=arbitrum-one
       - name: Generate code
         run: npm run codegen
+      - name: Generate generated/protocol.ts
+        run: npm run constgen --protocol=uniswap-v3 --network=arbitrum-one
       - name: Test
         run: npm run graph:test

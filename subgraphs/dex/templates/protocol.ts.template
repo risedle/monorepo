@@ -1,0 +1,10 @@
+// This is a template to generate `./generated/protocol.ts`
+// List of constants used in one deployment for specific protocol and specific
+// chain.
+
+export const NAME = "{{ name }}";
+export const SLUG = "{{ slug }}";
+export const CHAIN_ID = "{{ chain_id }}";
+export const CHAIN_NAME = "{{ chain_name }}";
+export const CHAIN_SLUG = "{{ chain_slug }}";
+
