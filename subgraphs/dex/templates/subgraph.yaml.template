@@ -8,6 +8,7 @@ dataSources:
     source:
       address: "{{ factory_address }}"
       abi: Factory
+      startBlock: {{start_block}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -16,6 +17,7 @@ dataSources:
         - Token
         - LiquidityPool
         - TokenLiquidityPool
+      file: {{{ pool_created_handler }}}
       abis:
         - name: Factory
           file: {{{ factory_abi }}}
@@ -28,4 +30,3 @@ dataSources:
       eventHandlers:
         - event: {{ pool_created_event }}
           handler: handlePoolCreated
-      file: {{{ pool_created_handler }}}

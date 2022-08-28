@@ -7,5 +7,6 @@
     "factory_address": "0x1F98431c8aD98523631AE4a59f267346ea31F984",
     "factory_abi": "./abis/uniswap-v3/Factory.json",
     "pool_created_event": "PoolCreated(indexed address,indexed address,indexed uint24,int24,address)",
-    "pool_created_handler": "./protocols/uniswap-v3/handlers/handlePoolCreated.ts"
+    "pool_created_handler": "./protocols/uniswap-v3/handlers/handlePoolCreated.ts",
+    "start_block": "163"
 }
