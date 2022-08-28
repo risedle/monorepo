@@ -6,11 +6,13 @@
         "codegen": "graph codegen",
         "constgen": "mustache protocols/${npm_config_protocol}/configs/${npm_config_network}.json templates/protocol.ts.template > generated/protocol.ts",
         "graph:build": "graph build",
-        "graph:deploy": "graph deploy --node https://api.thegraph.com/deploy/ risedle/dex",
         "create-local": "graph create --node http://localhost:8020/ risedle/dex",
         "remove-local": "graph remove --node http://localhost:8020/ risedle/dex",
         "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 risedle/dex",
-        "graph:test": "graph test"
+        "graph:test": "graph test",
+        "graph:create": "graph create --node http://risedle-graph-node.internal:9020/ risedle/dex-${npm_config_network}-${npm_config_protocol}",
+        "graph:remove": "graph remove --node http://risedle-graph-node.internal:9020/ risedle/dex-${npm_config_network}-${npm_config_protocol}",
+        "graph:deploy": "graph deploy --node http://risedle-graph-node.internal:9020/ --ipfs http://risedle-ipfs.internal:5001 risedle/dex-${npm_config_network}-${npm_config_protocol}"
     },
     "dependencies": {
         "@graphprotocol/graph-cli": "0.33.0",

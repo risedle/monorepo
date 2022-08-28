@@ -39,16 +39,18 @@ npm run graph:test -- flt
 
 ### Deploy
 
-Store the access token locally:
+> **IMPORTANT**: Make sure you are connected to Risedle private network
+
+Create the subgraph first using the following command:
 
 ```sh
-graph auth --product hosted-service <ACCESS_TOKEN>
+npm run graph:create --network=arbitrum-one --protocol=uniswap-v3
 ```
 
-then deploy the subgraph using the following command:
+Then deploy the subgraph:
 
 ```sh
-graph deploy --product hosted-service risedle/risedle-flt-bsc --network bsc
+npm run graph:deploy --network=arbitrum-one --protocol=uniswap-v3
 ```
 
 ### Integrate Protocol
