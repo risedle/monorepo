@@ -1,17 +1,14 @@
-
 app = "risedle-graph-node"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
 
 [env]
-  DISABLE_BLOCK_INGESTOR = true
-  ETHEREUM_POLLING_INTERVAL = 5000
+  GRAPH_LOG = "debug"
   EXPERIMENTAL_SUBGRAPH_VERSION_SWITCHING_MODE = "synced"
   GRAPH_GRAPHQL_ERROR_RESULT_SIZE = 1000000
   GRAPH_GRAPHQL_WARN_RESULT_SIZE = 1000000
-  GRAPH_NODE_ID = "risedle"
-  GRAPH_SQL_STATEMENT_TIMEOUT = 5
+  GRAPH_ETHEREUM_CLEANUP_BLOCKS = "true"
 
 [experimental]
   auto_rollback = true
