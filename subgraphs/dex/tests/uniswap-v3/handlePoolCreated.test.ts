@@ -90,7 +90,6 @@ describe("handlePoolCreated", () => {
             assert.stringEquals(token0.name, "USD Coin");
             assert.stringEquals(token0.symbol, "USDC");
             assert.i32Equals(token0.decimals, 6);
-            assert.bigIntEquals(token0.totalSupply, BigInt.fromString("1000"));
 
             // Default values
             assert.stringEquals(
@@ -123,7 +122,6 @@ describe("handlePoolCreated", () => {
             assert.stringEquals(token1.name, "Wrapped ETH");
             assert.stringEquals(token1.symbol, "WETH");
             assert.i32Equals(token1.decimals, 18);
-            assert.bigIntEquals(token1.totalSupply, BigInt.fromString("1000"));
 
             // Default values
             assert.stringEquals(
