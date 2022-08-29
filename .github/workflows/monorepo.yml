@@ -9,7 +9,7 @@ on:
       - ".github/workflows/risedle-interface.yml"
       - "contracts/flt/**"
       - ".github/workflows/risedle-flt.yml"
-      - "subgraphs/*"
+      - "subgraphs/**"
       - ".github/workflows/risedle-subgraphs-*"
   pull_request:
     branches:
@@ -19,7 +19,7 @@ on:
       - ".github/workflows/risedle-interface.yml"
       - "contracts/flt/**"
       - ".github/workflows/risedle-flt.yml"
-      - "subgraphs/*"
+      - "subgraphs/**"
       - ".github/workflows/risedle-subgraphs-*"
 
 jobs:
