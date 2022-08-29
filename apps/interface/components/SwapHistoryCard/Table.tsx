@@ -180,7 +180,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                             data-testid="SwapHistoryCardTableTime"
                             key={`${swap.timestamp} ${index}`}
                         >
-                            <Flex minH={"48px"} alignItems={"center"}>
+                            <Flex alignItems={"center"}>
                                 <Text
                                     fontFamily="mono"
                                     color={gray10}
@@ -241,7 +241,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                             data-testid="SwapHistoryCardTableTotalValue"
                             key={`${swap.timestamp} ${index}`}
                         >
-                            <Flex minH={"48px"} alignItems={"center"}>
+                            <Flex alignItems={"center"}>
                                 <Text
                                     paddingLeft="2"
                                     color={gray12}
