@@ -62,9 +62,6 @@ type Token @entity {
     # The number of decimal places this token uses
     decimals: Int!
 
-    # Current total supply of the token
-    totalSupply: BigInt!
-
     # All historical volume in USD
     cumulativeVolumeUSD: BigDecimal!
 

@@ -14,6 +14,9 @@ import {
 // Numerical constants
 import { ZERO_BD, ZERO_BI } from "../libs/math";
 
+// Chain and protocol info
+import { CHAIN_ID } from "../../generated/protocol";
+
 export function getOrCreateToken(
     tokenAddress: Address,
     protocol: Protocol
@@ -22,10 +25,9 @@ export function getOrCreateToken(
     if (token === null) {
         token = new Token(tokenAddress.toHexString());
 
-        token.name = fetchTokenName(tokenAddress);
-        token.symbol = fetchTokenSymbol(tokenAddress);
-        token.decimals = fetchTokenDecimals(tokenAddress);
-        token.totalSupply = fetchTokenTotalSupply(tokenAddress);
+        token.name = fetchTokenName(CHAIN_ID, tokenAddress);
+        token.symbol = fetchTokenSymbol(CHAIN_ID, tokenAddress);
+        token.decimals = fetchTokenDecimals(CHAIN_ID, tokenAddress);
 
         token.cumulativeVolumeUSD = ZERO_BD;
         token.latestPriceETH = ZERO_BD;
