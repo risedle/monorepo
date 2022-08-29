@@ -12,7 +12,7 @@ import {
 } from "../token";
 
 // Numerical constants
-import { ZERO_BD, ZERO_BI } from "../numeric";
+import { ZERO_BD, ZERO_BI } from "../libs/math";
 
 export function getOrCreateToken(
     tokenAddress: Address,

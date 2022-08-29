@@ -3,17 +3,20 @@ import { BigDecimal } from "@graphprotocol/graph-ts";
 import { PoolCreated } from "../../../generated/Factory/Factory";
 
 // Shared entities
-import { getOrCreateProtocol } from "../../../shared/entities/getOrCreateProtocol";
-import { getOrCreateToken } from "../../../shared/entities/getOrCreateToken";
-import { getOrCreateLiquidityPool } from "../../../shared/entities/getOrCreateLiquidityPool";
 import {
+    getOrCreateProtocol,
+    getOrCreateToken,
+    getOrCreateLiquidityPool,
+    getOrCreateTokenLiquidityPool,
+    // Fees
     LiquidityPoolFeeType,
     getOrCreateLPFee,
     getOrCreateProtocolFee,
     getOrCreateSwapFee,
-} from "../../../shared/entities/getOrCreateFees";
-import { getOrCreateTokenLiquidityPool } from "../../../shared/entities/getOrCreateTokenLiquidityPool";
-import { ZERO_BD, HALF_PERCENT } from "../../../shared/numeric";
+} from "../../../shared/entities";
+
+// Libs
+import { ZERO_BD, HALF_PERCENT } from "../../../shared/libs/math";
 
 // This contant is generated via npm run constgen
 import * as protocolInfo from "../../../generated/protocol";

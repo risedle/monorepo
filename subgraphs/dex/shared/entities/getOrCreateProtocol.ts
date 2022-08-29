@@ -1,8 +1,8 @@
 // Schema
 import { Protocol } from "../../generated/schema";
 
-// Shared
-import { ZERO_BD } from "../numeric";
+// Math lib
+import { ZERO_BD } from "../libs/math";
 
 export function getOrCreateProtocol(
     name: string,
