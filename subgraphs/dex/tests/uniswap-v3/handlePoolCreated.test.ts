@@ -163,12 +163,9 @@ describe("handlePoolCreated", () => {
             assert.i32Equals(pool.tokenCount, 2);
             assert.bigIntEquals(
                 pool.createdAtTimestamp,
-                BigInt.fromString("0")
+                event.block.timestamp
             );
-            assert.bigIntEquals(
-                pool.createdAtBlockNumber,
-                BigInt.fromString("0")
-            );
+            assert.bigIntEquals(pool.createdAtBlockNumber, event.block.number);
 
             assert.stringEquals(
                 pool.totalValueLockedUSD.toString(),

@@ -80,6 +80,8 @@ export function handlePoolCreated(event: PoolCreated): void {
         protocol
     );
     pool.tokenCount = 2;
+    pool.createdAtTimestamp = event.block.timestamp;
+    pool.createdAtBlockNumber = event.block.number;
 
     // Get or create token<->pool mapping
     let token0Pool = getOrCreateTokenLiquidityPool(token0, pool, HALF_PERCENT);
