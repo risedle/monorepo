@@ -1,10 +1,10 @@
 import { Address } from "@graphprotocol/graph-ts";
 
 // Schema
-import { LiquidityPool, Protocol } from "../generated/schema";
+import { LiquidityPool, Protocol } from "../../generated/schema";
 
 // Shared
-import { ZERO_BD, ZERO_BI } from "./numeric";
+import { ZERO_BD, ZERO_BI } from "../numeric";
 
 export function getOrCreateLiquidityPool(
     poolAddress: Address,

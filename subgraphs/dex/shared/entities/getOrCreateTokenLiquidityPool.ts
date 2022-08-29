@@ -1,7 +1,11 @@
 import { BigDecimal } from "@graphprotocol/graph-ts";
 
 // Schema
-import { LiquidityPool, Token, TokenLiquidityPool } from "../generated/schema";
+import {
+    LiquidityPool,
+    Token,
+    TokenLiquidityPool,
+} from "../../generated/schema";
 
 export function getOrCreateTokenLiquidityPool(
     token: Token,
