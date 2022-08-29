@@ -3,11 +3,10 @@ import { RisedleLogo, BscLogo } from "./logo";
 
 interface InsightImageDOMProps extends FlexProps {
     type: "daily" | "weekly";
-    containerWidth: number | undefined;
 }
 
 const InsightImageDOM = (props: InsightImageDOMProps) => {
-    const { type, containerWidth, ...restProps } = props;
+    const { type, ...restProps } = props;
     const description = {
         daily: "24H",
         weekly: "Weekly",
@@ -42,8 +41,6 @@ const InsightImageDOM = (props: InsightImageDOMProps) => {
             width="1200px"
             height="627px"
             borderRadius="3xl"
-            transform={`scale(${containerWidth ? containerWidth / 1200 : 1})`}
-            transformOrigin="top left"
             {...restProps}
         >
             {/* Left side */}
