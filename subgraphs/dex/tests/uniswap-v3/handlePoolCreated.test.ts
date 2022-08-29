@@ -22,8 +22,8 @@ import { handlePoolCreated } from "../../protocols/uniswap-v3/handlers/handlePoo
 // Utils
 import { createPoolCreatedEvent } from "./utils/createPoolCreatedEvent";
 
-// Numerics
-import { ZERO_BD } from "../../shared/numeric";
+// Libs
+import { ZERO_BD } from "../../shared/libs/math";
 
 // Mocks
 import * as USDC from "../mocks/USDC";
