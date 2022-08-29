@@ -1,7 +1,7 @@
 import { log, Address, BigInt } from "@graphprotocol/graph-ts";
 
 // Schema
-import { Token, Protocol } from "../generated/schema";
+import { Token, Protocol } from "../../generated/schema";
 
 // Fetchs
 import {
@@ -9,10 +9,10 @@ import {
     fetchTokenSymbol,
     fetchTokenDecimals,
     fetchTokenTotalSupply,
-} from "./token";
+} from "../token";
 
 // Numerical constants
-import { ZERO_BD, ZERO_BI } from "./numeric";
+import { ZERO_BD, ZERO_BI } from "../numeric";
 
 export function getOrCreateToken(
     tokenAddress: Address,

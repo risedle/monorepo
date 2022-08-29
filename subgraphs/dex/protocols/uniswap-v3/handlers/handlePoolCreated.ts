@@ -2,16 +2,17 @@ import { BigDecimal } from "@graphprotocol/graph-ts";
 
 import { PoolCreated } from "../../../generated/Factory/Factory";
 
-import { getOrCreateProtocol } from "../../../shared/getOrCreateProtocol";
-import { getOrCreateToken } from "../../../shared/getOrCreateToken";
-import { getOrCreateLiquidityPool } from "../../../shared/getOrCreateLiquidityPool";
+// Shared entities
+import { getOrCreateProtocol } from "../../../shared/entities/getOrCreateProtocol";
+import { getOrCreateToken } from "../../../shared/entities/getOrCreateToken";
+import { getOrCreateLiquidityPool } from "../../../shared/entities/getOrCreateLiquidityPool";
 import {
     LiquidityPoolFeeType,
     getOrCreateLPFee,
     getOrCreateProtocolFee,
     getOrCreateSwapFee,
-} from "../../../shared/getOrCreateFees";
-import { getOrCreateTokenLiquidityPool } from "../../../shared/getOrCreateTokenLiquidityPool";
+} from "../../../shared/entities/getOrCreateFees";
+import { getOrCreateTokenLiquidityPool } from "../../../shared/entities/getOrCreateTokenLiquidityPool";
 import { ZERO_BD, HALF_PERCENT } from "../../../shared/numeric";
 
 // This contant is generated via npm run constgen

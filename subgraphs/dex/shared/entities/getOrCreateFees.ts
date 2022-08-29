@@ -1,7 +1,7 @@
 import { BigDecimal } from "@graphprotocol/graph-ts";
 
 // Schema
-import { LiquidityPool, LiquidityPoolFee } from "../generated/schema";
+import { LiquidityPool, LiquidityPoolFee } from "../../generated/schema";
 
 export namespace LiquidityPoolFeeType {
     export const FIXED_SWAP_FEE = "FIXED_SWAP_FEE";

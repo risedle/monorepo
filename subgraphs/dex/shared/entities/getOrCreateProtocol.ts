@@ -1,8 +1,8 @@
 // Schema
-import { Protocol } from "../generated/schema";
+import { Protocol } from "../../generated/schema";
 
 // Shared
-import { ZERO_BD } from "./numeric";
+import { ZERO_BD } from "../numeric";
 
 export function getOrCreateProtocol(
     name: string,
