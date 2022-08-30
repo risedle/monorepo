@@ -52,33 +52,30 @@ export function handlePoolCreated(event: PoolCreated): void {
     let token1 = getOrCreateToken(event.params.token1, protocol);
 
     // ████ Pool █████████████████████████████████████████████████████████████
-
-    // Get or create new liquidity pool
     let poolSwapFeePercentage = convertFeeToPercent(event.params.fee);
-    // e.g. "Uniswap V3 USDC/WETH 1%"
-    let poolName = protocolInfo.NAME.concat(" ")
-        .concat(token0.symbol)
-        .concat("/")
-        .concat(token1.symbol)
-        .concat(" ")
-        .concat(poolSwapFeePercentage.toString())
-        .concat("%");
-    // e.g "uniswap-v3-usdc-weth-1"
-    let poolSlug = protocolInfo.SLUG.concat("-")
-        .concat(token0.symbol.toLowerCase())
-        .concat("-")
-        .concat(token1.symbol.toLowerCase())
-        .concat("-")
-        .concat(poolSwapFeePercentage.toString());
-    let pool = getOrCreateLiquidityPool(
-        event.params.pool,
-        poolName,
-        poolSlug,
-        protocol
-    );
-    pool.tokenCount = 2;
-    pool.createdAtTimestamp = event.block.timestamp;
-    pool.createdAtBlockNumber = event.block.number;
+
+    let pool = getOrCreateLiquidityPool(event.params.pool, protocol);
+    // If pool is new then populate the data
+    if (pool.name === "") {
+        // e.g. "Uniswap V3 USDC/WETH 1%"
+        pool.name = protocolInfo.NAME.concat(" ")
+            .concat(token0.symbol)
+            .concat("/")
+            .concat(token1.symbol)
+            .concat(" ")
+            .concat(poolSwapFeePercentage.toString())
+            .concat("%");
+        // e.g "uniswap-v3-usdc-weth-1"
+        pool.slug = protocolInfo.SLUG.concat("-")
+            .concat(token0.symbol.toLowerCase())
+            .concat("-")
+            .concat(token1.symbol.toLowerCase())
+            .concat("-")
+            .concat(poolSwapFeePercentage.toString());
+        pool.tokenCount = 2;
+        pool.createdAtTimestamp = event.block.timestamp;
+        pool.createdAtBlockNumber = event.block.number;
+    }
 
     // Get or create token<->pool mapping
     let token0Pool = getOrCreateTokenLiquidityPool(token0, pool, HALF_PERCENT);
