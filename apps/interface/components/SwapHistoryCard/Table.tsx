@@ -36,7 +36,6 @@ const TransactionData = ({
 }) => {
     const { colorMode } = useColorMode();
     const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
-    const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     const transactionType = swap.tokenIn.symbol === symbol ? "Sell" : "Buy";
     return (
         <HStack py="1">
