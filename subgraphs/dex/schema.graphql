@@ -41,24 +41,6 @@ type Token @entity {
     # The number of decimal places this token uses
     decimals: Int!
 
-    # All historical volume in USD
-    cumulativeVolumeUSD: BigDecimal!
-
-    # Latest token price in ETH
-    latestPriceETH: BigDecimal!
-
-    # Block number of the last token price
-    latestPriceETHBlockNumber: BigInt!
-
-    # Latest market cap in ETH; price * total supply
-    latestMarketCapETH: BigDecimal!
-
-    # Current TVL (Total Value Locked) of the entire liquidity pools
-    totalValueLockedUSD: BigDecimal!
-
-    # Total number of liquidity pools
-    totalLiquidityPoolCount: Int!
-
     # ████ Relations █████████████████████████████████████████████████████████
 
     # Protocol info

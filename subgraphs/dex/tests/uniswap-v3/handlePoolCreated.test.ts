@@ -69,30 +69,6 @@ describe("handlePoolCreated", () => {
             assert.stringEquals(token0.symbol, "USDC");
             assert.i32Equals(token0.decimals, 6);
 
-            // Default values
-            assert.stringEquals(
-                token0.cumulativeVolumeUSD.toString(),
-                ZERO_BD.toString()
-            );
-            assert.stringEquals(
-                token0.latestPriceETH.toString(),
-                ZERO_BD.toString()
-            );
-            assert.stringEquals(
-                token0.latestPriceETHBlockNumber.toString(),
-                ZERO_BD.toString()
-            );
-            assert.stringEquals(
-                token0.latestMarketCapETH.toString(),
-                ZERO_BD.toString()
-            );
-            assert.stringEquals(
-                token0.totalValueLockedUSD.toString(),
-                ZERO_BD.toString()
-            );
-
-            assert.i32Equals(token0.totalLiquidityPoolCount, 1);
-
             // Make sure token1 is created
             let token1 = Token.load(WETH.ADDRESS.toHexString())!;
 
@@ -100,30 +76,6 @@ describe("handlePoolCreated", () => {
             assert.stringEquals(token1.name, "Wrapped ETH");
             assert.stringEquals(token1.symbol, "WETH");
             assert.i32Equals(token1.decimals, 18);
-
-            // Default values
-            assert.stringEquals(
-                token1.cumulativeVolumeUSD.toString(),
-                ZERO_BD.toString()
-            );
-            assert.stringEquals(
-                token1.latestPriceETH.toString(),
-                ZERO_BD.toString()
-            );
-            assert.stringEquals(
-                token1.latestPriceETHBlockNumber.toString(),
-                ZERO_BD.toString()
-            );
-            assert.stringEquals(
-                token1.latestMarketCapETH.toString(),
-                ZERO_BD.toString()
-            );
-            assert.stringEquals(
-                token1.totalValueLockedUSD.toString(),
-                ZERO_BD.toString()
-            );
-
-            assert.i32Equals(token1.totalLiquidityPoolCount, 1);
         });
 
         test("Should create new LiquidityPool", () => {

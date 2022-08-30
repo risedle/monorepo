@@ -28,13 +28,6 @@ export function getOrCreateToken(
         token.name = fetchTokenName(CHAIN_ID, tokenAddress);
         token.symbol = fetchTokenSymbol(CHAIN_ID, tokenAddress);
         token.decimals = fetchTokenDecimals(CHAIN_ID, tokenAddress);
-
-        token.cumulativeVolumeUSD = ZERO_BD;
-        token.latestPriceETH = ZERO_BD;
-        token.latestPriceETHBlockNumber = ZERO_BI;
-        token.latestMarketCapETH = ZERO_BD;
-        token.totalValueLockedUSD = ZERO_BD;
-        token.totalLiquidityPoolCount = 0;
         token.protocol = protocol.id;
 
         token.save();
