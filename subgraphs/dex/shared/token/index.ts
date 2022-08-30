@@ -87,14 +87,14 @@ export function fetchTokenName(
 export function fetchTokenDecimals(
     chainId: string,
     tokenAddress: Address
-): i32 {
+): BigInt {
     // Check from map
     if (TokenMap.has(chainId)) {
         if (TokenMap.get(chainId).has(tokenAddress.toHexString())) {
-            let decimals = TokenMap.get(chainId)
+            const decimals = TokenMap.get(chainId)
                 .get(tokenAddress.toHexString())
                 .get("decimals");
-            return parseInt(decimals) as i32;
+            return BigInt.fromString(decimals);
         }
     }
 
@@ -102,10 +102,10 @@ export function fetchTokenDecimals(
     // try types uint8 for decimals
     let decimalResult = contract.try_decimals();
     if (!decimalResult.reverted) {
-        return decimalResult.value;
+        return BigInt.fromString(decimalResult.value.toString());
     }
 
-    return 18;
+    return BigInt.fromString("0");
 }
 
 export function fetchTokenTotalSupply(tokenAddress: Address): BigInt {

@@ -39,7 +39,7 @@ type Token @entity(immutable: true) {
     symbol: String!
 
     # The number of decimal places this token uses
-    decimals: Int!
+    decimals: BigInt!
 
     # ████ Relations █████████████████████████████████████████████████████████
 
@@ -58,6 +58,9 @@ type Account @entity(immutable: true) {
 
     # ████ Relations █████████████████████████████████████████████████████████
 
+    # Protocol
+    protocol: Protocol!
+
     # List of transactions
     transactions: [Transaction!]! @derivedFrom(field: "from")
 
@@ -73,8 +76,24 @@ type Contract @entity(immutable: true) {
 
     # ████ Relations █████████████████████████████████████████████████████████
 
+    # Protocol
+    protocol: Protocol!
+
     # List of transactions
     transactions: [Transaction!]! @derivedFrom(field: "to")
+}
+
+# ████ Native token price (e.g. WETH, WMATIC)  ███████████████████████████████
+
+type NativeTokenPrice @entity(immutable: true) {
+    # Block number
+    id: ID!
+
+    # Timestamp
+    timestamp: BigInt!
+
+    # USD Price
+    usd: BigDecimal!
 }
 
 # ████ Transaction ███████████████████████████████████████████████████████████
@@ -90,8 +109,8 @@ type Transaction @entity(immutable: true) {
 
     # Transaction gas usage and fee
     gasLimit: BigInt!
-    gasUsed: BigInt!
     gasPrice: BigInt!
+    gasUsed: BigInt!
     transactionFeeUSD: BigDecimal!
 
     value: BigInt!
@@ -106,7 +125,7 @@ type Transaction @entity(immutable: true) {
     to: Contract!
 
     # Created liquidity pools in this transaction
-    pools: [LiquidityPool!]! @derivedFrom("transaction")
+    pools: [LiquidityPool!]! @derivedFrom(field: "transaction")
 
     # TODO(pyk): add deposits
     # TODO(pyk): add withdraws
@@ -134,6 +153,15 @@ type LiquidityPool @entity(immutable: true) {
     # Creation block number
     createdAtBlockNumber: BigInt!
 
+    # Percentage fee received by LP (e.g. 0.3)
+    lpFee: BigDecimal!
+
+    # Percentage fee received by protocol (e.g. 0)
+    protocolFee: BigDecimal!
+
+    # Swap Fee = lp + protocol (e.g. 0.3)
+    swapFee: BigDecimal!
+
     # ████ Relations █████████████████████████████████████████████████████████
 
     # Protocol info
@@ -147,12 +175,6 @@ type LiquidityPool @entity(immutable: true) {
 
     # List of token available in the pool
     tokens: [TokenLiquidityPool!]! @derivedFrom(field: "pool")
-
-    # Fees per trade incurred to the user.
-    # Should include all fees that apply to a pool.
-    # For example Curve has a trading fee AND an admin fee, which is a portion
-    # of the trading fee. Uniswap only has a trading fee and no protocol fee.
-    fees: [LiquidityPoolFee!]! @derivedFrom(field: "pool")
 }
 
 # Many to many relationship
@@ -160,69 +182,10 @@ type TokenLiquidityPool @entity(immutable: true) {
     # {token_id}-{pool_id}
     id: ID!
 
-    # Weight percentage
+    # Weight percentage (e.g. 50 for 50%)
     weightPercentage: BigDecimal!
 
     # ████ Relations █████████████████████████████████████████████████████████
     token: Token!
-    pool: LiquidityPool!
-}
-
-# Note that trading fee is the fee paid *by* the users, whereas LP fee and
-# protocol fee are fees paid *to* the corresponding parties.
-# Most of the time, trading fee = liquidity provider fee + protocol fee,
-# but not always. Thus we explicitly specify all different fee types.
-enum LiquidityPoolFeeType {
-    # Total fixed fee paid by the user per trade, as a percentage of the traded
-    # amount. e.g. 0.3% for Uniswap v2, 0.3% for Sushiswap, 0.04% for Curve v1.
-    FIXED_SWAP_FEE
-
-    # Some protocols use tiered fees instead of fixed fee (e.g. DYDX, DODO).
-    # Set `feePercentage` as 0 but handle the tiered fees in the mapping code.
-    TIERED_SWAP_FEE
-
-    # Some protocols use dynamic fees instead of fixed fee (e.g. Balancer v2).
-    # Set `feePercentage` as 0 but handle the dynamic fees in the mapping code.
-    DYNAMIC_SWAP_FEE
-
-    # Fixed fee that's paid to the LP, as a percentage of the traded amount.
-    # e.g. 0.25% for Sushiswap, 0.02% for Curve v1.
-    FIXED_LP_FEE
-
-    # Some protocols use dynamic LP fees (e.g., Bancor v2).
-    # Set `feePercentage` as 0 but handle the dynamic fees in the mapping code.
-    DYNAMIC_LP_FEE
-
-    # Fixed fee that's paid to the protocol, as a percentage of the traded
-    # amount. e.g. 0.05% for Sushiswap, 0.02% for Curve v1.
-    FIXED_PROTOCOL_FEE
-
-    # Some protocols use dynamic protocol fees (e.g., Bancor v2).
-    # Set `feePercentage` as 0 but handle the dynamic fees in the mapping code.
-    DYNAMIC_PROTOCOL_FEE
-
-    # One-time fee charged by the protocol during deposit, in percentages of
-    # the deposit token
-    DEPOSIT_FEE
-
-    # One-time fee charged by the protocol (e.g. Bancor v3) during withdrawal,
-    # in percentages of the withdrawal token
-    WITHDRAWAL_FEE
-}
-
-type LiquidityPoolFee @entity(immutable: true) {
-    # {pool_address}-lp -> LP fees
-    # {pool_address}-protocol -> Protocol fees
-    # {pool_address}-trading -> Trading fees = LP fees + Protocol fees
-    id: ID!
-
-    # Fee as a percentage of the trade (swap) amount. Does not always apply
-    percentage: BigDecimal!
-
-    # Type of fee this pool uses
-    type: LiquidityPoolFeeType!
-
-    # ████ Relations █████████████████████████████████████████████████████████
-
     pool: LiquidityPool!
 }

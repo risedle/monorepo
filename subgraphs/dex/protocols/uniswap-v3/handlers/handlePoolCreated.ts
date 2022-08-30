@@ -6,17 +6,11 @@ import { PoolCreated } from "../../../generated/Factory/Factory";
 import {
     getOrCreateProtocol,
     getOrCreateToken,
-    getOrCreateLiquidityPool,
-    getOrCreateTokenLiquidityPool,
-    // Fees
-    LiquidityPoolFeeType,
-    getOrCreateLPFee,
-    getOrCreateProtocolFee,
-    getOrCreateSwapFee,
+    createLiquidityPool,
 } from "../../../shared/entities";
 
-// Libs
-import { ZERO_BD, HALF_PERCENT } from "../../../shared/libs/math";
+// Math libs
+import { ZERO_BD, FIFTY_PERCENT } from "../../../shared/libs/math";
 
 // This contant is generated via npm run constgen
 import * as protocolInfo from "../../../generated/protocol";
@@ -37,7 +31,7 @@ export function handlePoolCreated(event: PoolCreated): void {
     // ████ Protocol █████████████████████████████████████████████████████████
 
     // Get or create Protocol
-    let protocol = getOrCreateProtocol(
+    const protocol = getOrCreateProtocol(
         protocolInfo.NAME,
         protocolInfo.SLUG,
         protocolInfo.CHAIN_ID,
@@ -48,69 +42,61 @@ export function handlePoolCreated(event: PoolCreated): void {
     // ████ Tokens ███████████████████████████████████████████████████████████
 
     // Get or create new tokens
-    let token0 = getOrCreateToken(event.params.token0, protocol);
-    let token1 = getOrCreateToken(event.params.token1, protocol);
+    const token0 = getOrCreateToken(event.params.token0);
+    const token1 = getOrCreateToken(event.params.token1);
 
     // ████ Pool █████████████████████████████████████████████████████████████
-    let poolSwapFeePercentage = convertFeeToPercent(event.params.fee);
 
-    let pool = getOrCreateLiquidityPool(event.params.pool, protocol);
-    // If pool is new then populate the data
-    if (pool.name === "") {
-        // e.g. "Uniswap V3 USDC/WETH 1%"
-        pool.name = protocolInfo.NAME.concat(" ")
-            .concat(token0.symbol)
-            .concat("/")
-            .concat(token1.symbol)
-            .concat(" ")
-            .concat(poolSwapFeePercentage.toString())
-            .concat("%");
-        // e.g "uniswap-v3-usdc-weth-1"
-        pool.slug = protocolInfo.SLUG.concat("-")
-            .concat(token0.symbol.toLowerCase())
-            .concat("-")
-            .concat(token1.symbol.toLowerCase())
-            .concat("-")
-            .concat(poolSwapFeePercentage.toString());
-        pool.tokenCount = 2;
-        pool.createdAtTimestamp = event.block.timestamp;
-        pool.createdAtBlockNumber = event.block.number;
-    }
-
-    // Get or create token<->pool mapping
-    let token0Pool = getOrCreateTokenLiquidityPool(token0, pool, HALF_PERCENT);
-    let token1Pool = getOrCreateTokenLiquidityPool(token1, pool, HALF_PERCENT);
+    const poolAddress = event.params.pool;
 
     // Fees;
     // LPFee -> fee collected by liquidity provider
     // ProtocolFee -> fee collected by protocol
     // SwapFee -> LPFee + ProtocolFee
-    let poolLPFee = getOrCreateLPFee(
-        pool,
-        poolSwapFeePercentage,
-        LiquidityPoolFeeType.FIXED_LP_FEE
-    );
-    let poolProtocolFee = getOrCreateProtocolFee(
-        pool,
-        ZERO_BD,
-        LiquidityPoolFeeType.FIXED_PROTOCOL_FEE
-    );
-    let poolSwapFee = getOrCreateSwapFee(
-        pool,
-        poolSwapFeePercentage,
-        LiquidityPoolFeeType.FIXED_SWAP_FEE
+    const swapFee = convertFeeToPercent(event.params.fee);
+    const lpFee = swapFee;
+    const protocolFee = ZERO_BD;
+    // e.g. "Uniswap V3 USDC/WETH 1%"
+    const poolName = protocolInfo.NAME.concat(" ")
+        .concat(token0.symbol)
+        .concat("/")
+        .concat(token1.symbol)
+        .concat(" ")
+        .concat(swapFee.toString())
+        .concat("%");
+    // e.g "uniswap-v3-usdc-weth-1"
+    const poolSlug = protocolInfo.SLUG.concat("-")
+        .concat(token0.symbol.toLowerCase())
+        .concat("-")
+        .concat(token1.symbol.toLowerCase())
+        .concat("-")
+        .concat(swapFee.toString());
+
+    const tokenCount = 2;
+    const tokens = [token0, token1];
+    const tokenWeights = [FIFTY_PERCENT, FIFTY_PERCENT];
+    const receipt = event.receipt;
+
+    // Create pool
+    // Skip if receipt is null
+    if (receipt == null) return;
+    createLiquidityPool(
+        poolAddress,
+        poolName,
+        poolSlug,
+        tokenCount,
+        tokens,
+        tokenWeights,
+        lpFee,
+        protocolFee,
+        swapFee,
+        event.block,
+        event.transaction,
+        receipt
     );
 
-    // ████ Persist data █████████████████████████████████████████████████████
-
-    // Saves
+    // Persist data
     protocol.save();
     token0.save();
     token1.save();
-    pool.save();
-    token0Pool.save();
-    token1Pool.save();
-    poolLPFee.save();
-    poolProtocolFee.save();
-    poolSwapFee.save();
 }

@@ -17,10 +17,7 @@ import { ZERO_BD, ZERO_BI } from "../libs/math";
 // Chain and protocol info
 import { CHAIN_ID } from "../../generated/protocol";
 
-export function getOrCreateToken(
-    tokenAddress: Address,
-    protocol: Protocol
-): Token {
+export function getOrCreateToken(tokenAddress: Address): Token {
     let token = Token.load(tokenAddress.toHexString());
     if (token === null) {
         token = new Token(tokenAddress.toHexString());
@@ -28,6 +25,7 @@ export function getOrCreateToken(
         token.name = fetchTokenName(CHAIN_ID, tokenAddress);
         token.symbol = fetchTokenSymbol(CHAIN_ID, tokenAddress);
         token.decimals = fetchTokenDecimals(CHAIN_ID, tokenAddress);
+        const protocol = Protocol.load("1")!;
         token.protocol = protocol.id;
 
         token.save();

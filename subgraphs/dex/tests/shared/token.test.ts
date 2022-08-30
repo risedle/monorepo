@@ -5,7 +5,7 @@ import {
     beforeEach,
 } from "matchstick-as/assembly/index";
 
-import { Address } from "@graphprotocol/graph-ts";
+import { Address, BigInt } from "@graphprotocol/graph-ts";
 
 import {
     fetchTokenSymbol,
@@ -50,7 +50,7 @@ describe("fetchTokenDecimals", () => {
                     "0x82af49447d8a07e3bd95bd0d56f35241523fbab1"
                 )
             );
-            assert.i32Equals(decimals, 18);
+            assert.bigIntEquals(decimals, BigInt.fromString("18"));
         });
     });
 });
