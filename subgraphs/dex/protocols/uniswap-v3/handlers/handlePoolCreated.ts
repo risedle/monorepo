@@ -44,7 +44,6 @@ export function handlePoolCreated(event: PoolCreated): void {
         protocolInfo.CHAIN_SLUG,
         protocolInfo.CHAIN_NAME
     );
-    protocol.totalLiquidityPoolCount += 1;
 
     // ████ Tokens ███████████████████████████████████████████████████████████
 
