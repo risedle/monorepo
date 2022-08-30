@@ -50,8 +50,6 @@ export function handlePoolCreated(event: PoolCreated): void {
     // Get or create new tokens
     let token0 = getOrCreateToken(event.params.token0, protocol);
     let token1 = getOrCreateToken(event.params.token1, protocol);
-    token0.totalLiquidityPoolCount += 1;
-    token1.totalLiquidityPoolCount += 1;
 
     // ████ Pool █████████████████████████████████████████████████████████████
 
