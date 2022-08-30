@@ -82,9 +82,8 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
         <Flex
             margin="0 !important"
             data-testid="SwapHistoryCardTable"
-            justifyContent="space-around"
             minH="180px"
-            overflowX="scroll"
+            overflowX={{ base: "scroll", tablet: "hidden" }}
             {...boxProps}
         >
             {/* Transaction */}
