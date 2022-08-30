@@ -50,6 +50,69 @@ type Token @entity(immutable: true) {
     pools: [TokenLiquidityPool!]! @derivedFrom(field: "token")
 }
 
+# ████ Account ███████████████████████████████████████████████████████████████
+
+type Account @entity(immutable: true) {
+    # Wallet address
+    id: ID!
+
+    # ████ Relations █████████████████████████████████████████████████████████
+
+    # List of transactions
+    transactions: [Transaction!]! @derivedFrom(field: "from")
+
+    # List of created liquidity pools
+    createdPools: [LiquidityPool!]! @derivedFrom(field: "createdBy")
+}
+
+# ████ Contract ██████████████████████████████████████████████████████████████
+
+type Contract @entity(immutable: true) {
+    # Contract address
+    id: ID!
+
+    # ████ Relations █████████████████████████████████████████████████████████
+
+    # List of transactions
+    transactions: [Transaction!]! @derivedFrom(field: "to")
+}
+
+# ████ Transaction ███████████████████████████████████████████████████████████
+
+type Transaction @entity(immutable: true) {
+    # Transaction hash
+    id: ID!
+
+    # Transaction metadata
+    timestamp: BigInt!
+    blockNumber: BigInt!
+    status: BigInt!
+
+    # Transaction gas usage and fee
+    gasLimit: BigInt!
+    gasUsed: BigInt!
+    gasPrice: BigInt!
+    transactionFeeUSD: BigDecimal!
+
+    value: BigInt!
+    valueUSD: BigDecimal!
+
+    # ████ Relations █████████████████████████████████████████████████████████
+
+    # EOA that initiate the transaction
+    from: Account!
+
+    # Contract that account interacted with
+    to: Contract!
+
+    # Created liquidity pools in this transaction
+    pools: [LiquidityPool!]! @derivedFrom("transaction")
+
+    # TODO(pyk): add deposits
+    # TODO(pyk): add withdraws
+    # TODO(pyk): add withdraws
+}
+
 # ████ Liquidity Pool ████████████████████████████████████████████████████████
 
 type LiquidityPool @entity(immutable: true) {
@@ -75,6 +138,12 @@ type LiquidityPool @entity(immutable: true) {
 
     # Protocol info
     protocol: Protocol!
+
+    # Transaction that create this liquidity pool
+    transaction: Transaction!
+
+    # Creator of the liquidity pool
+    createdBy: Account!
 
     # List of token available in the pool
     tokens: [TokenLiquidityPool!]! @derivedFrom(field: "pool")
