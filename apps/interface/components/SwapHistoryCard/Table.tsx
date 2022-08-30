@@ -39,31 +39,32 @@ const TransactionData = ({
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     const transactionType = swap.tokenIn.symbol === symbol ? "Sell" : "Buy";
     return (
-        <HStack alignItems={"center"} height="48px">
+        <HStack py="1">
             <NextImage
                 src={`/icons/${transactionType.toLocaleUpperCase()}-${colorMode}.svg`}
                 width="24px"
                 height="24px"
                 alt={`${transactionType} logo`}
             />
-            <Text
-                fontFamily="mono"
-                color={gray12}
-                fontSize="sm"
-                lineHeight="4"
-                margin="8px !important"
-                data-testid="BackingCardCollateral"
-            >
-                {swap.tokenIn.symbol === symbol
-                    ? `${transactionType} ${swap.tokenIn.symbol} `
-                    : `${transactionType} ${swap.tokenOut.symbol}`}
-            </Text>
-            <ArrowTopRight
-                w="14px"
-                h="14px"
-                margin="0 !important"
-                color={gray10}
-            />
+            <HStack>
+                <Text
+                    fontFamily="mono"
+                    color={gray12}
+                    fontSize="sm"
+                    lineHeight="4"
+                    data-testid="BackingCardCollateral"
+                >
+                    {swap.tokenIn.symbol === symbol
+                        ? `${transactionType} ${swap.tokenIn.symbol} `
+                        : `${transactionType} ${swap.tokenOut.symbol}`}
+                </Text>
+                <ArrowTopRight
+                    w="14px"
+                    h="14px"
+                    margin="0 !important"
+                    color={gray12}
+                />
+            </HStack>
         </HStack>
     );
 };
@@ -83,7 +84,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
             margin="0 !important"
             data-testid="SwapHistoryCardTable"
             minH="180px"
-            overflowX={"scroll"}
+            overflowX="scroll"
             {...boxProps}
         >
             {/* Transaction */}
@@ -91,7 +92,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                 minW="180px"
                 flex="1"
                 alignItems="flex-start"
-                gap={4}
+                gap="3"
                 data-testid="TableTransaction"
             >
                 <Text
@@ -115,7 +116,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                         />
                     }
                     margin="0 !important"
-                    gap={4}
+                    gap="3"
                     width="100%"
                     alignItems="flex-start"
                 >
@@ -145,11 +146,11 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
             </VStack>
 
             {/* Account */}
-            <VStack width={"120px"} gap={4} data-testid="TableAccount">
+            <VStack width="120px" gap="3" data-testid="TableAccount">
                 <Text
                     padding="2"
                     background={gray4}
-                    width={"120px"}
+                    width="120px"
                     fontSize="xs"
                     lineHeight="4"
                     color={gray10}
@@ -165,7 +166,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                         />
                     }
                     margin="0 !important"
-                    gap={4}
+                    gap="3"
                     width="100%"
                     alignItems="flex-start"
                 >
@@ -180,7 +181,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                             data-testid="SwapHistoryCardTableTime"
                             key={`${swap.timestamp} ${index}`}
                         >
-                            <Flex alignItems={"center"}>
+                            <Flex alignItems="center" py="2">
                                 <Text
                                     fontFamily="mono"
                                     color={gray10}
@@ -201,9 +202,9 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
             {/* Total value */}
             <VStack
                 alignItems="flex-end"
-                gap={4}
+                gap="3"
                 data-testid="TableTotalValue"
-                width={"120px"}
+                width="120px"
             >
                 <Text
                     padding="2"
@@ -227,8 +228,8 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                         />
                     }
                     margin="0 !important"
-                    gap={4}
-                    width={"120px"}
+                    gap="3"
+                    width="120px"
                     alignItems="flex-end"
                 >
                     {swaps.map((swap, index) => (
@@ -237,13 +238,12 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                             startColor={gray3}
                             endColor={gray4}
                             borderRadius="lg"
-                            width={"120px"}
+                            width="120px"
                             data-testid="SwapHistoryCardTableTotalValue"
                             key={`${swap.timestamp} ${index}`}
                         >
-                            <Flex alignItems={"center"}>
+                            <Flex alignItems="center" py="2">
                                 <Text
-                                    paddingLeft="2"
                                     color={gray12}
                                     fontSize="sm"
                                     lineHeight="4"
