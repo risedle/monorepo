@@ -19,13 +19,6 @@ export function getOrCreateProtocol(
         protocol.chainId = chainId;
         protocol.chainSlug = chainSlug;
         protocol.chainName = chainName;
-        protocol.totalValueLockedUSD = ZERO_BD;
-        protocol.cumulativeVolumeUSD = ZERO_BD;
-        protocol.cumulativeLPRevenueUSD = ZERO_BD;
-        protocol.cumulativeProtocolRevenueUSD = ZERO_BD;
-        protocol.cumulativeTotalRevenueUSD = ZERO_BD;
-        protocol.cumulativeUniqueUsers = 0;
-        protocol.totalLiquidityPoolCount = 0;
         protocol.save();
     }
     return protocol;

@@ -53,28 +53,6 @@ describe("handlePoolCreated", () => {
             assert.stringEquals(protocol.chainId, protocolInfo.CHAIN_ID);
             assert.stringEquals(protocol.chainSlug, protocolInfo.CHAIN_SLUG);
             assert.stringEquals(protocol.chainName, protocolInfo.CHAIN_NAME);
-            assert.stringEquals(
-                protocol.totalValueLockedUSD.toString(),
-                ZERO_BD.toString()
-            );
-            assert.stringEquals(
-                protocol.cumulativeVolumeUSD.toString(),
-                ZERO_BD.toString()
-            );
-            assert.stringEquals(
-                protocol.cumulativeLPRevenueUSD.toString(),
-                ZERO_BD.toString()
-            );
-            assert.stringEquals(
-                protocol.cumulativeProtocolRevenueUSD.toString(),
-                ZERO_BD.toString()
-            );
-            assert.stringEquals(
-                protocol.cumulativeTotalRevenueUSD.toString(),
-                ZERO_BD.toString()
-            );
-            assert.i32Equals(protocol.cumulativeUniqueUsers, 0);
-            assert.i32Equals(protocol.totalLiquidityPoolCount, 1);
         });
 
         test("Should create new Token", () => {
