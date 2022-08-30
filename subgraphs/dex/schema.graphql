@@ -28,7 +28,7 @@ type Protocol @entity(immutable: true) {
 
 # ████ Token █████████████████████████████████████████████████████████████████
 
-type Token @entity {
+type Token @entity(immutable: true) {
     # Token address
     id: ID!
 
