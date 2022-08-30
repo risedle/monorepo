@@ -82,15 +82,15 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
         <Flex
             margin="0 !important"
             data-testid="SwapHistoryCardTable"
+            justifyContent="space-around"
             minH="180px"
             overflowX="scroll"
             {...boxProps}
         >
             {/* Transaction */}
             <VStack
-                minW="180px"
+                minWidth="200px"
                 flex="1"
-                alignItems="flex-start"
                 gap="3"
                 data-testid="TableTransaction"
             >
@@ -125,7 +125,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                             startColor={gray3}
                             endColor={gray4}
                             borderRadius="lg"
-                            marginX="2"
+                            px="2"
                             minW="60px"
                             key={`${swap.timestamp} ${index}`}
                         >
@@ -145,7 +145,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
             </VStack>
 
             {/* Account */}
-            <VStack width="120px" gap="3" data-testid="TableAccount">
+            <VStack minWidth="120px" gap="3" data-testid="TableAccount">
                 <Text
                     padding="2"
                     background={gray4}
@@ -175,7 +175,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                             startColor={gray3}
                             endColor={gray4}
                             borderRadius="lg"
-                            marginX="2"
+                            px="2"
                             minW="60px"
                             data-testid="SwapHistoryCardTableTime"
                             key={`${swap.timestamp} ${index}`}
@@ -200,6 +200,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
 
             {/* Total value */}
             <VStack
+                minWidth="120px"
                 alignItems="flex-end"
                 gap="3"
                 data-testid="TableTotalValue"
@@ -207,7 +208,6 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
             >
                 <Text
                     padding="2"
-                    paddingLeft="1px"
                     background={gray4}
                     width="100%"
                     fontSize="xs"
@@ -237,6 +237,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                             startColor={gray3}
                             endColor={gray4}
                             borderRadius="lg"
+                            px="2"
                             width="120px"
                             data-testid="SwapHistoryCardTableTotalValue"
                             key={`${swap.timestamp} ${index}`}
