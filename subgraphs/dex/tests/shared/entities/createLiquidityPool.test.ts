@@ -119,8 +119,6 @@ describe("Given Uniswap V3 Pool", () => {
         )!;
         assert.bigIntEquals(transaction.timestamp, event.block.timestamp);
         assert.bigIntEquals(transaction.blockNumber, event.block.number);
-        assert.bigIntEquals(transaction.gasLimit, event.transaction.gasLimit);
-        assert.bigIntEquals(transaction.gasPrice, event.transaction.gasPrice);
         assert.bigIntEquals(transaction.value, event.transaction.value);
         assert.stringEquals(transaction.valueUSD.toString(), "0");
         assert.stringEquals(

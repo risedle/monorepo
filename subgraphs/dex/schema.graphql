@@ -110,15 +110,8 @@ type Transaction @entity(immutable: true) {
     # Transaction metadata
     timestamp: BigInt!
     blockNumber: BigInt!
-    gasLimit: BigInt!
-    gasPrice: BigInt!
     value: BigInt!
     valueUSD: BigDecimal!
-
-    # (Optional) Transaction receipt is nullable
-    status: BigInt
-    gasUsed: BigInt
-    transactionFeeUSD: BigDecimal
 
     # ████ Relations █████████████████████████████████████████████████████████
 

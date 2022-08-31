@@ -1,5 +1,5 @@
 // Source: uniswap/v3-subgraph and uniswap-v2/subgraph
-import { BigDecimal, BigInt, ethereum } from "@graphprotocol/graph-ts";
+import { BigDecimal, BigInt, ethereum, log } from "@graphprotocol/graph-ts";
 
 // NOTE: data source name must be Factory for all subgraph.yaml
 import { UniswapV3Pool } from "../../generated/Factory/UniswapV3Pool";
@@ -36,7 +36,13 @@ export function sqrtPriceX96ToTokenPrices(
     token0Decimals: BigInt,
     token1Decimals: BigInt
 ): BigDecimal[] {
-    const Q192 = Math.pow(2, 192);
+    const Q192 = BigInt.fromString("2").pow(192).toBigDecimal();
+    log.info("Args: {} {} {} {}", [
+        sqrtPriceX96.toString(),
+        token0Decimals.toString(),
+        token1Decimals.toString(),
+        Q192.toString(),
+    ]);
     const num = sqrtPriceX96.times(sqrtPriceX96).toBigDecimal();
     let denom = BigDecimal.fromString(Q192.toString());
     let price1 = num
@@ -73,6 +79,10 @@ export function getNativeTokenPriceUSD(
             token0.decimals,
             token1.decimals
         );
+        log.info("Prices: {} {}", [
+            prices[0].toString(),
+            prices[1].toString(),
+        ]);
         if (token0Address.toHexString() == WETH_ADDRESS.toHexString()) {
             priceUSD = prices[1];
         }

@@ -29,24 +29,11 @@ export function getOrCreateTransaction(
         tx = new Transaction(event.transaction.hash.toHexString());
         tx.timestamp = event.block.timestamp;
         tx.blockNumber = event.block.number;
-        tx.gasLimit = event.transaction.gasLimit;
-        tx.gasPrice = event.transaction.gasPrice;
         tx.value = event.transaction.value;
         tx.valueUSD = convertEthToDecimal(event.transaction.value).times(
             price.usd
         );
         tx.from = account.id;
-
-        const receipt = event.receipt;
-        if (receipt !== null) {
-            tx.status = receipt.status;
-            tx.gasUsed = receipt.gasUsed;
-            tx.transactionFeeUSD = convertEthToDecimal(
-                event.transaction.gasPrice
-            )
-                .times(convertEthToDecimal(receipt.gasUsed))
-                .times(price.usd);
-        }
 
         // Contract
         const contractAddress = event.transaction.to;

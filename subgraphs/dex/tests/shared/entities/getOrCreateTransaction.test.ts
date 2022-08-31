@@ -70,7 +70,7 @@ describe("Given Arbitrum One blockNumber > 4291", () => {
         const transaction = getOrCreateTransaction(protocol, account, event);
         assert.stringEquals(
             transaction.valueUSD.toString(),
-            "1583.737604216110418098434753621726"
+            "1583.737604216110358513270002832858"
         );
         assert.bigIntEquals(transaction.blockNumber, blockNumber);
     });
