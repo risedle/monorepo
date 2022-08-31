@@ -1,7 +1,7 @@
 import { log, Address, BigInt } from "@graphprotocol/graph-ts";
 
 // Schema
-import { Token, Protocol } from "../../generated/schema";
+import { Protocol, Token } from "../../generated/schema";
 
 // Fetchs
 import {
@@ -17,17 +17,18 @@ import { ZERO_BD, ZERO_BI } from "../libs/math";
 // Chain and protocol info
 import { CHAIN_ID } from "../../generated/protocol";
 
-export function getOrCreateToken(tokenAddress: Address): Token {
+// Get or create new Token
+export function getOrCreateToken(
+    protocol: Protocol,
+    tokenAddress: Address
+): Token {
     let token = Token.load(tokenAddress.toHexString());
-    if (token === null) {
+    if (token == null) {
         token = new Token(tokenAddress.toHexString());
-
         token.name = fetchTokenName(CHAIN_ID, tokenAddress);
         token.symbol = fetchTokenSymbol(CHAIN_ID, tokenAddress);
         token.decimals = fetchTokenDecimals(CHAIN_ID, tokenAddress);
-        const protocol = Protocol.load("1")!;
         token.protocol = protocol.id;
-
         token.save();
     }
     return token;

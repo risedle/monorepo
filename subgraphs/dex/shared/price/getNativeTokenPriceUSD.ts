@@ -48,7 +48,10 @@ export function sqrtPriceX96ToTokenPrices(
 }
 
 // Get native token price in USD
-export function getNativeTokenPriceUSD(block: ethereum.Block): BigDecimal {
+export function getNativeTokenPriceUSD(
+    protocol: Protocol,
+    block: ethereum.Block
+): BigDecimal {
     // Get pre-computed price first
     let price = NativeTokenPrice.load(block.number.toString());
     if (price != null) return price.usd;
@@ -67,9 +70,9 @@ export function getNativeTokenPriceUSD(block: ethereum.Block): BigDecimal {
         const contract = UniswapV3Pool.bind(UNI_V3_USDC_WETH_POOL);
         const sqrtPrice = contract.slot0().getSqrtPriceX96();
         const token0Address = contract.token0();
-        const token0 = getOrCreateToken(token0Address);
+        const token0 = getOrCreateToken(protocol, token0Address);
         const token1Address = contract.token1();
-        const token1 = getOrCreateToken(token1Address);
+        const token1 = getOrCreateToken(protocol, token1Address);
 
         const prices = sqrtPriceX96ToTokenPrices(
             sqrtPrice,
@@ -93,9 +96,9 @@ export function getNativeTokenPriceUSD(block: ethereum.Block): BigDecimal {
         // Get price from Uniswap V2
         const contract = UniswapV2Pool.bind(UNI_V2_USDC_WETH_POOL);
         const token0Address = contract.token0();
-        const token0 = getOrCreateToken(token0Address);
+        const token0 = getOrCreateToken(protocol, token0Address);
         const token1Address = contract.token1();
-        const token1 = getOrCreateToken(token1Address);
+        const token1 = getOrCreateToken(protocol, token1Address);
         const reserve0 = tokenAmountToDecimal(
             contract.getReserves().get_reserve0(),
             token0.decimals
@@ -117,6 +120,7 @@ export function getNativeTokenPriceUSD(block: ethereum.Block): BigDecimal {
     price = new NativeTokenPrice(block.number.toString());
     price.usd = priceUSD;
     price.timestamp = block.timestamp;
+    price.protocol = protocol.id;
     price.save();
 
     return priceUSD;

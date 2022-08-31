@@ -1,4 +1,9 @@
-import { Address, BigDecimal, ethereum } from "@graphprotocol/graph-ts";
+import {
+    Address,
+    BigDecimal,
+    BigInt,
+    ethereum,
+} from "@graphprotocol/graph-ts";
 
 // Schema
 import { Protocol, Token, LiquidityPool } from "../../generated/schema";
@@ -19,72 +24,55 @@ import {
 } from "./index";
 
 // Libs
-import { ZERO_BD, FIFTY_PERCENT } from "../libs/math";
+import { ZERO_BD, ZERO_BI, ONE_BI, FIFTY_PERCENT } from "../libs/math";
 
 // Create Liquidity Pool
 export function createLiquidityPool(
+    protocol: Protocol,
+    event: ethereum.Event,
     poolAddress: Address,
     poolName: string,
     poolSlug: string,
-    tokenCount: i32,
+    tokenCount: BigInt,
     tokens: Array<Token>,
     tokenWeights: Array<BigDecimal>,
     lpFee: BigDecimal,
     protocolFee: BigDecimal,
-    swapFee: BigDecimal,
-    block: ethereum.Block,
-    transaction: ethereum.Transaction,
-    receipt: ethereum.TransactionReceipt
-): void {
-    // Load Protocol
-    const protocol = Protocol.load("1");
-    if (protocol == null) return;
+    swapFee: BigDecimal
+): LiquidityPool {
+    // Get or create new Account
+    const account = getOrCreateAccount(protocol, event.transaction.from);
 
-    // Get or create Account
-    const account = getOrCreateAccount(transaction.from, protocol);
-
-    // Get or create Contract
-    const contractAddress = transaction.to;
-    if (contractAddress === null) return;
-    const contract = getOrCreateContract(contractAddress, protocol);
-
-    // Get or create new Transaction
-    if (receipt == null) return;
-    const tx = getOrCreateTransaction(
-        block,
-        transaction,
-        receipt,
-        account,
-        contract,
-        protocol
-    );
+    // Get or create Transaction
+    const transaction = getOrCreateTransaction(protocol, account, event);
 
     // Create new pool
     const pool = new LiquidityPool(poolAddress.toHexString());
     pool.name = poolName;
     pool.slug = poolSlug;
-    pool.createdAtTimestamp = block.timestamp;
-    pool.createdAtBlockNumber = block.number;
+    pool.createdAtTimestamp = event.block.timestamp;
+    pool.createdAtBlockNumber = event.block.number;
     pool.tokenCount = tokenCount;
     pool.lpFee = lpFee;
     pool.protocolFee = protocolFee;
     pool.swapFee = swapFee;
 
     pool.protocol = protocol.id;
-    pool.transaction = tx.id;
+    pool.transaction = transaction.id;
     pool.createdBy = account.id;
 
     // Persist data
     account.save();
-    contract.save();
-    tx.save();
+    transaction.save();
     pool.save();
 
     // Map tokens to pool
-    for (let i = 0; i < tokenCount; i++) {
+    for (let i = 0; i < tokenCount.toI32(); i++) {
         const token = tokens[i];
         const weight = tokenWeights[i];
         const tokenPool = getOrCreateTokenLiquidityPool(token, pool, weight);
         tokenPool.save();
     }
+
+    return pool;
 }

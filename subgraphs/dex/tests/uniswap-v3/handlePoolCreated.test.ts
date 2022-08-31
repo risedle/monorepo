@@ -88,7 +88,7 @@ describe("handlePoolCreated", () => {
         // Check the values
         assert.stringEquals(pool.name, "Uniswap V3 USDC/WETH 0.3%");
         assert.stringEquals(pool.slug, "uniswap-v3-usdc-weth-0.3");
-        assert.i32Equals(pool.tokenCount, 2);
+        assert.bigIntEquals(pool.tokenCount, BigInt.fromString("2"));
         assert.bigIntEquals(pool.createdAtTimestamp, event.block.timestamp);
         assert.bigIntEquals(pool.createdAtBlockNumber, event.block.number);
     });
@@ -103,12 +103,12 @@ describe("handlePoolCreated", () => {
             .concat("-")
             .concat(event.params.pool.toHexString());
         let token0 = TokenLiquidityPool.load(token0Id)!;
-        assert.stringEquals(token0.weightPercentage.toString(), "0.5");
+        assert.stringEquals(token0.weightPercentage.toString(), "50");
 
         let token1Id = WETH.ADDRESS.toHexString()
             .concat("-")
             .concat(event.params.pool.toHexString());
         let token1 = TokenLiquidityPool.load(token1Id)!;
-        assert.stringEquals(token1.weightPercentage.toString(), "0.5");
+        assert.stringEquals(token1.weightPercentage.toString(), "50");
     });
 });

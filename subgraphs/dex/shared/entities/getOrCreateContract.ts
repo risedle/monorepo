@@ -5,8 +5,8 @@ import { Contract, Protocol } from "../../generated/schema";
 
 // Get or create new Contract
 export function getOrCreateContract(
-    addy: Address,
-    protocol: Protocol
+    protocol: Protocol,
+    addy: Address
 ): Contract {
     let contract = Contract.load(addy.toHexString());
     if (contract === null) {

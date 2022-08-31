@@ -10,7 +10,7 @@
     "poolCreatedHandler": "./protocols/uniswap-v3/handlers/handlePoolCreated.ts",
     "startBlock": "163",
     "wethAddress": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
-    "uniV2USDCWETHPool": "",
+    "uniV2USDCWETHPool": "0x0000000000000000000000000000000000000000",
     "uniV2USDCWETHBlock": "0",
     "uniV3USDCWETHPool": "0x17c14d2c404d167802b16c450d3c99f88f2c4f4d",
     "uniV3USDCWETHBlock": "4291"

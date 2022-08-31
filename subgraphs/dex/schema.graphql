@@ -94,6 +94,11 @@ type NativeTokenPrice @entity(immutable: true) {
 
     # USD Price
     usd: BigDecimal!
+
+    # ████ Relations █████████████████████████████████████████████████████████
+
+    # Protocol
+    protocol: Protocol!
 }
 
 # ████ Transaction ███████████████████████████████████████████████████████████
@@ -105,16 +110,15 @@ type Transaction @entity(immutable: true) {
     # Transaction metadata
     timestamp: BigInt!
     blockNumber: BigInt!
-    status: BigInt!
-
-    # Transaction gas usage and fee
     gasLimit: BigInt!
     gasPrice: BigInt!
-    gasUsed: BigInt!
-    transactionFeeUSD: BigDecimal!
-
     value: BigInt!
     valueUSD: BigDecimal!
+
+    # (Optional) Transaction receipt is nullable
+    status: BigInt
+    gasUsed: BigInt
+    transactionFeeUSD: BigDecimal
 
     # ████ Relations █████████████████████████████████████████████████████████
 
@@ -122,7 +126,8 @@ type Transaction @entity(immutable: true) {
     from: Account!
 
     # Contract that account interacted with
-    to: Contract!
+    # If to is null, then it is a contract deployment
+    to: Contract
 
     # Created liquidity pools in this transaction
     pools: [LiquidityPool!]! @derivedFrom(field: "transaction")
@@ -145,7 +150,7 @@ type LiquidityPool @entity(immutable: true) {
     slug: String!
 
     # Token count
-    tokenCount: Int!
+    tokenCount: BigInt!
 
     # Creation timestamp
     createdAtTimestamp: BigInt!

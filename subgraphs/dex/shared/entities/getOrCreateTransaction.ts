@@ -1,4 +1,4 @@
-import { ethereum } from "@graphprotocol/graph-ts";
+import { Address, ethereum } from "@graphprotocol/graph-ts";
 
 // Schema
 import {
@@ -14,35 +14,49 @@ import { convertEthToDecimal } from "../libs/math";
 // Price utilities
 import { getNativeTokenPriceUSD } from "../price";
 
+// Shared entities
+import { getOrCreateContract } from "./index";
+
 // Get or create new transaction
 export function getOrCreateTransaction(
-    block: ethereum.Block,
-    transaction: ethereum.Transaction,
-    receipt: ethereum.TransactionReceipt,
+    protocol: Protocol,
     account: Account,
-    contract: Contract,
-    protocol: Protocol
+    event: ethereum.Event
 ): Transaction {
-    let tx = Transaction.load(transaction.hash.toHexString());
+    let tx = Transaction.load(event.transaction.hash.toHexString());
     if (tx === null) {
         // Get ETH price
-        const ethPrice = getNativeTokenPriceUSD(block);
+        const ethPrice = getNativeTokenPriceUSD(protocol, event.block);
 
         // Create new transaction
-        tx = new Transaction(transaction.hash.toHexString());
-        tx.timestamp = block.timestamp;
-        tx.blockNumber = block.number;
-        tx.status = receipt.status;
-        tx.gasLimit = transaction.gasLimit;
-        tx.gasPrice = transaction.gasPrice;
-        tx.gasUsed = receipt.gasUsed;
-        tx.transactionFeeUSD = convertEthToDecimal(transaction.gasPrice)
-            .times(convertEthToDecimal(receipt.gasUsed))
-            .times(ethPrice);
-        tx.value = transaction.value;
-        tx.valueUSD = convertEthToDecimal(transaction.value).times(ethPrice);
+        tx = new Transaction(event.transaction.hash.toHexString());
+        tx.timestamp = event.block.timestamp;
+        tx.blockNumber = event.block.number;
+        tx.gasLimit = event.transaction.gasLimit;
+        tx.gasPrice = event.transaction.gasPrice;
+        tx.value = event.transaction.value;
+        tx.valueUSD = convertEthToDecimal(event.transaction.value).times(
+            ethPrice
+        );
         tx.from = account.id;
-        tx.to = contract.id;
+
+        const receipt = event.receipt;
+        if (receipt !== null) {
+            tx.status = receipt.status;
+            tx.gasUsed = receipt.gasUsed;
+            tx.transactionFeeUSD = convertEthToDecimal(
+                event.transaction.gasPrice
+            )
+                .times(convertEthToDecimal(receipt.gasUsed))
+                .times(ethPrice);
+        }
+
+        // Contract
+        const contractAddress = event.transaction.to;
+        if (contractAddress !== null) {
+            const contract = getOrCreateContract(protocol, contractAddress);
+            tx.to = contract.id;
+        }
         tx.save();
     }
     return tx;
