@@ -7,3 +7,4 @@ export * from "./getOrCreateToken";
 export * from "./createLiquidityPool";
 export * from "./getOrCreateLiquidityPool";
 export * from "./getOrCreateTokenLiquidityPool";
+export * from "./getOrCreateNativeTokenPrice";

@@ -52,16 +52,9 @@ export function getNativeTokenPriceUSD(
     protocol: Protocol,
     block: ethereum.Block
 ): BigDecimal {
-    // Get pre-computed price first
-    let price = NativeTokenPrice.load(block.number.toString());
-    if (price != null) return price.usd;
-
-    // Get protocol
-    const protocol = Protocol.load("1");
-    if (protocol == null) return ZERO_BD;
-
-    // If pre-computed doesn't exist try from Uniswap V3
     let priceUSD = ZERO_BD;
+
+    // Try to get price from Uniswap V3 first
     if (
         UNI_V3_USDC_WETH_BLOCK.gt(ZERO_BI) &&
         block.number.gt(UNI_V3_USDC_WETH_BLOCK)
@@ -87,8 +80,8 @@ export function getNativeTokenPriceUSD(
         }
     }
 
-    // If pre-computed doesn't exist and Uniswap V3 is not deployed on chain
-    // then fetch price from Uniswap V2 and its fork
+    // If Uniswap V3 is not deployed on chain
+    // then fetch price from Uniswap V2 or its fork
     if (
         UNI_V2_USDC_WETH_BLOCK.gt(ZERO_BI) &&
         block.number.gt(UNI_V2_USDC_WETH_BLOCK)
@@ -115,13 +108,6 @@ export function getNativeTokenPriceUSD(
             priceUSD = reserve1.div(reserve0);
         }
     }
-
-    // Save computed price
-    price = new NativeTokenPrice(block.number.toString());
-    price.usd = priceUSD;
-    price.timestamp = block.timestamp;
-    price.protocol = protocol.id;
-    price.save();
 
     return priceUSD;
 }

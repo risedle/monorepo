@@ -11,11 +11,8 @@ import {
 // Math libs
 import { convertEthToDecimal } from "../libs/math";
 
-// Price utilities
-import { getNativeTokenPriceUSD } from "../price";
-
 // Shared entities
-import { getOrCreateContract } from "./index";
+import { getOrCreateContract, getOrCreateNativeTokenPrice } from "./index";
 
 // Get or create new transaction
 export function getOrCreateTransaction(
@@ -26,7 +23,7 @@ export function getOrCreateTransaction(
     let tx = Transaction.load(event.transaction.hash.toHexString());
     if (tx === null) {
         // Get ETH price
-        const ethPrice = getNativeTokenPriceUSD(protocol, event.block);
+        const price = getOrCreateNativeTokenPrice(protocol, event.block);
 
         // Create new transaction
         tx = new Transaction(event.transaction.hash.toHexString());
@@ -36,7 +33,7 @@ export function getOrCreateTransaction(
         tx.gasPrice = event.transaction.gasPrice;
         tx.value = event.transaction.value;
         tx.valueUSD = convertEthToDecimal(event.transaction.value).times(
-            ethPrice
+            price.usd
         );
         tx.from = account.id;
 
@@ -48,7 +45,7 @@ export function getOrCreateTransaction(
                 event.transaction.gasPrice
             )
                 .times(convertEthToDecimal(receipt.gasUsed))
-                .times(ethPrice);
+                .times(price.usd);
         }
 
         // Contract
@@ -58,6 +55,7 @@ export function getOrCreateTransaction(
             tx.to = contract.id;
         }
         tx.save();
+        price.save();
     }
     return tx;
 }
