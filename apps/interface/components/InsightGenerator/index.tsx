@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import {
     Container,
     Flex,
@@ -8,8 +9,9 @@ import {
     Tabs,
     useColorModeValue,
     Button,
+    useDimensions,
 } from "@chakra-ui/react";
-import InsightImageDOM from "@/components/InsightImageDOM";
+import InsightImageDOM, { ImageHandle } from "@/components/InsightImageDOM";
 
 const InsightGenerator = () => {
     const tabsColor = useColorModeValue("gray.light.3", "gray.dark.2");
@@ -19,14 +21,21 @@ const InsightGenerator = () => {
         "gray.light.12",
         "gray.dark.12"
     );
+    const containerRef = useRef(null);
+    const containerDimension = useDimensions(containerRef, true);
+    const imageRef = useRef<ImageHandle>(null);
+    const [tabIndex, setTabIndex] = useState(0);
+
     return (
         <Container
-            data-testid="InsightGenerator"
             maxW="5xl"
             py="3"
             marginTop={{ base: "152px", laptop: "60px" }}
         >
-            <Tabs variant="solid-rounded">
+            <Tabs
+                onChange={(index) => setTabIndex(index)}
+                variant="solid-rounded"
+            >
                 <Flex
                     direction="row"
                     justifyContent="space-between"
@@ -69,16 +78,41 @@ const InsightGenerator = () => {
                             Weekly
                         </Tab>
                     </TabList>
-                    <Button variant="bsc" paddingX="6" paddingY="3">
+                    <Button
+                        onClick={async () => {
+                            if (imageRef?.current?.getImage) {
+                                imageRef.current.getImage();
+                            }
+                        }}
+                        variant="bsc"
+                        paddingX="6"
+                        paddingY="3"
+                    >
                         Generate
                     </Button>
                 </Flex>
                 <TabPanels>
                     <TabPanel p="0" position="relative">
-                        <InsightImageDOM type="daily" />
+                        {tabIndex === 0 && (
+                            <InsightImageDOM
+                                ref={imageRef}
+                                type="daily"
+                                containerWidth={
+                                    containerDimension?.contentBox.width
+                                }
+                            />
+                        )}
                     </TabPanel>
                     <TabPanel p="0">
-                        <InsightImageDOM type="weekly" />
+                        {tabIndex === 1 && (
+                            <InsightImageDOM
+                                ref={imageRef}
+                                type="weekly"
+                                containerWidth={
+                                    containerDimension?.contentBox.width
+                                }
+                            />
+                        )}
                     </TabPanel>
                 </TabPanels>
             </Tabs>
