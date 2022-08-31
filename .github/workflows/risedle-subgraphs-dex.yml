@@ -23,14 +23,14 @@ jobs:
     name: "Uniswap V3 / Arbitrum One"
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
+      - name: 📬 Check out code
         uses: actions/checkout@v2
-      - name: Setup Node.js environment
+      - name: ✨ Setup Node.js environment
         uses: actions/setup-node@v2
         with:
           node-version: "18.7.0"
           cache: "npm"
-      - name: Cache node_modules
+      - name: 🐿️ Cache node_modules
         id: cache-nodemodules
         uses: actions/cache@v2
         with:
@@ -42,13 +42,15 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - name: Install dependencies
+      - name: 🍱 Install dependencies
         run: npm install -w=@subgraphs/dex --ignore-scripts
-      - name: Generate subgraph.yaml
+      - name: ⚒️  Generate subgraph.yaml
         run: npm run yamlgen --protocol=uniswap-v3 --network=arbitrum-one
-      - name: Generate code
+      - name: ⚒️  Generate code
         run: npm run codegen
-      - name: Generate generated/protocol.ts
+      - name: ⚒️  Generate generated/protocol.ts
         run: npm run constgen --protocol=uniswap-v3 --network=arbitrum-one
-      - name: Test
+      - name: 🧹 Lint
+        run: npm run lint
+      - name: ✅ Test
         run: npm run graph:test

@@ -1,4 +1,4 @@
-import { log, Address, BigInt } from "@graphprotocol/graph-ts";
+import { Address } from "@graphprotocol/graph-ts";
 
 // Schema
 import { Protocol, Token } from "../../generated/schema";
@@ -8,11 +8,7 @@ import {
     fetchTokenName,
     fetchTokenSymbol,
     fetchTokenDecimals,
-    fetchTokenTotalSupply,
 } from "../token";
-
-// Numerical constants
-import { ZERO_BD, ZERO_BI } from "../libs/math";
 
 // Chain and protocol info
 import { CHAIN_ID } from "../../generated/protocol";

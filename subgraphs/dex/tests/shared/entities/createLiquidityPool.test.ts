@@ -6,19 +6,11 @@ import {
     newMockEvent,
 } from "matchstick-as/assembly/index";
 import { clearStore } from "matchstick-as/assembly/store";
-import {
-    Address,
-    BigInt,
-    BigDecimal,
-    ethereum,
-} from "@graphprotocol/graph-ts";
+import { Address, BigInt, BigDecimal } from "@graphprotocol/graph-ts";
 
 // Schema
 import {
-    Protocol,
-    Token,
     Account,
-    Contract,
     Transaction,
     LiquidityPool,
     TokenLiquidityPool,
@@ -30,9 +22,6 @@ import * as WETH from "../../mocks/WETH";
 
 // Math libs
 import { FIFTY_PERCENT } from "../../../shared/libs/math";
-
-// Protocol constants
-import * as protocolInfo from "../../../generated/protocol";
 
 // Shared entities
 import {
@@ -114,6 +103,7 @@ describe("Given Uniswap V3 Pool", () => {
             protocolFee,
             swapFee
         );
+        // eslint-disable-next-line
         const transaction = Transaction.load(
             event.transaction.hash.toHexString()
         )!;
@@ -158,6 +148,7 @@ describe("Given Uniswap V3 Pool", () => {
             protocolFee,
             swapFee
         );
+        // eslint-disable-next-line
         const pool = LiquidityPool.load(poolAddress.toHexString())!;
         assert.stringEquals(pool.name, poolName);
         assert.stringEquals(pool.slug, poolSlug);
@@ -206,12 +197,14 @@ describe("Given Uniswap V3 Pool", () => {
         const token0Id = USDC.ADDRESS.toHexString()
             .concat("-")
             .concat(poolAddress.toHexString());
+        // eslint-disable-next-line
         const token0Pool = TokenLiquidityPool.load(token0Id)!;
         assert.stringEquals(token0Pool.weightPercentage.toString(), "50");
 
         const token1Id = WETH.ADDRESS.toHexString()
             .concat("-")
             .concat(poolAddress.toHexString());
+        // eslint-disable-next-line
         const token1Pool = TokenLiquidityPool.load(token1Id)!;
         assert.stringEquals(token1Pool.weightPercentage.toString(), "50");
     });

@@ -1,9 +1,4 @@
-import {
-    describe,
-    test,
-    assert,
-    beforeEach,
-} from "matchstick-as/assembly/index";
+import { describe, test, assert } from "matchstick-as/assembly/index";
 
 // Schema
 import { Protocol } from "../../../generated/schema";
@@ -24,7 +19,8 @@ describe("getOrCreateProtocol", () => {
         getOrCreateProtocol();
 
         // Load the Protocol
-        let protocol = Protocol.load("1")!;
+        // eslint-disable-next-line
+        const protocol = Protocol.load("1")!;
 
         // Check the values
         assert.stringEquals(protocol.name, NAME);

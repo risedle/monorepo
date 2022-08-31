@@ -29,14 +29,14 @@ export function fetchTokenSymbol(
         }
     }
 
-    let contract = ERC20.bind(tokenAddress);
-    let contractSymbolBytes = ERC20SymbolBytes.bind(tokenAddress);
+    const contract = ERC20.bind(tokenAddress);
+    const contractSymbolBytes = ERC20SymbolBytes.bind(tokenAddress);
 
     // try types string and bytes32 for symbol
     let symbolValue = "unknown";
-    let symbolResult = contract.try_symbol();
+    const symbolResult = contract.try_symbol();
     if (symbolResult.reverted) {
-        let symbolResultBytes = contractSymbolBytes.try_symbol();
+        const symbolResultBytes = contractSymbolBytes.try_symbol();
         if (!symbolResultBytes.reverted) {
             // for broken pairs that have no symbol function exposed
             if (!isNullEthValue(symbolResultBytes.value.toHexString())) {
@@ -63,14 +63,14 @@ export function fetchTokenName(
         }
     }
 
-    let contract = ERC20.bind(tokenAddress);
-    let contractNameBytes = ERC20NameBytes.bind(tokenAddress);
+    const contract = ERC20.bind(tokenAddress);
+    const contractNameBytes = ERC20NameBytes.bind(tokenAddress);
 
     // try types string and bytes32 for name
     let nameValue = "unknown";
-    let nameResult = contract.try_name();
+    const nameResult = contract.try_name();
     if (nameResult.reverted) {
-        let nameResultBytes = contractNameBytes.try_name();
+        const nameResultBytes = contractNameBytes.try_name();
         if (!nameResultBytes.reverted) {
             // for broken exchanges that have no name function exposed
             if (!isNullEthValue(nameResultBytes.value.toHexString())) {
@@ -98,9 +98,9 @@ export function fetchTokenDecimals(
         }
     }
 
-    let contract = ERC20.bind(tokenAddress);
+    const contract = ERC20.bind(tokenAddress);
     // try types uint8 for decimals
-    let decimalResult = contract.try_decimals();
+    const decimalResult = contract.try_decimals();
     if (!decimalResult.reverted) {
         return BigInt.fromString(decimalResult.value.toString());
     }
@@ -109,8 +109,8 @@ export function fetchTokenDecimals(
 }
 
 export function fetchTokenTotalSupply(tokenAddress: Address): BigInt {
-    let contract = ERC20.bind(tokenAddress);
-    let totalSupplyResult = contract.try_totalSupply();
+    const contract = ERC20.bind(tokenAddress);
+    const totalSupplyResult = contract.try_totalSupply();
     if (!totalSupplyResult.reverted) {
         return totalSupplyResult.value;
     }
