@@ -1,9 +1,9 @@
 import { createMockedFunction } from "matchstick-as/assembly/index";
 import { ethereum, BigInt, Address } from "@graphprotocol/graph-ts";
 
-export const ADDRESS = Address.fromString(
-    "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
-);
+import { WETH_ADDRESS } from "../../generated/protocol";
+
+export const ADDRESS = WETH_ADDRESS;
 
 createMockedFunction(ADDRESS, "name", "name():(string)").returns([
     ethereum.Value.fromString("Wrapped ETH"),

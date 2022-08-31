@@ -25,18 +25,19 @@ import {
     tokenAmountToDecimal,
     ZERO_BI,
     ZERO_BD,
+    ONE_BI,
 } from "../libs/math";
 
 // Shared entities
 import { getOrCreateToken } from "../entities";
 
-const Q192 = 2 ** 192;
 export function sqrtPriceX96ToTokenPrices(
     sqrtPriceX96: BigInt,
     token0Decimals: BigInt,
     token1Decimals: BigInt
 ): BigDecimal[] {
-    let num = sqrtPriceX96.times(sqrtPriceX96).toBigDecimal();
+    const Q192 = Math.pow(2, 192);
+    const num = sqrtPriceX96.times(sqrtPriceX96).toBigDecimal();
     let denom = BigDecimal.fromString(Q192.toString());
     let price1 = num
         .div(denom)
@@ -56,7 +57,7 @@ export function getNativeTokenPriceUSD(
 
     // Try to get price from Uniswap V3 first
     if (
-        UNI_V3_USDC_WETH_BLOCK.gt(ZERO_BI) &&
+        UNI_V3_USDC_WETH_BLOCK.gt(ONE_BI) &&
         block.number.gt(UNI_V3_USDC_WETH_BLOCK)
     ) {
         // Get price from Uniswap V3
@@ -73,17 +74,17 @@ export function getNativeTokenPriceUSD(
             token1.decimals
         );
         if (token0Address.toHexString() == WETH_ADDRESS.toHexString()) {
-            priceUSD = prices[0];
+            priceUSD = prices[1];
         }
         if (token1Address.toHexString() == WETH_ADDRESS.toHexString()) {
-            priceUSD = prices[1];
+            priceUSD = prices[0];
         }
     }
 
     // If Uniswap V3 is not deployed on chain
     // then fetch price from Uniswap V2 or its fork
     if (
-        UNI_V2_USDC_WETH_BLOCK.gt(ZERO_BI) &&
+        UNI_V2_USDC_WETH_BLOCK.gt(ONE_BI) &&
         block.number.gt(UNI_V2_USDC_WETH_BLOCK)
     ) {
         // Get price from Uniswap V2

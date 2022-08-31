@@ -71,7 +71,7 @@ describe("handlePoolCreated", () => {
         let token1 = Token.load(WETH.ADDRESS.toHexString())!;
 
         // Contract call from mockups
-        assert.stringEquals(token1.name, "Wrapped ETH");
+        assert.stringEquals(token1.name, "Wrapped Ethereum");
         assert.stringEquals(token1.symbol, "WETH");
         assert.bigIntEquals(token1.decimals, BigInt.fromString("18"));
     });

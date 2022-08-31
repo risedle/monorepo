@@ -7,6 +7,7 @@ export const ZERO_BD = BigDecimal.fromString("0");
 export const ONE_BD = BigDecimal.fromString("1");
 export const BI_18 = BigInt.fromI32(18);
 export const FIFTY_PERCENT = BigDecimal.fromString("50");
+export const ONE_ETH = BigInt.fromString("10").pow(18);
 
 // Convert decimals to exponent (e.g. 18 -> 10e18)
 export function exponentToBigDecimal(decimals: BigInt): BigDecimal {
