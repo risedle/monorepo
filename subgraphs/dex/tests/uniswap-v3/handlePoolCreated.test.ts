@@ -12,7 +12,6 @@ import {
     Protocol,
     Token,
     LiquidityPool,
-    LiquidityPoolFee,
     TokenLiquidityPool,
 } from "../../generated/schema";
 
@@ -66,15 +65,15 @@ describe("handlePoolCreated", () => {
         // Contract call from mockups
         assert.stringEquals(token0.name, "USD Coin");
         assert.stringEquals(token0.symbol, "USDC");
-        assert.i32Equals(token0.decimals, 6);
+        assert.bigIntEquals(token0.decimals, BigInt.fromString("6"));
 
         // Make sure token1 is created
         let token1 = Token.load(WETH.ADDRESS.toHexString())!;
 
         // Contract call from mockups
-        assert.stringEquals(token1.name, "Wrapped ETH");
+        assert.stringEquals(token1.name, "Wrapped Ethereum");
         assert.stringEquals(token1.symbol, "WETH");
-        assert.i32Equals(token1.decimals, 18);
+        assert.bigIntEquals(token1.decimals, BigInt.fromString("18"));
     });
 
     test("Should create new LiquidityPool", () => {
@@ -89,7 +88,7 @@ describe("handlePoolCreated", () => {
         // Check the values
         assert.stringEquals(pool.name, "Uniswap V3 USDC/WETH 0.3%");
         assert.stringEquals(pool.slug, "uniswap-v3-usdc-weth-0.3");
-        assert.i32Equals(pool.tokenCount, 2);
+        assert.bigIntEquals(pool.tokenCount, BigInt.fromString("2"));
         assert.bigIntEquals(pool.createdAtTimestamp, event.block.timestamp);
         assert.bigIntEquals(pool.createdAtBlockNumber, event.block.number);
     });
@@ -104,38 +103,12 @@ describe("handlePoolCreated", () => {
             .concat("-")
             .concat(event.params.pool.toHexString());
         let token0 = TokenLiquidityPool.load(token0Id)!;
-        assert.stringEquals(token0.weightPercentage.toString(), "0.5");
+        assert.stringEquals(token0.weightPercentage.toString(), "50");
 
         let token1Id = WETH.ADDRESS.toHexString()
             .concat("-")
             .concat(event.params.pool.toHexString());
         let token1 = TokenLiquidityPool.load(token1Id)!;
-        assert.stringEquals(token1.weightPercentage.toString(), "0.5");
-    });
-
-    test("Should create new LiquidityPoolFee", () => {
-        // Create new PoolCreated event
-        let event = createPoolCreatedEvent(USDC.ADDRESS, WETH.ADDRESS);
-        // Run the handler
-        handlePoolCreated(event);
-
-        // Should create new lp, protocol and swap fee
-        let lpId = event.params.pool.toHexString().concat("-lp");
-        let poolLpFee = LiquidityPoolFee.load(lpId)!;
-        assert.stringEquals(poolLpFee.percentage.toString(), "0.3");
-        assert.stringEquals(poolLpFee.type.toString(), "FIXED_LP_FEE");
-
-        let protocolId = event.params.pool.toHexString().concat("-protocol");
-        let poolProtocolFee = LiquidityPoolFee.load(protocolId)!;
-        assert.stringEquals(poolProtocolFee.percentage.toString(), "0");
-        assert.stringEquals(
-            poolProtocolFee.type.toString(),
-            "FIXED_PROTOCOL_FEE"
-        );
-
-        let swapId = event.params.pool.toHexString().concat("-swap");
-        let poolSwapFee = LiquidityPoolFee.load(swapId)!;
-        assert.stringEquals(poolSwapFee.percentage.toString(), "0.3");
-        assert.stringEquals(poolSwapFee.type.toString(), "FIXED_SWAP_FEE");
+        assert.stringEquals(token1.weightPercentage.toString(), "50");
     });
 });

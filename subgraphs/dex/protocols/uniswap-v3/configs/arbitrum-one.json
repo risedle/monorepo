@@ -1,12 +1,17 @@
 {
     "name": "Uniswap V3",
     "slug": "uniswap-v3",
-    "chain_id": "42161",
-    "chain_name": "Arbitrum One",
-    "chain_slug": "arbitrum-one",
-    "factory_address": "0x1F98431c8aD98523631AE4a59f267346ea31F984",
-    "factory_abi": "./abis/uniswap-v3/Factory.json",
-    "pool_created_event": "PoolCreated(indexed address,indexed address,indexed uint24,int24,address)",
-    "pool_created_handler": "./protocols/uniswap-v3/handlers/handlePoolCreated.ts",
-    "start_block": "163"
+    "chainId": "42161",
+    "chainName": "Arbitrum One",
+    "chainSlug": "arbitrum-one",
+    "factoryAddress": "0x1F98431c8aD98523631AE4a59f267346ea31F984",
+    "factoryABI": "./abis/uniswap-v3/Factory.json",
+    "poolCreatedEvent": "PoolCreated(indexed address,indexed address,indexed uint24,int24,address)",
+    "poolCreatedHandler": "./protocols/uniswap-v3/handlers/handlePoolCreated.ts",
+    "startBlock": "163",
+    "wethAddress": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+    "uniV2USDCWETHPool": "0x0000000000000000000000000000000000000000",
+    "uniV2USDCWETHBlock": "0",
+    "uniV3USDCWETHPool": "0x17c14d2c404d167802b16c450d3c99f88f2c4f4d",
+    "uniV3USDCWETHBlock": "4291"
 }
