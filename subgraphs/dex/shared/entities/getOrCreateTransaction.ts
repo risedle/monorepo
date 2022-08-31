@@ -1,12 +1,7 @@
-import { Address, ethereum } from "@graphprotocol/graph-ts";
+import { ethereum } from "@graphprotocol/graph-ts";
 
 // Schema
-import {
-    Transaction,
-    Account,
-    Contract,
-    Protocol,
-} from "../../generated/schema";
+import { Transaction, Account, Protocol } from "../../generated/schema";
 
 // Math libs
 import { convertEthToDecimal } from "../libs/math";

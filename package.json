@@ -82,10 +82,12 @@
             "@typescript-eslint"
         ],
         "rules": {
-            "@typescript-eslint/no-unused-vars": "error"
+            "@typescript-eslint/no-unused-vars": "error",
+            "@typescript-eslint/ban-types": "off"
         },
         "ignorePatterns": [
-            "subgraphs/*",
+            "subgraphs/*/generated",
+            "subgraphs/*/build",
             "contracts/*",
             "apps/*/dist",
             "apps/*/build",

@@ -8,23 +8,12 @@ import {
 // Schema
 import { Protocol, Token, LiquidityPool } from "../../generated/schema";
 
-// This contant is generated via:
-// $ npm run constgen
-import * as protocolInfo from "../../generated/protocol";
-
 // Shared entities
 import {
-    getOrCreateProtocol,
     getOrCreateAccount,
-    getOrCreateContract,
     getOrCreateTransaction,
-    getOrCreateToken,
-    getOrCreateLiquidityPool,
     getOrCreateTokenLiquidityPool,
 } from "./index";
-
-// Libs
-import { ZERO_BD, ZERO_BI, ONE_BI, FIFTY_PERCENT } from "../libs/math";
 
 // Create Liquidity Pool
 export function createLiquidityPool(

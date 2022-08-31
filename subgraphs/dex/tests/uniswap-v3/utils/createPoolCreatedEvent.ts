@@ -8,27 +8,27 @@ export function createPoolCreatedEvent(
     token1Address: Address
 ): PoolCreated {
     // Create new mock
-    let mock = changetype<PoolCreated>(newMockEvent());
-    mock.parameters = new Array();
+    const mock = changetype<PoolCreated>(newMockEvent());
+    mock.parameters = new Array<ethereum.EventParam>();
 
     // Build params
-    let token0 = new ethereum.EventParam(
+    const token0 = new ethereum.EventParam(
         "token0",
         ethereum.Value.fromAddress(token0Address)
     );
-    let token1 = new ethereum.EventParam(
+    const token1 = new ethereum.EventParam(
         "token1",
         ethereum.Value.fromAddress(token1Address)
     );
-    let fee = new ethereum.EventParam(
+    const fee = new ethereum.EventParam(
         "fee",
         ethereum.Value.fromUnsignedBigInt(BigInt.fromString("3000"))
     );
-    let tickSpacing = new ethereum.EventParam(
+    const tickSpacing = new ethereum.EventParam(
         "tickSpacing",
         ethereum.Value.fromUnsignedBigInt(BigInt.fromString("300"))
     );
-    let pool = new ethereum.EventParam(
+    const pool = new ethereum.EventParam(
         "pool",
         ethereum.Value.fromAddress(
             Address.fromString("0x3b1b258ca111b9bae664b5a7ea8fb12ac0656551")

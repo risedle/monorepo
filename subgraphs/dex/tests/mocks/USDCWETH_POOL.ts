@@ -1,5 +1,5 @@
 import { createMockedFunction } from "matchstick-as/assembly/index";
-import { ethereum, BigInt, Address } from "@graphprotocol/graph-ts";
+import { ethereum, BigInt } from "@graphprotocol/graph-ts";
 
 import { UNI_V3_USDC_WETH_POOL, WETH_ADDRESS } from "../../generated/protocol";
 

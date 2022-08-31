@@ -6,12 +6,11 @@ import { UniswapV3Pool } from "../../generated/Factory/UniswapV3Pool";
 import { UniswapV2Pool } from "../../generated/Factory/UniswapV2Pool";
 
 // Schema
-import { Protocol, NativeTokenPrice } from "../../generated/schema";
+import { Protocol } from "../../generated/schema";
 
 // Constant generated from /protocols/*/configs/chain.json
 import {
     WETH_ADDRESS,
-    CHAIN_ID,
     UNI_V2_USDC_WETH_BLOCK,
     UNI_V2_USDC_WETH_POOL,
     UNI_V3_USDC_WETH_BLOCK,
@@ -23,7 +22,6 @@ import {
     exponentToBigDecimal,
     safeDiv,
     tokenAmountToDecimal,
-    ZERO_BI,
     ZERO_BD,
     ONE_BI,
 } from "../libs/math";
@@ -44,13 +42,13 @@ export function sqrtPriceX96ToTokenPrices(
         Q192.toString(),
     ]);
     const num = sqrtPriceX96.times(sqrtPriceX96).toBigDecimal();
-    let denom = BigDecimal.fromString(Q192.toString());
-    let price1 = num
+    const denom = BigDecimal.fromString(Q192.toString());
+    const price1 = num
         .div(denom)
         .times(exponentToBigDecimal(token0Decimals))
         .div(exponentToBigDecimal(token1Decimals));
 
-    let price0 = safeDiv(BigDecimal.fromString("1"), price1);
+    const price0 = safeDiv(BigDecimal.fromString("1"), price1);
     return [price0, price1];
 }
 

@@ -1,9 +1,6 @@
 // Schema
 import { Protocol } from "../../generated/schema";
 
-// Math lib
-import { ZERO_BD } from "../libs/math";
-
 // Protocol constant
 import {
     NAME,

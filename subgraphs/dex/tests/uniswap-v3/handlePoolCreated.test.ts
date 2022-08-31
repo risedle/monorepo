@@ -4,8 +4,8 @@ import {
     assert,
     beforeEach,
 } from "matchstick-as/assembly/index";
-import { logStore, clearStore } from "matchstick-as/assembly/store";
-import { Address, BigInt } from "@graphprotocol/graph-ts";
+import { clearStore } from "matchstick-as/assembly/store";
+import { BigInt } from "@graphprotocol/graph-ts";
 
 // Schema
 import {
@@ -21,9 +21,6 @@ import { handlePoolCreated } from "../../protocols/uniswap-v3/handlers/handlePoo
 // Utils
 import { createPoolCreatedEvent } from "./utils/createPoolCreatedEvent";
 
-// Libs
-import { ZERO_BD } from "../../shared/libs/math";
-
 // Mocks
 import * as USDC from "../mocks/USDC";
 import * as WETH from "../mocks/WETH";
@@ -38,12 +35,13 @@ beforeEach(() => {
 describe("handlePoolCreated", () => {
     test("Should create new Protocol", () => {
         // Create new PoolCreated event
-        let event = createPoolCreatedEvent(USDC.ADDRESS, WETH.ADDRESS);
+        const event = createPoolCreatedEvent(USDC.ADDRESS, WETH.ADDRESS);
         // Run the handler
         handlePoolCreated(event);
 
         // Load the Protocol
-        let protocol = Protocol.load("1")!;
+        // eslint-disable-next-line
+        const protocol = Protocol.load("1")!;
 
         // Check the values
         assert.stringEquals(protocol.name, protocolInfo.NAME);
@@ -55,12 +53,13 @@ describe("handlePoolCreated", () => {
 
     test("Should create new Token", () => {
         // Create new PoolCreated event
-        let event = createPoolCreatedEvent(USDC.ADDRESS, WETH.ADDRESS);
+        const event = createPoolCreatedEvent(USDC.ADDRESS, WETH.ADDRESS);
         // Run the handler
         handlePoolCreated(event);
 
         // Make sure token0 is created
-        let token0 = Token.load(USDC.ADDRESS.toHexString())!;
+        // eslint-disable-next-line
+        const token0 = Token.load(USDC.ADDRESS.toHexString())!;
 
         // Contract call from mockups
         assert.stringEquals(token0.name, "USD Coin");
@@ -68,7 +67,8 @@ describe("handlePoolCreated", () => {
         assert.bigIntEquals(token0.decimals, BigInt.fromString("6"));
 
         // Make sure token1 is created
-        let token1 = Token.load(WETH.ADDRESS.toHexString())!;
+        // eslint-disable-next-line
+        const token1 = Token.load(WETH.ADDRESS.toHexString())!;
 
         // Contract call from mockups
         assert.stringEquals(token1.name, "Wrapped Ethereum");
@@ -78,12 +78,13 @@ describe("handlePoolCreated", () => {
 
     test("Should create new LiquidityPool", () => {
         // Create new PoolCreated event
-        let event = createPoolCreatedEvent(USDC.ADDRESS, WETH.ADDRESS);
+        const event = createPoolCreatedEvent(USDC.ADDRESS, WETH.ADDRESS);
         // Run the handler
         handlePoolCreated(event);
 
         // Load the Protocol
-        let pool = LiquidityPool.load(event.params.pool.toHexString())!;
+        // eslint-disable-next-line
+        const pool = LiquidityPool.load(event.params.pool.toHexString())!;
 
         // Check the values
         assert.stringEquals(pool.name, "Uniswap V3 USDC/WETH 0.3%");
@@ -95,20 +96,22 @@ describe("handlePoolCreated", () => {
 
     test("Should create new TokenLiquidityPool", () => {
         // Create new PoolCreated event
-        let event = createPoolCreatedEvent(USDC.ADDRESS, WETH.ADDRESS);
+        const event = createPoolCreatedEvent(USDC.ADDRESS, WETH.ADDRESS);
         // Run the handler
         handlePoolCreated(event);
 
-        let token0Id = USDC.ADDRESS.toHexString()
+        const token0Id = USDC.ADDRESS.toHexString()
             .concat("-")
             .concat(event.params.pool.toHexString());
-        let token0 = TokenLiquidityPool.load(token0Id)!;
+        // eslint-disable-next-line
+        const token0 = TokenLiquidityPool.load(token0Id)!;
         assert.stringEquals(token0.weightPercentage.toString(), "50");
 
-        let token1Id = WETH.ADDRESS.toHexString()
+        const token1Id = WETH.ADDRESS.toHexString()
             .concat("-")
             .concat(event.params.pool.toHexString());
-        let token1 = TokenLiquidityPool.load(token1Id)!;
+        // eslint-disable-next-line
+        const token1 = TokenLiquidityPool.load(token1Id)!;
         assert.stringEquals(token1.weightPercentage.toString(), "50");
     });
 });
