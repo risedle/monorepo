@@ -2,7 +2,7 @@
     "name": "@subgraphs/dex",
     "private": true,
     "scripts": {
-        "yamlgen": "mustache protocols/${npm_config_protocol}/configs/${npm_config_network}.json templates/subgraph.yaml.template > subgraph.yaml",
+        "yamlgen": "mustache protocols/${npm_config_protocol}/configs/${npm_config_network}.json templates/${npm_config_protocol}.yaml.template > subgraph.yaml",
         "codegen": "graph codegen",
         "constgen": "mustache protocols/${npm_config_protocol}/configs/${npm_config_network}.json templates/protocol.ts.template > generated/protocol.ts",
         "graph:build": "graph build",

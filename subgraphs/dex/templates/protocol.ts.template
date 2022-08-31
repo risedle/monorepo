@@ -5,9 +5,9 @@ import { Address, BigInt } from '@graphprotocol/graph-ts'
 
 export const NAME = "{{ name }}";
 export const SLUG = "{{ slug }}";
-export const CHAIN_ID = "{{ chainId }}";
-export const CHAIN_NAME = "{{ chainName }}";
-export const CHAIN_SLUG = "{{ chainSlug }}";
+export const CHAIN_ID = "{{ chain.id }}";
+export const CHAIN_NAME = "{{ chain.name }}";
+export const CHAIN_SLUG = "{{ chain.slug }}";
 
 // To get native token price (e.g. WETH, WMATIC)
 export const WETH_ADDRESS = Address.fromString("{{ wethAddress }}");

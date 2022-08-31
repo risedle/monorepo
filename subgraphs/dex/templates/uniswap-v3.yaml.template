@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: Factory
-    network: {{ chainSlug }}
+    network: {{ chain.slug }}
     source:
-      address: "{{ factoryAddress }}"
+      address: "0x1F98431c8aD98523631AE4a59f267346ea31F984"
       abi: Factory
-      startBlock: {{startBlock}}
+      startBlock: {{ factory.startBlock }}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -17,10 +17,10 @@ dataSources:
         - Token
         - LiquidityPool
         - TokenLiquidityPool
-      file: {{{ poolCreatedHandler }}}
+      file: ./protocols/uniswap-v3/handlers/handlePoolCreated.ts
       abis:
         - name: Factory
-          file: {{{ factoryABI }}}
+          file: ./abis/uniswap-v3/Factory.json
         - name: ERC20
           file: ./abis/ERC20.json
         - name: ERC20SymbolBytes
@@ -32,5 +32,5 @@ dataSources:
         - name: UniswapV2Pool
           file: ./abis/UniswapV2Pool.json
       eventHandlers:
-        - event: {{ poolCreatedEvent }}
+        - event: PoolCreated(indexed address,indexed address,indexed uint24,int24,address)
           handler: handlePoolCreated
