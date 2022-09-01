@@ -56,7 +56,7 @@ export interface FuseLeveragedTokenSwaps {
     user: Array<FuseLeveragedTokenSwap>;
 }
 
-export type FuseLeveragedTokenInsight = Array<{
+export interface FuseLeveragedTokenInsight {
     symbol: string;
     name: string;
     dailyGain: {
@@ -68,4 +68,4 @@ export type FuseLeveragedTokenInsight = Array<{
         timestampEnd: number;
         timestampStart: number;
     };
-}>;
+}
