@@ -12,7 +12,7 @@ export function getOrCreateTokenLiquidityPool(
     pool: LiquidityPool,
     weight: BigDecimal
 ): TokenLiquidityPool {
-    let id = token.id.concat("-").concat(pool.id);
+    const id = token.id.concat("-").concat(pool.id);
     let tokenPool = TokenLiquidityPool.load(id);
     if (tokenPool === null) {
         tokenPool = new TokenLiquidityPool(id);

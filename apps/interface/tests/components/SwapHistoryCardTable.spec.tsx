@@ -10,18 +10,24 @@ describe("<SwapHistoryCardTable />", () => {
                 timestamp: "1",
                 transaction: { id: "1" },
                 amountInUSD: "1",
-                tokenIn: { symbol: "A" },
-                tokenOut: { symbol: "B" },
+                tokenIn: { symbol: "BUSD" },
+                tokenOut: { symbol: "BNBDROP" },
             },
             {
                 timestamp: "2",
                 transaction: { id: "2" },
                 amountInUSD: "1",
-                tokenIn: { symbol: "C" },
-                tokenOut: { symbol: "B" },
+                tokenIn: { symbol: "BNBDROP" },
+                tokenOut: { symbol: "BUSD" },
             },
         ];
-        render(<SwapHistoryCardTable swaps={swaps} isLoaded={true} />);
+        render(
+            <SwapHistoryCardTable
+                swaps={swaps}
+                isLoaded={true}
+                symbol="BNBDROP"
+            />
+        );
         const txs = screen.queryAllByTestId(
             "SwapHistoryCardTableTransactionLink"
         );
@@ -32,5 +38,7 @@ describe("<SwapHistoryCardTable />", () => {
             "SwapHistoryCardTableTotalValue"
         );
         expect(values.length).toBe(2);
+        expect(screen.getByText(/Buy BNBDROP/i)).toBeInTheDocument();
+        expect(screen.getByText(/Sell BNBDROP/i)).toBeInTheDocument();
     });
 });

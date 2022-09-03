@@ -1,31 +1,25 @@
 // Schema
 import { Protocol } from "../../generated/schema";
 
-// Math lib
-import { ZERO_BD } from "../libs/math";
+// Protocol constant
+import {
+    NAME,
+    SLUG,
+    CHAIN_ID,
+    CHAIN_SLUG,
+    CHAIN_NAME,
+} from "../../generated/protocol";
 
-export function getOrCreateProtocol(
-    name: string,
-    slug: string,
-    chainId: string,
-    chainSlug: string,
-    chainName: string
-): Protocol {
+// Get or create new Protocol
+export function getOrCreateProtocol(): Protocol {
     let protocol = Protocol.load("1");
     if (protocol === null) {
         protocol = new Protocol("1");
-        protocol.name = name;
-        protocol.slug = slug;
-        protocol.chainId = chainId;
-        protocol.chainSlug = chainSlug;
-        protocol.chainName = chainName;
-        protocol.totalValueLockedUSD = ZERO_BD;
-        protocol.cumulativeVolumeUSD = ZERO_BD;
-        protocol.cumulativeLPRevenueUSD = ZERO_BD;
-        protocol.cumulativeProtocolRevenueUSD = ZERO_BD;
-        protocol.cumulativeTotalRevenueUSD = ZERO_BD;
-        protocol.cumulativeUniqueUsers = 0;
-        protocol.totalLiquidityPoolCount = 0;
+        protocol.name = NAME;
+        protocol.slug = SLUG;
+        protocol.chainId = CHAIN_ID;
+        protocol.chainSlug = CHAIN_SLUG;
+        protocol.chainName = CHAIN_NAME;
         protocol.save();
     }
     return protocol;

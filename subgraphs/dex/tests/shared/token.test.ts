@@ -1,11 +1,6 @@
-import {
-    describe,
-    test,
-    assert,
-    beforeEach,
-} from "matchstick-as/assembly/index";
+import { describe, test, assert } from "matchstick-as/assembly/index";
 
-import { Address } from "@graphprotocol/graph-ts";
+import { Address, BigInt } from "@graphprotocol/graph-ts";
 
 import {
     fetchTokenSymbol,
@@ -16,7 +11,7 @@ import {
 describe("fetchTokenSymbol", () => {
     describe("Given Arbitrum One and WETH address", () => {
         test("Should return WETH", () => {
-            let symbol = fetchTokenSymbol(
+            const symbol = fetchTokenSymbol(
                 "42161",
                 Address.fromString(
                     "0x82af49447d8a07e3bd95bd0d56f35241523fbab1"
@@ -30,7 +25,7 @@ describe("fetchTokenSymbol", () => {
 describe("fetchTokenName", () => {
     describe("Given Arbitrum One and WETH address", () => {
         test("Should return Wrapped ETH", () => {
-            let name = fetchTokenName(
+            const name = fetchTokenName(
                 "42161",
                 Address.fromString(
                     "0x82af49447d8a07e3bd95bd0d56f35241523fbab1"
@@ -44,13 +39,13 @@ describe("fetchTokenName", () => {
 describe("fetchTokenDecimals", () => {
     describe("Given Arbitrum One and WETH address", () => {
         test("Should return 18", () => {
-            let decimals = fetchTokenDecimals(
+            const decimals = fetchTokenDecimals(
                 "42161",
                 Address.fromString(
                     "0x82af49447d8a07e3bd95bd0d56f35241523fbab1"
                 )
             );
-            assert.i32Equals(decimals, 18);
+            assert.bigIntEquals(decimals, BigInt.fromString("18"));
         });
     });
 });

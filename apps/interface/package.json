@@ -18,7 +18,7 @@
         "@fontsource/ibm-plex-mono": "4.5.10",
         "@fontsource/inter": "4.5.11",
         "@rainbow-me/rainbowkit": "^0.4.5",
-        "@risedle/types": "1.8.1",
+        "@risedle/types": "1.9.0",
         "dayjs": "^1.11.5",
         "dom-to-image": "^2.6.0",
         "ethers": "5.6.9",

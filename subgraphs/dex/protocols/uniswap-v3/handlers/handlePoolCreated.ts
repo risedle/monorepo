@@ -1,4 +1,4 @@
-import { BigDecimal } from "@graphprotocol/graph-ts";
+import { BigDecimal, BigInt } from "@graphprotocol/graph-ts";
 
 import { PoolCreated } from "../../../generated/Factory/Factory";
 
@@ -6,20 +6,15 @@ import { PoolCreated } from "../../../generated/Factory/Factory";
 import {
     getOrCreateProtocol,
     getOrCreateToken,
-    getOrCreateLiquidityPool,
-    getOrCreateTokenLiquidityPool,
-    // Fees
-    LiquidityPoolFeeType,
-    getOrCreateLPFee,
-    getOrCreateProtocolFee,
-    getOrCreateSwapFee,
+    createLiquidityPool,
 } from "../../../shared/entities";
 
-// Libs
-import { ZERO_BD, HALF_PERCENT } from "../../../shared/libs/math";
+// Math libs
+import { ZERO_BD, FIFTY_PERCENT } from "../../../shared/libs/math";
 
-// This contant is generated via npm run constgen
-import * as protocolInfo from "../../../generated/protocol";
+// This contant is generated via the following command:
+// $ npm run constgen
+import { NAME, SLUG } from "../../../generated/protocol";
 
 // Convert Uniswap V3 fee tiers to percent
 // 100 -> 0.01%
@@ -34,89 +29,58 @@ export function convertFeeToPercent(fee: i64): BigDecimal {
 }
 
 export function handlePoolCreated(event: PoolCreated): void {
-    // ████ Protocol █████████████████████████████████████████████████████████
-
     // Get or create Protocol
-    let protocol = getOrCreateProtocol(
-        protocolInfo.NAME,
-        protocolInfo.SLUG,
-        protocolInfo.CHAIN_ID,
-        protocolInfo.CHAIN_SLUG,
-        protocolInfo.CHAIN_NAME
-    );
-    protocol.totalLiquidityPoolCount += 1;
+    const protocol = getOrCreateProtocol();
 
-    // ████ Tokens ███████████████████████████████████████████████████████████
-
-    // Get or create new tokens
-    let token0 = getOrCreateToken(event.params.token0, protocol);
-    let token1 = getOrCreateToken(event.params.token1, protocol);
-    token0.totalLiquidityPoolCount += 1;
-    token1.totalLiquidityPoolCount += 1;
+    // Get or create new Token(s)
+    const token0 = getOrCreateToken(protocol, event.params.token0);
+    const token1 = getOrCreateToken(protocol, event.params.token1);
 
     // ████ Pool █████████████████████████████████████████████████████████████
 
-    // Get or create new liquidity pool
-    let poolSwapFeePercentage = convertFeeToPercent(event.params.fee);
+    const poolAddress = event.params.pool;
+    const swapFee = convertFeeToPercent(event.params.fee);
+    const lpFee = swapFee;
+    const protocolFee = ZERO_BD;
+
     // e.g. "Uniswap V3 USDC/WETH 1%"
-    let poolName = protocolInfo.NAME.concat(" ")
+    const poolName = NAME.concat(" ")
         .concat(token0.symbol)
         .concat("/")
         .concat(token1.symbol)
         .concat(" ")
-        .concat(poolSwapFeePercentage.toString())
+        .concat(swapFee.toString())
         .concat("%");
     // e.g "uniswap-v3-usdc-weth-1"
-    let poolSlug = protocolInfo.SLUG.concat("-")
+    const poolSlug = SLUG.concat("-")
         .concat(token0.symbol.toLowerCase())
         .concat("-")
         .concat(token1.symbol.toLowerCase())
         .concat("-")
-        .concat(poolSwapFeePercentage.toString());
-    let pool = getOrCreateLiquidityPool(
-        event.params.pool,
+        .concat(swapFee.toString());
+
+    const tokenCount = BigInt.fromString("2");
+    const tokens = [token0, token1];
+    const tokenWeights = [FIFTY_PERCENT, FIFTY_PERCENT];
+
+    // Create pool
+    const pool = createLiquidityPool(
+        protocol,
+        event,
+        poolAddress,
         poolName,
         poolSlug,
-        protocol
-    );
-    pool.tokenCount = 2;
-    pool.createdAtTimestamp = event.block.timestamp;
-    pool.createdAtBlockNumber = event.block.number;
-
-    // Get or create token<->pool mapping
-    let token0Pool = getOrCreateTokenLiquidityPool(token0, pool, HALF_PERCENT);
-    let token1Pool = getOrCreateTokenLiquidityPool(token1, pool, HALF_PERCENT);
-
-    // Fees;
-    // LPFee -> fee collected by liquidity provider
-    // ProtocolFee -> fee collected by protocol
-    // SwapFee -> LPFee + ProtocolFee
-    let poolLPFee = getOrCreateLPFee(
-        pool,
-        poolSwapFeePercentage,
-        LiquidityPoolFeeType.FIXED_LP_FEE
-    );
-    let poolProtocolFee = getOrCreateProtocolFee(
-        pool,
-        ZERO_BD,
-        LiquidityPoolFeeType.FIXED_PROTOCOL_FEE
-    );
-    let poolSwapFee = getOrCreateSwapFee(
-        pool,
-        poolSwapFeePercentage,
-        LiquidityPoolFeeType.FIXED_SWAP_FEE
+        tokenCount,
+        tokens,
+        tokenWeights,
+        lpFee,
+        protocolFee,
+        swapFee
     );
 
-    // ████ Persist data █████████████████████████████████████████████████████
-
-    // Saves
+    // Persist data
     protocol.save();
     token0.save();
     token1.save();
     pool.save();
-    token0Pool.save();
-    token1Pool.save();
-    poolLPFee.save();
-    poolProtocolFee.save();
-    poolSwapFee.save();
 }

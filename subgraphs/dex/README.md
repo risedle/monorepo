@@ -37,6 +37,35 @@ npm run graph:test
 npm run graph:test -- flt
 ```
 
+### Liquidity Pool Creation
+
+Liquidity Pool is created using
+[createLiquidityPool](./shared/entities/createLiquidityPool.ts) function.
+
+Each protocol must provide the following data in order to create new pool:
+
+| Name             | Type                  | Description                                       |
+| ---------------- | --------------------- | ------------------------------------------------- |
+| `poolName`       | `string`              | Pool's name (e.g. "Uniswap V3 USDC/WETH 0.3%")    |
+| `poolSlug`       | `string`              | Pool's slug (e.g. "uniswap-v3-usdc-weth-0.3")     |
+| `tokenCount`     | `i32`                 | Number of tokens in the pool (e.g. 2)             |
+| `tokenAddresses` | `Array<Address>`      | Array of token address                            |
+| `tokenWeights`   | `Array<BigDecimal>`   | Array of token weight                             |
+| `lpFee`          | `BigDecimal`          | Percentage fee received by LP provider (e.g. 0.3) |
+| `protocolFee`    | `BigDecimal`          | Percentage fee received by Protocol               |
+| `swapFee`        | `BigDecimal`          | Total fee per swap (lp + protocol)                |
+| `block`          | `Block`               | Block object when pool is created                 |
+| `transaction`    | `Transaction`         | Transaction when pool is created                  |
+| `receipt`        | `TransasctionReceipt` | Transaction receipt                               |
+
+> **INFO**: Learn more about types
+> [here](https://thegraph.com/docs/en/developing/assemblyscript-api/#ethereum-api)
+
+Notes:
+
+-   If there is protocol fee switch, it will handled directly in the mapping
+    based on the `event.block.number`
+
 ### Deploy
 
 > **IMPORTANT**: Make sure you are connected to Risedle private network

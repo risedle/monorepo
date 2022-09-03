@@ -15,6 +15,11 @@ import type { FuseLeveragedToken } from "@/utils/types";
 
 // Sub-components
 import SwapHistoryCardTable from "./Table";
+import dynamic from "next/dynamic";
+
+const MySwapHistoryContainer = dynamic(() => import("./MySwapContainer"), {
+    ssr: false,
+});
 
 interface SwapHistoryCardProps extends BoxProps {
     flt: FuseLeveragedToken;
@@ -22,7 +27,7 @@ interface SwapHistoryCardProps extends BoxProps {
 
 export const SwapHistoryCard = (props: SwapHistoryCardProps) => {
     const { flt, ...boxProps } = props;
-    const { swaps } = flt;
+    const { swaps, symbol } = flt;
 
     // Styles
     const gray2 = useColorModeValue("gray.light.2", "gray.dark.2");
@@ -109,10 +114,14 @@ export const SwapHistoryCard = (props: SwapHistoryCardProps) => {
 
                 <TabPanels>
                     <TabPanel paddingX="2" paddingTop="6" paddingBottom="4">
-                        <SwapHistoryCardTable swaps={swaps} isLoaded={true} />
+                        <SwapHistoryCardTable
+                            swaps={swaps}
+                            isLoaded={true}
+                            symbol={symbol}
+                        />
                     </TabPanel>
                     <TabPanel paddingX="2" paddingTop="6" paddingBottom="4">
-                        <SwapHistoryCardTable swaps={swaps} isLoaded={false} />
+                        <MySwapHistoryContainer symbol={symbol} />
                     </TabPanel>
                 </TabPanels>
             </Tabs>
