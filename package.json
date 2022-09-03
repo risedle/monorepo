@@ -60,16 +60,7 @@
         }
     },
     "lint-staged": {
-        "*.md": "prettier --write",
-        "*.mdx": "prettier --write",
-        "*.ts": "prettier --write",
-        "*.tsx": "prettier --write",
-        "*.js": "prettier --write",
-        "*.jsx": "prettier --write",
-        "*.yml": "prettier --write",
-        "*.json": "prettier --write",
-        "*.css": "prettier --write",
-        "*.sol": "prettier --write"
+        "*": "prettier --write --ignore-unknown"
     },
     "eslintConfig": {
         "root": true,
