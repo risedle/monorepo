@@ -8,7 +8,7 @@ import { fetcher } from "@/utils/fetcher";
 export function useGetInsight() {
     const { chainId } = getBaseConfig();
     const url = `https://api.risedle.com/v1/${chainId}/flts/insight/gains`;
-    const { data, error } = useSWR<FuseLeveragedTokenInsight, Error>(
+    const { data, error } = useSWR<Array<FuseLeveragedTokenInsight>, Error>(
         url,
         fetcher
     );
