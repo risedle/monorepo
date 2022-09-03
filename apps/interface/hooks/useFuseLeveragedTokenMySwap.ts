@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { FuseLeverageSwapsHistory } from "@risedle/types";
+import { FuseLeveragedTokenSwaps } from "@risedle/types";
 
 import { fetcher } from "@/utils/fetcher";
 import getBaseConfig from "@/utils/getBaseConfig";
@@ -14,7 +14,7 @@ export function useFuseLeveragedTokenMySwap(
         ? `https://api.risedle.com/v1/${chainId}/flts/${symbol}/swaps?userAddress=${userAddress}`
         : null;
 
-    const { data, error } = useSWR<FuseLeverageSwapsHistory, Error>(
+    const { data, error } = useSWR<FuseLeveragedTokenSwaps, Error>(
         url,
         fetcher
     );
