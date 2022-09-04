@@ -4,7 +4,15 @@
     "chain": {
         "id": "42161",
         "name": "Arbitrum One",
-        "slug": "arbitrum-one"
+        "slug": "arbitrum-one",
+        "whitelist": [
+            "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+            "0xff970a61a04b1ca14834a43f5de4533ebddb5cc8",
+            "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
+            "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
+            "0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f",
+            "0xfc5a1a6eb076a2c7ad06ed22c90d7e710e35ad0a"
+        ]
     },
     "factory": {
         "startBlock": "163"

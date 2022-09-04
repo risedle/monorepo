@@ -8,6 +8,7 @@ export const SLUG = "{{ slug }}";
 export const CHAIN_ID = "{{ chain.id }}";
 export const CHAIN_NAME = "{{ chain.name }}";
 export const CHAIN_SLUG = "{{ chain.slug }}";
+export const WHITELISTED_TOKENS = [{{#chain.whitelist}}"{{.}}",{{/chain.whitelist}}];
 
 // To get native token price (e.g. WETH, WMATIC)
 export const WETH_ADDRESS = Address.fromString("{{ wethAddress }}");

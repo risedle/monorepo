@@ -12,9 +12,12 @@ import {
 // Math libs
 import { ZERO_BD, FIFTY_PERCENT } from "../../../shared/libs/math";
 
+// Pool libs
+import { isPoolSkipped } from "../../../shared/pools";
+
 // This contant is generated via the following command:
 // $ npm run constgen
-import { NAME, SLUG } from "../../../generated/protocol";
+import { NAME, SLUG, WHITELISTED_TOKENS } from "../../../generated/protocol";
 
 // Convert Uniswap V3 fee tiers to percent
 // 100 -> 0.01%
@@ -29,6 +32,13 @@ export function convertFeeToPercent(fee: i64): BigDecimal {
 }
 
 export function handlePoolCreated(event: PoolCreated): void {
+    // Check wether we skip the pool or nah
+    const isSkipped = isPoolSkipped(WHITELISTED_TOKENS, [
+        event.params.token0.toHexString(),
+        event.params.token1.toHexString(),
+    ]);
+    if (isSkipped) return;
+
     // Get or create Protocol
     const protocol = getOrCreateProtocol();
 
