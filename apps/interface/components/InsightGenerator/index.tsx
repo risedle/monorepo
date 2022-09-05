@@ -28,6 +28,7 @@ const InsightGenerator = () => {
 
     return (
         <Container
+            data-testid="InsightGenerator"
             maxW="5xl"
             py="3"
             marginTop={{ base: "152px", laptop: "60px" }}
