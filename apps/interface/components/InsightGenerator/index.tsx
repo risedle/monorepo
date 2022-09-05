@@ -9,7 +9,6 @@ import {
     Tabs,
     useColorModeValue,
     Button,
-    useDimensions,
 } from "@chakra-ui/react";
 import InsightImageDOM, { ImageHandle } from "@/components/InsightImageDOM";
 
@@ -21,8 +20,6 @@ const InsightGenerator = () => {
         "gray.light.12",
         "gray.dark.12"
     );
-    const containerRef = useRef(null);
-    const containerDimension = useDimensions(containerRef, true);
     const imageRef = useRef<ImageHandle>(null);
     const [tabIndex, setTabIndex] = useState(0);
 
@@ -80,7 +77,7 @@ const InsightGenerator = () => {
                         </Tab>
                     </TabList>
                     <Button
-                        onClick={async () => {
+                        onClick={() => {
                             if (imageRef?.current?.getImage) {
                                 imageRef.current.getImage();
                             }
@@ -95,24 +92,12 @@ const InsightGenerator = () => {
                 <TabPanels>
                     <TabPanel p="0" position="relative">
                         {tabIndex === 0 && (
-                            <InsightImageDOM
-                                ref={imageRef}
-                                type="daily"
-                                containerWidth={
-                                    containerDimension?.contentBox.width
-                                }
-                            />
+                            <InsightImageDOM ref={imageRef} type="daily" />
                         )}
                     </TabPanel>
                     <TabPanel p="0">
                         {tabIndex === 1 && (
-                            <InsightImageDOM
-                                ref={imageRef}
-                                type="weekly"
-                                containerWidth={
-                                    containerDimension?.contentBox.width
-                                }
-                            />
+                            <InsightImageDOM ref={imageRef} type="weekly" />
                         )}
                     </TabPanel>
                 </TabPanels>

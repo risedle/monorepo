@@ -15,7 +15,7 @@ export function useGetInsight() {
 
     return {
         data: data,
-        isLoaded: data ? true : false,
+        isLoaded: data || error ? true : false,
         error: error,
     };
 }

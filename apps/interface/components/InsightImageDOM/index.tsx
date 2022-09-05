@@ -15,7 +15,6 @@ import dayjs from "dayjs";
 
 interface InsightImageDOMProps extends FlexProps {
     type: "daily" | "weekly";
-    containerWidth: number | undefined;
 }
 
 export type ImageHandle = {
@@ -25,12 +24,20 @@ export type ImageHandle = {
 // eslint-disable-next-line react/display-name
 const InsightImageDOM = React.forwardRef(
     (props: InsightImageDOMProps, ref) => {
+        const { type, ...restProps } = props;
+        const { data, isLoaded, error } = useGetInsight();
+        const description = {
+            daily: "24H",
+            weekly: "Weekly",
+        };
         const imageRef = useRef<HTMLDivElement>(null);
+
         const exportImage = async () => {
             try {
                 if (imageRef.current && data) {
                     const result = await domtoimage.toJpeg(imageRef.current);
                     const link = document.createElement("a");
+                    link.className = "download-helper";
                     link.download = `${props.type} ${dayjs(
                         data[0].dailyGain.timestamp * 1000
                     ).format("DD-MM-YY")}.jpeg`;
@@ -38,7 +45,8 @@ const InsightImageDOM = React.forwardRef(
                     link.click();
                 }
             } catch (e) {
-                console.log("something went wrong");
+                console.log(e);
+                alert("something went wrong");
             }
         };
 
@@ -48,36 +56,20 @@ const InsightImageDOM = React.forwardRef(
             },
         }));
 
-        const { type, ...restProps } = props;
-        const { data, isLoaded, error } = useGetInsight();
-        const description = {
-            daily: "24H",
-            weekly: "Weekly",
-        };
-
-        if (!isLoaded) {
-            return (
-                <Center>
-                    <Spinner />
-                </Center>
-            );
-        }
-
         if (error) {
             return (
-                <Center>
+                <Center data-testid="ErrorInsightGenerator">
                     <Heading size="md">Something Went Wrong</Heading>
                     <Text>{error.message}</Text>
                 </Center>
             );
         }
 
-        if (data) {
+        if (isLoaded && data) {
             return (
                 <>
-                    <div ref={imageRef}>
+                    <div data-testid="InsightGeneratorDiv" ref={imageRef}>
                         <Flex
-                            // ref={ref as LegacyRef<HTMLDivElement> | undefined}
                             direction="row"
                             justifyContent="space-between"
                             background="#0A0A0C"
@@ -167,6 +159,7 @@ const InsightImageDOM = React.forwardRef(
                                         return (
                                             <>
                                                 <Flex
+                                                    key={`${item.dailyGain.gain} ${index}`}
                                                     direction="row"
                                                     justifyContent="space-between"
                                                     alignItems="center"
@@ -249,7 +242,11 @@ const InsightImageDOM = React.forwardRef(
                 </>
             );
         }
-        return null;
+        return (
+            <Center data-testid="LoadingInsightGenerator">
+                <Spinner />
+            </Center>
+        );
     }
 );
 
