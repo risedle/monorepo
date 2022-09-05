@@ -13,8 +13,8 @@
         "clean": "rm -rf dist",
         "build": "tsc",
         "lint": "eslint .",
-        "storybook": "start-storybook -p 6006",
-        "build-storybook": "build-storybook"
+        "storybook:start": "start-storybook -p 6006",
+        "storybook:build": "build-storybook"
     },
     "prepublish": "tsc",
     "homepage": "https://risedle.com",
@@ -47,6 +47,7 @@
         "babel-loader": "8.2.5",
         "eslint": "7.32.0",
         "nodemon": "2.0.16",
+        "postcss": "8.4.16",
         "react": "18.2.0",
         "semantic-release": "19.0.3",
         "tsconfig": "*",
