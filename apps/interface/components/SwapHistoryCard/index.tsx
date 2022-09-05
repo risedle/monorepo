@@ -15,6 +15,11 @@ import type { FuseLeveragedToken } from "@/utils/types";
 
 // Sub-components
 import SwapHistoryCardTable from "./Table";
+import dynamic from "next/dynamic";
+
+const MySwapHistoryContainer = dynamic(() => import("./MySwapContainer"), {
+    ssr: false,
+});
 
 interface SwapHistoryCardProps extends BoxProps {
     flt: FuseLeveragedToken;
@@ -22,14 +27,12 @@ interface SwapHistoryCardProps extends BoxProps {
 
 export const SwapHistoryCard = (props: SwapHistoryCardProps) => {
     const { flt, ...boxProps } = props;
-    const { swaps } = flt;
+    const { swaps, symbol } = flt;
 
     // Styles
-    const gray1 = useColorModeValue("gray.light.1", "gray.dark.1");
     const gray2 = useColorModeValue("gray.light.2", "gray.dark.2");
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
-    const gray3 = useColorModeValue("gray.light.3", "gray.dark.3");
     const selectedTabColor = useColorModeValue("gray.light.1", "gray.dark.4");
     const backgroundTabColor = useColorModeValue(
         "gray.light.3",
@@ -111,10 +114,14 @@ export const SwapHistoryCard = (props: SwapHistoryCardProps) => {
 
                 <TabPanels>
                     <TabPanel paddingX="2" paddingTop="6" paddingBottom="4">
-                        <SwapHistoryCardTable swaps={swaps} isLoaded={true} />
+                        <SwapHistoryCardTable
+                            swaps={swaps}
+                            isLoaded={true}
+                            symbol={symbol}
+                        />
                     </TabPanel>
                     <TabPanel paddingX="2" paddingTop="6" paddingBottom="4">
-                        <SwapHistoryCardTable swaps={swaps} isLoaded={false} />
+                        <MySwapHistoryContainer symbol={symbol} />
                     </TabPanel>
                 </TabPanels>
             </Tabs>

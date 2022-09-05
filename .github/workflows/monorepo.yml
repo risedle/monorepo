@@ -9,6 +9,8 @@ on:
       - ".github/workflows/risedle-interface.yml"
       - "contracts/flt/**"
       - ".github/workflows/risedle-flt.yml"
+      - "subgraphs/**"
+      - ".github/workflows/risedle-subgraphs-*"
   pull_request:
     branches:
       - main
@@ -17,6 +19,8 @@ on:
       - ".github/workflows/risedle-interface.yml"
       - "contracts/flt/**"
       - ".github/workflows/risedle-flt.yml"
+      - "subgraphs/**"
+      - ".github/workflows/risedle-subgraphs-*"
 
 jobs:
   build:
@@ -28,8 +32,20 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
         with:
-          node-version: "17.8.0"
+          node-version: "18.7.0"
           cache: "npm"
+      - name: Cache node_modules
+        id: cache-nodemodules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key:
+            # prettier-ignore
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
       - name: Install dependencies
         run: npm install
       - name: Build

@@ -62,7 +62,8 @@ paths:
           required: true
         - in: path
           name: symbol
-          type: string
+          schema:
+            type: string
           example: "ETHRISE"
           required: true
       responses:
@@ -92,7 +93,8 @@ paths:
           required: true
         - in: path
           name: symbol
-          type: string
+          schema:
+            type: string
           example: "ETHRISE"
           required: true
       responses:
@@ -135,12 +137,14 @@ paths:
           required: true
         - in: path
           name: symbol
-          type: string
+          schema:
+            type: string
           example: "ETHRISE"
           required: true
         - in: query
           name: userAddress
-          type: string
+          schema:
+            type: string
           example: "0x1418be4753a22b69b613fa8b8144d856c023d46b"
       responses:
         200:
@@ -178,7 +182,8 @@ paths:
           required: true
         - in: path
           name: symbol
-          type: string
+          schema:
+            type: string
           example: "ETHRISE"
           required: true
       responses:
@@ -214,7 +219,8 @@ paths:
         - in: path
           name: positionId
           description: "user address - flt address"
-          type: string
+          schema:
+            type: string
           example: "0x1418be4753a22b69b613fa8b8144d856c023d46b-0x4f7255178b8f15c2cbe92d09b8a77b53ef4ec9ea"
           required: true
       responses:
@@ -224,6 +230,36 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FuseLeveragedTokenUserOpenPosition"
+        404:
+          description: Chain ID not supported
+        500:
+          description: Internal server error
+
+  /v1/{chainId}/flts/insight/gains:
+    get:
+      tags:
+        - Insight Generator
+      operationId: GetFuseLeveragedTokensGains
+      summary: |
+        Get daily and weekly FLTs gains
+      parameters:
+        - in: path
+          name: chainId
+          schema:
+            $ref: "#/components/schemas/ChainId"
+          required: true
+      responses:
+        200:
+          description: Fuse Leveraged Tokens gains data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tokens:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/FuseLeveragedTokenGains"
         404:
           description: Chain ID not supported
         500:
@@ -276,7 +312,7 @@ components:
           format: float
           example: 1.2
         decimals:
-          decription: Asset's decimals
+          description: Asset's decimals
           type: number
           example: 18
         change:
@@ -397,6 +433,25 @@ components:
           description: Trade fee in USD
           $ref: "#/components/schemas/USD"
 
+    FuseLeveragedTokenGains:
+      description: Fuse Leveraged Token's gain for daily and weekly timeframe
+      type: object
+      properties:
+        symbol:
+          description: Token's Symbol
+          type: string
+          example: "BNBRISE"
+        name:
+          description: Token's name
+          type: string
+          example: "2X Long ETH Risedle"
+        dailyGain:
+          description: Token's daily gain data
+          $ref: "#/components/schemas/FuseLeveragedTokenDailyGain"
+        weeklyGain:
+          description: Token's weekly gain data
+          $ref: "#/components/schemas/FuseLeveragedTokenWeeklyGain"
+
     SwapTokenInfo:
       description: Swap token info
       type: object
@@ -491,3 +546,33 @@ components:
           type: number
           format: float
           example: 10.03
+
+    FuseLeveragedTokenDailyGain:
+      description: Daily FLT's gain data
+      type: object
+      properties:
+        timestamp:
+          description: Unix timestamp in seconds
+          type: number
+          example: 1657868400
+        gain:
+          description: Price gain in percentage
+          type: number
+          example: 4.12
+
+    FuseLeveragedTokenWeeklyGain:
+      description: Weekly FLT's gain data
+      type: object
+      properties:
+        timestampStart:
+          description: Unix timestamp in seconds
+          type: number
+          example: 1657868400
+        timestampEnd:
+          description: Unix timestamp in seconds
+          type: number
+          example: 1657868400
+        gain:
+          description: Price gain in percentage
+          type: number
+          example: 4.12

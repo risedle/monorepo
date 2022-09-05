@@ -1,0 +1,18 @@
+// This is a template to generate `./generated/protocol.ts`
+// List of constants used in one deployment for specific protocol and specific
+// chain.
+import { Address, BigInt } from '@graphprotocol/graph-ts'
+
+export const NAME = "{{ name }}";
+export const SLUG = "{{ slug }}";
+export const CHAIN_ID = "{{ chain.id }}";
+export const CHAIN_NAME = "{{ chain.name }}";
+export const CHAIN_SLUG = "{{ chain.slug }}";
+export const WHITELISTED_TOKENS = [{{#chain.whitelist}}"{{.}}",{{/chain.whitelist}}];
+
+// To get native token price (e.g. WETH, WMATIC)
+export const WETH_ADDRESS = Address.fromString("{{ wethAddress }}");
+export const UNI_V2_USDC_WETH_POOL = Address.fromString("{{ uniV2USDCWETHPool }}");
+export const UNI_V2_USDC_WETH_BLOCK = BigInt.fromString("{{ uniV2USDCWETHBlock }}");
+export const UNI_V3_USDC_WETH_POOL = Address.fromString("{{ uniV3USDCWETHPool }}");
+export const UNI_V3_USDC_WETH_BLOCK = BigInt.fromString("{{ uniV3USDCWETHBlock }}");

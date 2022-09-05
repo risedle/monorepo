@@ -8,8 +8,10 @@ import {
     useColorModeValue,
     Link,
     Skeleton,
+    useColorMode,
 } from "@chakra-ui/react";
 import TimeAgo from "react-timeago";
+import NextImage from "next/image";
 
 // Utils
 import formatUSD from "@/utils/formatUSD";
@@ -22,10 +24,52 @@ import ArrowTopRight from "@/components/Icons/ArrowTopRight";
 interface SwapHistoryCardTableProps extends BoxProps {
     swaps: Array<FuseLeveragedTokenSwap>;
     isLoaded: boolean;
+    symbol: string;
 }
 
+const TransactionData = ({
+    swap,
+    symbol,
+}: {
+    swap: FuseLeveragedTokenSwap;
+    symbol: string;
+}) => {
+    const { colorMode } = useColorMode();
+    const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");
+    const transactionType = swap.tokenIn.symbol === symbol ? "Sell" : "Buy";
+    return (
+        <HStack py="1">
+            <NextImage
+                src={`/icons/${transactionType.toLocaleUpperCase()}-${colorMode}.svg`}
+                width="24px"
+                height="24px"
+                alt={`${transactionType} logo`}
+            />
+            <HStack>
+                <Text
+                    fontFamily="mono"
+                    color={gray12}
+                    fontSize="sm"
+                    lineHeight="4"
+                    data-testid="BackingCardCollateral"
+                >
+                    {swap.tokenIn.symbol === symbol
+                        ? `${transactionType} ${swap.tokenIn.symbol} `
+                        : `${transactionType} ${swap.tokenOut.symbol}`}
+                </Text>
+                <ArrowTopRight
+                    w="14px"
+                    h="14px"
+                    margin="0 !important"
+                    color={gray12}
+                />
+            </HStack>
+        </HStack>
+    );
+};
+
 export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
-    const { swaps, isLoaded, ...boxProps } = props;
+    const { swaps, isLoaded, symbol, ...boxProps } = props;
 
     // Styles
     const gray3 = useColorModeValue("gray.light.3", "gray.dark.3");
@@ -36,19 +80,17 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
 
     return (
         <Flex
-            width="100%"
-            alignItems="flex-start"
             margin="0 !important"
             data-testid="SwapHistoryCardTable"
-            minH="200px"
+            minH="180px"
+            overflowX={{ base: "scroll", tablet: "hidden" }}
             {...boxProps}
         >
             {/* Transaction */}
             <VStack
+                minWidth="200px"
                 flex="1"
-                alignItems="flex-start"
-                width="100%"
-                gap={4}
+                gap="3"
                 data-testid="TableTransaction"
             >
                 <Text
@@ -72,19 +114,19 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                         />
                     }
                     margin="0 !important"
-                    gap={4}
+                    gap="3"
                     width="100%"
                     alignItems="flex-start"
                 >
-                    {swaps.map((swap) => (
+                    {swaps.map((swap, index) => (
                         <Skeleton
                             isLoaded={isLoaded}
                             startColor={gray3}
                             endColor={gray4}
                             borderRadius="lg"
-                            marginX="2"
+                            px="2"
                             minW="60px"
-                            key={swap.timestamp}
+                            key={`${swap.timestamp} ${index}`}
                         >
                             <Link
                                 _hover={{ textDecoration: "none" }}
@@ -94,24 +136,7 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                                 target="_blank"
                                 data-testid="SwapHistoryCardTableTransactionLink"
                             >
-                                <HStack>
-                                    <Text
-                                        color={gray12}
-                                        fontSize="sm"
-                                        lineHeight="4"
-                                        margin="0 !important"
-                                        data-testid="BackingCardCollateral"
-                                    >
-                                        Swap {swap.tokenIn.symbol} for{" "}
-                                        {swap.tokenOut.symbol}
-                                    </Text>
-                                    <ArrowTopRight
-                                        w="14px"
-                                        h="14px"
-                                        margin="0 !important"
-                                        color={gray10}
-                                    />
-                                </HStack>
+                                <TransactionData swap={swap} symbol={symbol} />
                             </Link>
                         </Skeleton>
                     ))}
@@ -119,11 +144,11 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
             </VStack>
 
             {/* Account */}
-            <VStack gap={4} data-testid="TableAccount">
+            <VStack minWidth="120px" gap="3" data-testid="TableAccount">
                 <Text
                     padding="2"
                     background={gray4}
-                    width="100%"
+                    width="120px"
                     fontSize="xs"
                     lineHeight="4"
                     color={gray10}
@@ -139,31 +164,34 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                         />
                     }
                     margin="0 !important"
-                    gap={4}
+                    gap="3"
                     width="100%"
                     alignItems="flex-start"
                 >
-                    {swaps.map((swap) => (
+                    {swaps.map((swap, index) => (
                         <Skeleton
                             isLoaded={isLoaded}
                             startColor={gray3}
                             endColor={gray4}
                             borderRadius="lg"
-                            marginX="2"
+                            px="2"
                             minW="60px"
                             data-testid="SwapHistoryCardTableTime"
-                            key={swap.timestamp}
+                            key={`${swap.timestamp} ${index}`}
                         >
-                            <Text
-                                color={gray12}
-                                fontSize="sm"
-                                lineHeight="4"
-                                margin="0 !important"
-                            >
-                                <TimeAgo
-                                    date={parseInt(swap.timestamp) * 1000}
-                                />
-                            </Text>
+                            <Flex alignItems="center" py="2">
+                                <Text
+                                    fontFamily="mono"
+                                    color={gray10}
+                                    fontSize="sm"
+                                    lineHeight="4"
+                                    margin="0 !important"
+                                >
+                                    <TimeAgo
+                                        date={parseInt(swap.timestamp) * 1000}
+                                    />
+                                </Text>
+                            </Flex>
                         </Skeleton>
                     ))}
                 </VStack>
@@ -171,10 +199,11 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
 
             {/* Total value */}
             <VStack
+                minWidth="120px"
                 alignItems="flex-end"
-                gap={4}
+                gap="3"
                 data-testid="TableTotalValue"
-                minW="100px"
+                width="120px"
             >
                 <Text
                     padding="2"
@@ -185,7 +214,6 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                     color={gray10}
                     borderTopRightRadius="lg"
                     borderBottomRightRadius="lg"
-                    textAlign="right"
                 >
                     Total value
                 </Text>
@@ -198,30 +226,32 @@ export const SwapHistoryCardTable = (props: SwapHistoryCardTableProps) => {
                         />
                     }
                     margin="0 !important"
-                    gap={4}
-                    width="100%"
+                    gap="3"
+                    width="120px"
                     alignItems="flex-end"
                 >
-                    {swaps.map((swap) => (
+                    {swaps.map((swap, index) => (
                         <Skeleton
                             isLoaded={isLoaded}
                             startColor={gray3}
                             endColor={gray4}
                             borderRadius="lg"
-                            marginX="2"
-                            minW="60px"
+                            px="2"
+                            width="120px"
                             data-testid="SwapHistoryCardTableTotalValue"
-                            key={swap.timestamp}
+                            key={`${swap.timestamp} ${index}`}
                         >
-                            <Text
-                                color={gray12}
-                                fontSize="sm"
-                                lineHeight="4"
-                                fontFamily="mono"
-                                letterSpacing="tight"
-                            >
-                                {formatUSD(parseFloat(swap.amountInUSD))}
-                            </Text>
+                            <Flex alignItems="center" py="2">
+                                <Text
+                                    color={gray12}
+                                    fontSize="sm"
+                                    lineHeight="4"
+                                    fontFamily="mono"
+                                    letterSpacing="tight"
+                                >
+                                    {formatUSD(parseFloat(swap.amountInUSD))}
+                                </Text>
+                            </Flex>
                         </Skeleton>
                     ))}
                 </VStack>

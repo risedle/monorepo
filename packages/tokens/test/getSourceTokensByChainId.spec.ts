@@ -19,15 +19,15 @@ describe("getSourceTokensByChainId", () => {
             // Check source tokens
             expect(sourceTokens).toBeDefined();
             expect(
-                sourceTokens!.has(TokenInfoSource.PancakeSwapSubgraph)
+                sourceTokens?.has(TokenInfoSource.PancakeSwapSubgraph)
             ).toBe(true);
 
             // Check returned tokens
-            const tokens = sourceTokens!.get(
+            const tokens = sourceTokens?.get(
                 TokenInfoSource.PancakeSwapSubgraph
             );
             expect(tokens).toBeDefined();
-            expect(tokens!.length).toBe(2);
+            expect(tokens?.length).toBe(2);
 
             // Get source tokens via integer
             sourceTokens = getSourceTokensByChainId(56);

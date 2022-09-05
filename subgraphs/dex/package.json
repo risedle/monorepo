@@ -1,0 +1,23 @@
+{
+    "name": "@subgraphs/dex",
+    "private": true,
+    "scripts": {
+        "yamlgen": "mustache protocols/${npm_config_protocol}/configs/${npm_config_network}.json templates/${npm_config_protocol}.yaml.template > subgraph.yaml",
+        "codegen": "graph codegen",
+        "constgen": "mustache protocols/${npm_config_protocol}/configs/${npm_config_network}.json templates/protocol.ts.template > generated/protocol.ts",
+        "graph:build": "graph build",
+        "graph:test": "graph test",
+        "graph:create": "graph create --node http://risedle-graph-node.internal:9020/ risedle/dex-${npm_config_network}-${npm_config_protocol}",
+        "graph:remove": "graph remove --node http://risedle-graph-node.internal:9020/ risedle/dex-${npm_config_network}-${npm_config_protocol}",
+        "graph:deploy": "graph deploy --node http://risedle-graph-node.internal:9020/ --ipfs http://risedle-ipfs.internal:5001 risedle/dex-${npm_config_network}-${npm_config_protocol}",
+        "lint": "eslint ."
+    },
+    "dependencies": {
+        "@graphprotocol/graph-cli": "0.33.0",
+        "@graphprotocol/graph-ts": "0.27.0"
+    },
+    "devDependencies": {
+        "matchstick-as": "0.5.0",
+        "mustache": "4.2.0"
+    }
+}

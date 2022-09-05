@@ -1,5 +1,4 @@
 import { getFuseLeveragedTokenBackingsBySymbol } from "../flts";
-import { ChainId } from "@risedle/types";
 
 describe("getFuseLeveragedTokenBackingsBySymbol", () => {
     describe("given random chainId", () => {

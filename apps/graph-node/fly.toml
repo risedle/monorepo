@@ -1,0 +1,44 @@
+app = "risedle-graph-node"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[env]
+  GRAPH_LOG = "debug"
+  EXPERIMENTAL_SUBGRAPH_VERSION_SWITCHING_MODE = "synced"
+  GRAPH_GRAPHQL_ERROR_RESULT_SIZE = 1000000
+  GRAPH_GRAPHQL_WARN_RESULT_SIZE = 1000000
+  GRAPH_ETHEREUM_CLEANUP_BLOCKS = "true"
+
+[experimental]
+  auto_rollback = true
+
+[[services]]
+  internal_port = 8000
+  protocol = "tcp"
+
+  [[services.tcp_checks]]
+    grace_period = "60s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"
+
+[[services]]
+  internal_port = 8001
+  protocol = "tcp"
+
+  [[services.tcp_checks]]
+    grace_period = "60s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"
+
+[[services]]
+  internal_port = 8020
+  protocol = "tcp"
+
+  [[services.tcp_checks]]
+    grace_period = "60s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"

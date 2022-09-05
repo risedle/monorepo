@@ -1,0 +1,189 @@
+# This schema is adapted from uniswap/v3-subgraph and messari/subgraph
+
+# ████ Protocol ██████████████████████████████████████████████████████████████
+
+type Protocol @entity(immutable: true) {
+    # This will set as "1"
+    id: ID!
+
+    # Name of the protocol, including version. e.g. Uniswap v3
+    name: String!
+
+    # Slug of protocol, including version. e.g. uniswap-v3
+    slug: String!
+
+    # The blockchain this subgraph is indexing on
+    chainId: String!
+    chainSlug: String!
+    chainName: String!
+
+    # ████ Relations █████████████████████████████████████████████████████████
+
+    # List of all token listen on the protocol
+    tokens: [Token!]! @derivedFrom(field: "protocol")
+
+    # List of all liquidity pools on the protocol
+    pools: [LiquidityPool!]! @derivedFrom(field: "protocol")
+}
+
+# ████ Token █████████████████████████████████████████████████████████████████
+
+type Token @entity(immutable: true) {
+    # Token address
+    id: ID!
+
+    # Name of the token, mirrored from the smart contract
+    name: String!
+
+    # Symbol of the token, mirrored from the smart contract
+    symbol: String!
+
+    # The number of decimal places this token uses
+    decimals: BigInt!
+
+    # ████ Relations █████████████████████████████████████████████████████████
+
+    # Protocol info
+    protocol: Protocol!
+
+    # Liquidity pools
+    pools: [TokenLiquidityPool!]! @derivedFrom(field: "token")
+}
+
+# ████ Account ███████████████████████████████████████████████████████████████
+
+type Account @entity(immutable: true) {
+    # Wallet address
+    id: ID!
+
+    # ████ Relations █████████████████████████████████████████████████████████
+
+    # Protocol
+    protocol: Protocol!
+
+    # List of transactions
+    transactions: [Transaction!]! @derivedFrom(field: "from")
+
+    # List of created liquidity pools
+    createdPools: [LiquidityPool!]! @derivedFrom(field: "createdBy")
+}
+
+# ████ Contract ██████████████████████████████████████████████████████████████
+
+type Contract @entity(immutable: true) {
+    # Contract address
+    id: ID!
+
+    # ████ Relations █████████████████████████████████████████████████████████
+
+    # Protocol
+    protocol: Protocol!
+
+    # List of transactions
+    transactions: [Transaction!]! @derivedFrom(field: "to")
+}
+
+# ████ Native token price (e.g. WETH, WMATIC)  ███████████████████████████████
+
+type NativeTokenPrice @entity(immutable: true) {
+    # Block number
+    id: ID!
+
+    # Timestamp
+    timestamp: BigInt!
+
+    # USD Price
+    usd: BigDecimal!
+
+    # ████ Relations █████████████████████████████████████████████████████████
+
+    # Protocol
+    protocol: Protocol!
+}
+
+# ████ Transaction ███████████████████████████████████████████████████████████
+
+type Transaction @entity(immutable: true) {
+    # Transaction hash
+    id: ID!
+
+    # Transaction metadata
+    timestamp: BigInt!
+    blockNumber: BigInt!
+    value: BigInt!
+    valueUSD: BigDecimal!
+
+    # ████ Relations █████████████████████████████████████████████████████████
+
+    # EOA that initiate the transaction
+    from: Account!
+
+    # Contract that account interacted with
+    # If to is null, then it is a contract deployment
+    to: Contract
+
+    # Created liquidity pools in this transaction
+    pools: [LiquidityPool!]! @derivedFrom(field: "transaction")
+
+    # TODO(pyk): add deposits
+    # TODO(pyk): add withdraws
+    # TODO(pyk): add withdraws
+}
+
+# ████ Liquidity Pool ████████████████████████████████████████████████████████
+
+type LiquidityPool @entity(immutable: true) {
+    # Liquidity pool contract address
+    id: ID!
+
+    # Name of liquidity pool (e.g. Uniswap V3 USDC/ETH 0.3%)
+    name: String!
+
+    # Slug of liquidity pool (e.g. uniswap-v3-usdc-eth-0.3)
+    slug: String!
+
+    # Token count
+    tokenCount: BigInt!
+
+    # Creation timestamp
+    createdAtTimestamp: BigInt!
+
+    # Creation block number
+    createdAtBlockNumber: BigInt!
+
+    # Percentage fee received by LP (e.g. 0.3)
+    lpFee: BigDecimal!
+
+    # Percentage fee received by protocol (e.g. 0)
+    protocolFee: BigDecimal!
+
+    # Swap Fee = lp + protocol (e.g. 0.3)
+    swapFee: BigDecimal!
+
+    # ████ Relations █████████████████████████████████████████████████████████
+
+    # Protocol info
+    protocol: Protocol!
+
+    # Transaction that create this liquidity pool
+    transaction: Transaction!
+
+    # Creator of the liquidity pool
+    createdBy: Account!
+
+    # List of token available in the pool
+    tokens: [TokenLiquidityPool!]! @derivedFrom(field: "pool")
+}
+
+# Many to many relationship
+type TokenLiquidityPool @entity(immutable: true) {
+    # {token_id}-{pool_id}
+    id: ID!
+
+    # Weight percentage (e.g. 50 for 50%)
+    weightPercentage: BigDecimal!
+
+    # ████ Relations █████████████████████████████████████████████████████████
+    token: Token!
+    pool: LiquidityPool!
+}

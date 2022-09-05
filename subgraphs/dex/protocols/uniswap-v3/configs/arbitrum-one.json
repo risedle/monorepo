@@ -1,0 +1,25 @@
+{
+    "name": "Uniswap V3",
+    "slug": "uniswap-v3",
+    "chain": {
+        "id": "42161",
+        "name": "Arbitrum One",
+        "slug": "arbitrum-one",
+        "whitelist": [
+            "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+            "0xff970a61a04b1ca14834a43f5de4533ebddb5cc8",
+            "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
+            "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
+            "0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f",
+            "0xfc5a1a6eb076a2c7ad06ed22c90d7e710e35ad0a"
+        ]
+    },
+    "factory": {
+        "startBlock": "163"
+    },
+    "wethAddress": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+    "uniV2USDCWETHPool": "0x0000000000000000000000000000000000000000",
+    "uniV2USDCWETHBlock": "0",
+    "uniV3USDCWETHPool": "0x17c14d2c404d167802b16c450d3c99f88f2c4f4d",
+    "uniV3USDCWETHBlock": "4291"
+}

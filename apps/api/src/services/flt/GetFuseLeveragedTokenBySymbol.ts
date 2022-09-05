@@ -75,39 +75,43 @@ export async function GetFuseLeveragedTokenBySymbol(
     symbol = flt.symbol;
     const address = flt.address;
 
-    const priceUSD = parseFloat(flt.currentData[0].price);
-    const prevPriceUSD = parseFloat(flt.previousData[0].price);
+    const priceUSD = parseFloat(flt.currentData.at(0)?.price);
+    const prevPriceUSD = parseFloat(flt.previousData.at(0)?.price || priceUSD);
     const dailyPriceChangeUSD = priceUSD - prevPriceUSD;
     const dailyPriceChangePercentage =
         (dailyPriceChangeUSD / prevPriceUSD) * 100;
 
     const totalVolumeUSD = parseFloat(flt.totalVolumeUSD);
-    const currentVolumeUSD = parseFloat(flt.currentData[0].tradeVolumeUSD);
-    const prevVolumeUSD = parseFloat(flt.previousData[0].tradeVolumeUSD);
+    const currentVolumeUSD = parseFloat(flt.currentData.at(0)?.tradeVolumeUSD);
+    const prevVolumeUSD = parseFloat(
+        flt.previousData.at(0)?.tradeVolumeUSD || currentVolumeUSD
+    );
     const dailyVolumeChangeUSD = currentVolumeUSD - prevVolumeUSD;
     const dailyVolumeChangePercentage =
         (dailyVolumeChangeUSD / prevVolumeUSD) * 100 || 0;
 
-    const totalSupply = parseFloat(flt.currentData[0].totalSupply);
+    const totalSupply = parseFloat(flt.currentData.at(0)?.totalSupply);
     const maxSupply = parseFloat(flt.maxSupply);
     const marketcapUSD = totalSupply * priceUSD;
     const maxMarketcapUSD = maxSupply * priceUSD;
 
-    const totalCollateral = parseFloat(flt.currentData[0].totalCollateral);
-    const totalDebt = parseFloat(flt.currentData[0].totalDebt);
+    const totalCollateral = parseFloat(flt.currentData.at(0)?.totalCollateral);
+    const totalDebt = parseFloat(flt.currentData.at(0)?.totalDebt);
 
     const collateralPerShare = parseFloat(
-        flt.currentData[0].collateralPerShare
+        flt.currentData.at(0)?.collateralPerShare
     );
     const prevCollateralPerShare = parseFloat(
-        flt.previousData[0].collateralPerShare
+        flt.previousData.at(0)?.collateralPerShare || collateralPerShare
     );
     const collateralChange = collateralPerShare - prevCollateralPerShare;
     const collateralChangePercent =
         (collateralChange / prevCollateralPerShare) * 100 || 0;
 
-    const debtPerShare = parseFloat(flt.currentData[0].debtPerShare);
-    const prevDebtPerShare = parseFloat(flt.previousData[0].debtPerShare);
+    const debtPerShare = parseFloat(flt.currentData.at(0)?.debtPerShare);
+    const prevDebtPerShare = parseFloat(
+        flt.previousData.at(0)?.debtPerShare || debtPerShare
+    );
     const debtChange = debtPerShare - prevDebtPerShare;
     const debtChangePercent = (debtChange / prevDebtPerShare) * 100 || 0;
 

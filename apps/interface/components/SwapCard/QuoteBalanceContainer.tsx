@@ -74,7 +74,7 @@ export const SwapCardQuoteBalanceContainer = (props: BoxProps) => {
             setAmount(amount);
             setAmountUSD(amountUSD);
         }
-    });
+    }, [data, defaultQuoteDecimals, defaultQuoteChainlinkDecimals]);
 
     return (
         <Box

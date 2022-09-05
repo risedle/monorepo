@@ -18,6 +18,10 @@ interface PriceChartLineTooltipProps {
 }
 
 export const PriceChartLineTooltip = (props: PriceChartLineTooltipProps) => {
+    // Style
+    const background = useColorModeValue("gray.dark.2", "gray.dark.3");
+    const text = useColorModeValue("gray.light.9", "gray.dark.10");
+
     // Data
     const { payload, oldestPrice } = props;
     if (payload == null) return <div>PriceChartLineTooltip undefined</div>;
@@ -27,10 +31,6 @@ export const PriceChartLineTooltip = (props: PriceChartLineTooltipProps) => {
 
     const change = point.price - oldestPrice;
     const changePercent = change / oldestPrice;
-
-    // Style
-    const background = useColorModeValue("gray.dark.2", "gray.dark.3");
-    const text = useColorModeValue("gray.light.9", "gray.dark.10");
 
     return (
         <VStack

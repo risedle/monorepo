@@ -55,3 +55,17 @@ export interface FuseLeveragedTokenSwaps {
     flt: Array<FuseLeveragedTokenSwap>;
     user: Array<FuseLeveragedTokenSwap>;
 }
+
+export interface FuseLeveragedTokenInsight {
+    symbol: string;
+    name: string;
+    dailyGain: {
+        gain: number;
+        timestamp: number;
+    };
+    weeklyGain: {
+        gain: number;
+        timestampEnd: number;
+        timestampStart: number;
+    };
+}

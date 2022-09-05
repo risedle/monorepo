@@ -1,6 +1,6 @@
 {
     "name": "@risedle/types",
-    "version": "1.8.1",
+    "version": "1.9.0",
     "license": "MIT",
     "source": "src/index.ts",
     "main": "dist/index.js",
@@ -12,7 +12,7 @@
     "scripts": {
         "clean": "rm -rf dist",
         "build": "tsc",
-        "lint": "eslint --ext=.tsx,.ts ."
+        "lint": "eslint ."
     },
     "prepublish": "tsc",
     "homepage": "https://risedle.com",

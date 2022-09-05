@@ -1,6 +1,6 @@
 import request from "supertest";
 import server from "../../src/server";
-import fltService from "../../src/services/flts";
+import flt from "../../src/services/flt";
 
 afterEach(() => {
     // restore the spy created with spyOn
@@ -31,8 +31,8 @@ describe("GET /v1/chainId/flts", () => {
         describe("given failed request to graphql", () => {
             it("should responds 500 internal server error", async () => {
                 const mock = jest.spyOn(
-                    fltService,
-                    "getFuseLeveragedTokensByChainId"
+                    flt,
+                    "GetFuseLeveragedTokensByChainId"
                 );
                 mock.mockImplementation(() => {
                     throw new Error("some error");

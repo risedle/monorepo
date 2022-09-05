@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Use nginx to forward all request to running node
+# we need this in order to enable private networking in fly.io
+nginx
+
+# Start node
+start
