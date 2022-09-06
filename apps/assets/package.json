@@ -3,7 +3,7 @@
     "scripts": {
         "optimize": "./optimize.sh",
         "optimize:svg": "svgo -f ./src/** -o ./public",
-        "deploy": "wrangler pages publish public --project-name=risedle-assets"
+        "deploy": "wrangler pages publish public --project-name=risedle-assets --branch=main"
     },
     "devDependencies": {
         "svgo": "2.8.0",
