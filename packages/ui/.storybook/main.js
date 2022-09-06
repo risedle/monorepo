@@ -10,9 +10,9 @@ module.exports = {
     ],
     framework: "@storybook/react",
     core: {
-        disableTelemetry: true,
+        builder: "@storybook/builder-webpack5",
     },
     features: {
-        postcss: false,
+        previewMdx2: true,
     },
 };
