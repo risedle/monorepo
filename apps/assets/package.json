@@ -1,0 +1,12 @@
+{
+    "name": "assets",
+    "scripts": {
+        "optimize": "./optimize.sh",
+        "optimize:svg": "svgo -f ./src/** -o ./public",
+        "deploy": "wrangler pages publish public --project-name=risedle-assets"
+    },
+    "devDependencies": {
+        "svgo": "2.8.0",
+        "wrangler": "2.0.28"
+    }
+}
