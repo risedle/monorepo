@@ -31,30 +31,26 @@
         "url": "https://github.com/pyk"
     },
     "contributors": [],
+    "dependencies": {
+        "@risedle/types": "1.2.0"
+    },
     "devDependencies": {
-        "@babel/core": "7.18.13",
-        "@mdx-js/react": "^1.6.22",
+        "@babel/core": "^7.19.0",
         "@semantic-release/git": "10.0.1",
-        "@storybook/addon-actions": "6.5.10",
-        "@storybook/addon-essentials": "6.5.10",
-        "@storybook/addon-interactions": "6.5.10",
-        "@storybook/addon-links": "6.5.10",
-        "@storybook/builder-webpack4": "6.5.10",
-        "@storybook/manager-webpack4": "6.5.10",
-        "@storybook/react": "6.5.10",
-        "@storybook/testing-library": "0.0.13",
+        "@storybook/addon-actions": "^6.5.10",
+        "@storybook/addon-essentials": "^6.5.10",
+        "@storybook/addon-interactions": "^6.5.10",
+        "@storybook/addon-links": "^6.5.10",
+        "@storybook/builder-webpack5": "^6.5.10",
+        "@storybook/manager-webpack5": "^6.5.10",
+        "@storybook/react": "^6.5.10",
+        "@storybook/testing-library": "^0.0.13",
         "@types/react": "17.0.37",
         "@types/react-dom": "17.0.11",
-        "babel-loader": "8.2.5",
+        "babel-loader": "^8.2.5",
         "nodemon": "2.0.16",
         "react": "18.2.0",
         "semantic-release": "19.0.3"
-    },
-    "overrides": {
-        "//": "This override is to enable mdx files",
-        "@mdx-js/react": {
-            "react": "$react"
-        }
     },
     "release": {
         "tagFormat": "@risedle/ui-v${version}",
@@ -110,9 +106,6 @@
                 }
             ]
         ]
-    },
-    "dependencies": {
-        "@risedle/types": "1.2.0"
     },
     "nodemonConfig": {
         "exec": "NODE_ENV=development npm run build",
