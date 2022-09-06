@@ -13,21 +13,39 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: 📬 Checkout
         uses: actions/checkout@v3
-      - name: Setup Node.js environment
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+      - name: ✨ Setup Node.js environment
         uses: actions/setup-node@v3
         with:
-          node-version: "17.8.0"
+          node-version: "18.7.0"
           cache: "npm"
-      - name: Install dependencies
+      - name: 🐿️ Cache node_modules
+        id: cache-nodemodules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key:
+            # prettier-ignore
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: ⚒️  Remove prepare script
+        run: npm pkg delete scripts.prepare
+      - name: ⚒️  Remove postinstall script
+        run: npm pkg delete scripts.postinstall
+      - name: 🍱 Install dependencies
         run: npm install
-      - name: Build
+      - name: ⚒️  Build
         run: npm run build
-      - name: Set access to public
+      - name: ⚒️  Set access to public
         run: npm config set access public
         working-directory: ./packages/ui
-      - name: Release
+      - name: 🚀 Publish @risedle/ui
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -37,3 +55,5 @@ jobs:
           GIT_COMMITTER_EMAIL: github@risedle.com
         run: npx semantic-release
         working-directory: ./packages/ui
+      - name: ✅ Package published
+        run: echo '✅ @risedle/ui published' >> $GITHUB_STEP_SUMMARY
