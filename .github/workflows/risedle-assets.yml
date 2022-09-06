@@ -17,6 +17,7 @@ jobs:
       deployments: write
     environment:
       name: risedle-assets
+      url: https://assets.risedle.com
     steps:
       - name: 📬 Checkout
         uses: actions/checkout@v3
