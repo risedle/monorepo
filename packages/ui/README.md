@@ -1,4 +1,31 @@
-## @risedle/ui
+## Risedle UI
+
+Risedle UI is a reusable [React.js](https://reactjs.org/) component library
+that help us work together to build a great experience for all of our users.
+
+Risedle UI goals are:
+
+1. Create reusable UI components to accelerate frontend development.
+2. Create UI consistency for all components within Risedle.
+
+> **Warning** This library is still WIP. We are actively working on it. Our
+> goal is to have an easy to use UI system. This includes an exhaustive
+> documentation, improved DX, confidence in testing and a lot of refactoring to
+> have consistency across our components.
+
+### Get started
+
+Use the following command to run storybook:
+
+```sh
+npm run storybook:start
+```
+
+> **Note** Make sure you have run `npm install` in the monorepo root.
+
+> **Note** TODO(pyk): use `pnpm`
+
+---
 
 Reusable UI components (stateless and stateful) across Risedle Project.
 
@@ -18,16 +45,6 @@ Resources:
 
 -   [Stateless Components From Stateful Components](https://www.codecademy.com/learn/react-component-state/modules/react-102-stateless-inherit-stateful-u/cheatsheet)
 -   [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
-
-### Get started
-
-Use the following command to run storybook:
-
-```sh
-npm run storybook:start
-```
-
-> **Note** Make sure you have run `npm install` in the monorepo root.
 
 ### Install
 
