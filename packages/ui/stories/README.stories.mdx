@@ -1,0 +1,185 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="README" />
+
+<style>
+    {`
+        :root {
+            --color-background: #03050D;
+            --color-background-card: #0E1018;
+            --color-text-primary: #FCFDFF;
+        }
+
+        /* Risedle custom styles */
+        .sbdocs {
+            background: var(--color-background);
+            color: var(--color-text-primary);
+        }
+
+        #risedle-docs {
+            padding: 48px 20px;
+            margin: 0 auto;
+            max-width: 600px;
+            font-family: "Inter", sans-serif;
+            font-weight: 400;
+        }
+
+        #risedle-docs > h1 {
+            margin: 0;
+            font-size: 32px;
+            line-height: 32px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        #risedle-docs > h2 {
+            margin-top: 32px;
+            font-size: 28px;
+            line-height: 32px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        #risedle-docs > p,
+        #risedle-docs > ol > li,
+        #risedle-docs > ul > li,
+        #risedle-docs > blockquote > p {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            color: #8E93AF;
+        }
+
+        #risedle-docs > p,
+        #risedle-docs > ol {
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+
+        #risedle-docs > ol {
+            padding-left: 32px;
+        }
+
+        #risedle-docs > p > a {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            /* Dark/Neutral/Primary */
+            color: var(--color-text-primary);
+        }
+
+        #risedle-docs > pre {
+            font-family: "Space Mono", monospace;
+            padding: 16px;
+            overflow: auto;
+            line-height: 1.1;
+            background-color: var(--color-background-card);
+            border-radius: 6px;
+        }
+
+        #risedle-docs > p > code {
+            font-family: "Space Mono", monospace;
+            line-height: 16px;
+            font-size: 14px;
+            color: var(--color-text-primary);
+        }
+    `}
+</style>
+
+<div id="risedle-docs">
+
+# Welcome to Risedle UI
+
+Risedle UI is a reusable [React.js](https://reactjs.org/) component library
+that help us work together to build a great experience for all of our users.
+
+## Get started
+
+Use the following command to install Risedle UI:
+
+```bash
+# npm
+npm install @risedle/ui
+
+# pnpm
+pnpm add @risedle/ui
+```
+
+Then add the following theme provider:
+
+```ts
+import { RisedleProvider, Text } from "@risedle/ui";
+
+export default function App() {
+    return (
+        <RisedleProvider>
+            <Text as="h1" variant="headingLarge">
+                Welcome to Scaleway UI
+            </Text>
+        </RisedleProvider>
+    );
+}
+```
+
+## Methodology
+
+Risedle UI follows the
+[Atomic Design Methodology](https://atomicdesign.bradfrost.com/chapter-2/).
+
+All components are organized using the following rules:
+
+-   **Atoms**: Atoms are the smallest building blocks of a website page. In
+    atomic design, atoms refer to basic HTML elements that provide the smallest
+    units of a web page, such as buttons, labels, and input fields. Fonts,
+    color palettes, and animations are also considered atoms.
+
+-   **Molecules**: Atoms are bonded together to create molecules, representing
+    the second smallest groups of a website page. An example of a molecule is a
+    blog subscription box made up of a field label, an input field, and a
+    button.
+
+-   **Organisms**: Organisms are groups of molecules that are joined together
+    to form more complex beings. In interface terms, the organism is any design
+    sequence that appears on website pages.
+
+    The header and footer of a website page consist of two or more molecules,
+    making them both organisms. The search bar is an example of a molecule used
+    to build a header component.
+
+-   **Pages**: Website pages start to take shape in the fourth phase of the
+    atomic approach. Pages are groups of organisms combined to form the
+    structure of a page.
+
+## Testing
+
+We rely heavily on jest and snapshots to ensure our components behaviour and
+output are correct
+
+### Rule of thumb
+
+We tend towards 100% of coverage, this won't be able to cover all edge cases
+and behavior but it's a good start to avoid regressions and improve confidence
+in the codebase. Thus all introduced code or feature must have corresponding
+test cases
+
+### Running the tests
+
+Every typescript files inside a `tests` folder will be executed.
+
+```sh
+$ npm run test # Will run all tests
+```
+
+### Testing behavior (click, hover, input, ...)
+
+You can use `@testing-library/user-event` or `fireEvent` from
+`@testing-library/react` to trigger events.
+
+As stated in `@testing-library/react` documentation you should favor
+`@testing-library/user-event` whenever possible
+
+TODO(pyk): update docs about test helpers
+
+</div>
