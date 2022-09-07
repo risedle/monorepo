@@ -23,6 +23,12 @@ const InsightGenerator = () => {
     const imageRef = useRef<ImageHandle>(null);
     const [tabIndex, setTabIndex] = useState(0);
 
+    const handleGenerate = () => {
+        if (imageRef?.current?.getImage) {
+            imageRef.current.getImage();
+        }
+    };
+
     return (
         <Container
             data-testid="InsightGenerator"
@@ -77,11 +83,7 @@ const InsightGenerator = () => {
                         </Tab>
                     </TabList>
                     <Button
-                        onClick={() => {
-                            if (imageRef?.current?.getImage) {
-                                imageRef.current.getImage();
-                            }
-                        }}
+                        onClick={handleGenerate}
                         variant="bsc"
                         paddingX="6"
                         paddingY="3"

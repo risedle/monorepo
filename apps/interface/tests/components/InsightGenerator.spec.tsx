@@ -2,6 +2,7 @@ import "@testing-library/jest-dom/extend-expect";
 import { fireEvent, render, screen } from "@testing-library/react";
 import * as SWR from "swr";
 import InsightGenerator from "@/components/InsightGenerator";
+import React from "react";
 
 describe("<InsightGenerator />", () => {
     describe("Test Tab ", () => {
@@ -84,6 +85,20 @@ describe("<InsightGenerator />", () => {
             fireEvent.click(tab);
             const dailyText = screen.getByText(/weekly top performers/i);
             expect(dailyText).toBeInTheDocument();
+        });
+
+        it("Should generate image", () => {
+            render(<InsightGenerator />);
+            const getImage = jest.fn();
+            jest.spyOn(React, "useRef").mockReturnValue({
+                current: getImage(),
+            });
+
+            const button = screen.getByRole("button", {
+                name: /generate/i,
+            });
+            fireEvent.click(button);
+            expect(getImage).toBeCalledTimes(1);
         });
     });
 });
