@@ -1,12 +1,12 @@
-name: api-stag
+name: "Risedle Assets"
 
 on:
-  pull_request:
+  push:
     branches:
       - main
     paths:
-      - "apps/api/**"
-      - ".github/workflows/risedle-api-stag.yml"
+      - "apps/assets/**"
+      - ".github/workflows/risedle-assets.yml"
 
 jobs:
   deploy:
@@ -16,13 +16,15 @@ jobs:
       contents: read
       deployments: write
     environment:
-      name: api-stag
-      url: https://apiedge.risedle.exchange
+      name: risedle-assets
+      url: https://assets.risedle.com
     steps:
-      - name: 📬 Check out code
-        uses: actions/checkout@v2
+      - name: 📬 Checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_TOKEN }}
       - name: ✨ Setup Node.js environment
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: "18.7.0"
           cache: "npm"
@@ -40,15 +42,10 @@ jobs:
             ${{ runner.os }}-
       - name: 🍱 Install dependencies
         run: npm install
-      - name: ⚒️  Build
-        run: npm run build
-      - name: ⚒️  Test
-        run: npm run test
-        working-directory: ./apps/api
-      - name: ⚒️  Setup flyctl
-        uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: ⚒️  Optimize
+        run: npm run optimize -w=assets
       - name: 🚀 Deploy
         env:
-          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-        run: flyctl deploy --remote-only --app risedle-api-stag
-        working-directory: ./apps/api
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npm run deploy -w=assets >> $GITHUB_STEP_SUMMARY
