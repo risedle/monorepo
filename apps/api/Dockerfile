@@ -1,5 +1,8 @@
 FROM node:18-alpine
 
+# set production environment (devDependencies will not installed)
+ENV NODE_ENV="production"
+
 # update packages
 RUN apk update
 
