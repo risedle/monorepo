@@ -1,19 +1,16 @@
-FROM node:18-alpine
+# syntax=docker/dockerfile:1.4
 
-# update packages
+### Stage 1: Deployment
+FROM node:18-alpine AS deployer
 RUN apk update
-
-# install pnpm
 RUN npm install -g pnpm
-
-# create root application folder
 WORKDIR /app
-
-# copy source code to /app/ folder
-COPY package.json /app/
-COPY dist /app/
-
-# check files list
+COPY . /app/
 RUN ls -a
+RUN pnpm --filter api --prod deploy deployment
 
-RUN pnpm install --prod
+### Stage 2: Copy
+FROM node:18-alpine
+WORKDIR /app
+ENV NODE_ENV=production
+COPY --from=deployer /app/deployment .
