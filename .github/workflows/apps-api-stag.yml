@@ -1,4 +1,4 @@
-name: "Apps / API"
+name: "Apps / API / Staging"
 
 on:
   pull_request:
