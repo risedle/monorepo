@@ -9,11 +9,6 @@
         "dist",
         "README.md"
     ],
-    "scripts": {
-        "clean": "rm -rf dist",
-        "build": "tsc",
-        "lint": "eslint ."
-    },
     "prepublish": "tsc",
     "homepage": "https://risedle.com",
     "repository": {
@@ -35,11 +30,23 @@
             "url": "https://github.com/asaadam"
         }
     ],
-    "dependencies": {},
-    "devDependencies": {
-        "@semantic-release/git": "10.0.1",
-        "semantic-release": "19.0.3"
+    "scripts": {
+        "check": "prettier --check .",
+        "lint": "eslint .",
+        "build": "tsc",
+        "clean": "rm -rf dist"
     },
+    "devDependencies": {
+        "@risedle/eslint-config": "workspace:*",
+        "@risedle/prettier-config": "workspace:*",
+        "@risedle/tsconfig": "workspace:*",
+        "@semantic-release/git": "10.0.1",
+        "eslint": "8.23.0",
+        "prettier": "2.7.1",
+        "semantic-release": "19.0.3",
+        "typescript": "4.8.2"
+    },
+    "prettier": "@risedle/prettier-config",
     "release": {
         "tagFormat": "@risedle/types-v${version}",
         "branches": [

@@ -1,7 +1,10 @@
 {
-    "extends": "tsconfig/base.json",
+    "extends": "@risedle/tsconfig/base.json",
     "compilerOptions": {
-        "outDir": "dist"
+        "outDir": "dist",
+        "lib": ["ES2015"],
+        "module": "ESNext",
+        "target": "ES6"
     },
     "include": ["src/**/*.ts"],
     "exclude": ["node_modules", "dist"]
