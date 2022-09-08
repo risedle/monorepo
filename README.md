@@ -13,7 +13,18 @@
 Welcome to Risedle Labs Monorepo!
 
 This repository is a home of all Risedle Labs source code. We love to build on
-public. This monorepo is created using [turborepo](https://turborepo.org/).
+public.
+
+This monorepo uses [pnpm](https://pnpm.io/) and
+[turborepo](https://turborepo.org/).
+
+Use the following command to install `pnpm` on your macOS:
+
+```sh
+brew install pnpm
+```
+
+See other installation method [here](https://pnpm.io/installation).
 
 ### Your Monorepomap
 
