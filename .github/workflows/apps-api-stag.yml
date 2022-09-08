@@ -29,12 +29,12 @@ jobs:
         with:
           node-version: "18.7.0"
           cache: "pnpm"
-      - name: 🍱 Install and build @risedle/chains
-        run: pnpm install && pnpm build
-        working-directory: ./packages/chains
       - name: 🍱 Install and build @risedle/types
         run: pnpm install && pnpm build
         working-directory: ./packages/types
+      - name: 🍱 Install and build @risedle/chains
+        run: pnpm install && pnpm build
+        working-directory: ./packages/chains
       - name: 🍱 Install dependencies
         run: pnpm install
       - name: 💄 Run Prettier
