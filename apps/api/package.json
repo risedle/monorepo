@@ -13,7 +13,6 @@
     },
     "dependencies": {
         "@risedle/chains": "workspace:*",
-        "@risedle/tokens": "workspace:*",
         "@risedle/types": "workspace:*",
         "@sentry/node": "7.1.1",
         "cors": "2.8.5",

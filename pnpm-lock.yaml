@@ -26,7 +26,6 @@ importers:
       "@risedle/chains": workspace:*
       "@risedle/eslint-config": workspace:*
       "@risedle/prettier-config": workspace:*
-      "@risedle/tokens": workspace:*
       "@risedle/tsconfig": workspace:^0.0.0
       "@risedle/types": workspace:*
       "@sentry/node": 7.1.1
@@ -62,7 +61,6 @@ importers:
       yamljs: 0.3.0
     dependencies:
       "@risedle/chains": link:../../packages/chains
-      "@risedle/tokens": link:../../packages/tokens
       "@risedle/types": link:../../packages/types
       "@sentry/node": 7.1.1
       cors: 2.8.5
