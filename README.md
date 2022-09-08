@@ -26,6 +26,24 @@ brew install pnpm
 
 See other installation method [here](https://pnpm.io/installation).
 
+Then the next step is to setup git hooks via the following command:
+
+```sh
+pnpm install
+```
+
+Then the next step is to install only dependencies of the project that you are
+working on.
+
+For example if you work on `@risedle/ui`, follow the following commands:
+
+```
+cd packages/ui/
+pnpm install
+```
+
+Then you are ready to go.
+
 ### Your Monorepomap
 
 Looking at a bunch of directories and source codes can be intimidating

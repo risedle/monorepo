@@ -1,45 +1,28 @@
 {
     "name": "monorepo",
     "private": true,
-    "workspaces": [
-        "apps/*",
-        "packages/*",
-        "contracts/*",
-        "subgraphs/*"
-    ],
     "scripts": {
+        "check": "turbo run check",
+        "lint": "turbo run lint",
         "build": "turbo run build",
         "test": "turbo run test",
-        "dev": "turbo run dev --parallel",
-        "storybook": "turbo run storybook --parallel",
-        "lint": "turbo run lint",
-        "format": "prettier --write \"**/*.{ts,tsx,md,json,js,yml,css,sol}\"",
-        "check": "prettier --check \"**/*.{ts,tsx,md,json,js,yml,css,sol}\"",
         "prepare": "husky install",
-        "postinstall": "npm run prepare"
+        "postinstall": "pnpm prepare"
     },
     "devDependencies": {
         "@commitlint/cli": "17.0.2",
         "@commitlint/config-conventional": "17.0.2",
-        "@types/jest": "28.1.1",
-        "@typescript-eslint/eslint-plugin": "5.33.0",
-        "@typescript-eslint/parser": "5.34.0",
-        "eslint": "8.22.0",
+        "@risedle/prettier-config": "workspace:^0.0.0",
         "husky": "8.0.1",
-        "jest": "28.1.1",
         "lint-staged": "13.0.1",
         "prettier": "2.7.1",
-        "prettier-plugin-solidity": "^1.0.0-beta.19",
-        "ts-jest": "28.0.5",
-        "ts-node": "10.8.1",
-        "turbo": "latest",
-        "typescript": "4.7.3"
+        "turbo": "latest"
     },
     "engines": {
-        "npm": ">=7.0.0",
+        "pnpm": ">=7.0.0",
         "node": ">=14.0.0"
     },
-    "packageManager": "npm@8.5.5",
+    "prettier": "@risedle/prettier-config",
     "commitlint": {
         "extends": [
             "@commitlint/config-conventional"
@@ -61,29 +44,5 @@
     },
     "lint-staged": {
         "*": "prettier --write --ignore-unknown"
-    },
-    "eslintConfig": {
-        "root": true,
-        "extends": [
-            "eslint:recommended",
-            "plugin:@typescript-eslint/recommended"
-        ],
-        "parser": "@typescript-eslint/parser",
-        "plugins": [
-            "@typescript-eslint"
-        ],
-        "rules": {
-            "@typescript-eslint/no-unused-vars": "error",
-            "@typescript-eslint/ban-types": "off"
-        },
-        "ignorePatterns": [
-            "subgraphs/*/generated",
-            "subgraphs/*/build",
-            "contracts/*",
-            "apps/*/dist",
-            "apps/*/build",
-            "packages/*/dist",
-            "*.d.ts"
-        ]
     }
 }
