@@ -10,7 +10,8 @@ RUN npm install -g pnpm
 WORKDIR /app
 
 # copy source code to /app/ folder
-COPY . /app/
+COPY package.json /app/
+COPY dist /app/
 
 # check files list
 RUN ls -a
