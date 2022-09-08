@@ -5,7 +5,7 @@ FROM node:18-alpine AS deployer
 RUN apk update
 RUN npm install -g pnpm
 WORKDIR /app
-COPY . /app/
+COPY .. /app/
 RUN ls -a
 RUN pnpm --filter api --prod deploy deployment
 
