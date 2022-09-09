@@ -1,10 +1,7 @@
 {
-    "extends": "@risedle/tsconfig/base.json",
+    "extends": "@risedle/tsconfig/shared-library.json",
     "compilerOptions": {
-        "outDir": "dist",
-        "lib": ["ES2015"],
-        "module": "ESNext",
-        "target": "ES6"
+        "outDir": "dist"
     },
     "include": ["src/**/*.ts"],
     "exclude": ["node_modules", "dist"]

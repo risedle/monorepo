@@ -207,6 +207,22 @@ importers:
       "@risedle/prettier-config": 0.1.0
       prettier: 2.7.1
 
+  packages/types:
+    specifiers:
+      "@risedle/eslint-config": 0.1.0
+      "@risedle/prettier-config": 0.1.0
+      "@risedle/tsconfig": 0.2.0
+      eslint: 8.23.0
+      prettier: 2.7.1
+      typescript: 4.8.2
+    devDependencies:
+      "@risedle/eslint-config": 0.1.0
+      "@risedle/prettier-config": 0.1.0
+      "@risedle/tsconfig": 0.2.0
+      eslint: 8.23.0
+      prettier: 2.7.1
+      typescript: 4.8.2
+
 packages:
   /@ampproject/remapping/2.2.0:
     resolution:
