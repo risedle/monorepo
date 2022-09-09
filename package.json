@@ -45,5 +45,15 @@
     },
     "lint-staged": {
         "*": "prettier --write --ignore-unknown"
+    },
+    "pnpm": {
+        "peerDependencyRules": {
+            "ignoreMissing": [
+                "*"
+            ],
+            "allowedVersions": {
+                "react": "*"
+            }
+        }
     }
 }
