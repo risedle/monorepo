@@ -24,7 +24,8 @@
         "url": "https://github.com/pyk"
     },
     "devDependencies": {
-        "@risedle/prettier-config": "0.1.0"
+        "@risedle/prettier-config": "0.1.0",
+        "prettier": "2.7.1"
     },
     "prettier": "@risedle/prettier-config",
     "publishConfig": {
