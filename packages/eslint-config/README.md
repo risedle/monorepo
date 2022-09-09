@@ -43,41 +43,6 @@ Then add the following script in your `package.json`:
 
 You can use `pnpm lint` or `npm run lint` to run the linter.
 
-### Publish
-
-This package is automatically published using
-[changesets](https://github.com/changesets/changesets).
-
-To publish new version, run the following command in your local machine:
-
-```sh
-pnpm changeset
-```
-
-Follow the instruction and select the `@risedle/eslint-config`, then commit the
-`.changeset` directory.
-
-Send pull request using the following template:
-
-```markdown
-## Description
-
-[add your description here]
-
-## Scope
-
--   [@risedle/eslint-config](./packages/eslint-config)
-
-## Linear
-
-[update the issue number, leave this blank if there is none]
-
-Fix RIS-XXX
-```
-
-If the pull request is merged, the `changesets` github action will be triggered
-to automatically publish the package.
-
 ### Resources
 
 -   [ESLint - Shareable config](https://eslint.org/docs/latest/developer-guide/shareable-configs)

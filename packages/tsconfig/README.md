@@ -50,41 +50,6 @@ Here is the example on how to use `@risedle/tsconfig` for node project:
 }
 ```
 
-### Publish
-
-This package is automatically published using
-[changesets](https://github.com/changesets/changesets).
-
-To publish new version, run the following command in your local machine:
-
-```sh
-pnpm changeset
-```
-
-Follow the instruction and select the `@risedle/tsconfig`, then commit the
-`.changeset` directory.
-
-Send pull request using the following template:
-
-```markdown
-## Description
-
-[add your description here]
-
-## Scope
-
--   [@risedle/tsconfig](./packages/tsconfig)
-
-## Linear
-
-[update the issue number, leave this blank if there is none]
-
-Fix RIS-XXX
-```
-
-If the pull request is merged, the `changesets` github action will be triggered
-to automatically publish the package.
-
 ### Resources
 
 -   [Using Changesets with pnpm](https://pnpm.io/using-changesets)

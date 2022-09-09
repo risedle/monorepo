@@ -35,41 +35,6 @@ Add the following fields in your `package.json`:
 
 Then you can use `pnpm check` or `npm run check` to check the file formatting.
 
-### Publish
-
-This package is automatically published using
-[changesets](https://github.com/changesets/changesets).
-
-To publish new version, run the following command in your local machine:
-
-```sh
-pnpm changeset
-```
-
-Follow the instruction and select the `@risedle/prettier-config`, then commit
-the `.changeset` directory.
-
-Send pull request using the following template:
-
-```markdown
-## Description
-
-[add your description here]
-
-## Scope
-
--   [@risedle/prettier-config](./packages/prettier-config)
-
-## Linear
-
-[update the issue number, leave this blank if there is none]
-
-Fix RIS-XXX
-```
-
-If the pull request is merged, the `changesets` github action will be triggered
-to automatically publish the package.
-
 ### Resources
 
 -   [Prettier - Shareable config](https://prettier.io/docs/en/configuration.html)
