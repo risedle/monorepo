@@ -118,7 +118,10 @@ importers:
     specifiers: {}
 
   packages/tsconfig:
-    specifiers: {}
+    specifiers:
+      "@risedle/prettier-config": 0.1.0
+    devDependencies:
+      "@risedle/prettier-config": 0.1.0
 
 packages:
   /@ampproject/remapping/2.2.0:
