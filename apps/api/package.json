@@ -8,6 +8,7 @@
         "check": "prettier --check .",
         "lint": "eslint .",
         "test": "jest --testTimeout 20000",
+        "test:ci": "CI=true jest --reporters=default --reporters=github-actions",
         "dev:server": "node dist/index.js",
         "dev": "nodemon"
     },

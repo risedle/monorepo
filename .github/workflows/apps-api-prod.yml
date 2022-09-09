@@ -1,13 +1,12 @@
-name: "Apps / API / Staging"
+name: "Apps / API / Production"
 
 on:
-  pull_request:
+  push:
     branches:
       - main
     paths:
-      - "pnpm-lock.yaml"
       - "apps/api/**"
-      - ".github/workflows/apps-api-stag.yml"
+      - ".github/workflows/apps-api-prod.yml"
 
 defaults:
   run:
@@ -47,8 +46,8 @@ jobs:
       contents: read
       deployments: write
     environment:
-      name: api-stag
-      url: https://apiedge.risedle.exchange
+      name: api-prod
+      url: https://api.risedle.exchange
     needs: check
     steps:
       - name: 📬 Check out code
@@ -71,4 +70,4 @@ jobs:
       - name: 🚀 Deploy
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-        run: flyctl deploy --remote-only --app risedle-api-stag
+        run: flyctl deploy --remote-only --app risedle-api-prod
