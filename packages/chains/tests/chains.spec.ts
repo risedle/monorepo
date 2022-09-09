@@ -9,6 +9,7 @@ describe("isChainIdSupported", () => {
 
             chainId = ChainId.BSC_TESTNET;
             expect(isChainIdSupported(chainId)).toBe(false);
+            expect(0).toBe(1);
         });
     });
 
