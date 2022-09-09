@@ -104,15 +104,20 @@ importers:
 
   packages/eslint-config:
     specifiers:
+      "@risedle/prettier-config": 0.1.0
       "@typescript-eslint/eslint-plugin": 5.36.2
       "@typescript-eslint/parser": 5.36.2
       eslint: 8.23.0
+      prettier: 2.7.1
       typescript: 4.8.2
     dependencies:
       "@typescript-eslint/eslint-plugin": 5.36.2_iurrlxgqcgk5svigzxakafpeuu
       "@typescript-eslint/parser": 5.36.2_yqf6kl63nyoq5megxukfnom5rm
       eslint: 8.23.0
       typescript: 4.8.2
+    devDependencies:
+      "@risedle/prettier-config": 0.1.0
+      prettier: 2.7.1
 
   packages/prettier-config:
     specifiers: {}
@@ -2450,10 +2455,6 @@ packages:
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
       typescript: "*"
     peerDependenciesMeta:
-      "@typescript-eslint/parser":
-        optional: true
-      eslint:
-        optional: true
       typescript:
         optional: true
     dependencies:
@@ -2482,8 +2483,6 @@ packages:
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
       typescript: "*"
     peerDependenciesMeta:
-      eslint:
-        optional: true
       typescript:
         optional: true
     dependencies:

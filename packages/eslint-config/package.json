@@ -1,8 +1,21 @@
 {
     "name": "@risedle/eslint-config",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "main": "index.js",
     "license": "MIT",
+    "homepage": "https://risedle.com",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/risedle/monorepo.git"
+    },
+    "bugs": {
+        "url": "https://github.com/risedle/monorepo/issues"
+    },
+    "author": {
+        "name": "bayu",
+        "email": "bayu@risedle.com",
+        "url": "https://github.com/pyk"
+    },
     "dependencies": {
         "@typescript-eslint/eslint-plugin": "5.36.2",
         "@typescript-eslint/parser": "5.36.2",
@@ -11,5 +24,9 @@
     },
     "publishConfig": {
         "access": "public"
+    },
+    "devDependencies": {
+        "@risedle/prettier-config": "0.1.0",
+        "prettier": "2.7.1"
     }
 }
