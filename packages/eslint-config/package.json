@@ -19,6 +19,7 @@
     "scripts": {
         "prettier": "prettier --check ."
     },
+    "prettier": "@risedle/prettier-config",
     "dependencies": {
         "@typescript-eslint/eslint-plugin": "5.36.2",
         "@typescript-eslint/parser": "5.36.2",
