@@ -1,8 +1,21 @@
 {
     "name": "@risedle/prettier-config",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "main": "index.js",
     "license": "MIT",
+    "homepage": "https://risedle.com",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/risedle/monorepo.git"
+    },
+    "bugs": {
+        "url": "https://github.com/risedle/monorepo/issues"
+    },
+    "author": {
+        "name": "bayu",
+        "email": "bayu@risedle.com",
+        "url": "https://github.com/pyk"
+    },
     "publishConfig": {
         "access": "public"
     }
