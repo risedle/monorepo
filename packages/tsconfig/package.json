@@ -23,6 +23,9 @@
         "email": "bayu@risedle.com",
         "url": "https://github.com/pyk"
     },
+    "scripts": {
+        "prettier": "prettier --check ."
+    },
     "devDependencies": {
         "@risedle/prettier-config": "0.1.0",
         "prettier": "2.7.1"
