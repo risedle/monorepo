@@ -151,6 +151,25 @@ importers:
   packages/prettier-config:
     specifiers: {}
 
+  packages/quotes:
+    specifiers:
+      "@ethersproject/bignumber": 5.6.2
+      "@risedle/eslint-config": 0.1.0
+      "@risedle/prettier-config": 0.1.0
+      "@risedle/tsconfig": 0.2.0
+      eslint: 8.23.0
+      prettier: 2.7.1
+      typescript: 4.8.2
+    dependencies:
+      "@ethersproject/bignumber": 5.6.2
+    devDependencies:
+      "@risedle/eslint-config": 0.1.0
+      "@risedle/prettier-config": 0.1.0
+      "@risedle/tsconfig": 0.2.0
+      eslint: 8.23.0
+      prettier: 2.7.1
+      typescript: 4.8.2
+
   packages/tsconfig:
     specifiers:
       "@risedle/prettier-config": 0.1.0
@@ -2484,6 +2503,10 @@ packages:
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
       typescript: "*"
     peerDependenciesMeta:
+      "@typescript-eslint/parser":
+        optional: true
+      eslint:
+        optional: true
       typescript:
         optional: true
     dependencies:
@@ -2512,6 +2535,8 @@ packages:
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
       typescript: "*"
     peerDependenciesMeta:
+      eslint:
+        optional: true
       typescript:
         optional: true
     dependencies:
