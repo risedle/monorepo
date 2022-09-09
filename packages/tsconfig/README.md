@@ -1,7 +1,7 @@
 <h2>
     <span>@risedle/tsconfig</span>
     <span><a href="https://www.npmjs.com/package/@risedle/tsconfig"><img src="https://badgen.net/npm/v/@risedle/tsconfig?color=black&labelColor=black"></a></span>
-    <span><a href="https://www.npmjs.com/package/@risedle/tsconfig"><img src="https://badgen.net/badge/icon/Made%20By%20Risedle%20Labs?label&color=black&labelColor=black"></a></span>
+    <span><a href="https://risedle.com"><img src="https://badgen.net/badge/icon/Made%20By%20Risedle%20Labs?label&color=black&labelColor=black"></a></span>
 </h2>
 
 Shared
@@ -22,7 +22,7 @@ pnpm add --save-dev --save-exact @risedle/tsconfig@latest
 
 ### Usage
 
-Use available json as the baseline for your `tsconfig.json`. For example:
+Use available json as the baseline of your `tsconfig.json`. For example:
 
 ```json
 {
