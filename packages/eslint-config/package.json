@@ -26,11 +26,11 @@
         "eslint": "8.23.0",
         "typescript": "4.8.2"
     },
-    "publishConfig": {
-        "access": "public"
-    },
     "devDependencies": {
         "@risedle/prettier-config": "0.1.0",
         "prettier": "2.7.1"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
