@@ -16,6 +16,9 @@
         "email": "bayu@risedle.com",
         "url": "https://github.com/pyk"
     },
+    "scripts": {
+        "prettier": "prettier --check ."
+    },
     "dependencies": {
         "@typescript-eslint/eslint-plugin": "5.36.2",
         "@typescript-eslint/parser": "5.36.2",
