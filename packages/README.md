@@ -2,13 +2,6 @@
 
 Welcome to the home of all Risedle Packages!
 
-Risedle Package is a resuable javascript/typescript library.
-
-There are two types of package:
-
-1. **Private**: Package is not published to NPM
-2. **Public**: Package is published to NPM
-
 ### Versioning
 
 All packages are managed using
