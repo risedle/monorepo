@@ -1,5 +1,5 @@
 import { getSourceMarketsByChainId } from "../src/index";
-import { ChainId, TokenInfoSource } from "@risedle/types";
+import { ChainId } from "@risedle/types";
 
 describe("getSourceMarketsByChainId", () => {
     describe("given unsupported chain id", () => {
