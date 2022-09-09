@@ -9,29 +9,9 @@ There are two types of package:
 1. **Private**: Package is not published to NPM
 2. **Public**: Package is published to NPM
 
-Follow the following instructions to create new package:
+### Versioning
 
-### Create new package
-
-First, create new directory inside this directory.
-
-For example:
-
-```sh
-mkdir chains/
-```
-
-Second, init the project:
-
-```sh
-npm init
-```
-
-Then for private package, set `"private": true` in the `package.json`.
-
-### Publish
-
-Risedle packages are automatically published using
+All packages are managed using
 [changesets](https://github.com/changesets/changesets).
 
 To publish new version, run the following command in your local machine:
