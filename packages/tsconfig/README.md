@@ -1,13 +1,8 @@
-## @risedle/tsconfig
-
-<div align="left">
-  <a href="https://www.npmjs.com/package/@risedle/tsconfig">
-    <img src="https://badgen.net/npm/v/@risedle/tsconfig?color=black&labelColor=black">
-  </a>
-  <a href="https://www.npmjs.com/package/@risedle/tsconfig">
-    <img src="https://badgen.net/badge/icon/Made%20By%20Risedle%20Labs?label&color=black&labelColor=black">
-  </a>
-</div>
+<h2>
+    <span>@risedle/tsconfig</span>
+    <span><a href="https://www.npmjs.com/package/@risedle/tsconfig"><img src="https://badgen.net/npm/v/@risedle/tsconfig?color=black&labelColor=black"></a</span>
+    <span><a href="https://www.npmjs.com/package/@risedle/tsconfig"><img src="https://badgen.net/badge/icon/Made%20By%20Risedle%20Labs?label&color=black&labelColor=black"></a></span>
+</h2>
 
 Shared
 [Typescript](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
