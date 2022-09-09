@@ -1,7 +1,7 @@
 <h2>
     <span>@risedle/chains</span>
     <span><a href="https://www.npmjs.com/package/@risedle/chains"><img src="https://badgen.net/npm/v/@risedle/chains?color=black&labelColor=black"></a></span>
-    <span><a href="https://www.npmjs.com/package/@risedle/chains"><img src="https://badgen.net/badge/icon/Made%20By%20Risedle%20Labs?label&color=black&labelColor=black"></a></span>
+    <span><a href="https://risedle.com"><img src="https://badgen.net/badge/icon/Made%20By%20Risedle%20Labs?label&color=black&labelColor=black"></a></span>
 </h2>
 
 List of supported chains and its utility functions to interact with the chain.
