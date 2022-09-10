@@ -34,6 +34,7 @@ jobs:
           publish: pnpm publish -r --no-git-checks
           version: pnpm changeset version
           title: "chore(packages): update and publish packages"
+          setupGitUser: false
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
