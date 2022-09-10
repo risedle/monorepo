@@ -27,7 +27,7 @@ Then the next step is to setup git hooks via the following command:
 pnpm install
 ```
 
-Then the next step is to install only dependencies of the project that you are
+After that, you need to install dependencies of the project that you are
 working on.
 
 For example if you work on `@risedle/ui`, follow the following commands:
