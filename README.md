@@ -19,16 +19,23 @@ Use the following command to install `pnpm` on your macOS:
 brew install pnpm
 ```
 
-See other installation method [here](https://pnpm.io/installation).
+> **Note** See other installation method [here](https://pnpm.io/installation)
+
+Clone the monorepo:
+
+```sh
+git clone git@github.com:risedle/monorepo.git
+```
 
 Then the next step is to setup git hooks via the following command:
 
 ```sh
+cd monorepo/
 pnpm install
 ```
 
-After that, you need to install dependencies of the project that you are
-working on.
+The last step is to install dependencies of the project that you are working
+on.
 
 For example if you work on `@risedle/ui`, follow the following commands:
 
@@ -37,7 +44,7 @@ cd packages/ui/
 pnpm install
 ```
 
-Then you are ready to go.
+Then you are ready to go. Happy hacking!
 
 ## Packages
 
@@ -53,19 +60,6 @@ List of available packages inside this monorepo:
 | [@risedle/tokens](./packages/tokens)                   | <a href="https://www.npmjs.com/package/@risedle/tokens"> <img src="https://badgen.net/npm/v/@risedle/tokens?color=black&labelColor=black"> </a>                   | List of all verified tokens by Risedle labs                       |
 | [@risedle/types](./packages/types)                     | <a href="https://www.npmjs.com/package/@risedle/types"> <img src="https://badgen.net/npm/v/@risedle/types?color=black&labelColor=black"> </a>                     | Shared type definitions                                           |
 | [@risedle/ui](./packages/ui)                           | <a href="https://www.npmjs.com/package/@risedle/ui"> <img src="https://badgen.net/npm/v/@risedle/ui?color=black&labelColor=black"> </a>                           | Reusable React.js component library                               |
-
-### Your Monorepomap
-
-Looking at a bunch of directories and source codes can be intimidating
-sometimes. Luckily we have provided minimap to accompany your contribution
-journey:
-
-![Risedle Labs Monorepomap](./map.png)
-
--   **[apps](./apps)** is a home of all standalone and deployable apps that
-    created by Risedle Labs team.
--   **[packages](./packages)** is a home of all libraries that used across
-    projects created by Risedle Labs team.
 
 ### Useful Links
 
