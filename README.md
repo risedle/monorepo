@@ -8,12 +8,51 @@
   </a>
 </p>
 
-### Get started
+## Get started
 
-Welcome to Risedle Labs Monorepo!
+This monorepo uses [pnpm](https://pnpm.io/) and
+[turborepo](https://turborepo.org/).
 
-This repository is a home of all Risedle Labs source code. We love to build on
-public. This monorepo is created using [turborepo](https://turborepo.org/).
+Use the following command to install `pnpm` on your macOS:
+
+```sh
+brew install pnpm
+```
+
+See other installation method [here](https://pnpm.io/installation).
+
+Then the next step is to setup git hooks via the following command:
+
+```sh
+pnpm install
+```
+
+After that, you need to install dependencies of the project that you are
+working on.
+
+For example if you work on `@risedle/ui`, follow the following commands:
+
+```
+cd packages/ui/
+pnpm install
+```
+
+Then you are ready to go.
+
+## Packages
+
+List of available packages inside this monorepo:
+
+| Package                                                | Latest Version                                                                                                                                                    | Description                                                       |
+| ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| [@risedle/prettier-config](./packages/prettier-config) | <a href="https://www.npmjs.com/package/@risedle/prettier-config"> <img src="https://badgen.net/npm/v/@risedle/prettier-config?color=black&labelColor=black"> </a> | Shared [Prettier](https://prettier.io) configuration              |
+| [@risedle/eslint-config](./packages/eslint-config)     | <a href="https://www.npmjs.com/package/@risedle/eslint-config"> <img src="https://badgen.net/npm/v/@risedle/eslint-config?color=black&labelColor=black"> </a>     | Shared [ESLint](https://eslint.org) configuration                 |
+| [@risedle/tsconfig](./packages/tsconfig)               | <a href="https://www.npmjs.com/package/@risedle/tsconfig"> <img src="https://badgen.net/npm/v/@risedle/tsconfig?color=black&labelColor=black"> </a>               | Shared [TypeScript](https://www.typescriptlang.org) configuration |
+| [@risedle/chains](./packages/chains)                   | <a href="https://www.npmjs.com/package/@risedle/chains"> <img src="https://badgen.net/npm/v/@risedle/chains?color=black&labelColor=black"> </a>                   | Utility to interact with the supported chains                     |
+| [@risedle/quotes](./packages/quotes)                   | <a href="https://www.npmjs.com/package/@risedle/quotes"> <img src="https://badgen.net/npm/v/@risedle/quotes?color=black&labelColor=black"> </a>                   | Get the best swap quotes                                          |
+| [@risedle/tokens](./packages/tokens)                   | <a href="https://www.npmjs.com/package/@risedle/tokens"> <img src="https://badgen.net/npm/v/@risedle/tokens?color=black&labelColor=black"> </a>                   | List of all verified tokens by Risedle labs                       |
+| [@risedle/types](./packages/types)                     | <a href="https://www.npmjs.com/package/@risedle/types"> <img src="https://badgen.net/npm/v/@risedle/types?color=black&labelColor=black"> </a>                     | Shared type definitions                                           |
+| [@risedle/ui](./packages/ui)                           | <a href="https://www.npmjs.com/package/@risedle/ui"> <img src="https://badgen.net/npm/v/@risedle/ui?color=black&labelColor=black"> </a>                           | Reusable React.js component library                               |
 
 ### Your Monorepomap
 

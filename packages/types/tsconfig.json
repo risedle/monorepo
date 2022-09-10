@@ -1,5 +1,5 @@
 {
-    "extends": "tsconfig/base.json",
+    "extends": "@risedle/tsconfig/shared-library.json",
     "compilerOptions": {
         "outDir": "dist"
     },

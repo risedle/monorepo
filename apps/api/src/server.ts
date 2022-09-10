@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Express } from "express";
 import morgan from "morgan";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
@@ -8,7 +8,7 @@ import YAML from "yamljs";
 import { router } from "./routers/index";
 
 // Create and setup express app
-const server = express();
+const server: Express = express();
 
 // Setup JSON parser
 server.use(express.json());

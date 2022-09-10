@@ -1,0 +1,43 @@
+name: "packages / eslint-config"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "pnpm-lock.yaml"
+      - "packages/eslint-config/**"
+      - ".github/workflows/packages-eslint-config.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "pnpm-lock.yaml"
+      - "packages/eslint-config/**"
+      - ".github/workflows/packages-eslint-config.yml"
+
+defaults:
+  run:
+    working-directory: ./packages/eslint-config
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📬 Check out code
+        uses: actions/checkout@v2
+      - name: ✨ Setup pnpm@7
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
+      - name: ✨ Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18.7.0"
+          cache: "pnpm"
+      - name: 🍱 Install dependencies
+        run: pnpm install
+      - name: 💄 Run Prettier
+        run: pnpm prettier
+      - name: ✅ All good
+        run: echo "✅ All good" >> $GITHUB_STEP_SUMMARY

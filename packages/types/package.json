@@ -9,11 +9,6 @@
         "dist",
         "README.md"
     ],
-    "scripts": {
-        "clean": "rm -rf dist",
-        "build": "tsc",
-        "lint": "eslint ."
-    },
     "prepublish": "tsc",
     "homepage": "https://risedle.com",
     "repository": {
@@ -35,72 +30,26 @@
             "url": "https://github.com/asaadam"
         }
     ],
-    "dependencies": {},
+    "scripts": {
+        "prettier": "prettier --check .",
+        "lint": "eslint .",
+        "build": "tsc",
+        "clean": "rm -rf dist"
+    },
     "devDependencies": {
-        "@semantic-release/git": "10.0.1",
-        "semantic-release": "19.0.3"
+        "@risedle/eslint-config": "0.1.0",
+        "@risedle/prettier-config": "0.1.0",
+        "@risedle/tsconfig": "0.2.0",
+        "eslint": "8.23.0",
+        "prettier": "2.7.1",
+        "typescript": "4.8.2"
     },
-    "release": {
-        "tagFormat": "@risedle/types-v${version}",
-        "branches": [
-            "main"
-        ],
-        "plugins": [
-            [
-                "@semantic-release/commit-analyzer",
-                {
-                    "preset": "conventionalcommits",
-                    "releaseRules": [
-                        {
-                            "scope": "!*@risedle/types*",
-                            "release": false
-                        },
-                        {
-                            "breaking": true,
-                            "release": false
-                        },
-                        {
-                            "scope": "@risedle/types",
-                            "type": "bump",
-                            "release": "major"
-                        }
-                    ]
-                }
-            ],
-            [
-                "@semantic-release/npm",
-                {
-                    "tarballDir": "."
-                }
-            ],
-            [
-                "@semantic-release/github",
-                {
-                    "successComment": false,
-                    "failedComment": false,
-                    "assets": [
-                        {
-                            "path": "*.tgz",
-                            "label": "@risedle/types"
-                        }
-                    ],
-                    "labels": false
-                }
-            ],
-            [
-                "@semantic-release/git",
-                {
-                    "message": "chore(release): @risedle/types ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-                }
-            ]
-        ]
-    },
+    "prettier": "@risedle/prettier-config",
     "exports": {
         ".": "./dist/index.js",
         "./*": "./dist/*.js"
     },
     "publishConfig": {
-        "registry": "https://registry.npmjs.org/",
-        "tag": "latest"
+        "access": "public"
     }
 }

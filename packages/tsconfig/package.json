@@ -1,11 +1,37 @@
 {
-    "name": "tsconfig",
-    "version": "0.0.0",
-    "private": true,
+    "name": "@risedle/tsconfig",
+    "version": "0.2.0",
     "main": "index.js",
+    "license": "MIT",
     "files": [
         "base.json",
         "nextjs.json",
-        "react-library.json"
-    ]
+        "react-library.json",
+        "node.json",
+        "shared-library.json"
+    ],
+    "homepage": "https://risedle.com",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/risedle/monorepo.git"
+    },
+    "bugs": {
+        "url": "https://github.com/risedle/monorepo/issues"
+    },
+    "author": {
+        "name": "bayu",
+        "email": "bayu@risedle.com",
+        "url": "https://github.com/pyk"
+    },
+    "scripts": {
+        "prettier": "prettier --check ."
+    },
+    "prettier": "@risedle/prettier-config",
+    "devDependencies": {
+        "@risedle/prettier-config": "0.1.0",
+        "prettier": "2.7.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

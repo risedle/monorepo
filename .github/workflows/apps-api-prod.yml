@@ -1,0 +1,73 @@
+name: "Apps / API / Production"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "apps/api/**"
+      - ".github/workflows/apps-api-prod.yml"
+
+defaults:
+  run:
+    working-directory: ./apps/api
+
+jobs:
+  check:
+    name: Check, Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📬 Check out code
+        uses: actions/checkout@v2
+      - name: ✨ Setup pnpm@7
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
+      - name: ✨ Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18.7.0"
+          cache: "pnpm"
+      - name: 🍱 Install dependencies
+        run: pnpm install
+      - name: 💄 Run Prettier
+        run: pnpm check
+      - name: 🧹 Run ESLint
+        run: pnpm lint
+      - name: ⚒️  Build source code
+        run: pnpm build
+      - name: ✅ Test
+        run: pnpm test:ci
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    environment:
+      name: api-prod
+      url: https://api.risedle.exchange
+    needs: check
+    steps:
+      - name: 📬 Check out code
+        uses: actions/checkout@v2
+      - name: ✨ Setup pnpm@7
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
+      - name: ✨ Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18.7.0"
+          cache: "pnpm"
+      - name: 🍱 Install dependencies
+        run: pnpm install
+      - name: ⚒️  Build source code
+        run: pnpm build
+      - name: ⚒️  Setup flyctl
+        uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: 🚀 Deploy
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: flyctl deploy --remote-only --app risedle-api-prod

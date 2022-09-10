@@ -1,8 +1,8 @@
-import express from "express";
+import express, { Router } from "express";
 import fltsController from "../controllers/flts";
 import flt from "../controllers/flt";
 
-const router = express.Router();
+const router: Router = express.Router();
 
 router.get(
     "/:chainId/flts",
