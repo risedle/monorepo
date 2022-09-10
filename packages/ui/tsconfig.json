@@ -1,7 +1,8 @@
 {
     "extends": "@risedle/tsconfig/react-library.json",
     "compilerOptions": {
-        "outDir": "dist"
+        "outDir": "dist",
+        "moduleResolution": "node"
     },
     "include": ["components/**/*.ts", "components/**/*.tsx"],
     "exclude": ["node_modules", "dist"]
