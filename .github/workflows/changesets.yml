@@ -1,13 +1,14 @@
-name: Changesets
+name: changesets
 
 on:
   push:
     branches:
       - main
+    paths:
+      - ".changeset"
 
 jobs:
-  version:
-    name: Publish packages
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: 📬 Check out code
@@ -22,7 +23,7 @@ jobs:
           node-version: "18.7.0"
           cache: "pnpm"
       - name: 🍱 Install dependencies
-        run: pnpm install
+        run: pnpm install --ignore-scripts
       - name: 🦋 Setup .npmrc
         run:
           # prettier-ignore
@@ -30,9 +31,10 @@ jobs:
       - name: 🦋 Create and publish versions
         uses: changesets/action@v1
         with:
-          publish: pnpm publish -r
+          publish: pnpm publish -r --no-git-checks
           version: pnpm changeset version
-          commit: "chore(monorepo): version packages"
-          title: "chore(monorepo): version packages"
+          title: "chore(packages): update and publish packages"
+          setupGitUser: false
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
