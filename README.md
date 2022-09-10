@@ -61,19 +61,6 @@ List of available packages inside this monorepo:
 | [@risedle/types](./packages/types)                     | <a href="https://www.npmjs.com/package/@risedle/types"> <img src="https://badgen.net/npm/v/@risedle/types?color=black&labelColor=black"> </a>                     | Shared type definitions                                           |
 | [@risedle/ui](./packages/ui)                           | <a href="https://www.npmjs.com/package/@risedle/ui"> <img src="https://badgen.net/npm/v/@risedle/ui?color=black&labelColor=black"> </a>                           | Reusable React.js component library                               |
 
-### Your Monorepomap
-
-Looking at a bunch of directories and source codes can be intimidating
-sometimes. Luckily we have provided minimap to accompany your contribution
-journey:
-
-![Risedle Labs Monorepomap](./map.png)
-
--   **[apps](./apps)** is a home of all standalone and deployable apps that
-    created by Risedle Labs team.
--   **[packages](./packages)** is a home of all libraries that used across
-    projects created by Risedle Labs team.
-
 ### Useful Links
 
 -   [Getting Started with npm Workspaces](https://ruanmartinelli.com/posts/npm-7-workspaces-1)
