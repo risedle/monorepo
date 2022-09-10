@@ -5,7 +5,9 @@ on:
     branches:
       - main
     paths:
-      - ".changeset"
+      - ".changeset/**"
+
+  workflow_dispatch:
 
 jobs:
   publish:
