@@ -19,16 +19,23 @@ Use the following command to install `pnpm` on your macOS:
 brew install pnpm
 ```
 
-See other installation method [here](https://pnpm.io/installation).
+> **Note** See other installation method [here](https://pnpm.io/installation)
+
+Clone the monorepo:
+
+```sh
+git clone git@github.com:risedle/monorepo.git
+```
 
 Then the next step is to setup git hooks via the following command:
 
 ```sh
+cd monorepo/
 pnpm install
 ```
 
-After that, you need to install dependencies of the project that you are
-working on.
+The last step is to install dependencies of the project that you are working
+on.
 
 For example if you work on `@risedle/ui`, follow the following commands:
 
@@ -37,7 +44,7 @@ cd packages/ui/
 pnpm install
 ```
 
-Then you are ready to go.
+Then you are ready to go. Happy hacking!
 
 ## Packages
 
