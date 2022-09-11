@@ -38,6 +38,7 @@ jobs:
       - name: ✅ Test
         run: pnpm test:ci
         continue-on-error: true
+        id: test
       - name: ☂️  Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
         with:
