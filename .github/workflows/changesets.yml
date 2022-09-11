@@ -37,6 +37,14 @@ jobs:
       - name: 🦋 Bump version
         if: steps.check.outcome == 'success'
         run: pnpm packages:version
+      - name: 🦋 Create .npmrc
+        if: steps.check.outcome == 'success'
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: 🦋 Publish
         if: steps.check.outcome == 'success'
         run: pnpm packages:publish
