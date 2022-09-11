@@ -30,7 +30,7 @@ jobs:
       - name: 🍱 Install dependencies
         run: pnpm install --ignore-scripts
       - name: 🦋 Check changeset
-        run: pnpm changeset status
+        run: pnpm changeset status --since=main
         id: check
         continue-on-error: true
       - name: 🦋 Build packages
