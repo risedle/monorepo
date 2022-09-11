@@ -1,11 +1,11 @@
-import GetFuseLeveragedTokensGains from "../../src/services/flt/GetFuseLeveragedTokensGains";
+import flt from "../../../src/services/flt";
 
 describe("GetFuseLeveragedTokensGains()", () => {
     describe("given random chainId", () => {
         it("should throw an error", async () => {
             expect.assertions(1);
             try {
-                await GetFuseLeveragedTokensGains(1234);
+                await flt.GetFuseLeveragedTokensGains(1234);
             } catch (e) {
                 expect(e).toBe("Endpoint not defined for chainId 1234");
             }
@@ -14,7 +14,7 @@ describe("GetFuseLeveragedTokensGains()", () => {
 
     describe("given BSC as chainId", () => {
         it("should return array of FuseLeveragedTokenGains", async () => {
-            const tokensGain = await GetFuseLeveragedTokensGains(56);
+            const tokensGain = await flt.GetFuseLeveragedTokensGains(56);
             expect(tokensGain).toBeDefined();
             if (tokensGain == null) return;
 

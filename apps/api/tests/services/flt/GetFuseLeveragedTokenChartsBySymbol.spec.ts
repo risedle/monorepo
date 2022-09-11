@@ -1,4 +1,4 @@
-import flt from "../../src/services/flt";
+import flt from "../../../src/services/flt";
 
 describe("GetFuseLeveragedTokenChartsBySymbol", () => {
     describe("given random chainId", () => {
