@@ -1,5 +1,5 @@
 import { request as grequest, gql } from "graphql-request";
-import { ChainId, FuseLeveragedTokenInfo } from "@risedle/types";
+import { ChainId } from "@risedle/types";
 
 import { getGraphEndpointByChainId } from "./index";
 
