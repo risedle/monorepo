@@ -31,7 +31,7 @@ jobs:
       - name: 🍱 Install dependencies
         run: pnpm install
       - name: 💄 Run Prettier
-        run: pnpm check
+        run: pnpm prettier
       - name: 🧹 Run ESLint
         run: pnpm lint
       - name: ⚒️  Build source code
