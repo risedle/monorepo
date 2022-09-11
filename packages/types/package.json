@@ -1,6 +1,6 @@
 {
     "name": "@risedle/types",
-    "version": "1.9.0",
+    "version": "1.9.1",
     "license": "MIT",
     "source": "src/index.ts",
     "main": "dist/index.js",
@@ -37,9 +37,9 @@
         "clean": "rm -rf dist"
     },
     "devDependencies": {
-        "@risedle/eslint-config": "0.1.0",
-        "@risedle/prettier-config": "0.1.0",
-        "@risedle/tsconfig": "0.2.0",
+        "@risedle/eslint-config": "0.1.1",
+        "@risedle/prettier-config": "0.1.1",
+        "@risedle/tsconfig": "0.2.1",
         "eslint": "8.23.0",
         "prettier": "2.7.1",
         "typescript": "4.8.2"
