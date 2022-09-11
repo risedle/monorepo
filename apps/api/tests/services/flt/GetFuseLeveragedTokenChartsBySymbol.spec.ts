@@ -1,11 +1,11 @@
-import { getFuseLeveragedTokenChartsBySymbol } from "../flts";
+import flt from "../../../src/services/flt";
 
-describe("getFuseLeveragedTokenChartsBySymbol", () => {
+describe("GetFuseLeveragedTokenChartsBySymbol", () => {
     describe("given random chainId", () => {
         it("should throw an error", async () => {
             expect.assertions(1);
             try {
-                await getFuseLeveragedTokenChartsBySymbol(1234, "AAA");
+                await flt.GetFuseLeveragedTokenChartsBySymbol(1234, "AAA");
             } catch (e) {
                 expect(e).toBe("Endpoint not defined for chainId 1234");
             }
@@ -15,7 +15,7 @@ describe("getFuseLeveragedTokenChartsBySymbol", () => {
     describe("given BSC as chainId", () => {
         describe("given random symbol", () => {
             it("should return undefined", async () => {
-                const charts = await getFuseLeveragedTokenChartsBySymbol(
+                const charts = await flt.GetFuseLeveragedTokenChartsBySymbol(
                     56,
                     "AAA"
                 );
@@ -25,7 +25,7 @@ describe("getFuseLeveragedTokenChartsBySymbol", () => {
 
         describe("given BNBDROP & BNBRISE", () => {
             it("should return array of FuseLeveragedTokenPrice", async () => {
-                let charts = await getFuseLeveragedTokenChartsBySymbol(
+                let charts = await flt.GetFuseLeveragedTokenChartsBySymbol(
                     56,
                     "BNBDROP"
                 );
@@ -33,7 +33,7 @@ describe("getFuseLeveragedTokenChartsBySymbol", () => {
                 expect(charts?.volumes.length).toBeGreaterThan(2);
                 expect(charts?.fees.length).toBeGreaterThan(2);
 
-                charts = await getFuseLeveragedTokenChartsBySymbol(
+                charts = await flt.GetFuseLeveragedTokenChartsBySymbol(
                     56,
                     "BNBRISE"
                 );

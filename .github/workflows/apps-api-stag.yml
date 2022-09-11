@@ -1,4 +1,4 @@
-name: "Apps / API / Staging"
+name: "apps / api / staging"
 
 on:
   pull_request:
@@ -15,7 +15,6 @@ defaults:
 
 jobs:
   check:
-    name: Check, Build & Test
     runs-on: ubuntu-latest
     steps:
       - name: 📬 Check out code
@@ -32,16 +31,26 @@ jobs:
       - name: 🍱 Install dependencies
         run: pnpm install
       - name: 💄 Run Prettier
-        run: pnpm check
+        run: pnpm prettier
       - name: 🧹 Run ESLint
         run: pnpm lint
       - name: ⚒️  Build source code
         run: pnpm build
       - name: ✅ Test
         run: pnpm test:ci
+        id: test
+        continue-on-error: true
+      - name: ☂️  Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          directory: ./apps/api
+      - name: 🦍 Check on test failures
+        if: steps.test.outcome != 'success'
+        run: exit 1
+      - name: ✅ All good
+        run: echo "✅ All good" >> $GITHUB_STEP_SUMMARY
 
   deploy:
-    name: Deploy
     runs-on: ubuntu-latest
     permissions:
       contents: read

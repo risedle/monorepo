@@ -1,11 +1,11 @@
-import { getFuseLeveragedTokenBackingsBySymbol } from "../flts";
+import flt from "../../../src/services/flt";
 
-describe("getFuseLeveragedTokenBackingsBySymbol", () => {
+describe("GetFuseLeveragedTokenBackingsBySymbol", () => {
     describe("given random chainId", () => {
         it("should throw an error", async () => {
             expect.assertions(1);
             try {
-                await getFuseLeveragedTokenBackingsBySymbol(1234, "AAA");
+                await flt.GetFuseLeveragedTokenBackingsBySymbol(1234, "AAA");
             } catch (e) {
                 expect(e).toBe("Endpoint not defined for chainId 1234");
             }
@@ -15,23 +15,21 @@ describe("getFuseLeveragedTokenBackingsBySymbol", () => {
     describe("given BSC as chainId", () => {
         describe("given random symbol", () => {
             it("should return undefined", async () => {
-                const backings = await getFuseLeveragedTokenBackingsBySymbol(
-                    56,
-                    "AAA"
-                );
+                const backings =
+                    await flt.GetFuseLeveragedTokenBackingsBySymbol(56, "AAA");
                 expect(backings).toBeUndefined();
             });
         });
 
         describe("given BNBDROP & BNBRISE", () => {
             it("should return array of FuseLeveragedTokenBacking", async () => {
-                let backings = await getFuseLeveragedTokenBackingsBySymbol(
+                let backings = await flt.GetFuseLeveragedTokenBackingsBySymbol(
                     56,
                     "BNBDROP"
                 );
                 expect(backings?.backings.length).toBeGreaterThan(2);
 
-                backings = await getFuseLeveragedTokenBackingsBySymbol(
+                backings = await flt.GetFuseLeveragedTokenBackingsBySymbol(
                     56,
                     "BNBRISE"
                 );

@@ -1,4 +1,4 @@
-import service from "../../src/services/flt";
+import service from "../../../src/services/flt";
 
 describe("getFuseLeveragedTokenUserPositionById", () => {
     describe("given random chainId", () => {

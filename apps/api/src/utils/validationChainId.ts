@@ -13,4 +13,4 @@ const GetTokensByChainIdValidation = [
         .withMessage("chainId not supported"),
 ];
 
-export { GetTokensByChainIdValidation };
+export default GetTokensByChainIdValidation;
