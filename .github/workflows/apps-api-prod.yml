@@ -43,6 +43,7 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           directory: ./apps/api
+          flags: "apps-api"
       - name: 🦍 Check on test failures
         if: steps.test.outcome != 'success'
         run: exit 1

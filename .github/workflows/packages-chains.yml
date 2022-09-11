@@ -51,6 +51,7 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           directory: ./packages/chains
+          flags: "packages-chains"
       - name: 🦍 Check on test failures
         if: steps.test.outcome != 'success'
         run: exit 1
