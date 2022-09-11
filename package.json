@@ -7,7 +7,9 @@
         "build": "turbo run build",
         "test": "turbo run test",
         "prepare": "husky install",
-        "postinstall": "pnpm prepare"
+        "postinstall": "pnpm prepare",
+        "changeset:version": "changeset version && pnpm install --lockfile-only",
+        "changeset:publish": "pnpm build && pnpm publish -r --no-git-checks"
     },
     "devDependencies": {
         "@changesets/cli": "2.24.4",

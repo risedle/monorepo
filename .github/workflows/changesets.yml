@@ -30,17 +30,12 @@ jobs:
         run:
           # prettier-ignore
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-      - name: 🦋 Setup git user
-        run: |
-          git config user.email "github@risedle.com"
-          git config user.name "risedledev"
       - name: 🦋 Create and publish versions
         uses: changesets/action@v1
         with:
-          publish: pnpm publish -r --no-git-checks
-          version: pnpm changeset version
+          version: pnpm changeset:version
+          publish: pnpm changeset:publish
           title: "chore(packages): update and publish packages"
-          setupGitUser: false
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
