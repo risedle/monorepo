@@ -26,11 +26,3 @@ via the following URL:
 -   **Production** [https://api.risedle.exchange](https://api.risedle.exchange)
 -   **Staging**
     [https://apiedge.risedle.exchange](https://apiedge.risedle.exchange)
-
-### Upgrading internal dependencies
-
-Run the following command to update the internal packages:
-
-```sh
-npm install -w=api
-```

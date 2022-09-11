@@ -4,14 +4,15 @@
     "private": true,
     "main": "dist/index.js",
     "scripts": {
-        "build": "tsc",
-        "check": "prettier --check .",
+        "prettier": "prettier --check .",
         "lint": "eslint .",
+        "build": "tsc",
         "test": "jest --testTimeout 20000",
         "test:ci": "CI=true jest --reporters=default --reporters=github-actions",
         "dev:server": "node dist/index.js",
         "dev": "nodemon"
     },
+    "prettier": "@risedle/prettier-config",
     "dependencies": {
         "@risedle/chains": "1.2.1",
         "@risedle/types": "1.9.1",
@@ -54,7 +55,6 @@
         "typescript": "4.8.2",
         "update-notifier": "5.1.0"
     },
-    "prettier": "@risedle/prettier-config",
     "nodemonConfig": {
         "exec": "NODE_ENV=development npm run build && npm run dev:server",
         "watch": "./src",
