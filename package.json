@@ -8,7 +8,7 @@
         "test": "turbo run test",
         "prepare": "husky install",
         "postinstall": "pnpm prepare",
-        "changeset:version": "changeset version && pnpm install --lockfile-only",
+        "changeset:version": "changeset version && pnpm install",
         "changeset:publish": "pnpm build && pnpm publish -r --no-git-checks"
     },
     "devDependencies": {
