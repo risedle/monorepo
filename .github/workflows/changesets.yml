@@ -27,9 +27,11 @@ jobs:
       - name: 🍱 Install dependencies
         run: pnpm install --ignore-scripts
       - name: 🦋 Setup .npmrc
-        run:
+        run: |
           # prettier-ignore
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+      - name: 🦋 Check .npmrc
+        run: cat .npmrc
       - name: 🦋 Create and publish versions
         uses: changesets/action@v1
         with:
