@@ -30,17 +30,19 @@ jobs:
       - name: 🍱 Install dependencies
         run: pnpm install --ignore-scripts
       - name: 🦋 Check changeset
-        run: pnpm changeset status --since=main
+        run: |
+          pnpm changeset status --output status.json
+          # prettier-ignore
+          echo ::set-output name=changes::$(cat status.json | jq ".changesets | length" | grep -q 0 && echo 'false' || echo 'true')
         id: check
-        continue-on-error: true
       - name: 🦋 Build packages
-        if: steps.check.outcome == 'success'
+        if: steps.check.outputs.changes == 'true'
         run: pnpm packages:build
       - name: 🦋 Bump version
-        if: steps.check.outcome == 'success'
+        if: steps.check.outputs.changes == 'true'
         run: pnpm packages:version
       - name: 🦋 Create .npmrc
-        if: steps.check.outcome == 'success'
+        if: steps.check.outputs.changes == 'true'
         run: |
           cat << EOF > "$HOME/.npmrc"
             //registry.npmjs.org/:_authToken=$NPM_TOKEN
@@ -48,23 +50,23 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: 🦋 Publish
-        if: steps.check.outcome == 'success'
+        if: steps.check.outputs.changes == 'true'
         run: pnpm packages:publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: 🦋 Update lockfile
-        if: steps.check.outcome == 'success'
+        if: steps.check.outputs.changes == 'true'
         run: pnpm install --lockfile-only
       - name: 🦋 Setup git account
-        if: steps.check.outcome == 'success'
+        if: steps.check.outputs.changes == 'true'
         run: |
           git config user.email "github@risedle.com"
           git config user.name "risedledev"
       - name: 🦋 Check git tree
-        if: steps.check.outcome == 'success'
+        if: steps.check.outputs.changes == 'true'
         run: git status --porcelain
       - name: 🦋 Push commits and tags
-        if: steps.check.outcome == 'success'
+        if: steps.check.outputs.changes == 'true'
         run: |
           git add .
           git commit -m "chore(packages): bump versions"
