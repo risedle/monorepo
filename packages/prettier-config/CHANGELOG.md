@@ -1,5 +1,11 @@
 # @risedle/prettier-config
 
+## 0.1.2
+
+### Patch Changes
+
+-   8eb399a: Update docs
+
 ## 0.1.1
 
 ### Patch Changes

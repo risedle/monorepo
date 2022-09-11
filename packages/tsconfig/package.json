@@ -1,6 +1,6 @@
 {
     "name": "@risedle/tsconfig",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "main": "index.js",
     "license": "MIT",
     "files": [
@@ -28,7 +28,7 @@
     },
     "prettier": "@risedle/prettier-config",
     "devDependencies": {
-        "@risedle/prettier-config": "0.1.1",
+        "@risedle/prettier-config": "0.1.2",
         "prettier": "2.7.1"
     },
     "publishConfig": {
