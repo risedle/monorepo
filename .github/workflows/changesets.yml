@@ -53,12 +53,17 @@ jobs:
       - name: 🦋 Update lockfile
         if: steps.check.outcome == 'success'
         run: pnpm install --lockfile-only
-      - name: 🦋 Push commits and tags
+      - name: 🦋 Setup git account
         if: steps.check.outcome == 'success'
         run: |
           git config user.email "github@risedle.com"
           git config user.name "risedledev"
-          git status --porcelain
+      - name: 🦋 Check git tree
+        if: steps.check.outcome == 'success'
+        run: git status --porcelain
+      - name: 🦋 Push commits and tags
+        if: steps.check.outcome == 'success'
+        run: |
           git add .
           git commit -m "chore(packages): bump versions"
-          git push origin HEAD --follow-tags
+          git push origin HEAD --force --follow-tags
