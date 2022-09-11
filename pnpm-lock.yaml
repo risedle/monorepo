@@ -104,9 +104,13 @@ importers:
 
   apps/assets:
     specifiers:
+      "@risedle/prettier-config": 0.1.0
+      prettier: 2.7.1
       svgo: 2.8.0
       wrangler: 2.0.28
     devDependencies:
+      "@risedle/prettier-config": 0.1.0
+      prettier: 2.7.1
       svgo: 2.8.0
       wrangler: 2.0.28
 
