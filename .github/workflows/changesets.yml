@@ -7,15 +7,8 @@ on:
   push:
     branches:
       - main
-    paths:
-      - ".changeset/**"
-      - ".github/workflows/changesets.yml"
 
   workflow_dispatch:
-
-env:
-  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
   publish:
@@ -47,6 +40,8 @@ jobs:
       - name: 🦋 Publish
         if: steps.check.outcome == 'success'
         run: pnpm packages:publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: 🦋 Update lockfile
         if: steps.check.outcome == 'success'
         run: pnpm install --lockfile-only
