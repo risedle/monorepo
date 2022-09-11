@@ -5,7 +5,7 @@
         "prettier": "prettier --check .",
         "optimize": "./optimize.sh",
         "optimize:svg": "svgo -f ./src/** -o ./public",
-        "deploy": "wrangler pages publish public --project-name=risedle-assets --branch=main"
+        "pages:deploy": "wrangler pages publish public --project-name=risedle-assets --branch=main"
     },
     "prettier": "@risedle/prettier-config",
     "devDependencies": {

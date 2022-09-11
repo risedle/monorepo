@@ -21,5 +21,5 @@ version to Cloudflare Pages.
 Run the following command to deploy manually:
 
 ```sh
-pnpm deploy
+pnpm pages:deploy
 ```
