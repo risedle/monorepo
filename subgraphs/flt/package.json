@@ -1,5 +1,6 @@
 {
     "name": "flt",
+    "private": true,
     "license": "MIT",
     "scripts": {
         "codegen": "graph codegen",
