@@ -1,13 +1,21 @@
 name: changesets
 
+# Make sure changesets workflow is not running parallely
+concurrency: changesets-main
+
 on:
   push:
     branches:
       - main
     paths:
       - ".changeset/**"
+      - ".github/workflows/changesets.yml"
 
   workflow_dispatch:
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
   publish:
@@ -26,16 +34,28 @@ jobs:
           cache: "pnpm"
       - name: 🍱 Install dependencies
         run: pnpm install --ignore-scripts
-      - name: 🦋 Setup .npmrc
+      - name: 🦋 Check changeset
+        run: pnpm changeset status
+        id: check
+        continue-on-error: true
+      - name: 🦋 Build packages
+        if: steps.check.outcome == 'success'
+        run: pnpm packages:build
+      - name: 🦋 Bump version
+        if: steps.check.outcome == 'success'
+        run: pnpm packages:version
+      - name: 🦋 Publish
+        if: steps.check.outcome == 'success'
+        run: pnpm packages:publish
+      - name: 🦋 Update lockfile
+        if: steps.check.outcome == 'success'
+        run: pnpm install --lockfile-only
+      - name: 🦋 Push commits and tags
+        if: steps.check.outcome == 'success'
         run: |
-          # prettier-ignore
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-      - name: 🦋 Create and publish versions
-        uses: changesets/action@v1
-        with:
-          version: pnpm changeset:version
-          publish: pnpm changeset:publish
-          title: "chore(packages): update and publish packages"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          git config user.email "github@risedle.com"
+          git config user.name "risedledev"
+          git status --porcelain
+          git add .
+          git commit -m "chore(packages): bump versions"
+          git push origin HEAD --follow-tags

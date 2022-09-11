@@ -1,6 +1,6 @@
 {
     "name": "assets",
-    "private": "true",
+    "private": true,
     "scripts": {
         "prettier": "prettier --check .",
         "optimize": "./optimize.sh",
