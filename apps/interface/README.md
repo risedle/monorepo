@@ -2,6 +2,22 @@
 
 Risedle Interface is a Web3 app that deployed specificly for each chain.
 
+### Get started
+
+### Test
+
+Use the following command to run the test:
+
+```shell
+pnpm jest
+```
+
+To run individual spec file, use the following command:
+
+```shell
+pnpm jest /path/to/file.spec.ts
+```
+
 TODO(pyk): Add docs about how to run here
 
 ### Table of contents

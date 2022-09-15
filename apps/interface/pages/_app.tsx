@@ -19,6 +19,8 @@ function App({ Component, pageProps }: AppProps) {
 
     return (
         <>
+            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+            {/* @ts-ignore */}
             <DefaultSeo
                 titleTemplate="%s | Risedle"
                 defaultTitle="Risedle"

@@ -52,7 +52,7 @@ export const SwapCardSlippageTolerance = (
             background={gray2}
         >
             <AccordionItem border="0">
-                {({ isExpanded }) => (
+                {({ isExpanded }: { isExpanded: boolean }) => (
                     <>
                         <h2>
                             <AccordionButton
