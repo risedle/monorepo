@@ -14,7 +14,7 @@ const index = `
     <ul>
         {{#sources}}
             <li>
-                <a href="/{{{.}}}">
+                <a href="/{{{.}}}/index.html">
                     {{{.}}}
                 </a>
             </li>
