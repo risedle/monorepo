@@ -10,7 +10,8 @@
                 "src/**/*.tsx",
                 "test/**/*.ts",
                 "test/**/*.tsx"
-            ]
+            ],
+            "outputs": ["coverage"]
         },
         "lint": {
             "outputs": []
