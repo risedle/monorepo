@@ -4,9 +4,36 @@ Risedle Interface is a Web3 app that deployed specificly for each chain.
 
 ### Get started
 
-### Test
+To install the dependencies, run the following command:
 
-Use the following command to run the test:
+```shell
+pnpm install
+```
+
+> **Note** If you want to contribute to this project, make sure you have run
+> installation from the monorepo root in order to setup git hooks etc.
+
+Once all dependencies are installed, you can run local development server using
+the following command:
+
+```shell
+pnpm dev
+```
+
+There are some scripts that you can use for development:
+
+```shell
+# To check code formatting
+pnpm prettier
+
+# To check code best practice
+pnpm lint
+```
+
+If you setup git hooks via running `pnpm install` on monorepo root, you don't
+need to run these manually.
+
+For the test, use the following command to run the test:
 
 ```shell
 pnpm jest
@@ -17,8 +44,6 @@ To run individual spec file, use the following command:
 ```shell
 pnpm jest /path/to/file.spec.ts
 ```
-
-TODO(pyk): Add docs about how to run here
 
 ### Table of contents
 
