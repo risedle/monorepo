@@ -5,6 +5,8 @@ on:
     branches:
       - main
     paths:
+      - "codecov.yml"
+      - "pnpm-lock.yaml"
       - "apps/assets/**"
       - ".github/workflows/apps-assets-prod.yml"
 

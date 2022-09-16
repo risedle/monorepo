@@ -5,6 +5,7 @@ on:
     branches:
       - main
     paths:
+      - "codecov.yml"
       - "pnpm-lock.yaml"
       - "packages/tsconfig/**"
       - ".github/workflows/packages-tsconfig.yml"
@@ -12,6 +13,7 @@ on:
     branches:
       - main
     paths:
+      - "codecov.yml"
       - "pnpm-lock.yaml"
       - "packages/tsconfig/**"
       - ".github/workflows/packages-tsconfig.yml"
