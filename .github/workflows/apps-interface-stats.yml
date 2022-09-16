@@ -16,6 +16,10 @@ on:
 
   workflow_dispatch:
 
+defaults:
+  run:
+    working-directory: ./apps/interface
+
 jobs:
   analyze:
     runs-on: ubuntu-latest
@@ -44,25 +48,20 @@ jobs:
       - name: ⚒️  Build source code
         run: pnpm build
 
-      # Here's the first place where next-bundle-analysis' own script is used
-      # This step pulls the raw bundle stats for the current bundle
       - name: Analyze bundle
         run: npx -p nextjs-bundle-analysis report
-        working-directory: ./apps/interface
-
       - name: Upload bundle
         uses: actions/upload-artifact@v2
         with:
           name: bundle
-          path: ./apps/interface/.next/analyze/__bundle_analysis.json
-
+          path: .next/analyze/__bundle_analysis.json
       - name: Download base branch bundle stats
         uses: dawidd6/action-download-artifact@v2
         if: success() && github.event.number
         with:
           workflow: risedle-interface-stats.yml
           branch: ${{ github.event.pull_request.base.ref }}
-          path: ./apps/interface/.next/analyze/base
+          path: .next/analyze/base
 
       # And here's the second place - this runs after we have both the current and
       # base branch bundle stats, and will compare them to determine what changed.
@@ -81,13 +80,11 @@ jobs:
         if: success() && github.event.number
         run:
           ls -laR .next/analyze/base && npx -p nextjs-bundle-analysis compare
-        working-directory: ./apps/interface
-
       - name: Get comment body
         id: get-comment-body
         if: success() && github.event.number
         run: |
-          body=$(cat ./apps/interface/.next/analyze/__bundle_analysis_comment.txt)
+          body=$(cat .next/analyze/__bundle_analysis_comment.txt)
           body="${body//'%'/'%25'}"
           body="${body//$'\n'/'%0A'}"
           body="${body//$'\r'/'%0D'}"
