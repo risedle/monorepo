@@ -6,5 +6,6 @@ WORKDIR /app
 COPY . /app/
 RUN ls -a
 ENV NEXT_TELEMETRY_DISABLED 1
+RUN echo "strict-peer-dependencies=false" > .npmrc
 RUN pnpm install --prod
 RUN pnpm build

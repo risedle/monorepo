@@ -60,6 +60,7 @@ jobs:
     environment:
       name: bsc-prod
       url: https://bsc.risedle.com
+    needs: check
     steps:
       - name: 📬 Check out code
         uses: actions/checkout@v2
