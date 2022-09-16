@@ -1,6 +1,6 @@
 import { Icon, IconProps } from "@chakra-ui/react";
 
-export const MetricIcon = (props: IconProps) => (
+const MetricIcon = (props: IconProps) => (
     <Icon viewBox="0 0 20 20" {...props}>
         <path
             fillRule="evenodd"

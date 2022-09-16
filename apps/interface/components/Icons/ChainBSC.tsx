@@ -1,6 +1,6 @@
 import { Icon, IconProps } from "@chakra-ui/react";
 
-export const ChainBSCIcon = (props: IconProps) => {
+const ChainBSCIcon = (props: IconProps) => {
     return (
         <Icon
             fill="currentcolor"

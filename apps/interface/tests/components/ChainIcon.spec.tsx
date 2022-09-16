@@ -1,7 +1,6 @@
-import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 
-import { ChainIcon } from "@/components/Icons/Chain";
+import ChainIcon from "@/components/Icons/Chain";
 
 import * as BaseConfig from "@/utils/getBaseConfig";
 jest.mock("@/utils/getBaseConfig");

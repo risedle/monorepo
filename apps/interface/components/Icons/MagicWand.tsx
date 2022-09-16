@@ -1,6 +1,6 @@
 import { Icon, IconProps } from "@chakra-ui/react";
 
-export const MagicWandIcon = (props: IconProps) => {
+const MagicWandIcon = (props: IconProps) => {
     return (
         <Icon viewBox="0 0 16 16" {...props}>
             <path

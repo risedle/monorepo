@@ -6,7 +6,7 @@ interface BackgroundGradientProps extends BoxProps {
     page: string; // 'home', 'trade' etc
 }
 
-export const BackgroundGradient = (props: BackgroundGradientProps) => {
+const BackgroundGradient = (props: BackgroundGradientProps) => {
     const { chainSlug } = getBaseConfig();
     const { page, ...boxProps } = props;
 

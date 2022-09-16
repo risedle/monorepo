@@ -1,4 +1,4 @@
-export const formatTokenBalance = (n: number): number => {
+const formatTokenBalance = (n: number): number => {
     return Math.floor(n * 1e5) / 1e5;
 };
 

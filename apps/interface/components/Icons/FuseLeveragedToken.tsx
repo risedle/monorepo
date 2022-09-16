@@ -6,7 +6,7 @@ interface FuseLeveragedTokenIconProps {
     name: string;
 }
 
-export const FuseLeveragedTokenIcon = (props: FuseLeveragedTokenIconProps) => {
+const FuseLeveragedTokenIcon = (props: FuseLeveragedTokenIconProps) => {
     const { symbol, name } = props;
     const { colorMode } = useColorMode();
 

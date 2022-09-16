@@ -1,4 +1,4 @@
-export const formatTokenAddress = (address: string): string => {
+const formatTokenAddress = (address: string): string => {
     // Get first six
     const first = address.slice(0, 6);
     const last = address.slice(-4);

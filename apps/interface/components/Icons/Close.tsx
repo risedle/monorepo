@@ -1,6 +1,6 @@
 import { Icon, IconProps } from "@chakra-ui/react";
 
-export const CloseIcon = (props: IconProps) => (
+const CloseIcon = (props: IconProps) => (
     <Icon data-testid="CloseIcon" viewBox="0 0 16 16" {...props}>
         <path
             fillRule="evenodd"

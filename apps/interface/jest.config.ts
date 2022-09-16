@@ -22,6 +22,7 @@ const customJestConfig = {
         "hooks/**/*.ts",
         // Ignore untestable files
         "!utils/theme.ts",
+        "!utils/fetcher.ts",
         "!pages/_app.tsx",
         "!pages/_document.tsx",
         "!components/ConnectWalletButton/index.tsx",

@@ -7,11 +7,12 @@ import {
     Spinner,
     Text,
 } from "@chakra-ui/react";
-import { RisedleLogo, BscLogo } from "./logo";
 import domtoimage from "dom-to-image";
 import React, { useImperativeHandle, useRef } from "react";
-import useGetInsight from "@/hooks/useGetInsight";
 import dayjs from "dayjs";
+
+import { RisedleLogo, BscLogo } from "./logo";
+import useGetInsight from "@/hooks/useGetInsight";
 
 interface InsightImageDOMProps extends FlexProps {
     type: "daily" | "weekly";
@@ -20,6 +21,19 @@ interface InsightImageDOMProps extends FlexProps {
 export type ImageHandle = {
     getImage: () => Node;
 };
+
+// Given html element and filename, export html element to downloadble filename
+export async function exportImage(
+    element: HTMLElement,
+    filename: string
+): Promise<void> {
+    const result = await domtoimage.toJpeg(element);
+    const link = document.createElement("a");
+    link.className = "download-helper";
+    link.download = filename;
+    link.href = result;
+    link.click();
+}
 
 // eslint-disable-next-line react/display-name
 const InsightImageDOM = React.forwardRef(
@@ -32,27 +46,12 @@ const InsightImageDOM = React.forwardRef(
         };
         const imageRef = useRef<HTMLDivElement>(null);
 
-        const exportImage = async () => {
-            try {
-                if (imageRef.current && data) {
-                    const result = await domtoimage.toJpeg(imageRef.current);
-                    const link = document.createElement("a");
-                    link.className = "download-helper";
-                    link.download = `${props.type} ${dayjs(
-                        data[0].dailyGain.timestamp * 1000
-                    ).format("DD-MM-YY")}.jpeg`;
-                    link.href = result;
-                    link.click();
-                }
-            } catch (e) {
-                console.log(e);
-                alert("something went wrong");
-            }
-        };
-
         useImperativeHandle(ref, () => ({
             getImage() {
-                exportImage();
+                const filename = `${props.type} ${dayjs(
+                    data[0].dailyGain.timestamp * 1000
+                ).format("DD-MM-YY")}.jpeg`;
+                exportImage(imageRef.current, filename);
             },
         }));
 
@@ -104,6 +103,7 @@ const InsightImageDOM = React.forwardRef(
                                     </Text>
                                     <BscLogo />
                                 </Flex>
+
                                 {/* Description */}
                                 <Flex direction="column" gap="8">
                                     <Text
@@ -157,7 +157,9 @@ const InsightImageDOM = React.forwardRef(
                                                 ? item.dailyGain.gain
                                                 : item.weeklyGain.gain;
                                         return (
-                                            <>
+                                            <div
+                                                key={`${item.dailyGain.gain} ${index}`}
+                                            >
                                                 <Flex
                                                     key={`${item.dailyGain.gain} ${index}`}
                                                     direction="row"
@@ -232,7 +234,7 @@ const InsightImageDOM = React.forwardRef(
                                                     </Flex>
                                                 </Flex>
                                                 <Divider borderColor="rgba(255, 255, 255, 0.06)" />
-                                            </>
+                                            </div>
                                         );
                                     })}
                                 </Flex>

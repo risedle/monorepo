@@ -1,6 +1,6 @@
 import { Icon, IconProps } from "@chakra-ui/react";
 
-export const TwitterIcon = (props: IconProps) => (
+const TwitterIcon = (props: IconProps) => (
     <Icon viewBox="0 0 16 16" {...props}>
         <path
             fillRule="evenodd"

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import { WarningIcon } from "@/components/Icons/Warning";
+import WarningIcon from "@/components/Icons/Warning";
 
 describe("<WarningIcon />", () => {
     it("should render red indicator icon", () => {

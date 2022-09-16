@@ -10,6 +10,7 @@ import {
     useColorModeValue,
     Button,
 } from "@chakra-ui/react";
+
 import InsightImageDOM, { ImageHandle } from "@/components/InsightImageDOM";
 
 const InsightGenerator = () => {

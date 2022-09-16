@@ -1,6 +1,6 @@
 import { Icon, IconProps } from "@chakra-ui/react";
 
-export const ArrowTopRightIcon = (props: IconProps) => (
+const ArrowTopRightIcon = (props: IconProps) => (
     <Icon viewBox="0 0 15 15" {...props}>
         <path
             fillRule="evenodd"

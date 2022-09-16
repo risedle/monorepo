@@ -12,7 +12,7 @@ interface InfoTooltipProps extends IconProps {
     info: string;
 }
 
-export const InfoTooltip = (props: InfoTooltipProps) => {
+const InfoTooltip = (props: InfoTooltipProps) => {
     // Data
     const { info } = props;
 

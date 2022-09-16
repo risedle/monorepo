@@ -1,6 +1,6 @@
 import { Icon, IconProps } from "@chakra-ui/react";
 
-export const ChevronDownIcon = (props: IconProps) => {
+const ChevronDownIcon = (props: IconProps) => {
     return (
         <Icon viewBox="0 0 16 16" {...props}>
             <path

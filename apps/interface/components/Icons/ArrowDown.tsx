@@ -1,6 +1,6 @@
 import { Icon, IconProps } from "@chakra-ui/react";
 
-export const ArrowDownIcon = (props: IconProps) => {
+const ArrowDownIcon = (props: IconProps) => {
     return (
         <Icon data-testid="ArrowDownIcon" viewBox="0 0 16 16" {...props}>
             <path

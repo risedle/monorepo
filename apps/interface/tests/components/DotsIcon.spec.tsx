@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import { DotsIcon } from "@/components/Icons/Dots";
+import DotsIcon from "@/components/Icons/Dots";
 
 describe("<DotsIcon />", () => {
     it("should render red indicator icon", () => {
