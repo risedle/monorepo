@@ -1,8 +1,10 @@
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 
-import * as BaseConfig from "@/utils/getBaseConfig";
 import { ChainIcon } from "@/components/Icons/Chain";
+
+import * as BaseConfig from "@/utils/getBaseConfig";
+jest.mock("@/utils/getBaseConfig");
 
 afterEach(() => {
     // restore the spy created with spyOn
@@ -12,18 +14,13 @@ afterEach(() => {
 describe("<ChainIcon />", () => {
     describe("Given default chainId", () => {
         it("should render based on base config", () => {
-            const getBaseConfig = jest.spyOn(BaseConfig, "getBaseConfig");
-            getBaseConfig.mockImplementation(() => {
-                return { chainId: 56 };
-            });
+            BaseConfig.getBaseConfig.mockReturnValue({ chainId: 56 });
             render(<ChainIcon />);
 
             let icon = screen.getByTestId("ChainIconBSC");
             expect(icon).toBeInTheDocument();
 
-            getBaseConfig.mockImplementation(() => {
-                return { chainId: 42161 };
-            });
+            BaseConfig.getBaseConfig.mockReturnValue({ chainId: 42161 });
             render(<ChainIcon />);
 
             icon = screen.getByTestId("ChainIconArbitrum");
@@ -33,18 +30,13 @@ describe("<ChainIcon />", () => {
 
     describe("Given specified chainId", () => {
         it("should render based on specified chainId", () => {
-            const getBaseConfig = jest.spyOn(BaseConfig, "getBaseConfig");
-            getBaseConfig.mockImplementation(() => {
-                return { chainId: 56 };
-            });
+            BaseConfig.getBaseConfig.mockReturnValue({ chainId: 56 });
             render(<ChainIcon chainId={42161} />);
 
             let icon = screen.getByTestId("ChainIconArbitrum");
             expect(icon).toBeInTheDocument();
 
-            getBaseConfig.mockImplementation(() => {
-                return { chainId: 42161 };
-            });
+            BaseConfig.getBaseConfig.mockReturnValue({ chainId: 42161 });
             render(<ChainIcon chainId={56} />);
 
             icon = screen.getByTestId("ChainIconBSC");

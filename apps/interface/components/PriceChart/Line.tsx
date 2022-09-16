@@ -49,6 +49,8 @@ export const PriceChartLine = (props: PriceChartLineProps) => {
                     width={300}
                     height={200}
                 >
+                    {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                    {/* @ts-ignore */}
                     <Area
                         type="monotoneX"
                         dataKey="price"
@@ -67,6 +69,8 @@ export const PriceChartLine = (props: PriceChartLineProps) => {
                         type="number"
                         domain={["dataMin - 5", "dataMax + 5"]}
                     />
+                    {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                    {/* @ts-ignore */}
                     <Tooltip
                         cursor={false}
                         content={

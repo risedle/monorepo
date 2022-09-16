@@ -99,7 +99,7 @@ export const ChainSwitcher = (props: ButtonProps) => {
 
     return (
         <Menu>
-            {({ isOpen }) => (
+            {({ isOpen }: { isOpen: boolean }) => (
                 <>
                     {/* Button */}
                     <MenuButton

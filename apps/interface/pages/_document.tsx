@@ -1,19 +1,23 @@
+import React, { ReactElement } from "react";
 import Document, {
     Html,
     Head,
     Main,
     NextScript,
     DocumentContext,
+    DocumentInitialProps,
 } from "next/document";
 import { ColorModeScript } from "@chakra-ui/react";
 
 class RisedleDocument extends Document {
-    static async getInitialProps(ctx: DocumentContext) {
+    static async getInitialProps(
+        ctx: DocumentContext
+    ): Promise<DocumentInitialProps> {
         const initialProps = await Document.getInitialProps(ctx);
-        return { ...initialProps };
+        return initialProps;
     }
 
-    render() {
+    render(): ReactElement {
         return (
             <Html>
                 <Head>
