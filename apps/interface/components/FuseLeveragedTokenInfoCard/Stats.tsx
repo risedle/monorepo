@@ -30,7 +30,8 @@ interface FuseLeveragedTokenInfoCardStatsProps extends BoxProps {
     isLoaded: boolean;
     address: string;
 }
-export const FuseLeveragedTokenInfoCardStats = (
+
+const FuseLeveragedTokenInfoCardStats = (
     props: FuseLeveragedTokenInfoCardStatsProps
 ) => {
     // Global config

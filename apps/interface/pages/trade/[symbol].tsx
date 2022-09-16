@@ -9,7 +9,7 @@ import type { FuseLeveragedToken } from "@/utils/types";
 
 import { NavigationBar } from "@/components/NavigationBar";
 import { NavigationBarBottom } from "@/components/NavigationBarBottom";
-import { BackgroundGradient } from "@/components/BackgroundGradient";
+import BackgroundGradient from "@/components/BackgroundGradient";
 import { TradeInfoCard } from "@/components/TradeInfoCard";
 import { FuseLeveragedTokenInfoCard } from "@/components/FuseLeveragedTokenInfoCard";
 import BackingCard from "@/components/BackingCard";

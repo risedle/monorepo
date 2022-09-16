@@ -13,8 +13,8 @@ import { formatUSD } from "@/utils/formatUSD";
 import { formatPercent } from "@/utils/formatPercent";
 
 // Sub-components
-import { ArrowDownIcon } from "../Icons/ArrowDown";
-import { ArrowUpIcon } from "../Icons/ArrowUp";
+import ArrowDownIcon from "../Icons/ArrowDown";
+import ArrowUpIcon from "../Icons/ArrowUp";
 
 interface TokenCardInfoProps {
     price: number;

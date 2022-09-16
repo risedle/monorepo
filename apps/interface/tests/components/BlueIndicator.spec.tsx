@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import { BlueIndicatorIcon } from "@/components/Icons/BlueIndicator";
+import BlueIndicatorIcon from "@/components/Icons/BlueIndicator";
 
 describe("<BlueIndicatorIcon />", () => {
     it("should render red indicator icon", () => {

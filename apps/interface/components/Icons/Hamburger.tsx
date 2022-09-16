@@ -1,6 +1,6 @@
 import { Icon, IconProps } from "@chakra-ui/react";
 
-export const HamburgerIcon = (props: IconProps) => (
+const HamburgerIcon = (props: IconProps) => (
     <Icon data-testid="HamburgerIcon" viewBox="0 0 14 10" {...props}>
         <path
             fillRule="evenodd"

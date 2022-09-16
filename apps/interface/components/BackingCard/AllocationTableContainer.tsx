@@ -12,7 +12,7 @@ interface BackingCardAllocationTableContainerProps extends BoxProps {
     debtSymbol: string;
 }
 
-export const BackingCardAllocationTableContainer = (
+const BackingCardAllocationTableContainer = (
     props: BackingCardAllocationTableContainerProps
 ) => {
     const { symbol, collateralSymbol, debtSymbol, ...boxProps } = props;

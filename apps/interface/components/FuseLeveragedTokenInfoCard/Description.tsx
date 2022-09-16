@@ -6,7 +6,7 @@ interface FuseLeveragedTokenInfoCardDescriptionProps {
     name: string;
 }
 
-export const FuseLeveragedTokenInfoCardDescription = (
+const FuseLeveragedTokenInfoCardDescription = (
     props: FuseLeveragedTokenInfoCardDescriptionProps
 ) => {
     const [showMore, setShowMore] = useState(false);

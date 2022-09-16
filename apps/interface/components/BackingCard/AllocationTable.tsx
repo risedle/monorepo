@@ -28,7 +28,7 @@ interface BackingCardAllocationTableProps extends BoxProps {
     isLoaded: boolean;
 }
 
-export const BackingCardAllocationTable = (
+const BackingCardAllocationTable = (
     props: BackingCardAllocationTableProps
 ) => {
     // Data

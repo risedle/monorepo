@@ -11,7 +11,7 @@ import NextLink from "next/link";
 // Icons
 import ArrowTopRightIcon from "@/components/Icons/ArrowTopRight";
 
-export const StickyFooterBar = () => {
+const StickyFooterBar = () => {
     // Styles
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     const gray12 = useColorModeValue("gray.light.12", "gray.dark.12");

@@ -5,7 +5,7 @@ const fdebts: Record<string, string> = {
     CAKEDROP: "0xbd163D07015ae3c0701304E20FEBAB421A2020aA",
 };
 
-export const getFuseDebtAddress = (symbol: string): string => {
+const getFuseDebtAddress = (symbol: string): string => {
     return fdebts[symbol];
 };
 

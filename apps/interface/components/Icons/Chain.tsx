@@ -8,7 +8,7 @@ interface ChainIconProps extends IconProps {
     chainId?: number;
 }
 
-export const ChainIcon = (props: ChainIconProps) => {
+const ChainIcon = (props: ChainIconProps) => {
     const { chainId, ...iconProps } = props;
     const baseConfig = getBaseConfig();
     const currentChainId = chainId ? chainId : baseConfig.chainId;

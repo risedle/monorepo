@@ -1,6 +1,6 @@
 import { Icon, IconProps } from "@chakra-ui/react";
 
-export const WarningIcon = (props: IconProps) => (
+const WarningIcon = (props: IconProps) => (
     <Icon data-testid="WarningIcon" viewBox="0 0 16 16" {...props}>
         <path
             fillRule="evenodd"

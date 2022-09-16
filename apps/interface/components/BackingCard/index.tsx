@@ -11,7 +11,7 @@ interface BackingCardProps extends BoxProps {
     flt: FuseLeveragedToken;
 }
 
-export const BackingCard = (props: BackingCardProps) => {
+const BackingCard = (props: BackingCardProps) => {
     // Data
     const { flt, ...boxProps } = props;
     const { symbol, collateral, debt, backings } = flt;

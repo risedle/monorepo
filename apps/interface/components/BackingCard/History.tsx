@@ -29,7 +29,7 @@ interface BackingCardHistoryProps extends BoxProps {
     backings: Array<FuseLeveragedTokenBacking>;
 }
 
-export const BackingCardHistory = (props: BackingCardHistoryProps) => {
+const BackingCardHistory = (props: BackingCardHistoryProps) => {
     // Data
     const { backings, collateralSymbol, debtSymbol } = props;
 
