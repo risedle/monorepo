@@ -2,93 +2,62 @@ import { Meta } from "@storybook/addon-docs";
 
 <Meta title="README" />
 
+<div id="risedle-docs">
+
 <style>
     {`
-        :root {
-            --color-background: #03050D;
-            --color-background-card: #0E1018;
-            --color-text-primary: #FCFDFF;
-        }
 
-        /* Risedle custom styles */
-        .sbdocs {
-            background: var(--color-background);
-            color: var(--color-text-primary);
-        }
+    :root {
+        --color-background: #03050D;
+        --color-background-card: #0E1018;
+        --color-text-primary: #FCFDFF;
+        --color-text-secondary: #8E93AF;
+        --color-status-success: #18CCCC;
+        --color-red: #FD119F;
+    }
 
-        #risedle-docs {
-            padding: 48px 20px;
-            margin: 0 auto;
-            max-width: 600px;
-            font-family: "Inter", sans-serif;
-            font-weight: 400;
-        }
+    .sbdocs {
+        background: var(--color-background);
+        color: var(--color-text-primary);
+    }
 
-        #risedle-docs > h1 {
-            margin: 0;
-            font-size: 32px;
-            line-height: 32px;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
+    .sbdocs-content {
+        max-width: 600px;
+    }
 
-        #risedle-docs > h2 {
-            margin-top: 32px;
-            font-size: 28px;
-            line-height: 32px;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
+    .sbdocs-p {
+        color: var(--color-text-secondary);
+    }
 
-        #risedle-docs > p,
-        #risedle-docs > ol > li,
-        #risedle-docs > ul > li,
-        #risedle-docs > blockquote > p {
-            font-style: normal;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 24px;
-            color: #8E93AF;
-        }
+    .sbdocs-p > code {
+        color: var(--color-text-secondary);
+        background: var(--color-background-card);
+        border: 0px;
+    }
 
-        #risedle-docs > p,
-        #risedle-docs > ol {
-            margin-top: 16px;
-            margin-bottom: 16px;
-        }
+    .docblock-source {
+        background: var(--color-background-card);
+        color: var(--color-text-secondary);
+    }
 
-        #risedle-docs > ol {
-            padding-left: 32px;
-        }
+    .token {
+        color: var(--color-text-secondary);
+    }
 
-        #risedle-docs > p > a {
-            font-style: normal;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 24px;
-            /* Dark/Neutral/Primary */
-            color: var(--color-text-primary);
-        }
+    .token.function {
+        color: var(--color-status-success) !important;
+    }
 
-        #risedle-docs > pre {
-            font-family: "Space Mono", monospace;
-            padding: 16px;
-            overflow: auto;
-            line-height: 1.1;
-            background-color: var(--color-background-card);
-            border-radius: 6px;
-        }
+    .token.keyword {
+        color: var(--color-status-success) !important;
+    }
 
-        #risedle-docs > p > code {
-            font-family: "Space Mono", monospace;
-            line-height: 16px;
-            font-size: 14px;
-            color: var(--color-text-primary);
-        }
-    `}
+    .token.string {
+        color: var(--color-red) !important;
+    }
+
+`}
 </style>
-
-<div id="risedle-docs">
 
 # Welcome to Risedle UI
 

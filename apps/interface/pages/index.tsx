@@ -17,7 +17,7 @@ import { BackgroundGradient } from "@/components/BackgroundGradient";
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface HomeProps extends FuseLeveragedTokens {}
 
-const Home: NextPage<HomeProps, unknown> = (props) => {
+const Home: NextPage<HomeProps, unknown> = (props: HomeProps) => {
     const baseConfig = getBaseConfig();
     const { totalMarketCap, totalVolume } =
         getFuseLeveragedTokensSummary(props);

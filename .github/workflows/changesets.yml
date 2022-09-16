@@ -1,0 +1,73 @@
+name: changesets
+
+# Make sure changesets workflow is not running parallely
+concurrency: changesets-main
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📬 Check out code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+      - name: ✨ Setup pnpm@7
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
+      - name: ✨ Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18.7.0"
+          cache: "pnpm"
+      - name: 🍱 Install dependencies
+        run: pnpm install --ignore-scripts
+      - name: 🦋 Check changeset
+        run: |
+          pnpm changeset status --output status.json
+          # prettier-ignore
+          echo ::set-output name=changes::$(cat status.json | jq ".changesets | length" | grep -q 0 && echo 'false' || echo 'true')
+        id: check
+      - name: 🦋 Build packages
+        if: steps.check.outputs.changes == 'true'
+        run: pnpm packages:build
+      - name: 🦋 Bump version
+        if: steps.check.outputs.changes == 'true'
+        run: pnpm packages:version
+      - name: 🦋 Create .npmrc
+        if: steps.check.outputs.changes == 'true'
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: 🦋 Publish
+        if: steps.check.outputs.changes == 'true'
+        run: pnpm packages:publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: 🦋 Update lockfile
+        if: steps.check.outputs.changes == 'true'
+        run: pnpm install --lockfile-only
+      - name: 🦋 Setup git account
+        if: steps.check.outputs.changes == 'true'
+        run: |
+          git config user.email "github@risedle.com"
+          git config user.name "risedledev"
+      - name: 🦋 Check git tree
+        if: steps.check.outputs.changes == 'true'
+        run: git status --porcelain
+      - name: 🦋 Push commits and tags
+        if: steps.check.outputs.changes == 'true'
+        run: |
+          git add .
+          git commit -m "chore(packages): bump versions"
+          git push origin HEAD --force --follow-tags

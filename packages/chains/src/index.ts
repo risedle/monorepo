@@ -1,5 +1,5 @@
 import { Binance } from "./binance";
-import { ChainId } from "@risedle/types/chain";
+import { ChainId } from "@risedle/types";
 
 export const ALL_CHAINS = [Binance];
 export const ALL_CHAIN_IDS = ALL_CHAINS.map((chain) => chain.id);

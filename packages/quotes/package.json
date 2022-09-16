@@ -1,6 +1,6 @@
 {
     "name": "@risedle/quotes",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "license": "MIT",
     "source": "src/index.ts",
     "main": "dist/index.js",
@@ -9,11 +9,6 @@
         "dist",
         "README.md"
     ],
-    "scripts": {
-        "clean": "rm -rf dist",
-        "build": "tsc",
-        "lint": "eslint ."
-    },
     "prepublish": "tsc",
     "homepage": "https://risedle.com",
     "repository": {
@@ -29,53 +24,25 @@
         "url": "https://github.com/pyk"
     },
     "contributors": [],
-    "devDependencies": {
-        "@semantic-release/git": "10.0.1",
-        "semantic-release": "19.0.3"
+    "scripts": {
+        "prettier": "prettier --check .",
+        "lint": "eslint .",
+        "build": "tsc",
+        "clean": "rm -rf dist"
     },
-    "release": {
-        "tagFormat": "@risedle/quotes-v${version}",
-        "branches": [
-            "main"
-        ],
-        "plugins": [
-            [
-                "@semantic-release/commit-analyzer",
-                {
-                    "preset": "conventionalcommits",
-                    "releaseRules": [
-                        {
-                            "scope": "!*@risedle/quotes*",
-                            "release": false
-                        }
-                    ]
-                }
-            ],
-            "@semantic-release/release-notes-generator",
-            "@semantic-release/npm",
-            [
-                "@semantic-release/github",
-                {
-                    "successComment": false,
-                    "failedComment": false,
-                    "assets": [
-                        {
-                            "path": "*.tgz",
-                            "label": "@risedle/quotes"
-                        }
-                    ],
-                    "labels": false
-                }
-            ],
-            [
-                "@semantic-release/git",
-                {
-                    "message": "chore(release): @risedle/quotes ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-                }
-            ]
-        ]
-    },
+    "prettier": "@risedle/prettier-config",
     "dependencies": {
         "@ethersproject/bignumber": "5.6.2"
+    },
+    "devDependencies": {
+        "@risedle/eslint-config": "0.1.2",
+        "@risedle/prettier-config": "0.1.2",
+        "@risedle/tsconfig": "0.2.2",
+        "eslint": "8.23.0",
+        "prettier": "2.7.1",
+        "typescript": "4.8.2"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }

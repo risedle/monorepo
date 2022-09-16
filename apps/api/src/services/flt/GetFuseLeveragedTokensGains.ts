@@ -1,6 +1,6 @@
 import { ChainId } from "@risedle/types";
 import { request as grequest, gql } from "graphql-request";
-import { getGraphEndpointByChainId } from "../flts";
+import { getGraphEndpointByChainId } from "./index";
 
 const queryFuseLeveragedTokenPriceData = gql`
     {

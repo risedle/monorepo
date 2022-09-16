@@ -1,4 +1,4 @@
-import { ChainId, Chain } from "@risedle/types/chain";
+import { ChainId, Chain } from "@risedle/types";
 
 export const Binance: Chain = {
     id: ChainId.BSC,

@@ -1,61 +1,26 @@
-## @risedle/types
+<h2>
+    <span>@risedle/types</span>
+    <span><a href="https://www.npmjs.com/package/@risedle/types"><img src="https://badgen.net/npm/v/@risedle/types?color=black&labelColor=black"></a></span>
+    <span><a href="https://risedle.com"><img src="https://badgen.net/badge/icon/Made%20By%20Risedle%20Labs?label&color=black&labelColor=black"></a></span>
+</h2>
 
-<div align="left">
-  <a href="https://www.npmjs.com/package/@risedle/types">
-    <img src="https://badgen.net/npm/v/@risedle/types?color=black&labelColor=black">
-  </a>
-  <a href="https://www.npmjs.com/package/@risedle/types">
-    <img src="https://badgen.net/badge/icon/Made%20By%20Risedle%20Labs?label&color=black&labelColor=black">
-  </a>
-</div>
-
-Type definitions used across Risedle apps and packages.
+Shared type definitions.
 
 ### Installation
 
 ```sh
-npm install --save --save-exact @risedle/types@latest
+# npm
+npm install --save-exact @risedle/types@latest
+
+# pnpm
+pnpm add --save-exact @risedle/types@latest
 ```
 
 ### Usage
-
-In order to use for Typescript apps, you need to set `node16` as
-`moduleResolution` in the compiler options.
-
-```json
-    "compilerOptions": {
-        ...
-        "moduleResolution": "node16",
-    },
-```
 
 Here is the example on how to use `@risedle/types`:
 
 ```typescript
 // Like this
 import { ChainId, Chain } from "@risedle/types";
-
-// Or like this
-import { ChainId, Chain } from "@risedle/types/chain";
 ```
-
-### Publish
-
-This package is automatically published using
-[semantic-release](https://semantic-release.gitbook.io/semantic-release/).
-
-To publish new version, simply open pull request with the following format:
-
-```
-feat(@risedle/types): YOUR MESSAGE
-```
-
-to publish minor version, or use the following format:
-
-```
-bump(@risedle/types): YOUR MESSAGE
-```
-
-to release major version.
-
-If the pull request is merged, the semantic-release will be triggered.

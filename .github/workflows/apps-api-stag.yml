@@ -1,0 +1,85 @@
+name: "apps / api / staging"
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "codecov.yml"
+      - "pnpm-lock.yaml"
+      - "apps/api/**"
+      - ".github/workflows/apps-api-stag.yml"
+
+defaults:
+  run:
+    working-directory: ./apps/api
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📬 Check out code
+        uses: actions/checkout@v2
+      - name: ✨ Setup pnpm@7
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
+      - name: ✨ Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18.7.0"
+          cache: "pnpm"
+      - name: 🍱 Install dependencies
+        run: pnpm install
+      - name: 💄 Run Prettier
+        run: pnpm prettier
+      - name: 🧹 Run ESLint
+        run: pnpm lint
+      - name: ⚒️  Build source code
+        run: pnpm build
+      - name: ✅ Test
+        run: pnpm test:ci
+        id: test
+        continue-on-error: true
+      - name: ☂️  Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          directory: ./apps/api
+          flags: "apps-api"
+      - name: 🦍 Check on test failures
+        if: steps.test.outcome != 'success'
+        run: exit 1
+      - name: ✅ All good
+        run: echo "✅ All good" >> $GITHUB_STEP_SUMMARY
+
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    environment:
+      name: api-stag
+      url: https://apiedge.risedle.exchange
+    needs: check
+    steps:
+      - name: 📬 Check out code
+        uses: actions/checkout@v2
+      - name: ✨ Setup pnpm@7
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
+      - name: ✨ Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18.7.0"
+          cache: "pnpm"
+      - name: 🍱 Install dependencies
+        run: pnpm install
+      - name: ⚒️  Build source code
+        run: pnpm build
+      - name: ⚒️  Setup flyctl
+        uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: 🚀 Deploy
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: flyctl deploy --remote-only --app risedle-api-stag

@@ -1,0 +1,48 @@
+name: "apps / assets / production"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "codecov.yml"
+      - "pnpm-lock.yaml"
+      - "apps/assets/**"
+      - ".github/workflows/apps-assets-prod.yml"
+
+defaults:
+  run:
+    working-directory: ./apps/assets
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    environment:
+      name: risedle-assets
+      url: https://assets.risedle.com
+    steps:
+      - name: 📬 Checkout
+        uses: actions/checkout@v3
+      - name: ✨ Setup pnpm@7
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
+      - name: ✨ Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18.7.0"
+          cache: "pnpm"
+      - name: 🍱 Install dependencies
+        run: pnpm install
+      - name: 💄 Run Prettier
+        run: pnpm prettier
+      - name: ⚒️  Optimize
+        run: pnpm optimize
+      - name: 🚀 Deploy
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: pnpm pages:deploy

@@ -1,6 +1,6 @@
 {
     "name": "@risedle/ui",
-    "version": "1.4.0",
+    "version": "1.4.2",
     "license": "MIT",
     "source": "src/index.ts",
     "main": "dist/index.js",
@@ -9,13 +9,6 @@
         "dist",
         "README.md"
     ],
-    "scripts": {
-        "clean": "rm -rf dist",
-        "build": "tsc",
-        "lint": "eslint .",
-        "storybook:start": "start-storybook -p 6006",
-        "storybook:build": "build-storybook"
-    },
     "prepublish": "tsc",
     "homepage": "https://risedle.com",
     "repository": {
@@ -31,99 +24,54 @@
         "url": "https://github.com/pyk"
     },
     "contributors": [],
+    "scripts": {
+        "prettier": "prettier --check .",
+        "lint": "eslint .",
+        "build": "tsc",
+        "storybook:start": "start-storybook -p 6006",
+        "storybook:build": "build-storybook",
+        "clean": "rm -rf dist"
+    },
+    "prettier": "@risedle/prettier-config",
     "dependencies": {
         "@chakra-ui/react": "2.3.1",
         "@emotion/react": "11.10.4",
         "@emotion/styled": "11.10.4",
-        "@risedle/types": "1.2.0",
-        "framer-motion": "7.2.1"
+        "@risedle/types": "1.9.2",
+        "framer-motion": "7.2.1",
+        "react": "18.2.0"
     },
     "devDependencies": {
-        "@babel/core": "^7.19.0",
-        "@chakra-ui/storybook-addon": "4.0.10",
-        "@mdx-js/react": "2.1.3",
-        "@semantic-release/git": "10.0.1",
-        "@storybook/addon-actions": "^6.5.10",
-        "@storybook/addon-essentials": "^6.5.10",
-        "@storybook/addon-interactions": "^6.5.10",
-        "@storybook/addon-links": "^6.5.10",
-        "@storybook/addons": "6.5.10",
-        "@storybook/builder-webpack5": "^6.5.10",
-        "@storybook/manager-webpack5": "^6.5.10",
-        "@storybook/mdx2-csf": "0.0.3",
-        "@storybook/react": "^6.5.10",
-        "@storybook/testing-library": "^0.0.13",
-        "@storybook/theming": "6.5.10",
+        "@babel/core": "7.19.0",
+        "@mdx-js/react": "1.6.22",
+        "@risedle/eslint-config": "0.1.2",
+        "@risedle/prettier-config": "0.1.2",
+        "@risedle/tsconfig": "0.2.2",
+        "@storybook/addon-actions": "6.5.10",
+        "@storybook/addon-docs": "6.5.10",
+        "@storybook/addon-essentials": "6.5.10",
+        "@storybook/addon-interactions": "6.5.10",
+        "@storybook/addon-links": "6.5.10",
+        "@storybook/builder-webpack4": "6.5.10",
+        "@storybook/manager-webpack4": "6.5.10",
+        "@storybook/react": "6.5.10",
+        "@storybook/testing-library": "0.0.13",
         "@types/react": "17.0.37",
         "@types/react-dom": "17.0.11",
-        "babel-loader": "^8.2.5",
-        "nodemon": "2.0.16",
-        "react": "18.2.0",
-        "semantic-release": "19.0.3"
+        "babel-loader": "8.2.5",
+        "eslint": "8.23.0",
+        "prettier": "2.7.1",
+        "prop-types": "15.8.1",
+        "react-dom": "18.2.0",
+        "typescript": "4.8.3"
     },
-    "release": {
-        "tagFormat": "@risedle/ui-v${version}",
-        "branches": [
-            "main"
-        ],
-        "plugins": [
-            [
-                "@semantic-release/commit-analyzer",
-                {
-                    "preset": "conventionalcommits",
-                    "releaseRules": [
-                        {
-                            "scope": "!*@risedle/ui*",
-                            "release": false
-                        },
-                        {
-                            "breaking": true,
-                            "release": false
-                        },
-                        {
-                            "scope": "@risedle/ui",
-                            "type": "bump",
-                            "release": "major"
-                        }
-                    ]
-                }
-            ],
-            [
-                "@semantic-release/npm",
-                {
-                    "tarballDir": "."
-                }
-            ],
-            [
-                "@semantic-release/github",
-                {
-                    "successComment": false,
-                    "failedComment": false,
-                    "assets": [
-                        {
-                            "path": "*.tgz",
-                            "label": "@risedle/ui"
-                        }
-                    ],
-                    "labels": false
-                }
-            ],
-            [
-                "@semantic-release/git",
-                {
-                    "message": "chore(release): @risedle/ui ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-                }
-            ]
-        ]
+    "overrides": {
+        "@mdx-js/react": {
+            "react": "$react",
+            "react-dom": "$react-dom"
+        }
     },
-    "nodemonConfig": {
-        "exec": "NODE_ENV=development npm run build",
-        "watch": "./src",
-        "ext": "tsx,ts",
-        "ignore": [
-            ".git",
-            "node_modules",
-            "dist"
-        ]
+    "publishConfig": {
+        "access": "public"
     }
 }

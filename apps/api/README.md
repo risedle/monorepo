@@ -27,10 +27,16 @@ via the following URL:
 -   **Staging**
     [https://apiedge.risedle.exchange](https://apiedge.risedle.exchange)
 
-### Upgrading internal dependencies
+### Development
 
-Run the following command to update the internal packages:
+Run the following command to start development server:
 
 ```sh
-npm install -w=api
+pnpm dev
 ```
+
+The API server will be available at
+[http://localhost:3000](http://localhost:3000).
+
+If you edit the source code, the `nodemon` will trigger build and restart your
+server.

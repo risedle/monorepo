@@ -5,6 +5,8 @@ import GetFuseLeveragedTokenBySymbol from "./GetFuseLeveragedTokenBySymbol";
 import GetFuseLeveragedTokenUserPositionById from "./GetFuseLeveragedTokenUserPositionById";
 import GetFuseLeveragedTokenSwapsBySymbol from "./GetFuseLeveragedTokenSwapsBySymbol";
 import GetFuseLeveragedTokensGains from "./GetFuseLeveragedTokensGains";
+import GetFuseLeveragedTokenBackingsBySymbol from "./GetFuseLeveragedTokenBackingsBySymbol";
+import GetFuseLeveragedTokenChartsBySymbol from "./GetFuseLeveragedTokenChartsBySymbol";
 
 // prettier-ignore
 const BSC_GRAPH = "https://api.thegraph.com/subgraphs/name/risedle/risedle-flt-bsc";
@@ -27,6 +29,8 @@ const services = {
     GetFuseLeveragedTokenUserPositionById,
     GetFuseLeveragedTokenSwapsBySymbol,
     GetFuseLeveragedTokensGains,
+    GetFuseLeveragedTokenBackingsBySymbol,
+    GetFuseLeveragedTokenChartsBySymbol,
 };
 
 export default services;

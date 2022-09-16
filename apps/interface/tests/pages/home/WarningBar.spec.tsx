@@ -1,9 +1,12 @@
-import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 import * as BaseConfig from "@/utils/getBaseConfig";
-import nextRouter from "next/router";
+jest.mock("@/utils/getBaseConfig");
 
 import Home from "@/pages/index";
+import nextRouter from "next/router";
+jest.mock("next/router", () => ({
+    ...jest.requireActual("next/router"),
+}));
 
 afterEach(() => {
     // restore the spy created with spyOn
@@ -21,10 +24,9 @@ describe("Given a user visit /", () => {
 
     describe("Given random chainId", () => {
         beforeEach(async () => {
-            // Mock a base config
-            const getBaseConfig = jest.spyOn(BaseConfig, "getBaseConfig");
-            getBaseConfig.mockImplementation(() => {
-                return { chainId: 1234, supportedChains: [] };
+            BaseConfig.getBaseConfig.mockReturnValue({
+                chainId: 1234,
+                supportedChains: [],
             });
             render(<Home tokens={[]} />);
         });
@@ -40,38 +42,14 @@ describe("Given a user visit /", () => {
             const warningBar = screen.getByTestId("WarningBar");
             expect(warningBar).toHaveStyle("overflow-x: hidden");
         });
-
-        // NOTE: optimistically generate 10 elements at once
-
-        //        describe("When the screen width is 375px", () => {
-        //            it("WarningBarContent count should be 2", async () => {
-        //                await fireResizeEvent(375);
-        //                const contents = await screen.findAllByTestId(
-        //                    "WarningBarContent"
-        //                );
-        //                expect(contents.length).toBe(2);
-        //            });
-        //        });
-        //
-        //        describe("When the screen width is 1440px", () => {
-        //            it("WarningBarContent count should be 5", async () => {
-        //                await fireResizeEvent(1440);
-        //                const contents = await screen.findAllByTestId(
-        //                    "WarningBarContent"
-        //                );
-        //                expect(contents.length).toBe(5);
-        //            });
-        //        });
     });
 
     describe("Given BNB Smart Chain", () => {
         beforeEach(async () => {
-            // Mock a base config
-            const mock = jest
-                .spyOn(BaseConfig, "getBaseConfig")
-                .mockImplementation(() => {
-                    return { chainId: 56, supportedChains: [] };
-                });
+            BaseConfig.getBaseConfig.mockReturnValue({
+                chainId: 56,
+                supportedChains: [],
+            });
             render(<Home tokens={[]} />);
         });
 
@@ -84,27 +62,5 @@ describe("Given a user visit /", () => {
             const warningBar = screen.getByTestId("WarningBar");
             expect(warningBar).toHaveStyle("overflow-x: hidden");
         });
-
-        // NOTE: optimistically generate 10 elements at once
-
-        //        describe("When the screen width is 375px", () => {
-        //            it("WarningBarContent count should be 2", async () => {
-        //                await fireResizeEvent(375);
-        //                const contents = await screen.findAllByTestId(
-        //                    "WarningBarContent"
-        //                );
-        //                expect(contents.length).toBe(2);
-        //            });
-        //        });
-        //
-        //        describe("When the screen width is 1440px", () => {
-        //            it("WarningBarContent count should be 5", async () => {
-        //                await fireResizeEvent(1440);
-        //                const contents = await screen.findAllByTestId(
-        //                    "WarningBarContent"
-        //                );
-        //                expect(contents.length).toBe(5);
-        //            });
-        //        });
     });
 });

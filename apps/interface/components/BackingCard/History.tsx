@@ -49,7 +49,7 @@ export const BackingCardHistory = (props: BackingCardHistoryProps) => {
             margin="0 !important"
         >
             <AccordionItem border="0">
-                {({ isExpanded }) => (
+                {({ isExpanded }: { isExpanded: boolean }) => (
                     <>
                         <h2>
                             <AccordionButton
