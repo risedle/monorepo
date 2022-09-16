@@ -4,8 +4,10 @@ package-lock*
 .pnp
 .pnp.js
 
-# testing
-coverage
+# Coverage
+**/coverage/*
+coverage/*
+!coverage/build.js
 
 # next.js
 .next/

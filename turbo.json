@@ -5,13 +5,13 @@
             "outputs": ["dist/**", ".next/**"]
         },
         "test": {
-            "dependsOn": ["build"],
             "inputs": [
                 "src/**/*.ts",
                 "src/**/*.tsx",
                 "test/**/*.ts",
                 "test/**/*.tsx"
-            ]
+            ],
+            "outputs": ["coverage"]
         },
         "lint": {
             "outputs": []
