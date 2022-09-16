@@ -24,15 +24,19 @@ export type ImageHandle = {
 
 // Given html element and filename, export html element to downloadble filename
 export async function exportImage(
-    element: HTMLElement,
+    element: HTMLElement | null,
     filename: string
 ): Promise<void> {
-    const result = await domtoimage.toJpeg(element);
-    const link = document.createElement("a");
-    link.className = "download-helper";
-    link.download = filename;
-    link.href = result;
-    link.click();
+    if (element) {
+        const result = await domtoimage.toJpeg(element);
+        const link = document.createElement("a");
+        link.className = "download-helper";
+        link.download = filename;
+        link.href = result;
+        link.click();
+    } else {
+        alert("Element is null");
+    }
 }
 
 // eslint-disable-next-line react/display-name
@@ -48,8 +52,12 @@ const InsightImageDOM = React.forwardRef(
 
         useImperativeHandle(ref, () => ({
             getImage() {
+                let timestamp = data?.[0].dailyGain.timestamp;
+                if (timestamp == undefined) {
+                    timestamp = Math.floor(Date.now() / 1000);
+                }
                 const filename = `${props.type} ${dayjs(
-                    data[0].dailyGain.timestamp * 1000
+                    timestamp * 1000
                 ).format("DD-MM-YY")}.jpeg`;
                 exportImage(imageRef.current, filename);
             },
