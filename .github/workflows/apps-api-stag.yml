@@ -5,6 +5,7 @@ on:
     branches:
       - main
     paths:
+      - "codecov.yml"
       - "pnpm-lock.yaml"
       - "apps/api/**"
       - ".github/workflows/apps-api-stag.yml"

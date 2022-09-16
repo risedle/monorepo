@@ -1,0 +1,32 @@
+coverage:
+  status:
+    project:
+      default:
+        target: 95%
+        flags:
+          - "packages-chains"
+          - "packages-tokens"
+          - "apps-api"
+          - "apps-interface"
+      packages-chains:
+        paths:
+          - packages/chains/*
+      packages-tokens:
+        paths:
+          - packages/tokens/*
+      apps-api:
+        paths:
+          - apps/api/*
+      apps-interface:
+        paths:
+          - apps/interface/*
+
+comment:
+  show_carryforward_flags: true
+
+github_checks:
+  annotations: true
+
+flag_management:
+  default_rules:
+    carryforward: true

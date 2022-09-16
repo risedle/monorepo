@@ -5,14 +5,16 @@ on:
     branches:
       - main
     paths:
-      - "pnpm-workflow.yaml"
+      - "codecov.yml"
+      - "pnpm-lock.yaml"
       - "packages/tokens/**"
       - ".github/workflows/packages-tokens.yml"
   pull_request:
     branches:
       - main
     paths:
-      - "pnpm-workflow.yaml"
+      - "codecov.yml"
+      - "pnpm-lock.yaml"
       - "packages/tokens/**"
       - ".github/workflows/packages-tokens.yml"
 

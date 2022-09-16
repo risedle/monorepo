@@ -5,7 +5,8 @@ on:
     branches:
       - main
     paths:
-      - "pnpm-workflow.yaml"
+      - "codecov.yml"
+      - "pnpm-lock.yaml"
       - "apps/interface/**"
       - ".github/workflows/apps-interface.yml"
 
