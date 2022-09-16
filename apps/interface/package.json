@@ -9,9 +9,7 @@
         "start": "next start",
         "lint": "next lint",
         "test": "jest",
-        "test:filter": "jest -t",
-        "coverage": "nyc report && nyc check-coverage --lines 95",
-        "dev:instrumented": "INSTRUMENT_CODE=1 next dev"
+        "test:ci": "CI=true jest --reporters=default --reporters=github-actions"
     },
     "prettier": "@risedle/prettier-config",
     "dependencies": {
