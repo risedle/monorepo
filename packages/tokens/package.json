@@ -34,7 +34,7 @@
     },
     "prettier": "@risedle/prettier-config",
     "dependencies": {
-        "@risedle/types": "1.9.2"
+        "@risedle/types": "1.9.0"
     },
     "devDependencies": {
         "@jest/types": "28.1.3",
