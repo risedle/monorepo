@@ -1,5 +1,6 @@
 FROM node:18-alpine
-RUN apk update
+RUN apk update && apk upgrade && \
+    apk add --no-cache bash git openssh libc6-compat
 RUN npm install -g pnpm
 WORKDIR /app
 COPY . /app/
