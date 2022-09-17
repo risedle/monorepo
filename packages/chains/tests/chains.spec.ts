@@ -1,5 +1,5 @@
 import { isChainIdSupported } from "../src/index";
-import { ChainId } from "@risedle/types/chain";
+import { ChainId } from "@risedle/types";
 
 describe("isChainIdSupported", () => {
     describe("given unsupported tokenId", () => {

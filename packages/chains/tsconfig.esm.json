@@ -1,7 +1,7 @@
 {
-    "extends": "@risedle/tsconfig/shared-library.json",
+    "extends": "@risedle/tsconfig/esm.json",
     "compilerOptions": {
-        "outDir": "dist"
+        "outDir": "dist/esm"
     },
     "include": ["src/**/*.ts"],
     "exclude": ["node_modules", "dist"]
