@@ -1,5 +1,11 @@
 # @risedle/tsconfig
 
+## 1.0.1
+
+### Patch Changes
+
+-   6645887: Include esm.json and cjs.json
+
 ## 1.0.0
 
 ### Major Changes

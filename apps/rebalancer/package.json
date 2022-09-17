@@ -20,7 +20,7 @@
     "devDependencies": {
         "@risedle/eslint-config": "0.1.2",
         "@risedle/prettier-config": "0.1.2",
-        "@risedle/tsconfig": "1.0.0",
+        "@risedle/tsconfig": "1.0.1",
         "@types/node": "18.0.3",
         "@types/node-cron": "3.0.2",
         "eslint": "8.23.1",
