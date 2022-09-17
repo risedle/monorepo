@@ -39,7 +39,7 @@
     "devDependencies": {
         "@risedle/eslint-config": "0.1.2",
         "@risedle/prettier-config": "0.1.2",
-        "@risedle/tsconfig": "1.0.0",
+        "@risedle/tsconfig": "0.2.2",
         "eslint": "8.23.0",
         "prettier": "2.7.1",
         "typescript": "4.8.2"
