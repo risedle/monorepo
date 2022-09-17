@@ -33,9 +33,12 @@
     "scripts": {
         "prettier": "prettier --check .",
         "lint": "eslint .",
-        "build": "tsc",
+        "build": "pnpm clean && pnpm build:esm && pnpm build:cjs",
+        "build:esm": "tsc -p tsconfig.esm.json",
+        "build:cjs": "tsc -p tsconfig.cjs.json",
         "clean": "rm -rf dist"
     },
+    "prettier": "@risedle/prettier-config",
     "devDependencies": {
         "@risedle/eslint-config": "0.1.2",
         "@risedle/prettier-config": "0.1.2",
@@ -44,7 +47,6 @@
         "prettier": "2.7.1",
         "typescript": "4.8.2"
     },
-    "prettier": "@risedle/prettier-config",
     "exports": {
         ".": "./dist/index.js",
         "./*": "./dist/*.js"
