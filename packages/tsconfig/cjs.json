@@ -1,0 +1,10 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "display": "CommonJS Library",
+    "extends": "./base.json",
+    "compilerOptions": {
+        "lib": ["ES2020", "DOM"],
+        "module": "CommonJS",
+        "target": "ES6"
+    }
+}
