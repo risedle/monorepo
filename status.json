@@ -1,0 +1,74 @@
+{
+  "changesets": [
+    {
+      "releases": [
+        {
+          "name": "@risedle/tsconfig",
+          "type": "major"
+        }
+      ],
+      "summary": "Support ECMAScript and CommonJS library.\n\n-   `shared-library.json` is removed\n-   `esm.json` and `cjs.json` are added to support ECMAScript and CommonJS\n    library",
+      "id": "sweet-experts-hug"
+    }
+  ],
+  "releases": [
+    {
+      "name": "@risedle/tsconfig",
+      "type": "major",
+      "oldVersion": "0.2.2",
+      "changesets": [
+        "sweet-experts-hug"
+      ],
+      "newVersion": "1.0.0"
+    },
+    {
+      "name": "interface",
+      "type": "none",
+      "oldVersion": "0.1.0",
+      "changesets": [],
+      "newVersion": "0.1.0"
+    },
+    {
+      "name": "rebalancer",
+      "type": "none",
+      "oldVersion": "1.0.0",
+      "changesets": [],
+      "newVersion": "1.0.0"
+    },
+    {
+      "name": "@risedle/chains",
+      "type": "none",
+      "oldVersion": "1.2.2",
+      "changesets": [],
+      "newVersion": "1.2.2"
+    },
+    {
+      "name": "@risedle/quotes",
+      "type": "none",
+      "oldVersion": "1.0.2",
+      "changesets": [],
+      "newVersion": "1.0.2"
+    },
+    {
+      "name": "@risedle/tokens",
+      "type": "none",
+      "oldVersion": "1.1.2",
+      "changesets": [],
+      "newVersion": "1.1.2"
+    },
+    {
+      "name": "@risedle/types",
+      "type": "none",
+      "oldVersion": "1.9.2",
+      "changesets": [],
+      "newVersion": "1.9.2"
+    },
+    {
+      "name": "@risedle/ui",
+      "type": "none",
+      "oldVersion": "1.4.2",
+      "changesets": [],
+      "newVersion": "1.4.2"
+    }
+  ]
+}

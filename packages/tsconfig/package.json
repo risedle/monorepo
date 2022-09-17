@@ -1,6 +1,6 @@
 {
     "name": "@risedle/tsconfig",
-    "version": "0.2.2",
+    "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
     "files": [

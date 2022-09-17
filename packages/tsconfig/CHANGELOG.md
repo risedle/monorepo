@@ -1,5 +1,15 @@
 # @risedle/tsconfig
 
+## 1.0.0
+
+### Major Changes
+
+-   8cb4188: Support ECMAScript and CommonJS library.
+
+    -   `shared-library.json` is removed
+    -   `esm.json` and `cjs.json` are added to support ECMAScript and CommonJS
+        library
+
 ## 0.2.2
 
 ### Patch Changes
