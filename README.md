@@ -74,7 +74,7 @@ List of available apps inside this monorepo:
 | [apps/ipfs](./apps/ipfs)             | [risedle-ipfs.internal:8080](http://risedle-ipfs.internal:8080), [risedle-ipfs.internal:5001](http://risedle-ipfs.internal:5001) | Private [IPFS](https://ipfs.tech/) node for subgraph deployments    |
 | [apps/rebalancer](./apps/rebalancer) | n/a                                                                                                                              | Risedle's rebalancer bot                                            |
 
-### Risedle Labs
+## Risedle Labs
 
 -   [Risedle Labs Website](https://risedle.com)
 -   [Risedle Labs Twitter](https://twitter.com/risedle)
