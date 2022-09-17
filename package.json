@@ -6,6 +6,7 @@
         "lint": "turbo run lint",
         "build": "turbo run build",
         "test": "turbo run test",
+        "test:force": "turbo run test --no-cache",
         "prepare": "husky install",
         "postinstall": "pnpm prepare",
         "packages:build": "turbo run build --filter=./packages/*",
