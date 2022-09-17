@@ -61,15 +61,21 @@ List of available packages inside this monorepo:
 | [@risedle/types](./packages/types)                     | <a href="https://www.npmjs.com/package/@risedle/types"> <img src="https://badgen.net/npm/v/@risedle/types?color=black&labelColor=black"> </a>                     | Shared type definitions                                           |
 | [@risedle/ui](./packages/ui)                           | <a href="https://www.npmjs.com/package/@risedle/ui"> <img src="https://badgen.net/npm/v/@risedle/ui?color=black&labelColor=black"> </a>                           | Reusable React.js component library                               |
 
-### Useful Links
+## Apps
 
--   [Getting Started with npm Workspaces](https://ruanmartinelli.com/posts/npm-7-workspaces-1)
--   [Monorepo Setup with NPM and TypeScript](https://javascript.plainenglish.io/monorepo-setup-with-npm-and-typescript-90b329ba7275)
+List of available apps inside this monorepo:
 
-### Risedle Labs
+| App                                  | Deployments                                                                                                                      | Description                                                         |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [apps/api](./apps/api)               | [api.risedle.com](https://api.risedle.com), [api.risedle.exchange](https://api.risedle.com)                                      | Serve Risedle blockhain data as REST API                            |
+| [apps/assets](./apps/assets)         | [assets.risedle.com](https://assets.risedle.com)                                                                                 | Optimize and serve Risedle's static asssets                         |
+| [apps/graph-node](./apps/graph-node) | [risedle-graph-node.internal:9000](http://risedle-graph-node.internal:9000)                                                      | Private [graph-node](https://thegraph.com) used to deploy subgraphs |
+| [apps/interface](./apps/interface)   | [risedle.com](https://risedle.com), [bsc.risedle.com](https://bsc.risedle.com)                                                   | Risedle's Web3 App                                                  |
+| [apps/ipfs](./apps/ipfs)             | [risedle-ipfs.internal:8080](http://risedle-ipfs.internal:8080), [risedle-ipfs.internal:5001](http://risedle-ipfs.internal:5001) | Private [IPFS](https://ipfs.tech/) node for subgraph deployments    |
+| [apps/rebalancer](./apps/rebalancer) | n/a                                                                                                                              | Risedle's rebalancer bot                                            |
+
+## Risedle Labs
 
 -   [Risedle Labs Website](https://risedle.com)
--   [Risedle Exchange Website](https://risedle.exchange)
--   [Risedle Exchange Storybook](https://storybook.risedle.exchange)
 -   [Risedle Labs Twitter](https://twitter.com/risedle)
 -   [Risedle Labs Discord](https://discord.com/invite/YCSCd97SXj)
