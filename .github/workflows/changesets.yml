@@ -31,9 +31,9 @@ jobs:
         run: pnpm install --ignore-scripts
       - name: 🦋 Check changeset
         run: |
-          pnpm changeset status --output status.json
+          pnpm changeset status --output changeset_status.json
           # prettier-ignore
-          echo ::set-output name=changes::$(cat status.json | jq ".changesets | length" | grep -q 0 && echo 'false' || echo 'true')
+          echo ::set-output name=changes::$(cat changeset_status.json | jq ".changesets | length" | grep -q 0 && echo 'false' || echo 'true')
         id: check
       - name: 🦋 Build packages
         if: steps.check.outputs.changes == 'true'
@@ -70,4 +70,4 @@ jobs:
         run: |
           git add .
           git commit -m "chore(packages): bump versions"
-          git push origin HEAD --force --follow-tags
+          git push origin HEAD --force --tags
