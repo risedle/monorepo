@@ -14,6 +14,11 @@ const config: Config.InitialOptions = {
             lines: 95,
         },
     },
+    globals: {
+        "ts-jest": {
+            tsconfig: "tsconfig.esm.json",
+        },
+    },
 };
 
 export default config;

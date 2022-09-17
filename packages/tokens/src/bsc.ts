@@ -1,4 +1,4 @@
-import { TokenInfoSource, SourceTokens } from "@risedle/types/token";
+import { TokenInfoSource, SourceTokens } from "@risedle/types";
 
 export const BSC_SOURCETOKENS: SourceTokens = new Map<
     TokenInfoSource,
