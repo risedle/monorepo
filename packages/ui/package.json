@@ -3,13 +3,12 @@
     "version": "1.4.2",
     "license": "MIT",
     "source": "src/index.ts",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "main": "dist/cjs/index.js",
+    "types": "dist/cjs/index.d.ts",
     "files": [
         "dist",
         "README.md"
     ],
-    "prepublish": "tsc",
     "homepage": "https://risedle.com",
     "repository": {
         "type": "git",
@@ -27,17 +26,20 @@
     "scripts": {
         "prettier": "prettier --check .",
         "lint": "eslint .",
-        "build": "tsc",
         "storybook:start": "start-storybook -p 6006",
         "storybook:build": "build-storybook",
-        "clean": "rm -rf dist"
+        "build": "pnpm clean && pnpm build:esm && pnpm build:cjs",
+        "build:esm": "tsc -p tsconfig.esm.json",
+        "build:cjs": "tsc -p tsconfig.cjs.json",
+        "clean": "rm -rf dist",
+        "prepublishOnly": "pnpm build"
     },
     "prettier": "@risedle/prettier-config",
     "dependencies": {
         "@chakra-ui/react": "2.3.1",
         "@emotion/react": "11.10.4",
         "@emotion/styled": "11.10.4",
-        "@risedle/types": "1.9.2",
+        "@risedle/types": "1.9.0",
         "framer-motion": "7.2.1",
         "react": "18.2.0"
     },
@@ -69,6 +71,18 @@
         "@mdx-js/react": {
             "react": "$react",
             "react-dom": "$react-dom"
+        }
+    },
+    "exports": {
+        ".": {
+            "import": {
+                "types": "./dist/esm/index.d.ts",
+                "default": "./dist/esm/index.js"
+            },
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            }
         }
     },
     "publishConfig": {

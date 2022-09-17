@@ -1,0 +1,9 @@
+{
+    "extends": "@risedle/tsconfig/cjs.json",
+    "compilerOptions": {
+        "outDir": "dist/cjs",
+        "jsx": "react-jsx"
+    },
+    "include": ["components/**/*.ts", "components/**/*.tsx"],
+    "exclude": ["node_modules", "dist"]
+}
