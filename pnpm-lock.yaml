@@ -308,7 +308,7 @@ importers:
       "@ethersproject/bignumber": 5.6.2
       "@risedle/eslint-config": 0.1.2
       "@risedle/prettier-config": 0.1.2
-      "@risedle/tsconfig": 0.2.2
+      "@risedle/tsconfig": 1.0.1
       eslint: 8.23.0
       prettier: 2.7.1
       typescript: 4.8.2
@@ -317,7 +317,7 @@ importers:
     devDependencies:
       "@risedle/eslint-config": 0.1.2
       "@risedle/prettier-config": 0.1.2
-      "@risedle/tsconfig": 0.2.2
+      "@risedle/tsconfig": 1.0.1
       eslint: 8.23.0
       prettier: 2.7.1
       typescript: 4.8.2
