@@ -1,5 +1,16 @@
 # @risedle/ui
 
+## 2.0.0
+
+### Major Changes
+
+-   dd59eab: Support ECMAScript and CommonJS
+
+### Patch Changes
+
+-   Updated dependencies [dd59eab]
+    -   @risedle/types@2.0.0
+
 ## 1.4.2
 
 ### Patch Changes
