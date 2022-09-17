@@ -1,16 +1,9 @@
 FROM node:18-alpine
-
-# update packages
 RUN apk update
-
-# create root application folder
+RUN npm install -g pnpm
 WORKDIR /app
-
-# copy source code to /app/ folder
 COPY . /app/
-
-# check files list
 RUN ls -a
-
-RUN npm install uuid
-RUN npm install
+RUN echo "strict-peer-dependencies=false" > .npmrc
+RUN pnpm install --prod
+RUN pnpm build

@@ -4,4 +4,3 @@ processes = []
 
 [experimental]
   cmd = ["node", "dist/cron.js"]
-  entrypoint = ["node", "dist/cron.js"]
