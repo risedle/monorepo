@@ -1,8 +1,8 @@
 {
-    "extends": "@risedle/tsconfig/react-library.json",
+    "extends": "@risedle/tsconfig/esm.json",
     "compilerOptions": {
-        "outDir": "dist",
-        "moduleResolution": "node"
+        "outDir": "dist/esm",
+        "jsx": "react-jsx"
     },
     "include": ["components/**/*.ts", "components/**/*.tsx"],
     "exclude": ["node_modules", "dist"]

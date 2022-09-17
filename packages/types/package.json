@@ -3,13 +3,12 @@
     "version": "1.9.2",
     "license": "MIT",
     "source": "src/index.ts",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "main": "dist/cjs/index.js",
+    "types": "dist/cjs/index.d.ts",
     "files": [
         "dist",
         "README.md"
     ],
-    "prepublish": "tsc",
     "homepage": "https://risedle.com",
     "repository": {
         "type": "git",
@@ -33,21 +32,32 @@
     "scripts": {
         "prettier": "prettier --check .",
         "lint": "eslint .",
-        "build": "tsc",
-        "clean": "rm -rf dist"
+        "build": "pnpm clean && pnpm build:esm && pnpm build:cjs",
+        "build:esm": "tsc -p tsconfig.esm.json",
+        "build:cjs": "tsc -p tsconfig.cjs.json",
+        "clean": "rm -rf dist",
+        "prepublishOnly": "pnpm build"
     },
+    "prettier": "@risedle/prettier-config",
     "devDependencies": {
         "@risedle/eslint-config": "0.1.2",
         "@risedle/prettier-config": "0.1.2",
-        "@risedle/tsconfig": "0.2.2",
+        "@risedle/tsconfig": "1.0.1",
         "eslint": "8.23.0",
         "prettier": "2.7.1",
         "typescript": "4.8.2"
     },
-    "prettier": "@risedle/prettier-config",
     "exports": {
-        ".": "./dist/index.js",
-        "./*": "./dist/*.js"
+        ".": {
+            "import": {
+                "types": "./dist/esm/index.d.ts",
+                "default": "./dist/esm/index.js"
+            },
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            }
+        }
     },
     "publishConfig": {
         "access": "public"

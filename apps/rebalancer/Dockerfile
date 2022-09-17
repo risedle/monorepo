@@ -5,5 +5,5 @@ WORKDIR /app
 COPY . /app/
 RUN ls -a
 RUN echo "strict-peer-dependencies=false" > .npmrc
-RUN pnpm install --prod
+RUN pnpm install
 RUN pnpm build
