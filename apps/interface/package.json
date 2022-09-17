@@ -42,7 +42,7 @@
         "@next/bundle-analyzer": "12.2.2",
         "@risedle/eslint-config": "0.1.2",
         "@risedle/prettier-config": "0.1.2",
-        "@risedle/tsconfig": "1.0.0",
+        "@risedle/tsconfig": "1.0.1",
         "@testing-library/jest-dom": "5.16.4",
         "@testing-library/react": "13.3.0",
         "@types/dom-to-image": "^2.6.4",
