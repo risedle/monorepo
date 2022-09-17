@@ -65,14 +65,14 @@ List of available packages inside this monorepo:
 
 List of available apps inside this monorepo:
 
-| App                                  | Deployments                                                                                                               | Description                                                         |
-| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| [apps/api](./apps/api)               | [api.risedle.com](https://api.risedle.com), [api.risedle.exchange](https://api.risedle.com)                               | Serve Risedle blockhain data as REST API                            |
-| [apps/assets](./apps/assets)         | [assets.risedle.com](https://assets.risedle.com)                                                                          | Optimize and serve Risedle's static asssets                         |
-| [apps/graph-node](./apps/graph-node) | [risedle-graph-node.internal:9000](http://risedle-graph-node.internal:9000)                                               | Private [graph-node](https://thegraph.com) used to deploy subgraphs |
-| [apps/interface](./apps/interface)   | [risedle.com](https://risedle.com), [bsc.risedle.com](https://bsc.risedle.com)                                            | Risedle's Web3 App                                                  |
-| [apps/ipfs](./apps/ipfs)             | [risedle-ipfs.internal:8080](http://risedle-ipfs.internal:8080), [risedle-ipfs.internal:5001](risedle-ipfs.internal:5001) | Private [IPFS](https://ipfs.tech/) node for subgraph deployments    |
-| [apps/rebalancer](./apps/rebalancer) | n/a                                                                                                                       | Risedle's rebalancer bot                                            |
+| App                                  | Deployments                                                                                                                      | Description                                                         |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [apps/api](./apps/api)               | [api.risedle.com](https://api.risedle.com), [api.risedle.exchange](https://api.risedle.com)                                      | Serve Risedle blockhain data as REST API                            |
+| [apps/assets](./apps/assets)         | [assets.risedle.com](https://assets.risedle.com)                                                                                 | Optimize and serve Risedle's static asssets                         |
+| [apps/graph-node](./apps/graph-node) | [risedle-graph-node.internal:9000](http://risedle-graph-node.internal:9000)                                                      | Private [graph-node](https://thegraph.com) used to deploy subgraphs |
+| [apps/interface](./apps/interface)   | [risedle.com](https://risedle.com), [bsc.risedle.com](https://bsc.risedle.com)                                                   | Risedle's Web3 App                                                  |
+| [apps/ipfs](./apps/ipfs)             | [risedle-ipfs.internal:8080](http://risedle-ipfs.internal:8080), [risedle-ipfs.internal:5001](http://risedle-ipfs.internal:5001) | Private [IPFS](https://ipfs.tech/) node for subgraph deployments    |
+| [apps/rebalancer](./apps/rebalancer) | n/a                                                                                                                              | Risedle's rebalancer bot                                            |
 
 ### Risedle Labs
 
