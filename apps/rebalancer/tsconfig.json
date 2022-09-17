@@ -1,5 +1,5 @@
 {
-    "extends": "tsconfig/node.json",
+    "extends": "@risedle/tsconfig/node.json",
     "compilerOptions": {
         "outDir": "dist"
     },
