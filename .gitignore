@@ -35,3 +35,6 @@ yarn-error.log*
 
 # packages
 dist/
+
+# changesets
+changeset_status.json
