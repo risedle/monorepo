@@ -5,14 +5,14 @@ rebalance if needed.
 
 ### Get started
 
-Clone the repository & install the dependencies:
+To install the dependencies, run the following command:
 
-```sh
-git clone https://github.com/risedle/monorepo.git
-cd monorepo/
-npm install -w=rebalancer
-cd apps/rebalancer/
+```shell
+pnpm install
 ```
+
+> **Note** If you want to contribute to this project, make sure you have run
+> installation from the monorepo root in order to setup git hooks etc.
 
 Copy `.env.example` to `.env` and modify the values.
 
@@ -21,7 +21,7 @@ Copy `.env.example` to `.env` and modify the values.
 Build the rebalancer:
 
 ```sh
-npm run build
+pnpm build
 ```
 
 Run the rebalancer:
@@ -54,7 +54,5 @@ Run the following command to create the secrets:
 flyctl secrets --app APP_NAME set RPC_URL="" WALLET_PK="" SENTRY_DSN="" FLTS="" MIN_PROFITS=""
 ```
 
-Next step is to setup automatic deployment.
-
-Copy [rebalancer-bsc.yml](../../.github/workflows/rebalancer-bsc.yml) to new
-chain then update the `name`, the `paths`, and `flyctl` command line argument.
+Then you need to setup automatic deployment by adding deployment job in
+[apps-rebalancer-prod.yml](../../.github/workflows/apps-rebalancer-prod.yml).
