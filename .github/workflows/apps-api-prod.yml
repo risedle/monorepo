@@ -5,7 +5,6 @@ on:
     branches:
       - main
     paths:
-      - "codecov.yml"
       - "pnpm-lock.yaml"
       - "apps/api/**"
       - ".github/workflows/apps-api-prod.yml"
@@ -39,16 +38,6 @@ jobs:
         run: pnpm build
       - name: ✅ Test
         run: pnpm test:ci
-        continue-on-error: true
-        id: test
-      - name: ☂️  Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          directory: ./apps/api
-          flags: "apps-api"
-      - name: 🦍 Check on test failures
-        if: steps.test.outcome != 'success'
-        run: exit 1
       - name: ✅ All good
         run: echo "✅ All good" >> $GITHUB_STEP_SUMMARY
 
