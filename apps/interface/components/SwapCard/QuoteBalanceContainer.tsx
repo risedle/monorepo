@@ -12,7 +12,7 @@ import Balance from "./Balance";
 // ABI
 import ChainlinkABI from "@/abis/ChainlinkABI";
 
-export const SwapCardQuoteBalanceContainer = (props: BoxProps) => {
+const SwapCardQuoteBalanceContainer = (props: BoxProps) => {
     // Data
     const {
         defaultQuoteAddress,
@@ -53,27 +53,28 @@ export const SwapCardQuoteBalanceContainer = (props: BoxProps) => {
     // NOTE: we use useEffect here to prevent React Hydration Error
     // read more: https://nextjs.org/docs/messages/react-hydration-error
     useEffect(() => {
-        // show zero balance if account is not connected
-        if (data && data[0] == null) {
-            setIsLoaded(true);
+        // Make sure data is correct; otherwise return early
+        if (!data || (data && data.length != 2)) {
+            setIsLoaded(false);
             setAmount(0);
             setAmountUSD(0);
+            return;
         }
 
-        // show real balance if account is connected
-        if (data && data.length == 2) {
-            const amount = parseFloat(
-                utils.formatUnits(data[0], defaultQuoteDecimals)
-            );
-            const quotePrice = parseFloat(
-                utils.formatUnits(data[1], defaultQuoteChainlinkDecimals)
-            );
-            const amountUSD = amount * quotePrice;
+        // Process data
+        const balance = data[0] ?? 0;
+        const price = data[1] ?? 0;
+        const amount = parseFloat(
+            utils.formatUnits(balance, defaultQuoteDecimals)
+        );
+        const quotePrice = parseFloat(
+            utils.formatUnits(price, defaultQuoteChainlinkDecimals)
+        );
+        const amountUSD = amount * quotePrice;
 
-            setIsLoaded(true);
-            setAmount(amount);
-            setAmountUSD(amountUSD);
-        }
+        setIsLoaded(true);
+        setAmount(amount);
+        setAmountUSD(amountUSD);
     }, [data, defaultQuoteDecimals, defaultQuoteChainlinkDecimals]);
 
     return (
