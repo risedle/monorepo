@@ -110,3 +110,5 @@ export const WarningBar = () => {
         </Container>
     );
 };
+
+export default WarningBar;

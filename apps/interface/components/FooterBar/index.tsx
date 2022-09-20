@@ -128,3 +128,5 @@ export const FooterBar = () => {
         </Container>
     );
 };
+
+export default FooterBar;

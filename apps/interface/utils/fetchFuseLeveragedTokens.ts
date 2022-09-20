@@ -79,3 +79,5 @@ export const fetchFuseLeveragedTokens =
         const { graphEndpoint } = getBaseConfig();
         return await grequest(graphEndpoint, queryFuseLeveragedTokens);
     };
+
+export default fetchFuseLeveragedTokens;

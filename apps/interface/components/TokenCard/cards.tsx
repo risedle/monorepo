@@ -26,3 +26,5 @@ export const TokenCards = (props: TokenCardsProps) => {
         </Container>
     );
 };
+
+export default TokenCards;

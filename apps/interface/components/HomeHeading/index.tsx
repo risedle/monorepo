@@ -111,3 +111,5 @@ export const HomeHeading = (props: HomeHeadingProps) => {
         </Container>
     );
 };
+
+export default HomeHeading;
