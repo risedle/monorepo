@@ -19,7 +19,7 @@ import {
 
 import ChainIcon from "@/components/Icons/Chain";
 import BlueIndicatorIcon from "@/components/Icons/BlueIndicator";
-import { getBaseConfig } from "@/utils/getBaseConfig";
+import getBaseConfig from "@/utils/getBaseConfig";
 
 const ChevronDownIcon = (props: IconProps) => {
     return (
@@ -34,7 +34,7 @@ const ChevronDownIcon = (props: IconProps) => {
     );
 };
 
-export const ChainSwitcher = (props: ButtonProps) => {
+const ChainSwitcher = (props: ButtonProps) => {
     const { chainId, supportedChains, chainName, chainSlug } = getBaseConfig();
 
     // Styles
@@ -189,3 +189,5 @@ export const ChainSwitcher = (props: ButtonProps) => {
         </Menu>
     );
 };
+
+export default ChainSwitcher;
