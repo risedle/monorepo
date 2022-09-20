@@ -18,4 +18,36 @@ describe("getStaticProps", () => {
             expect(data.props.symbol).toBe("BNBDROP");
         });
     });
+    describe("Given Null params", () => {
+        it("should throw error:Trade: params is undefined", async () => {
+            await expect(
+                getStaticProps({
+                    params: null,
+                })
+            ).rejects.toThrow("Trade: params is undefined");
+        });
+    });
+
+    describe("Given Null symbols", () => {
+        it("should throw error:Trade: symbol is undefined", async () => {
+            await expect(
+                getStaticProps({
+                    params: {
+                        symbol: null,
+                    },
+                })
+            ).rejects.toThrow("Trade: symbol is undefined");
+        });
+    });
+    describe("Given Array simbols", () => {
+        it("should throw error:Trade: symbol invalid", async () => {
+            await expect(
+                getStaticProps({
+                    params: {
+                        symbol: ["BNBDROP", "BNBRISE"],
+                    },
+                })
+            ).rejects.toThrow("Trade: symbol invalid");
+        });
+    });
 });
