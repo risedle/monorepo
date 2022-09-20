@@ -2,7 +2,7 @@ import { Container, Flex, Center, Spacer, HStack } from "@chakra-ui/react";
 
 import { NavigationBarLogo } from "./logo";
 import { NavigationBarLinks } from "./links";
-import { ChainSwitcher } from "../ChainSwitcher";
+import ChainSwitcher from "../ChainSwitcher";
 import { ConnectWalletButton } from "../ConnectWalletButton";
 import { DarkmodeToggle } from "../DarkmodeToggle";
 
