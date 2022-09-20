@@ -1,12 +1,15 @@
 import {
     BoxProps,
-    Flex,
-    VStack,
     HStack,
     useColorModeValue,
-    StackDivider,
     Text,
     Skeleton,
+    Table,
+    TableContainer,
+    Tbody,
+    Td,
+    Thead,
+    Tr,
 } from "@chakra-ui/react";
 
 // Utils
@@ -62,251 +65,223 @@ const BackingCardAllocationTable = (
     const debtChangeColor = debtChangePercent >= 0 ? green11 : red11;
 
     return (
-        <Flex
-            width="100%"
-            alignItems="flex-start"
-            margin="0 !important"
-            data-testid="BackingCardAllocationTable"
+        <TableContainer
+            w="100%"
             {...boxProps}
+            data-testid="BackingCardAllocationTable"
         >
-            {/* Asset */}
-            <VStack
-                flex="1"
-                alignItems="flex-start"
-                width="100%"
-                gap={4}
-                data-testid="AllocationTableAsset"
-            >
-                <Text
-                    padding="2"
-                    background={gray4}
-                    width="100%"
-                    borderTopLeftRadius="lg"
-                    borderBottomLeftRadius="lg"
-                    fontSize="xs"
-                    lineHeight="4"
-                    color={gray10}
-                >
-                    Asset
-                </Text>
-                <VStack
-                    divider={
-                        <StackDivider
+            <Table variant="simple">
+                <Thead>
+                    <Tr>
+                        <Td
                             borderColor={gray5}
-                            borderStyle="dashed"
-                            margin="0 !important"
-                        />
-                    }
-                    margin="0 !important"
-                    gap={4}
-                    width="100%"
-                    alignItems="flex-start"
-                >
-                    <HStack width="100%">
-                        <Text
-                            color={gray12}
-                            fontSize="sm"
-                            lineHeight="4"
-                            fontFamily="mono"
-                            fontWeight="semibold"
-                            paddingX="2"
-                            margin="0 !important"
-                            letterSpacing="tight"
-                            data-testid="BackingCardCollateral"
+                            px="0"
+                            data-testid="AllocationTableAsset"
                         >
-                            {collateralSymbol}
-                        </Text>
-                        <InfoTooltip
-                            info={`${collateralSymbol} used as collateral to borrow ${debtSymbol}`}
-                            color={gray10}
-                        />
-                    </HStack>
-                    <HStack width="100%">
-                        <Text
-                            color={gray12}
-                            fontSize="sm"
-                            lineHeight="4"
-                            fontFamily="mono"
-                            fontWeight="semibold"
-                            paddingX="2"
-                            margin="0 !important"
-                            letterSpacing="tight"
-                            data-testid="BackingCardDebt"
-                        >
-                            {debtSymbol}
-                        </Text>
-                        <InfoTooltip
-                            info={`${debtSymbol} is swapped to ${collateralSymbol}`}
-                            color={gray10}
-                        />
-                    </HStack>
-                </VStack>
-            </VStack>
-
-            {/* Allocation */}
-            <VStack
-                alignItems="flex-end"
-                gap={4}
-                data-testid="AllocationTableAmount"
-            >
-                <Text
-                    padding="2"
-                    background={gray4}
-                    fontSize="xs"
-                    lineHeight="4"
-                    color={gray10}
-                    width="100%"
-                    textAlign="right"
-                >
-                    Allocation
-                </Text>
-                <VStack
-                    divider={
-                        <StackDivider
-                            borderColor={gray5}
-                            borderStyle="dashed"
-                            margin="0 !important"
-                        />
-                    }
-                    margin="0 !important"
-                    gap={4}
-                    width="100%"
-                    alignItems="flex-end"
-                >
-                    {/* Collateral amount */}
-                    <Skeleton
-                        isLoaded={isLoaded}
-                        startColor={gray3}
-                        endColor={gray4}
-                        borderRadius="lg"
-                        marginX="2"
-                        minW="60px"
-                    >
-                        <Text
-                            color={gray12}
-                            fontSize="sm"
-                            lineHeight="4"
-                            fontFamily="mono"
-                            fontWeight="semibold"
-                            letterSpacing="tight"
-                            data-testid="AllocationTableCollateralAmount"
-                        >
-                            +{formatTokenBalance(collateralAmount)}
-                        </Text>
-                    </Skeleton>
-
-                    {/* Debt amount */}
-                    <Skeleton
-                        isLoaded={isLoaded}
-                        startColor={gray3}
-                        endColor={gray4}
-                        borderRadius="lg"
-                        marginX="2"
-                        minW="60px"
-                    >
-                        <Text
-                            color={gray12}
-                            fontSize="sm"
-                            lineHeight="4"
-                            fontFamily="mono"
-                            fontWeight="semibold"
-                            letterSpacing="tight"
-                            data-testid="AllocationTableDebtAmount"
-                        >
-                            -{formatTokenBalance(debtAmount)}
-                        </Text>
-                    </Skeleton>
-                </VStack>
-            </VStack>
-
-            {/* Changes */}
-            <VStack
-                alignItems="flex-end"
-                gap={4}
-                data-testid="AllocationTableChange"
-                minW="100px"
-            >
-                <Text
-                    padding="2"
-                    background={gray4}
-                    width="100%"
-                    fontSize="xs"
-                    lineHeight="4"
-                    color={gray10}
-                    borderTopRightRadius="lg"
-                    borderBottomRightRadius="lg"
-                    textAlign="right"
-                >
-                    24h Change
-                </Text>
-                <VStack
-                    divider={
-                        <StackDivider
-                            borderColor={gray5}
-                            borderStyle="dashed"
-                            margin="0 !important"
-                        />
-                    }
-                    margin="0 !important"
-                    gap={4}
-                    width="100%"
-                >
-                    {/* Collateral changes */}
-                    <Skeleton
-                        isLoaded={isLoaded}
-                        startColor={gray3}
-                        endColor={gray4}
-                        borderRadius="lg"
-                        marginX="2"
-                        minW="60px"
-                    >
-                        <HStack
-                            color={collateralChangeColor}
-                            spacing="1"
-                            justifyContent="flex-end"
-                        >
-                            {collateralChangeIcon}
                             <Text
-                                fontSize="sm"
-                                fontWeight="semibold"
+                                background={gray4}
+                                padding="2"
+                                width="100%"
+                                borderTopLeftRadius="lg"
+                                borderBottomLeftRadius="lg"
+                                fontSize="xs"
                                 lineHeight="4"
-                                letterSpacing="tight"
-                                fontFamily="mono"
+                                color={gray10}
+                                fontWeight="500"
                             >
-                                {formatPercent(collateralChangePercent / 100)}
+                                Asset
                             </Text>
-                        </HStack>
-                    </Skeleton>
-
-                    {/* Debt change */}
-                    <Skeleton
-                        isLoaded={isLoaded}
-                        startColor={gray3}
-                        endColor={gray4}
-                        borderRadius="lg"
-                        marginX="2"
-                        minW="60px"
-                    >
-                        <HStack
-                            color={debtChangeColor}
-                            spacing="1"
-                            justifyContent="flex-end"
+                        </Td>
+                        <Td
+                            isNumeric
+                            px="0"
+                            data-testid="AllocationTableAmount"
                         >
-                            {debtChangeIcon}
                             <Text
-                                fontSize="sm"
-                                fontWeight="semibold"
+                                background={gray4}
+                                padding="2"
+                                fontSize="xs"
                                 lineHeight="4"
-                                letterSpacing="tight"
-                                fontFamily="mono"
+                                color={gray10}
+                                width="100%"
+                                textAlign="right"
+                                fontFamily="sans-serif"
+                                fontWeight="500"
                             >
-                                {formatPercent(debtChangePercent / 100)}
+                                Allocation
                             </Text>
-                        </HStack>
-                    </Skeleton>
-                </VStack>
-            </VStack>
-        </Flex>
+                        </Td>
+                        <Td px="0" data-testid="AllocationTableChange">
+                            <Text
+                                fontFamily="sans-serif"
+                                background={gray4}
+                                padding="2"
+                                width="100%"
+                                fontSize="xs"
+                                lineHeight="4"
+                                fontWeight="500"
+                                color={gray10}
+                                borderTopRightRadius="lg"
+                                borderBottomRightRadius="lg"
+                                textAlign="right"
+                            >
+                                24h Change
+                            </Text>
+                        </Td>
+                    </Tr>
+                </Thead>
+                <Tbody>
+                    <Tr>
+                        <Td borderColor={gray5} px="2">
+                            <HStack w="100%">
+                                <Text
+                                    color={gray12}
+                                    fontSize="sm"
+                                    lineHeight="4"
+                                    fontFamily="mono"
+                                    fontWeight="semibold"
+                                    paddingX="2"
+                                    margin="0 !important"
+                                    letterSpacing="tight"
+                                    data-testid="BackingCardCollateral"
+                                >
+                                    {collateralSymbol}
+                                </Text>
+                                <InfoTooltip
+                                    info={`${debtSymbol} is swapped to ${collateralSymbol}`}
+                                    color={gray10}
+                                />
+                            </HStack>
+                        </Td>
+                        <Td isNumeric px="2">
+                            <Skeleton
+                                isLoaded={isLoaded}
+                                startColor={gray3}
+                                endColor={gray4}
+                                borderRadius="lg"
+                                marginX="2"
+                                minW="60px"
+                            >
+                                <Text
+                                    color={gray12}
+                                    fontSize="sm"
+                                    lineHeight="4"
+                                    fontFamily="mono"
+                                    fontWeight="semibold"
+                                    letterSpacing="tight"
+                                    data-testid="AllocationTableCollateralAmount"
+                                >
+                                    +{formatTokenBalance(collateralAmount)}
+                                </Text>
+                            </Skeleton>
+                        </Td>
+                        <Td isNumeric px="2">
+                            <Skeleton
+                                isLoaded={isLoaded}
+                                startColor={gray3}
+                                endColor={gray4}
+                                borderRadius="lg"
+                                marginX="2"
+                                minW="60px"
+                            >
+                                <HStack
+                                    color={collateralChangeColor}
+                                    spacing="1"
+                                    justifyContent="flex-end"
+                                >
+                                    {collateralChangeIcon}
+                                    <Text
+                                        fontSize="sm"
+                                        fontWeight="semibold"
+                                        lineHeight="4"
+                                        letterSpacing="tight"
+                                        fontFamily="mono"
+                                    >
+                                        {formatPercent(
+                                            collateralChangePercent / 100
+                                        )}
+                                    </Text>
+                                </HStack>
+                            </Skeleton>
+                        </Td>
+                    </Tr>
+                    <Tr>
+                        <Td borderColor={gray5} w="100%" px="2">
+                            <HStack w="100%">
+                                <Text
+                                    color={gray12}
+                                    fontSize="sm"
+                                    lineHeight="4"
+                                    fontFamily="mono"
+                                    fontWeight="semibold"
+                                    paddingX="2"
+                                    margin="0 !important"
+                                    letterSpacing="tight"
+                                    data-testid="BackingCardDebt"
+                                >
+                                    {debtSymbol}
+                                </Text>
+                                <InfoTooltip
+                                    info={`${debtSymbol} is swapped to ${collateralSymbol}`}
+                                    color={gray10}
+                                />
+                            </HStack>
+                        </Td>
+                        <Td isNumeric px="2">
+                            <Skeleton
+                                isLoaded={isLoaded}
+                                startColor={gray3}
+                                endColor={gray4}
+                                borderRadius="lg"
+                                marginX="2"
+                                minW="60px"
+                            >
+                                <Text
+                                    color={gray12}
+                                    fontSize="sm"
+                                    lineHeight="4"
+                                    fontFamily="mono"
+                                    fontWeight="semibold"
+                                    letterSpacing="tight"
+                                    data-testid="AllocationTableDebtAmount"
+                                >
+                                    -{formatTokenBalance(debtAmount)}
+                                </Text>
+                            </Skeleton>
+                        </Td>
+                        <Td isNumeric px="2">
+                            <Skeleton
+                                isLoaded={isLoaded}
+                                startColor={gray3}
+                                endColor={gray4}
+                                borderRadius="lg"
+                                marginX="2"
+                                minW="60px"
+                            >
+                                <HStack
+                                    color={debtChangeColor}
+                                    spacing="1"
+                                    justifyContent="flex-end"
+                                >
+                                    {debtChangeIcon}
+                                    <Text
+                                        fontSize="sm"
+                                        fontWeight="semibold"
+                                        lineHeight="4"
+                                        letterSpacing="tight"
+                                        fontFamily="mono"
+                                    >
+                                        {formatPercent(
+                                            debtChangePercent / 100
+                                        )}
+                                    </Text>
+                                </HStack>
+                            </Skeleton>
+                        </Td>
+                    </Tr>
+                </Tbody>
+            </Table>
+        </TableContainer>
     );
 };
 
