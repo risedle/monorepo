@@ -3,15 +3,15 @@ import { NextSeo } from "next-seo";
 import { Container, Flex, VStack } from "@chakra-ui/react";
 
 import getBaseConfig from "@/utils/getBaseConfig";
-import { fetchFuseLeveragedTokenSymbols } from "@/utils/fetchFuseLeveragedTokenSymbols";
-import { fetchFuseLeveragedTokenBySymbol } from "@/utils/fetchFuseLeveragedTokenBySymbol";
+import fetchFuseLeveragedTokenSymbols from "@/utils/fetchFuseLeveragedTokenSymbols";
+import fetchFuseLeveragedTokenBySymbol from "@/utils/fetchFuseLeveragedTokenBySymbol";
 import type { FuseLeveragedToken } from "@/utils/types";
 
-import { NavigationBar } from "@/components/NavigationBar";
-import { NavigationBarBottom } from "@/components/NavigationBarBottom";
+import NavigationBar from "@/components/NavigationBar";
+import NavigationBarBottom from "@/components/NavigationBarBottom";
 import BackgroundGradient from "@/components/BackgroundGradient";
-import { TradeInfoCard } from "@/components/TradeInfoCard";
-import { FuseLeveragedTokenInfoCard } from "@/components/FuseLeveragedTokenInfoCard";
+import TradeInfoCard from "@/components/TradeInfoCard";
+import FuseLeveragedTokenInfoCard from "@/components/FuseLeveragedTokenInfoCard";
 import BackingCard from "@/components/BackingCard";
 import SwapHistoryCard from "@/components/SwapHistoryCard";
 import SwapCard from "@/components/SwapCard";

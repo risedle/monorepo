@@ -4,7 +4,7 @@ import ChainSwitcher from "../ChainSwitcher";
 import { ConnectWalletButton } from "../ConnectWalletButton";
 import { NavigationBarBottomLinks } from "./links";
 
-export const NavigationBarBottom = () => {
+const NavigationBarBottom = () => {
     const gray2 = useColorModeValue("gray.light.2", "gray.dark.2");
     const gray4 = useColorModeValue("gray.light.4", "gray.dark.4");
     return (
@@ -28,3 +28,5 @@ export const NavigationBarBottom = () => {
         </Container>
     );
 };
+
+export default NavigationBarBottom;

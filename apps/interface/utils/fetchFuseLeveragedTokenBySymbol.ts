@@ -86,7 +86,7 @@ interface FuseLeveragedTokenBySymbolResponse {
     flts: Array<FuseLeveragedToken>;
 }
 
-export async function fetchFuseLeveragedTokenBySymbol(
+async function fetchFuseLeveragedTokenBySymbol(
     symbol: string
 ): Promise<FuseLeveragedTokenBySymbolResponse> {
     const { graphEndpoint } = getBaseConfig();
@@ -95,3 +95,5 @@ export async function fetchFuseLeveragedTokenBySymbol(
         symbol: filter,
     });
 }
+
+export default fetchFuseLeveragedTokenBySymbol;
