@@ -17,7 +17,7 @@ interface FuseLeveragedTokenInfoCardProps extends BoxProps {
     flt: FuseLeveragedToken;
 }
 
-export const FuseLeveragedTokenInfoCard = (
+const FuseLeveragedTokenInfoCard = (
     props: FuseLeveragedTokenInfoCardProps
 ) => {
     // Data
@@ -76,3 +76,5 @@ export const FuseLeveragedTokenInfoCard = (
         </VStack>
     );
 };
+
+export default FuseLeveragedTokenInfoCard;
