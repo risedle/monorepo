@@ -74,10 +74,9 @@ const queryFuseLeveragedTokens = gql`
     }
 `;
 
-export const fetchFuseLeveragedTokens =
-    async (): Promise<FuseLeveragedTokens> => {
-        const { graphEndpoint } = getBaseConfig();
-        return await grequest(graphEndpoint, queryFuseLeveragedTokens);
-    };
+const fetchFuseLeveragedTokens = async (): Promise<FuseLeveragedTokens> => {
+    const { graphEndpoint } = getBaseConfig();
+    return await grequest(graphEndpoint, queryFuseLeveragedTokens);
+};
 
 export default fetchFuseLeveragedTokens;

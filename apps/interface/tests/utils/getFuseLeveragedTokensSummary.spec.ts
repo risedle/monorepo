@@ -1,4 +1,4 @@
-import { getFuseLeveragedTokensSummary } from "@/utils/getFuseLeveragedTokensSummary";
+import getFuseLeveragedTokensSummary from "@/utils/getFuseLeveragedTokensSummary";
 
 describe("getFuseLeveragedTokensSummary", () => {
     it("should return summary", () => {

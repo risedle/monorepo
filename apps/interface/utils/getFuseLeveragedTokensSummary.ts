@@ -5,7 +5,7 @@ interface FuseLeveragedTokensSummary {
     totalVolume: number;
 }
 
-export const getFuseLeveragedTokensSummary = (
+const getFuseLeveragedTokensSummary = (
     data: FuseLeveragedTokens
 ): FuseLeveragedTokensSummary => {
     const initial = { totalMarketCap: 0, totalVolume: 0 };

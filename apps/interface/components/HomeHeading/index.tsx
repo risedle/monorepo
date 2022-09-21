@@ -16,7 +16,7 @@ interface HomeHeadingProps {
     totalVolume: number;
 }
 
-export const HomeHeading = (props: HomeHeadingProps) => {
+const HomeHeading = (props: HomeHeadingProps) => {
     // Data
     const { totalMarketCap, totalVolume } = props;
 

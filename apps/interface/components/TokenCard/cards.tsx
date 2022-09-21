@@ -6,7 +6,7 @@ import { TokenCard } from "./index";
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface TokenCardsProps extends FuseLeveragedTokens {}
 
-export const TokenCards = (props: TokenCardsProps) => {
+const TokenCards = (props: TokenCardsProps) => {
     // Data
     const { tokens } = props;
     const cards = tokens.map((token) => (
