@@ -1,7 +1,7 @@
 import { screen, fireEvent, waitFor } from "@testing-library/react";
 import renderApp from "../utils/renderApp";
 
-import { DarkmodeToggle } from "@/components/DarkmodeToggle";
+import DarkmodeToggle from "@/components/DarkmodeToggle";
 
 describe("Given <DarkmodeToggle /> is rendered", () => {
     beforeEach(() => {
