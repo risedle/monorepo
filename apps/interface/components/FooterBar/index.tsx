@@ -12,7 +12,7 @@ import NextLink from "next/link";
 // Icons
 import ArrowTopRightIcon from "@/components/Icons/ArrowTopRight";
 
-export const FooterBar = () => {
+const FooterBar = () => {
     // Styles
     const gray3 = useColorModeValue("gray.light.3", "gray.dark.3");
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
@@ -128,3 +128,5 @@ export const FooterBar = () => {
         </Container>
     );
 };
+
+export default FooterBar;

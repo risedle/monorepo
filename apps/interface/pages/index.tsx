@@ -1,16 +1,16 @@
 import type { NextPage, GetStaticProps } from "next";
 import { NextSeo } from "next-seo";
 
-import { getBaseConfig } from "@/utils/getBaseConfig";
-import { fetchFuseLeveragedTokens } from "@/utils/fetchFuseLeveragedTokens";
+import getBaseConfig from "@/utils/getBaseConfig";
+import fetchFuseLeveragedTokens from "@/utils/fetchFuseLeveragedTokens";
 import type { FuseLeveragedTokens } from "@/utils/types";
-import { getFuseLeveragedTokensSummary } from "@/utils/getFuseLeveragedTokensSummary";
+import getFuseLeveragedTokensSummary from "@/utils/getFuseLeveragedTokensSummary";
 
-import { WarningBar } from "@/components/WarningBar";
-import { NavigationBar } from "@/components/NavigationBar";
-import { HomeHeading } from "@/components/HomeHeading";
-import { TokenCards } from "@/components/TokenCard/cards";
-import { FooterBar } from "@/components/FooterBar";
+import WarningBar from "@/components/WarningBar";
+import NavigationBar from "@/components/NavigationBar";
+import HomeHeading from "@/components/HomeHeading";
+import TokenCards from "@/components/TokenCard/cards";
+import FooterBar from "@/components/FooterBar";
 import NavigationBarBottom from "@/components/NavigationBarBottom";
 import BackgroundGradient from "@/components/BackgroundGradient";
 
