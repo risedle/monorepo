@@ -4,7 +4,7 @@ import { NavigationBarLogo } from "./logo";
 import { NavigationBarLinks } from "./links";
 import ChainSwitcher from "../ChainSwitcher";
 import { ConnectWalletButton } from "../ConnectWalletButton";
-import { DarkmodeToggle } from "../DarkmodeToggle";
+import DarkmodeToggle from "../DarkmodeToggle";
 
 export const NavigationBar = () => {
     return (

@@ -3,7 +3,7 @@ import { Button, useColorMode, Circle } from "@chakra-ui/react";
 import DarkmodeIcon from "@/components/Icons/Darkmode";
 import LightmodeIcon from "@/components/Icons/Lightmode";
 
-export const DarkmodeToggle = () => {
+const DarkmodeToggle = () => {
     const { toggleColorMode, colorMode } = useColorMode();
     return (
         <Button
@@ -17,3 +17,5 @@ export const DarkmodeToggle = () => {
         </Button>
     );
 };
+
+export default DarkmodeToggle;
