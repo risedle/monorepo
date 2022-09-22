@@ -3,9 +3,11 @@ import {
     Flex,
     Spacer,
     Link,
-    HStack,
     useColorModeValue,
     Center,
+    Box,
+    ListItem,
+    List,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 
@@ -20,6 +22,7 @@ const FooterBar = () => {
 
     return (
         <Container
+            as="footer"
             maxW="5xl"
             data-testid="FooterBar"
             marginTop="10"
@@ -43,87 +46,108 @@ const FooterBar = () => {
                     </Link>
                 </NextLink>
                 <Spacer />
-                <HStack spacing="6" margin={{ base: "auto", tablet: "0" }}>
-                    <NextLink href="https://twitter.com/risedle" passHref>
-                        <Link
-                            fontSize="sm"
-                            lineHeight="4"
-                            color={gray10}
-                            _hover={{ color: gray12 }}
-                            target="_blank"
-                            data-testid="FooterBarLinkTwitter"
-                        >
-                            <Center>
-                                Twitter
-                                <ArrowTopRightIcon
-                                    w="4"
-                                    h="4"
-                                    color={gray10}
-                                />
-                            </Center>
-                        </Link>
-                    </NextLink>
-                    <NextLink
-                        href="https://discord.com/invite/YCSCd97SXj"
-                        passHref
+                <Box as="nav">
+                    <List
+                        display="flex"
+                        flexDirection="row"
+                        margin={{ base: "auto", tablet: "0" }}
+                        as="ul"
                     >
-                        <Link
-                            fontSize="sm"
-                            lineHeight="4"
-                            color={gray10}
-                            _hover={{ color: gray12 }}
-                            target="_blank"
-                            data-testid="FooterBarLinkDiscord"
-                        >
-                            <Center>
-                                Discord
-                                <ArrowTopRightIcon
-                                    w="4"
-                                    h="4"
+                        <ListItem>
+                            <NextLink
+                                href="https://twitter.com/risedle"
+                                passHref
+                            >
+                                <Link
+                                    fontSize="sm"
+                                    lineHeight="4"
                                     color={gray10}
-                                />
-                            </Center>
-                        </Link>
-                    </NextLink>
-                    <NextLink href="https://github.com/risedle" passHref>
-                        <Link
-                            fontSize="sm"
-                            lineHeight="4"
-                            color={gray10}
-                            _hover={{ color: gray12 }}
-                            target="_blank"
-                            data-testid="FooterBarLinkGithub"
-                        >
-                            <Center>
-                                Github
-                                <ArrowTopRightIcon
-                                    w="4"
-                                    h="4"
+                                    _hover={{ color: gray12 }}
+                                    target="_blank"
+                                    data-testid="FooterBarLinkTwitter"
+                                >
+                                    <Center>
+                                        Twitter
+                                        <ArrowTopRightIcon
+                                            w="4"
+                                            h="4"
+                                            color={gray10}
+                                        />
+                                    </Center>
+                                </Link>
+                            </NextLink>
+                        </ListItem>
+                        <ListItem marginLeft={6}>
+                            <NextLink
+                                href="https://discord.com/invite/YCSCd97SXj"
+                                passHref
+                            >
+                                <Link
+                                    fontSize="sm"
+                                    lineHeight="4"
                                     color={gray10}
-                                />
-                            </Center>
-                        </Link>
-                    </NextLink>
-                    <NextLink href="https://docs.risedle.com" passHref>
-                        <Link
-                            fontSize="sm"
-                            lineHeight="4"
-                            color={gray10}
-                            _hover={{ color: gray12 }}
-                            target="_blank"
-                            data-testid="FooterBarLinkDocs"
-                        >
-                            <Center>
-                                Docs
-                                <ArrowTopRightIcon
-                                    w="4"
-                                    h="4"
+                                    _hover={{ color: gray12 }}
+                                    target="_blank"
+                                    data-testid="FooterBarLinkDiscord"
+                                >
+                                    <Center>
+                                        Discord
+                                        <ArrowTopRightIcon
+                                            w="4"
+                                            h="4"
+                                            color={gray10}
+                                        />
+                                    </Center>
+                                </Link>
+                            </NextLink>
+                        </ListItem>
+                        <ListItem marginLeft={6}>
+                            <NextLink
+                                href="https://github.com/risedle"
+                                passHref
+                            >
+                                <Link
+                                    fontSize="sm"
+                                    lineHeight="4"
                                     color={gray10}
-                                />
-                            </Center>
-                        </Link>
-                    </NextLink>
-                </HStack>
+                                    _hover={{ color: gray12 }}
+                                    target="_blank"
+                                    data-testid="FooterBarLinkGithub"
+                                >
+                                    <Center>
+                                        Github
+                                        <ArrowTopRightIcon
+                                            w="4"
+                                            h="4"
+                                            color={gray10}
+                                        />
+                                    </Center>
+                                </Link>
+                            </NextLink>
+                        </ListItem>
+                        <ListItem marginLeft={6}>
+                            <NextLink href="https://docs.risedle.com" passHref>
+                                <Link
+                                    fontSize="sm"
+                                    lineHeight="4"
+                                    color={gray10}
+                                    _hover={{ color: gray12 }}
+                                    target="_blank"
+                                    data-testid="FooterBarLinkDocs"
+                                >
+                                    <Center>
+                                        Docs
+                                        <ArrowTopRightIcon
+                                            w="4"
+                                            h="4"
+                                            color={gray10}
+                                        />
+                                    </Center>
+                                </Link>
+                            </NextLink>
+                        </ListItem>
+                    </List>
+                </Box>
             </Flex>
         </Container>
     );
