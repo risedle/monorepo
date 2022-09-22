@@ -15,9 +15,9 @@ export default function Layout(props: LayoutPropsParams) {
     return (
         <html lang="en">
             <head>
-                <title>Coin {"etest"}</title>
+                <title>{`Coin ${params.id}`}</title>
                 <meta name="description" content={test} />
-                <meta charset="UTF-8" />
+                <meta charSet="UTF-8" />
                 <meta
                     name="viewport"
                     content="width=device-width, initial-scale=1.0"
