@@ -1,3 +1,7 @@
+import type { ReactNode } from "react";
+
+import { Header } from "./header";
+
 interface LayoutPropsParams {
     id: string;
 }
@@ -7,8 +11,7 @@ interface LayoutProps {
     params: LayoutPropsParams;
 }
 
-export default function Layout(props: LayoutPropsParams) {
-    console.log("DEBUG: coins/id props", props);
+export default function Layout(props: LayoutProps) {
     const { params } = props;
     const test = "OK";
 
@@ -24,10 +27,14 @@ export default function Layout(props: LayoutPropsParams) {
                 />
             </head>
             <body>
-                <header>This is header</header>
+                <Header />
                 <main>This is main</main>
                 <footer>This is footer</footer>
             </body>
         </html>
     );
 }
+
+export const config = {
+    revalidate: 0,
+};
