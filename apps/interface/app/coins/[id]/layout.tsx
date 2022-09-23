@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import Header from "@/organisms/Header";
+import Header from "@/organisms/header";
 
 interface LayoutPropsParams {
     id: string;

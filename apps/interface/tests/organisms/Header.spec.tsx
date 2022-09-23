@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import Header from "@/organisms/Header";
+import Header from "@/organisms/header";
 
 describe("Given default", () => {
     it("Should render <header>", () => {
