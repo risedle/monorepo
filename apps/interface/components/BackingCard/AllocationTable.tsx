@@ -141,7 +141,7 @@ const BackingCardAllocationTable = (
                 </Thead>
                 <Tbody>
                     <Tr>
-                        <Td borderColor={gray5} borderStyle="dashed">
+                        <Td borderColor={gray5} borderStyle="dashed" px="0">
                             <HStack w="100%">
                                 <Text
                                     color={gray12}
