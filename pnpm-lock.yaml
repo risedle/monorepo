@@ -178,7 +178,7 @@ importers:
       "@fontsource/ibm-plex-mono": 4.5.10
       "@fontsource/inter": 4.5.11
       "@rainbow-me/rainbowkit": 0.4.8_x5m4mjrbxxbk5tlnstja5t2tfi
-      "@risedle/types": 2.0.0
+      "@risedle/types": link:../../packages/types
       dayjs: 1.11.5
       dom-to-image: 2.6.0
       ethers: 5.6.9
@@ -197,9 +197,9 @@ importers:
       zustand: 4.0.0_xsdjmjcfjfi5bsraogku665soa
     devDependencies:
       "@next/bundle-analyzer": 12.2.2
-      "@risedle/eslint-config": 0.1.2
-      "@risedle/prettier-config": 0.1.2
-      "@risedle/tsconfig": 1.0.1
+      "@risedle/eslint-config": link:../../packages/eslint-config
+      "@risedle/prettier-config": link:../../packages/prettier-config
+      "@risedle/tsconfig": link:../../packages/tsconfig
       "@testing-library/jest-dom": 5.16.4
       "@testing-library/react": 13.3.0_avpyrhudkjeogu7jzu46tc56qe
       "@types/dom-to-image": 2.6.4

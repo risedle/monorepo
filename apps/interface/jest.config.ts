@@ -18,8 +18,10 @@ const customJestConfig = {
     collectCoverageFrom: [
         "utils/*.ts",
         "components/**/*.tsx",
+        "organisms/**/*.tsx",
         "pages/**/*.tsx",
         "hooks/**/*.ts",
+        "app/**/*.tsx",
         // Ignore untestable files
         "!utils/theme.ts",
         "!utils/fetcher.ts",
@@ -27,6 +29,11 @@ const customJestConfig = {
         "!pages/_document.tsx",
         "!components/ConnectWalletButton/index.tsx",
         "!components/RainbowKitContainer/index.tsx",
+
+        // Ignore layout since its render <html>; we can't test it using
+        // react-testing-library
+        "!app/**/layout.tsx",
+        "!app/**/page.tsx",
     ],
     coverageThreshold: {
         global: {

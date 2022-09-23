@@ -1,1 +1,9 @@
-export default function Page() {}
+interface PagePropsParams {
+    id: string;
+}
+
+interface PageProps {
+    params: PagePropsParams;
+}
+
+export default function Page(props: PageProps) {}

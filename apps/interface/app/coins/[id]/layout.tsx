@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { Header } from "./header";
+import Header from "@/organisms/Header";
 
 interface LayoutPropsParams {
     id: string;
@@ -12,24 +12,17 @@ interface LayoutProps {
 }
 
 export default function Layout(props: LayoutProps) {
-    const { params } = props;
+    console.log("DEBUG: props", props);
+    const { children, params } = props;
     const test = "OK";
 
     return (
-        <html lang="en">
+        <html>
             <head>
-                <title>{`Coin ${params.id}`}</title>
-                <meta name="description" content={test} />
-                <meta charSet="UTF-8" />
-                <meta
-                    name="viewport"
-                    content="width=device-width, initial-scale=1.0"
-                />
+                <title>OK</title>
             </head>
             <body>
                 <Header />
-                <main>This is main</main>
-                <footer>This is footer</footer>
             </body>
         </html>
     );

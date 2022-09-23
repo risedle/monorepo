@@ -3,10 +3,9 @@
 import { ChakraProvider, Container, Flex } from "@chakra-ui/react";
 
 // TODO: add risedle exchange theme
-import themes from "@/themes";
 
-export const Header = () => (
-    <ChakraProvider theme={themes}>
+const Header = () => (
+    <ChakraProvider>
         <Container as="header" maxW="5xl" py="3">
             <nav>
                 <ul>
