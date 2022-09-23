@@ -1,7 +1,7 @@
 import { Container, Flex, useColorModeValue } from "@chakra-ui/react";
 
 import ChainSwitcher from "../ChainSwitcher";
-import { ConnectWalletButton } from "../ConnectWalletButton";
+import ConnectWalletButton from "../ConnectWalletButton";
 import { NavigationBarBottomLinks } from "./links";
 
 const NavigationBarBottom = () => {
