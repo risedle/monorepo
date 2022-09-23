@@ -66,15 +66,17 @@ const BackingCardAllocationTable = (
 
     return (
         <TableContainer
+            mt="0px !important"
             w="100%"
             {...boxProps}
             data-testid="BackingCardAllocationTable"
         >
-            <Table variant="simple">
+            <Table mt="-16px !important" variant="simple">
                 <Thead>
                     <Tr>
                         <Td
-                            borderColor={gray5}
+                            border="none"
+                            pb="0px !important"
                             px="0"
                             data-testid="AllocationTableAsset"
                         >
@@ -93,6 +95,8 @@ const BackingCardAllocationTable = (
                             </Text>
                         </Td>
                         <Td
+                            pb="0px !important"
+                            border="none"
                             isNumeric
                             px="0"
                             data-testid="AllocationTableAmount"
@@ -111,7 +115,12 @@ const BackingCardAllocationTable = (
                                 Allocation
                             </Text>
                         </Td>
-                        <Td px="0" data-testid="AllocationTableChange">
+                        <Td
+                            pb="0px !important"
+                            border="none"
+                            px="0"
+                            data-testid="AllocationTableChange"
+                        >
                             <Text
                                 fontFamily="sans-serif"
                                 background={gray4}
@@ -132,7 +141,7 @@ const BackingCardAllocationTable = (
                 </Thead>
                 <Tbody>
                     <Tr>
-                        <Td borderColor={gray5} px="2">
+                        <Td borderColor={gray5} borderStyle="dashed">
                             <HStack w="100%">
                                 <Text
                                     color={gray12}
@@ -153,7 +162,12 @@ const BackingCardAllocationTable = (
                                 />
                             </HStack>
                         </Td>
-                        <Td isNumeric px="2">
+                        <Td
+                            borderColor={gray5}
+                            borderStyle="dashed"
+                            isNumeric
+                            pr="0px"
+                        >
                             <Skeleton
                                 isLoaded={isLoaded}
                                 startColor={gray3}
@@ -175,7 +189,12 @@ const BackingCardAllocationTable = (
                                 </Text>
                             </Skeleton>
                         </Td>
-                        <Td isNumeric px="2">
+                        <Td
+                            borderColor={gray5}
+                            borderStyle="dashed"
+                            isNumeric
+                            px="2"
+                        >
                             <Skeleton
                                 isLoaded={isLoaded}
                                 startColor={gray3}
@@ -206,7 +225,12 @@ const BackingCardAllocationTable = (
                         </Td>
                     </Tr>
                     <Tr>
-                        <Td borderColor={gray5} w="100%" px="2">
+                        <Td
+                            borderColor={gray5}
+                            borderStyle="dashed"
+                            w="100%"
+                            px="0"
+                        >
                             <HStack w="100%">
                                 <Text
                                     color={gray12}
@@ -227,7 +251,13 @@ const BackingCardAllocationTable = (
                                 />
                             </HStack>
                         </Td>
-                        <Td isNumeric px="2">
+                        <Td
+                            pr="0px"
+                            borderColor={gray5}
+                            borderStyle="dashed"
+                            isNumeric
+                            px="2"
+                        >
                             <Skeleton
                                 isLoaded={isLoaded}
                                 startColor={gray3}
@@ -249,7 +279,12 @@ const BackingCardAllocationTable = (
                                 </Text>
                             </Skeleton>
                         </Td>
-                        <Td isNumeric px="2">
+                        <Td
+                            borderColor={gray5}
+                            borderStyle="dashed"
+                            isNumeric
+                            px="2"
+                        >
                             <Skeleton
                                 isLoaded={isLoaded}
                                 startColor={gray3}
