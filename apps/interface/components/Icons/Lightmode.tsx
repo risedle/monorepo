@@ -10,4 +10,5 @@ const LightmodeIcon = (props: IconProps) => (
         />
     </Icon>
 );
+
 export default LightmodeIcon;
