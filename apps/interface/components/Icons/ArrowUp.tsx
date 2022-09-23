@@ -10,4 +10,5 @@ const ArrowUpIcon = (props: IconProps) => (
         />
     </Icon>
 );
+
 export default ArrowUpIcon;
