@@ -1,6 +1,6 @@
 import { IconProps } from "@chakra-ui/react";
 
-import { getBaseConfig } from "@/utils/getBaseConfig";
+import getBaseConfig from "@/utils/getBaseConfig";
 import ChainBSCIcon from "./ChainBSC";
 import ChainArbitrumIcon from "./ChainArbitrum";
 
