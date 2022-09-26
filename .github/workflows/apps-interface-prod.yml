@@ -60,3 +60,5 @@ jobs:
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
         run: flyctl deploy --remote-only --app risedle-interface-bsc
+
+concurrency: interface
