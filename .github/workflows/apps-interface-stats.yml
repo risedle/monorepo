@@ -1,4 +1,5 @@
 name: "apps / interface / stats"
+concurrency: interface
 
 on:
   pull_request:
@@ -116,5 +117,3 @@ jobs:
           body: ${{ steps.get-comment-body.outputs.body }}
           comment-id: ${{ steps.fc.outputs.comment-id }}
           edit-mode: replace
-
-concurrency: interface
