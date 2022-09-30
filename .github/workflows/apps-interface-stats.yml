@@ -1,4 +1,5 @@
 name: "apps / interface / stats"
+concurrency: interface
 
 on:
   pull_request:

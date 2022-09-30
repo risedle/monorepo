@@ -1,4 +1,5 @@
 name: "apps / interface / production"
+concurrency: interface
 
 on:
   push:
