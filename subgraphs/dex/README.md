@@ -23,13 +23,13 @@ Then you can run the following:
 
 ```sh
 # Generate subgraph.yaml for protocol on specific chain
-npm_config_protocol=uniswap-v3 npm_config_network=arbitrum-one pnpm yamlgen
+pnpm --config.protocol=uniswap-v3 --config.network=arbitrum-one yamlgen
 
 # Generate the types
 pnpm codegen
 
 # Generate constants of the protocol on specific chain
-npm_config_protocol=uniswap-v3 npm_config_network=arbitrum-one pnpm constgen
+pnpm --config.protocol=uniswap-v3 --config.network=arbitrum-one constgen
 
 # Build the subgraph
 pnpm graph:build
@@ -77,13 +77,13 @@ Notes:
 Create the subgraph first using the following command:
 
 ```sh
-npm_config_network=arbitrum-one npm_config_protocol=uniswap-v3 pnpm graph:create
+pnpm --config.protocol=uniswap-v3 --config.network=arbitrum-one graph:create
 ```
 
 Then deploy the subgraph:
 
 ```sh
-npm_config_network=arbitrum-one npm_config_protocol=uniswap-v3 pnpm graph:deploy
+pnpm --config.protocol=uniswap-v3 --config.network=arbitrum-one graph:deploy
 ```
 
 ### Integrate Protocol
