@@ -13,28 +13,32 @@ The subgraph is deployed in here:
 
 ### Get started
 
-You should run `npm install` on monorepo root.
+Run the following command to install the dependencies:
+
+```bash
+pnpm install
+```
 
 Then you can run the following:
 
 ```sh
 # Generate subgraph.yaml for protocol on specific chain
-npm run yamlgen --protocol=uniswap-v3 --network=arbitrum-one
+npm_config_protocol=uniswap-v3 npm_config_network=arbitrum-one pnpm yamlgen
 
 # Generate the types
-npm run codegen
+pnpm codegen
 
 # Generate constants of the protocol on specific chain
-npm run constgen --protocol=uniswap-v3 --network=arbitrum-one
+npm_config_protocol=uniswap-v3 npm_config_network=arbitrum-one pnpm constgen
 
 # Build the subgraph
-npm run graph:build
+pnpm graph:build
 
 # To run the test
-npm run graph:test
+pnpm graph:test
 
 # Run test individually
-npm run graph:test -- flt
+pnpm graph:test -- flt
 ```
 
 ### Liquidity Pool Creation
@@ -73,13 +77,13 @@ Notes:
 Create the subgraph first using the following command:
 
 ```sh
-npm run graph:create --network=arbitrum-one --protocol=uniswap-v3
+npm_config_network=arbitrum-one npm_config_protocol=uniswap-v3 pnpm graph:create
 ```
 
 Then deploy the subgraph:
 
 ```sh
-npm run graph:deploy --network=arbitrum-one --protocol=uniswap-v3
+npm_config_network=arbitrum-one npm_config_protocol=uniswap-v3 pnpm graph:deploy
 ```
 
 ### Integrate Protocol
