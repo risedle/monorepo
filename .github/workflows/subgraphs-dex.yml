@@ -48,6 +48,8 @@ jobs:
         run:
           # prettier-ignore
           npm_config_protocol=uniswap-v3 npm_config_network=arbitrum-one pnpm constgen
+      - name: 🧹 Prettier
+        run: pnpm prettier:check
       - name: 🧹 Lint
         run: pnpm lint
       - name: ✅ Test

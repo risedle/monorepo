@@ -10,17 +10,21 @@
         "graph:create": "graph create --node http://risedle-graph-node.internal:9020/ risedle/dex-${npm_config_network}-${npm_config_protocol}",
         "graph:remove": "graph remove --node http://risedle-graph-node.internal:9020/ risedle/dex-${npm_config_network}-${npm_config_protocol}",
         "graph:deploy": "graph deploy --node http://risedle-graph-node.internal:9020/ --ipfs http://risedle-ipfs.internal:5001 risedle/dex-${npm_config_network}-${npm_config_protocol}",
-        "lint": "eslint ."
+        "lint": "eslint .",
+        "prettier:check": "prettier --check ."
     },
+    "prettier": "@risedle/prettier-config",
     "dependencies": {
         "@graphprotocol/graph-cli": "0.33.0",
         "@graphprotocol/graph-ts": "0.27.0"
     },
     "devDependencies": {
         "@risedle/eslint-config": "0.1.2",
+        "@risedle/prettier-config": "0.1.2",
         "eslint": "8.24.0",
         "matchstick-as": "0.5.0",
         "mustache": "4.2.0",
+        "prettier": "2.7.1",
         "typescript": "4.8.4"
     }
 }
