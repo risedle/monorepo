@@ -38,7 +38,7 @@ pnpm graph:build
 pnpm graph:test
 
 # Run test individually
-pnpm graph:test -- flt
+pnpm graph:test uniswap-v3/handlepoolcreated
 ```
 
 ### Liquidity Pool Creation
