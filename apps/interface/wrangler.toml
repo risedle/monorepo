@@ -1,0 +1,8 @@
+name = "exchangee"
+main = "entrypoint.server.ts"
+compatibility_date = "2022-10-06"
+compatibility_flags = ["streams_enable_constructors"]
+tsconfig = "tsconfig.exchange.json"
+
+#[site]
+#bucket = "./public"
