@@ -11,7 +11,8 @@
         "test": "jest",
         "test:ci": "CI=true jest --reporters=default --reporters=github-actions",
         "exchange:dev": "wrangler dev --local",
-        "exchange:type": "tsc -p tsconfig.exchange.json"
+        "exchange:type": "tsc -p tsconfig.exchange.json",
+        "exchange:deploy": "wrangler publish"
     },
     "prettier": "@risedle/prettier-config",
     "dependencies": {
