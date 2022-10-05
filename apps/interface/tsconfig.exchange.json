@@ -1,0 +1,40 @@
+{
+    "compilerOptions": {
+        /* Language and Environment */
+        "target": "es2021",
+        "lib": ["es2021"],
+        "jsx": "react",
+
+        /* Modules */
+        "module": "es2022",
+        "moduleResolution": "node",
+        "baseUrl": "./",
+        "paths": {
+            "@/*": ["*"]
+        },
+        "types": ["@cloudflare/workers-types"],
+        "resolveJsonModule": true,
+
+        /* JavaScript Support */
+        "allowJs": true,
+        "checkJs": true,
+
+        /* Emit */
+        "noEmit": true,
+
+        /* Interop Constraints */
+        "esModuleInterop": true,
+        "isolatedModules": true,
+        "forceConsistentCasingInFileNames": true,
+
+        /* Type Checking */
+        "strict": true
+    },
+    "include": [
+        "entrypoint.server.ts",
+        "app/**/*.tsx",
+        "route/**/*.ts",
+        "controller/**/*.ts"
+    ],
+    "exclude": ["node_modules"]
+}

@@ -16,8 +16,12 @@ pnpm install
 Once all dependencies are installed, you can run local development server using
 the following command:
 
-```shell
+```bash
+# Interface V1
 pnpm dev
+
+# Interface V2
+pnpm exchange:dev
 ```
 
 There are some scripts that you can use for development:
@@ -28,6 +32,9 @@ pnpm prettier
 
 # To check code best practice
 pnpm lint
+
+# To validate Interface V2 code
+pnpm exchange:type
 ```
 
 If you setup git hooks via running `pnpm install` on monorepo root, you don't
@@ -45,7 +52,22 @@ To run individual spec file, use the following command:
 pnpm jest /path/to/file.spec.ts
 ```
 
-### Table of contents
+### Risedle Exchange
+
+Risedle Exchange is a codename for Risedle Interface V2. Risedle will
+transforms from leveraged token trading platform to cross-chain DeFi platform.
+
+Risedle Exchange will built on top of Edge-rendered React Application.
+Edge-rendered React apps is a React app that rendered in the Cloudflare
+Workers.
+
+Risedle Exchange will have the following notable features:
+
+-   Just-in-time rendering on the edge.
+-   Partial based client hydration for maximum interactivity.
+-   Zero runtime overhead. no JS is shipped to the client by default.
+
+### Table of contents (V1)
 
 -   [Data Fetching Strategy](#data-fetching-strategy)
 -   [Known Issues](#known-issues)
