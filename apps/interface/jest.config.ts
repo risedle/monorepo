@@ -11,6 +11,7 @@ const customJestConfig = {
     testEnvironment: "jest-environment-jsdom",
     verbose: true,
     testMatch: ["<rootDir>/tests/**/?(*.)+(spec|test).[jt]s?(x)"],
+    testPathIgnorePatterns: ["tests/integration/"],
     transform: {
         "^.+\\.tsx?$": "ts-jest",
     },

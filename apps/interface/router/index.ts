@@ -2,30 +2,26 @@
  * Router maps HTTP request to the controller
  */
 import type { Env } from "@/env";
-import type { Controller } from "@/controller";
-// import GetHomePage from "@/controller/home";
+import type { Controller } from "@/controllers";
 
-// get("/", GetHomePage);
-// get("/robots.txt", controller.GetRobotsText);
-// get("/assets/*", controller.GetStaticAssets);
-// use(controller.GetNotFoundPage);
+import { RouteRegistry, get } from "./lib";
 
-interface ControllerInfo {
-    method: "GET" | "POST";
-    handle: Controller;
-}
-const ControllerMap = new Map<URLPattern, ControllerInfo>();
-const get = (pattern: string, controller: Controller) => {
-    const compiledPattern = new URLPattern(pattern);
-    ControllerMap.set(compiledPattern, { method: "GET", handle: controller });
-};
+/**
+ * Controllers
+ */
+import HomeController from "@/controllers/home";
+
+/**
+ * Register controllers
+ */
+get("/", HomeController);
 
 const router = async (
     req: Request,
     env: Env,
     ctx: ExecutionContext
 ): Promise<Response> => {
-    for (const [route, info] of ControllerMap) {
+    for (const [route, info] of RouteRegistry) {
         const result = route.exec(req.url);
         if (result && req.method == info.method) {
             return await info.handle(req, env, ctx);
