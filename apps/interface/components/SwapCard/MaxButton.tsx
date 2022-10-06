@@ -10,7 +10,7 @@ interface SwapCardMaxButtonProps {
     onClick: () => void;
 }
 
-export const SwapCardMaxButton = (props: SwapCardMaxButtonProps) => {
+const SwapCardMaxButton = (props: SwapCardMaxButtonProps) => {
     // Data
     const { chainSlug } = getBaseConfig();
     const { onClick } = props;
