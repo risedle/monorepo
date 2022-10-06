@@ -8,8 +8,8 @@ import {
 
 // Utils
 import formatUSD from "@/utils/formatUSD";
-import getDateFromTimestamp from "@/utils/getDateFromTimestamp";
-import getHourFromTimestamp from "@/utils/getHourFromTimestamp";
+import { getDateFromTimestamp } from "@/utils/getDateFromTimestamp";
+import { getHourFromTimestamp } from "@/utils/getHourFromTimestamp";
 import formatPercent from "@/utils/formatPercent";
 
 interface PriceChartLineTooltipProps {
