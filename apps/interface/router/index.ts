@@ -2,14 +2,14 @@
  * Router maps HTTP request to the controller
  */
 import type { Env } from "@/env";
-import type { Controller } from "@/controller";
+import type { Controller } from "@/controllers";
 
 import { RouteRegistry, get } from "./lib";
 
 /**
  * Controllers
  */
-import HomeController from "@/controller/home";
+import HomeController from "@/controllers/home";
 
 /**
  * Register controllers

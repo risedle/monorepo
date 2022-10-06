@@ -1,5 +1,5 @@
 import React from "react";
-import { renderToReadableStream } from "react-dom/server";
+import ReactDOMServer from "react-dom/server";
 
 import { Env } from "@/env";
 import Layout from "@/app/layout";
@@ -12,8 +12,12 @@ const HomeController = async (
     env: Env,
     ctx: ExecutionContext
 ): Promise<Response> => {
-    const element = React.createElement(Layout);
-    const stream = await renderToReadableStream(element);
+    const props = {
+        title: "Risedle - Simple Cross-chain DeFi for everyone",
+    };
+    const element = React.createElement(Layout, props);
+    console.log("DEBUG: ReactDOMServer", ReactDOMServer);
+    const stream = await ReactDOMServer.renderToReadableStream(element);
     return new Response(stream);
 };
 
