@@ -70,3 +70,4 @@ jobs:
           accountId: ${{ secrets.CF_RISEDLE_ACCOUNT_ID }}
           apiToken: ${{ secrets.CF_RISEDLE_API_TOKEN }}
           environment: production
+          workingDirectory: ./apps/interface
