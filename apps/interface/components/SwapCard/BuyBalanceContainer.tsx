@@ -11,7 +11,7 @@ interface SwapCardBuyBalanceContainerProps extends BoxProps {
     fltAddress: string;
 }
 
-export const SwapCardBuyBalanceContainer = (
+const SwapCardBuyBalanceContainer = (
     props: SwapCardBuyBalanceContainerProps
 ) => {
     const { fltAddress, ...boxProps } = props;
