@@ -20,7 +20,7 @@ interface SwapCardSellQuoteContainerProps {
     fltAddress: string;
 }
 
-export const SwapCardSellQuoteContainer = (
+const SwapCardSellQuoteContainer = (
     props: SwapCardSellQuoteContainerProps
 ) => {
     // Data
