@@ -7,9 +7,9 @@ import {
 } from "@chakra-ui/react";
 
 // Utils
-import { formatUSD } from "@/utils/formatUSD";
-import { getDateFromTimestamp } from "@/utils/getDateFromTimestamp";
-import { getHourFromTimestamp } from "@/utils/getHourFromTimestamp";
+import formatUSD from "@/utils/formatUSD";
+import getDateFromTimestamp from "@/utils/getDateFromTimestamp";
+import getHourFromTimestamp from "@/utils/getHourFromTimestamp";
 import formatPercent from "@/utils/formatPercent";
 
 interface PriceChartLineTooltipProps {
@@ -17,7 +17,7 @@ interface PriceChartLineTooltipProps {
     oldestPrice: number;
 }
 
-export const PriceChartLineTooltip = (props: PriceChartLineTooltipProps) => {
+const PriceChartLineTooltip = (props: PriceChartLineTooltipProps) => {
     // Style
     const background = useColorModeValue("gray.dark.2", "gray.dark.3");
     const text = useColorModeValue("gray.light.9", "gray.dark.10");
