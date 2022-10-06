@@ -17,7 +17,7 @@ interface PriceChartLineTooltipProps {
     oldestPrice: number;
 }
 
-const PriceChartLineTooltip = (props: PriceChartLineTooltipProps) => {
+export const PriceChartLineTooltip = (props: PriceChartLineTooltipProps) => {
     // Style
     const background = useColorModeValue("gray.dark.2", "gray.dark.3");
     const text = useColorModeValue("gray.light.9", "gray.dark.10");

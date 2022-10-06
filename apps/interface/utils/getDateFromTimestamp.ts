@@ -3,5 +3,3 @@ export const getDateFromTimestamp = new Intl.DateTimeFormat("en-US", {
     month: "short",
     year: "numeric",
 }).format;
-
-export default getDateFromTimestamp;
