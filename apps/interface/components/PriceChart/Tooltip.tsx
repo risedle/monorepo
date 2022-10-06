@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 
 // Utils
-import formatUSD from "@/utils/formatUSD";
+import { formatUSD } from "@/utils/formatUSD";
 import { getDateFromTimestamp } from "@/utils/getDateFromTimestamp";
 import { getHourFromTimestamp } from "@/utils/getHourFromTimestamp";
 import formatPercent from "@/utils/formatPercent";
