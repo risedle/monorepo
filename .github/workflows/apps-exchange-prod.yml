@@ -1,0 +1,72 @@
+name: "apps / exchange / production"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "pnpm-lock.yaml"
+      - "apps/interface/**"
+      - ".github/workflows/apps-exchange-prod.yml"
+
+defaults:
+  run:
+    working-directory: ./apps/interface
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📬 Check out code
+        uses: actions/checkout@v2
+      - name: ✨ Setup pnpm@7
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
+      - name: ✨ Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18.7.0"
+          cache: "pnpm"
+      - name: 🍱 Install dependencies
+        run: pnpm install
+      - name: 💄 Run Prettier
+        run: pnpm prettier
+      - name: 🧹 Run ESLint
+        run: pnpm lint
+      - name: 🧹 Run TypeScript compiler
+        run: pnpm exchange:type
+      - name: ⚒️  Run tests
+        run: pnpm exchange:test
+      - name: ✅ All good
+        run: echo "✅ All good" >> $GITHUB_STEP_SUMMARY
+
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    environment:
+      name: exchange-prod
+      url: https://exchange.risedle.workers.dev/
+    needs: check
+    steps:
+      - name: 📬 Check out code
+        uses: actions/checkout@v2
+      - name: ✨ Setup pnpm@7
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
+      - name: ✨ Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18.7.0"
+          cache: "pnpm"
+      - name: 🍱 Install dependencies
+        run: pnpm install
+      - name: 🚀 Deploy
+        uses: cloudflare/wrangler-action@2.0.0
+        with:
+          accountId: ${{ secrets.CF_RISEDLE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CF_RISEDLE_API_TOKEN }}
+          environment: production

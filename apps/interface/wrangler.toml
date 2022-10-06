@@ -1,8 +1,15 @@
-name = "exchange"
+name = "exchange-dev"
 main = "entrypoint.server.ts"
 compatibility_date = "2022-10-03"
 compatibility_flags = ["streams_enable_constructors"]
 tsconfig = "tsconfig.exchange.json"
+workers_dev = true
+
+[env.production]
+name = "exchange"
+
+[env.staging]
+name = "exchange-staging"
 
 #[site]
 #bucket = "./public"
