@@ -5,7 +5,9 @@ const Layout = () => (
         <head>
             <title>Layout</title>
         </head>
-        <body>200 OK</body>
+        <body>
+            <p>Home</p>
+        </body>
     </html>
 );
 
