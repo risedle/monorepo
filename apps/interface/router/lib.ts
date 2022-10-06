@@ -1,6 +1,7 @@
 /**
  * Commonly used functions in router
  */
+import type { Controller } from "@/controllers/lib";
 
 interface ControllerInfo {
     method: "GET" | "POST";
