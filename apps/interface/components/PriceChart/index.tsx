@@ -17,7 +17,7 @@ interface PriceChartProps extends BoxProps {
     displayChart?: ResponsiveValue<"block" | "none">;
 }
 
-export const PriceChart = (props: PriceChartProps) => {
+const PriceChart = (props: PriceChartProps) => {
     // Data
     const { timeframes, displayChart, ...boxProps } = props;
 
