@@ -10,7 +10,7 @@ import {
     ResponsiveValue,
 } from "@chakra-ui/react";
 
-import { PriceChartLine, PriceChartLineProps } from "./Line";
+import PriceChartLine, { PriceChartLineProps } from "./Line";
 
 interface PriceChartProps extends BoxProps {
     timeframes: Record<string, PriceChartLineProps>;
