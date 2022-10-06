@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { NavigationBar } from "@/components/NavigationBar";
+import NavigationBar from "@/components/NavigationBar";
 import FooterBar from "@/components/FooterBar";
 import InsightGenerator from "@/components/InsightGenerator";
 
