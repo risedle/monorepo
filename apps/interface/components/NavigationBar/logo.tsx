@@ -28,7 +28,7 @@ const NavigationBarLogoIcon = (props: IconProps) => {
     );
 };
 
-export const NavigationBarLogo = () => {
+const NavigationBarLogo = () => {
     return (
         <Box data-testid="NavigationBarLogo">
             <NextLink href="/" passHref>
@@ -55,3 +55,5 @@ export const NavigationBarLogo = () => {
         </Box>
     );
 };
+
+export default NavigationBarLogo;
