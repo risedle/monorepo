@@ -215,7 +215,7 @@ const LearnMoreLinks = () => {
     );
 };
 
-export const NavigationBarBottomLinks = (props: ButtonProps) => {
+const NavigationBarBottomLinks = (props: ButtonProps) => {
     // Styles
     const gray2 = useColorModeValue("gray.light.2", "gray.dark.2");
     const gray3 = useColorModeValue("gray.light.3", "gray.dark.3");
@@ -297,3 +297,5 @@ export const NavigationBarBottomLinks = (props: ButtonProps) => {
         </Menu>
     );
 };
+
+export default NavigationBarBottomLinks;

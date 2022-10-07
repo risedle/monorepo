@@ -2,7 +2,7 @@ import { Container, Flex, useColorModeValue } from "@chakra-ui/react";
 
 import ChainSwitcher from "../ChainSwitcher";
 import ConnectWalletButton from "../ConnectWalletButton";
-import { NavigationBarBottomLinks } from "./links";
+import NavigationBarBottomLinks from "./links";
 
 const NavigationBarBottom = () => {
     const gray2 = useColorModeValue("gray.light.2", "gray.dark.2");
