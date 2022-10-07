@@ -6,7 +6,7 @@ import useSlippageToleranceStore from "@/hooks/useSlippageToleranceStore";
 // Sub-components
 import SlippageTolerance from "./SlippageTolerance";
 
-export const SlippageToleranceContainer = () => {
+const SlippageToleranceContainer = () => {
     // Hooks
     const persistedSlippage = useSlippageToleranceStore(
         (state) => state.slippage
