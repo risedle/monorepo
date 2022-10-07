@@ -4,17 +4,8 @@
 import type { Env } from "@/env";
 import type { Controller } from "@/controllers/lib";
 
-import { RouteRegistry, get } from "./lib";
-
-/**
- * Controllers
- */
-import HomeController from "@/controllers/home";
-
-/**
- * Register controllers
- */
-get("/", HomeController);
+import { RouteRegistry } from "./lib";
+import "./registry";
 
 const router = async (
     req: Request,

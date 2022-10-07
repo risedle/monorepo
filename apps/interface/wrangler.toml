@@ -5,11 +5,14 @@ compatibility_flags = ["streams_enable_constructors"]
 tsconfig = "tsconfig.exchange.json"
 workers_dev = true
 
+[dev]
+port = 3000
+
 [env.production]
 name = "exchange"
 
 [env.staging]
 name = "exchange-staging"
 
-#[site]
-#bucket = "./public"
+[site]
+bucket = "./public"
