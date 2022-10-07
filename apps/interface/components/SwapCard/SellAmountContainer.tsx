@@ -11,7 +11,7 @@ interface SwapCardSellAmountContainerProps {
     symbol: string;
 }
 
-export const SwapCardSellAmountContainer = (
+const SwapCardSellAmountContainer = (
     props: SwapCardSellAmountContainerProps
 ) => {
     // Data
