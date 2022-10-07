@@ -15,7 +15,7 @@ interface SlippageToleranceRadioGroupProps {
     setSlippage: (value: string) => void;
 }
 
-export const SlippageToleranceRadioGroup = (
+const SlippageToleranceRadioGroup = (
     props: SlippageToleranceRadioGroupProps
 ) => {
     // Data
