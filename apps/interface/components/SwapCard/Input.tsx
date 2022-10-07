@@ -16,7 +16,7 @@ interface SwapCardInputProps extends BoxProps {
     onAmountChange: (valueAsString: string, valueAsNumber: number) => void;
 }
 
-export const SwapCardInput = (props: SwapCardInputProps) => {
+const SwapCardInput = (props: SwapCardInputProps) => {
     // Data
     const { symbol, value, onAmountChange } = props;
 
