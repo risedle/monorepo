@@ -22,7 +22,7 @@ interface SwapCardQuoteProps {
     isLoaded: boolean;
 }
 
-export const SwapCardQuote = (props: SwapCardQuoteProps) => {
+const SwapCardQuote = (props: SwapCardQuoteProps) => {
     // Data
     const { label, quoteAmount, quoteAmountUSD, quoteSymbol, isLoaded } =
         props;
