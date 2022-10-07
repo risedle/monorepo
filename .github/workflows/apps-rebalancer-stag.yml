@@ -7,7 +7,7 @@ on:
     paths:
       - "pnpm-lock.yaml"
       - "apps/rebalancer/**"
-      - ".github/workflows/apps-rebalancer.yml"
+      - ".github/workflows/apps-rebalancer-stag.yml"
 
 defaults:
   run:
