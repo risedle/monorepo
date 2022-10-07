@@ -19,7 +19,7 @@ interface SwapCardBalanceProps extends BoxProps {
     isLoaded: boolean;
 }
 
-export const SwapCardBalance = (props: SwapCardBalanceProps) => {
+const SwapCardBalance = (props: SwapCardBalanceProps) => {
     // Data
     const { amount, amountUSD, isLoaded, ...boxProps } = props;
 
