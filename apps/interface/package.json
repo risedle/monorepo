@@ -13,13 +13,16 @@
         "scripts:build": "tsc -p scripts/tsconfig.json",
         "scripts:bundle": "node scripts/build/bundle.js",
         "scripts:bundle:prod": "NODE_ENV=production node scripts/build/bundle.js",
-        "client:bundle:prod": "pnpm scripts:build && pnpm scripts:bundle:prod",
+        "client:bundle:css": "tailwindcss -i ./styles/index.css -o ./public/dist/style.css --minify",
+        "client:bundle:js": "pnpm scripts:build && pnpm scripts:bundle:prod",
+        "client:bundle": "concurrently pnpm:client:bundle:*",
         "exchange:type": "tsc -p tsconfig.exchange.json",
         "exchange:deploy": "wrangler publish",
         "exchange:test": "vitest run --coverage --watch false",
         "exchange:dev:server": "wrangler dev --local",
         "exchange:dev:bundle": "pnpm scripts:build && pnpm scripts:bundle",
-        "exchange:dev": "concurrently pnpm:exchange:dev:*"
+        "exchange:dev:css": "tailwindcss -i ./styles/index.css -o ./public/dist/style.css --watch",
+        "exchange:dev": "concurrently -k pnpm:exchange:dev:*"
     },
     "prettier": "@risedle/prettier-config",
     "dependencies": {
@@ -78,6 +81,7 @@
         "jsdom": "20.0.1",
         "mock-match-media": "0.3.0",
         "prettier": "2.7.1",
+        "tailwindcss": "3.1.8",
         "ts-jest": "28.0.8",
         "ts-node": "10.9.1",
         "typescript": "4.8.3",
