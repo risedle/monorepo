@@ -17,4 +17,5 @@ import StaticAssetsController from "@/controllers/static-assets";
  */
 get("/", HomeController);
 get("/playground", PlaygroundController);
+get("/playground/", PlaygroundController);
 get("/static/*", StaticAssetsController);
