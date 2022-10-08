@@ -1,0 +1,8 @@
+{
+    "extends": "@risedle/tsconfig/node.json",
+    "compilerOptions": {
+        "outDir": "build"
+    },
+    "include": ["./**/*.ts"],
+    "exclude": ["node_modules", "build"]
+}

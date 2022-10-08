@@ -10,10 +10,16 @@
         "lint": "next lint",
         "test": "jest",
         "test:ci": "CI=true jest --reporters=default --reporters=github-actions",
-        "exchange:dev": "wrangler dev --local",
+        "scripts:build": "tsc -p scripts/tsconfig.json",
+        "scripts:bundle": "node scripts/build/bundle.js",
+        "scripts:bundle:prod": "NODE_ENV=production node scripts/build/bundle.js",
+        "client:bundle:prod": "pnpm scripts:build && pnpm scripts:bundle:prod",
         "exchange:type": "tsc -p tsconfig.exchange.json",
         "exchange:deploy": "wrangler publish",
-        "exchange:test": "vitest run --coverage --watch false"
+        "exchange:test": "vitest run --coverage --watch false",
+        "exchange:dev:server": "wrangler dev --local",
+        "exchange:dev:bundle": "pnpm scripts:build && pnpm scripts:bundle",
+        "exchange:dev": "concurrently pnpm:exchange:dev:*"
     },
     "prettier": "@risedle/prettier-config",
     "dependencies": {
@@ -43,6 +49,7 @@
         "zustand": "4.0.0"
     },
     "devDependencies": {
+        "@cloudflare/kv-asset-handler": "0.2.0",
         "@cloudflare/workers-types": "3.16.0",
         "@next/bundle-analyzer": "12.2.2",
         "@risedle/eslint-config": "0.1.2",
@@ -61,6 +68,8 @@
         "@vitest/coverage-istanbul": "0.23.4",
         "@vitest/ui": "0.23.4",
         "babel-plugin-istanbul": "6.1.1",
+        "concurrently": "7.4.0",
+        "esbuild": "0.15.10",
         "eslint": "8.23.1",
         "eslint-config-next": "12.3.0",
         "eslint-config-prettier": "8.5.0",

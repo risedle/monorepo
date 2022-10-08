@@ -39,3 +39,7 @@ yarn-error.log*
 # cypress
 cypress/screenshots
 cypress/videos
+
+# scripts
+scripts/build
+public/dist
