@@ -28,7 +28,7 @@ describe("Given 'GET' HTTP request to '/'", () => {
         const env = getMiniflareBindings();
         const ctx = new ExecutionContext();
         const res = await worker.fetch(req, env, ctx);
-        console.log("DEBUG: res", res);
+        // console.log("DEBUG: res", res);
         expect(true).toBe(true);
     });
 });

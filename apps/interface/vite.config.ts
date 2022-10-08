@@ -3,8 +3,12 @@ import path from "path";
 
 export default defineConfig({
     test: {
+        reporters: ["verbose"],
         environment: "miniflare",
-        include: ["tests/integration/**/*.{test,spec}.{ts,tsx}"],
+        include: [
+            "tests/integration/**/*.{test,spec}.{ts,tsx}",
+            "atoms/**/spec.tsx",
+        ],
         coverage: {
             provider: "c8",
         },

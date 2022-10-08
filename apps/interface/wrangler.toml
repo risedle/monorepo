@@ -16,3 +16,7 @@ name = "exchange-staging"
 
 [site]
 bucket = "./public"
+# Only upload the following files:
+# 1. JavaScript files to hydrate interactive components
+# 2. CSS files that generated via esbuild
+include = ["client.*.js", "server.*.css"]

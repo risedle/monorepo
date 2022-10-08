@@ -1,0 +1,43 @@
+[data-atom="Flex"] {
+    @apply flex flex-row justify-start;
+}
+
+[data-atom="Flex"][data-direction="row"] {
+    @apply flex-row !important;
+}
+
+[data-atom="Flex"][data-direction="row-reverse"] {
+    @apply flex-row-reverse !important;
+}
+
+[data-atom="Flex"][data-direction="col"] {
+    @apply flex-col !important;
+}
+
+[data-atom="Flex"][data-direction="col-reverse"] {
+    @apply flex-col-reverse !important;
+}
+
+[data-atom="Flex"][data-justify="start"] {
+    @apply justify-start !important;
+}
+
+[data-atom="Flex"][data-justify="end"] {
+    @apply justify-end !important;
+}
+
+[data-atom="Flex"][data-justify="center"] {
+    @apply justify-center !important;
+}
+
+[data-atom="Flex"][data-justify="between"] {
+    @apply justify-between !important;
+}
+
+[data-atom="Flex"][data-justify="around"] {
+    @apply justify-around !important;
+}
+
+[data-atom="Flex"][data-justify="evenly"] {
+    @apply justify-evenly !important;
+}

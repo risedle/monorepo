@@ -1,4 +1,44 @@
 /**
+ * esbuild-plugin-tailwincss
+ *
+ * This is our custom esbuild plugin.
+ *
+ * TODO(pyk): Publish this as `@risedle/esbuild-plugin-tailwindcss`
+ */
+
+import type { Plugin, PluginBuild, OnLoadArgs, OnLoadResult } from "esbuild";
+import { readFile } from "fs/promises";
+import tailwindcss from "tailwindcss";
+import postcss from "postcss";
+import autoprefixer from "autoprefixer";
+
+const tailwind: Plugin = {
+    name: "tailwind",
+    setup: (build: PluginBuild) => {
+        const options = {
+            filter: /.\.(css)$/,
+            namespace: "file",
+        };
+
+        const callback = async (args: OnLoadArgs): Promise<OnLoadResult> => {
+            const css = await readFile(args.path, "utf-8");
+
+            const result = await postcss([tailwindcss, autoprefixer]).process(
+                css,
+                {
+                    from: args.path,
+                }
+            );
+            return {
+                contents: result.css,
+                loader: "css",
+            };
+        };
+        build.onLoad(options, callback);
+    },
+};
+
+/**
  * Bundle
  *
  * Script to bundle and minify the client-side JavaScript.
@@ -13,7 +53,9 @@ async function main() {
     // TODO(pyk): we may use glob pattern here such as "client/*.ts" to
     // automatically bundle all entrypoints
     const entryPoints = {
-        home: "clients/home/index.ts",
+        "server.global": "global.css",
+        "client.home": "clients/home/index.ts",
+        "server.home": "templates/home/index.tsx",
     };
 
     const isProduction = process.env.NODE_ENV == "production" ? true : false;
@@ -28,7 +70,10 @@ async function main() {
         target: ["chrome58", "firefox57", "safari11", "edge18"],
         charset: "utf8",
         tsconfig: "tsconfig.exchange.json",
+        plugins: [tailwind],
     });
+
+    // Remove server side code
 
     // Show report when we do bundling for production
     if (isProduction && result.metafile == null) {
