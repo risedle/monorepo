@@ -52,14 +52,14 @@ const InsightImageDOM = React.forwardRef(
 
         useImperativeHandle(ref, () => ({
             getImage() {
-                let timestamp = data?.[0].dailyGain.timestamp;
-                if (timestamp == undefined) {
-                    timestamp = Math.floor(Date.now() / 1000);
+                if (data) {
+                    const timestamp = data[0].dailyGain.timestamp;
+
+                    const filename = `${props.type} ${dayjs(
+                        timestamp * 1000
+                    ).format("DD-MM-YY")}.jpeg`;
+                    exportImage(imageRef.current, filename);
                 }
-                const filename = `${props.type} ${dayjs(
-                    timestamp * 1000
-                ).format("DD-MM-YY")}.jpeg`;
-                exportImage(imageRef.current, filename);
             },
         }));
 
@@ -73,6 +73,7 @@ const InsightImageDOM = React.forwardRef(
         }
 
         if (isLoaded && data) {
+            console.log(data);
             return (
                 <>
                     <div data-testid="InsightGeneratorDiv" ref={imageRef}>

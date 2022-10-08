@@ -1,7 +1,9 @@
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
-import InsightImageDOM from "@/components/InsightImageDOM";
+import InsightImageDOM, { exportImage } from "@/components/InsightImageDOM";
 import * as SWR from "swr";
+import React from "react";
+import domtoimage from "dom-to-image";
 
 afterEach(() => {
     // restore the spy created with spyOn
@@ -9,6 +11,40 @@ afterEach(() => {
 });
 
 describe("<InsightImageDOM />", () => {
+    describe("Test function", () => {
+        const { getComputedStyle } = window;
+        window.getComputedStyle = (elt) => getComputedStyle(elt);
+        jest.setTimeout(10000);
+        it("Should return download", async () => {
+            const div = document.createElement("div");
+            const link = {
+                click: jest.fn(),
+            };
+            jest.spyOn(document, "createElement").mockImplementation(
+                () => link
+            );
+            jest.spyOn(domtoimage, "toJpeg").mockImplementation(
+                (div) => "data:application/txt,hello%20world"
+            );
+
+            await exportImage(div, "test.jpeg");
+            expect(link.click).toHaveBeenCalledTimes(1);
+            expect(link.href).toEqual("data:application/txt,hello%20world");
+            expect(link.download).toEqual("test.jpeg");
+        });
+
+        it("Should return alert", async () => {
+            const div = document.createElement("div");
+            window.alert = jest.fn();
+
+            await exportImage(null, "test.jpeg");
+
+            const link = {
+                click: jest.fn(),
+            };
+            expect(window.alert).toHaveBeenCalledTimes(1);
+        });
+    });
     describe("Test Data", () => {
         it("should render loading", () => {
             const mock = jest.spyOn(SWR, "default");
