@@ -6,7 +6,7 @@ import manifestJSON from "__STATIC_CONTENT_MANIFEST";
 const assetManifest = JSON.parse(manifestJSON);
 
 import type { Env } from "@/env";
-import { notfound } from "./lib";
+import { notfound } from "@/controllers/lib";
 
 const StaticAssetsController = async (
     req: Request,
@@ -16,7 +16,7 @@ const StaticAssetsController = async (
     const staticReq = new Request(req.url.replace("/static", ""), req);
     const event = {
         request: staticReq,
-        waitUntil: (promise: Promise) => {
+        waitUntil: (promise: Promise<Response>) => {
             return ctx.waitUntil(promise);
         },
     };

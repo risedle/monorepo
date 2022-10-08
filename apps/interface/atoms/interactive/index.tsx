@@ -18,21 +18,23 @@
  *      hydrate({SomeInteractiveComponent});
  *
  */
-import type { ReactNode } from "react";
+import type { ReactElement } from "react";
 import React from "react";
 
 interface InteractiveProps {
-    children: ReactNode;
+    children?: ReactElement;
     name: string;
 }
 
 const Interactive = (props: InteractiveProps) => {
     const { children, name } = props;
-    // This is used to hydrate the props on the client side
-    const props = JSON.stringify(React.Children.only(children).props);
-
+    if (!children) {
+        throw new Error("Interactive: Child not found");
+    }
+    const childProps = React.Children.only(children).props;
+    const hydrationProps = JSON.stringify(childProps);
     return (
-        <div data-risedle-component="{name}" data-risedle-props="{props}">
+        <div data-risedle-component={name} data-risedle-props={hydrationProps}>
             {children}
         </div>
     );

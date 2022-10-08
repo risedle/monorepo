@@ -22,7 +22,7 @@ export function hydrate(components: Map<string, Component>) {
             return;
         }
 
-        const props = component.dataset.risedleProps;
+        const props = root.dataset.risedleProps;
         const hydrationProps = JSON.parse(props);
         hydrateRoot(root, React.createElement(Component, hydrationProps));
     });

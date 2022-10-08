@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOMServer from "react-dom/server";
 
 import { Env } from "@/env";
-import Layout from "@/app/layout";
+import Template from "@/templates/home";
 
 /**
  * HomeController compose services call then return HTTP response
@@ -15,8 +15,7 @@ const HomeController = async (
     const props = {
         title: "Risedle - Simple Cross-chain DeFi for everyone",
     };
-    const element = React.createElement(Layout, props);
-    console.log("DEBUG: ReactDOMServer", ReactDOMServer);
+    const element = React.createElement(Template, props);
     const stream = await ReactDOMServer.renderToReadableStream(element);
     return new Response(stream);
 };

@@ -5,6 +5,7 @@
  *
  *     <ConnectButton />
  */
+import React from "react";
 
 const ConnectButton = () => {
     /**
@@ -13,5 +14,8 @@ const ConnectButton = () => {
     function handleConnect() {
         console.debug("Connect clicked");
     }
-    return <button onClick={handleConnect}>Connect</button>;
+
+    return <button onClick={handleConnect}>Connect Click</button>;
 };
+
+export default ConnectButton;

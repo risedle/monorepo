@@ -7,4 +7,6 @@
  *
  * Docs: https://developers.cloudflare.com/workers/platform/environment-variables/
  */
-export interface Env {}
+export interface Env {
+    __STATIC_CONTENT: string;
+}
