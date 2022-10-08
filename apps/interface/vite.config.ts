@@ -7,22 +7,6 @@ export default defineConfig({
         include: ["tests/integration/**/*.{test,spec}.{ts,tsx}"],
         coverage: {
             provider: "c8",
-            all: true,
-            exclude: [
-                ".next",
-                "abis",
-                "components",
-                "tests",
-                "utils",
-                "hooks",
-                "out",
-                "pages",
-                "themes",
-                "*.config*",
-                "env.ts",
-                "jest*",
-                "next-*",
-            ],
         },
     },
     resolve: {
@@ -31,6 +15,10 @@ export default defineConfig({
             "react-dom/server": path.resolve(
                 __dirname,
                 "node_modules/react-dom/server.browser.js"
+            ),
+            __STATIC_CONTENT_MANIFEST: path.resolve(
+                __dirname,
+                "tests/worker.manifest.ts"
             ),
         },
     },
