@@ -170,6 +170,7 @@ importers:
       prettier: 2.7.1
       react: 18.2.0
       react-dom: 18.2.0
+      react-test-renderer: 18.2.0
       react-timeago: 7.1.0
       recharts: 2.1.12
       swr: 1.3.0
@@ -237,6 +238,7 @@ importers:
       jsdom: 20.0.1
       mock-match-media: 0.3.0
       prettier: 2.7.1
+      react-test-renderer: 18.2.0_react@18.2.0
       tailwindcss: 3.1.8_ts-node@10.9.1
       ts-jest: 28.0.8_x6kwgexq3ccbcwghftlqwl42r4
       ts-node: 10.9.1_tjxxr4okrdgzkzqzhfljhcr2hu
@@ -28530,6 +28532,22 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
+  /react-shallow-renderer/16.15.0_react@18.2.0:
+    resolution:
+      {
+        integrity: sha512-oScf2FqQ9LFVQgA73vr86xl2NaOIX73rh+YFqcOp68CWj56tSfgtGKrEbyhCj0rSijyG9M1CYprTh39fBi5hzA==,
+      }
+    peerDependencies:
+      react: "*"
+    peerDependenciesMeta:
+      react:
+        optional: true
+    dependencies:
+      object-assign: 4.1.1
+      react: 18.2.0
+      react-is: 18.2.0
+    dev: true
+
   /react-smooth/2.0.1_biqbaboplfbrettd7655fr4n2y:
     resolution:
       {
@@ -28596,6 +28614,23 @@ packages:
       react: 18.2.0
       tslib: 2.4.0
     dev: false
+
+  /react-test-renderer/18.2.0_react@18.2.0:
+    resolution:
+      {
+        integrity: sha512-JWD+aQ0lh2gvh4NM3bBM42Kx+XybOxCpgYK7F8ugAlpaTSnWsX+39Z4XkOykGZAHrjwwTZT3x3KxswVWxHPUqA==,
+      }
+    peerDependencies:
+      react: "*"
+    peerDependenciesMeta:
+      react:
+        optional: true
+    dependencies:
+      react: 18.2.0
+      react-is: 18.2.0
+      react-shallow-renderer: 16.15.0_react@18.2.0
+      scheduler: 0.23.0
+    dev: true
 
   /react-timeago/7.1.0_react@18.2.0:
     resolution:

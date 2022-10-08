@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-button {
-    color: red;
+/*****************************************************************************
+ * Body
+ ****************************************************************************/
+
+body {
+    @apply bg-base-primary text-label-primary;
 }

@@ -14,11 +14,21 @@ const Template = (props: TemplateProps) => {
     return (
         <html>
             <head>
+                <meta charSet="utf-8" />
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1"
+                />
                 <title>{title}</title>
                 <link rel="stylesheet" href="/static/dist/style.css" />
                 <script defer src="/static/dist/home.js"></script>
             </head>
             <body>
+                <header>
+                    <h1>Risedle Components</h1>
+                    <p>Component playground</p>
+                </header>
+                <section></section>
                 <p>Home</p>
                 <Interactive name="ConnectButton">
                     <ConnectButton />
