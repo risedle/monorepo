@@ -15,7 +15,7 @@
         "scripts:bundle:prod": "NODE_ENV=production node scripts/build/bundle.js",
         "client:bundle:css": "tailwindcss -i ./styles/index.css -o ./public/dist/style.css --minify",
         "client:bundle:js": "pnpm scripts:build && pnpm scripts:bundle:prod",
-        "client:bundle": "concurrently -k pnpm:client:bundle:*",
+        "client:bundle": "concurrently pnpm:client:bundle:*",
         "exchange:type": "tsc -p tsconfig.exchange.json",
         "exchange:deploy": "wrangler publish",
         "exchange:test": "vitest run --coverage --watch false",
