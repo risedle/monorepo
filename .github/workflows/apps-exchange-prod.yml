@@ -64,6 +64,8 @@ jobs:
           cache: "pnpm"
       - name: 🍱 Install dependencies
         run: pnpm install
+      - name: 📦 Bundle client side js
+        run: pnpm client:bundle:prod
       - name: 🚀 Deploy
         uses: cloudflare/wrangler-action@2.0.0
         with:
