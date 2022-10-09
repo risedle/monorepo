@@ -7,33 +7,18 @@
 import React from "react";
 import type { ReactNode } from "react";
 
-// Styles
-import "./style.css";
+import type { BoxProps } from "@/atoms/box";
+import Box from "@/atoms/box";
 
-// Types
-import type {
-    DivElement,
-    ContentSectioningElements,
-    AtomDataAttributes,
-} from "@/atoms/lib";
+const Container = (props: BoxProps) => {
+    // Set container default value
+    const newProps = { ...props };
+    newProps["container"] = true;
+    if (!newProps["mx"]) newProps["mx"] = "auto";
+    if (!newProps["px"]) newProps["px"] = "3";
+    if (!newProps["maxW"]) newProps["maxW"] = "6xl";
 
-export interface ContainerProps {
-    as?: DivElement | ContentSectioningElements;
-    children?: ReactNode;
-}
-
-const Container = (props: ContainerProps) => {
-    const { as, children } = props;
-
-    // Use <div> by default
-    let element = as;
-    if (element == null) element = "div";
-
-    // Build atrributes
-    const attrs: AtomDataAttributes = {};
-    attrs["data-atom"] = "Container";
-
-    return React.createElement(element, attrs, children);
+    return <Box {...newProps}>{props.children}</Box>;
 };
 
 export default Container;

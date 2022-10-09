@@ -8,6 +8,7 @@ import FlexItem from "@/atoms/flex/item";
 // Components
 import Interactive from "@/atoms/interactive";
 import ConnectButton from "@/molecules/connect-button";
+import Box from "@/atoms/box";
 
 interface TemplateProps {
     title: string;
@@ -26,17 +27,17 @@ const Template = (props: TemplateProps) => {
                 />
                 <title>{title}</title>
 
-                <link rel="stylesheet" href="/static/dist/server.global.css" />
-                <link rel="stylesheet" href="/static/dist/server.home.css" />
+                <link rel="stylesheet" href="/static/dist/global.css" />
                 <script defer src="/static/dist/client.home.js"></script>
             </head>
             <body>
                 <Container as="nav">
                     <Flex as="ul" justify="between">
-                        <FlexItem as="li">Logo</FlexItem>
+                        <FlexItem as="li">Logo test</FlexItem>
                         <FlexItem as="li">Button</FlexItem>
                     </Flex>
                 </Container>
+                <Box>OK</Box>
             </body>
         </html>
     );

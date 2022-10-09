@@ -11,7 +11,9 @@ describe("Given 'as' prop", () => {
         const component = rendered.toJSON();
 
         expect(component.type).toBe("div");
-        expect(component.props["data-atom"]).toBe("Container");
+        expect(component.props["className"]).toBe(
+            "container mx-auto px-3 max-w-6xl"
+        );
         expect(component.children[0]).toBe("Hello");
 
         // Test custom element
@@ -28,7 +30,9 @@ describe("Given 'as' prop", () => {
             const component = rendered.toJSON();
 
             expect(component.type).toBe(element);
-            expect(component.props["data-atom"]).toBe("Container");
+            expect(component.props["className"]).toBe(
+                "container mx-auto px-3 max-w-6xl"
+            );
             expect(component.children[0]).toBe("Hello");
         });
     });

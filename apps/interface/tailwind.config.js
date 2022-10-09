@@ -1,6 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ["./templates/**/*.tsx"],
+    content: {
+        files: ["./public/dist/**/*.tsx"],
+        transform: {
+            // pre-render to html
+            tsx: (content) => {
+                // console.log(content);
+                return content;
+            },
+        },
+    },
     theme: {
         extend: {
             colors: {
