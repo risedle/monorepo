@@ -28,7 +28,7 @@ interface SwapCardProps extends BoxProps {
     flt: FuseLeveragedToken;
 }
 
-export const SwapCard = (props: SwapCardProps) => {
+const SwapCard = (props: SwapCardProps) => {
     // Data
     const { flt } = props;
     const { symbol, address, debt } = flt;
