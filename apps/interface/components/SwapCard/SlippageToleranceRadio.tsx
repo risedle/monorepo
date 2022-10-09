@@ -17,7 +17,7 @@ interface SlippageToleranceRadioProps extends RadioProps {
     slippage: string;
 }
 
-export const SlippageToleranceRadio = (props: SlippageToleranceRadioProps) => {
+const SlippageToleranceRadio = (props: SlippageToleranceRadioProps) => {
     // Data
     const { slippage, ...radioProps } = props;
     const { getInputProps, getCheckboxProps, htmlProps } =
