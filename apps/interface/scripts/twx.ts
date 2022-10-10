@@ -8,7 +8,7 @@ export const twx = (files: Array<string>) => {
     return (content: string): string => {
         // Find the path
         const paths = fg.sync(files);
-        const path = paths.find((path) => {
+        const path = paths.find((path: string) => {
             const data = fs.readFileSync(path, "utf8");
             return data == content;
         });

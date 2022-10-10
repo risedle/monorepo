@@ -158,6 +158,7 @@ importers:
       eslint-config-next: 12.3.0
       eslint-config-prettier: 8.5.0
       ethers: 5.6.9
+      fast-glob: 3.2.12
       framer-motion: 6.5.1
       graphql: "16"
       graphql-request: 4.3.0
@@ -193,7 +194,7 @@ importers:
       "@fontsource/ibm-plex-mono": 4.5.10
       "@fontsource/inter": 4.5.11
       "@rainbow-me/rainbowkit": 0.4.8_bmvt44zc2fet52varhip33vprm
-      "@risedle/types": link:../../packages/types
+      "@risedle/types": 2.0.0
       dayjs: 1.11.5
       dom-to-image: 2.6.0
       ethers: 5.6.9
@@ -214,9 +215,9 @@ importers:
       "@cloudflare/kv-asset-handler": 0.2.0
       "@cloudflare/workers-types": 3.16.0
       "@next/bundle-analyzer": 12.2.2
-      "@risedle/eslint-config": link:../../packages/eslint-config
-      "@risedle/prettier-config": link:../../packages/prettier-config
-      "@risedle/tsconfig": link:../../packages/tsconfig
+      "@risedle/eslint-config": 0.1.2
+      "@risedle/prettier-config": 0.1.2
+      "@risedle/tsconfig": 1.0.1
       "@testing-library/jest-dom": 5.16.4
       "@testing-library/react": 13.3.0_biqbaboplfbrettd7655fr4n2y
       "@types/dom-to-image": 2.6.4
@@ -236,6 +237,7 @@ importers:
       eslint: 8.23.1
       eslint-config-next: 12.3.0_irgkl5vooow2ydyo6aokmferha
       eslint-config-prettier: 8.5.0_eslint@8.23.1
+      fast-glob: 3.2.12
       jest: 28.1.3_y3k2s4kkojqxusj67qjj42ctia
       jest-environment-jsdom: 28.1.3
       jsdom: 20.0.1

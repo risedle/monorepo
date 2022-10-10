@@ -37,7 +37,7 @@ describe("getFuseLeveragedTokenUserPositionById", () => {
                 expect(position).toBeDefined();
 
                 // Make sure it returns FuseLeveragedTokenPosition
-                expect(position?.balance).toBeGreaterThan(5);
+                expect(position?.balance).toBeGreaterThan(0);
                 expect(position?.usd).toBeGreaterThan(10);
                 expect(typeof position?.pnlUSD).toBe("number");
                 expect(position?.pnlPercent).toBeLessThanOrEqual(100);
