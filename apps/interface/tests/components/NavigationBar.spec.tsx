@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
-import { NavigationBar } from "@/components/NavigationBar";
+import NavigationBar from "@/components/NavigationBar";
 import nextRouter from "next/router";
 
 afterEach(() => {

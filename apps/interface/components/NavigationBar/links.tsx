@@ -2,7 +2,7 @@ import { Center, HStack, Text, useColorModeValue } from "@chakra-ui/react";
 import ArrowTopRightIcon from "../Icons/ArrowTopRight";
 import NavigationBarLink from "./link";
 
-export const NavigationBarLinks = () => {
+const NavigationBarLinks = () => {
     const gray10 = useColorModeValue("gray.light.10", "gray.dark.10");
     return (
         <HStack
@@ -39,3 +39,5 @@ export const NavigationBarLinks = () => {
         </HStack>
     );
 };
+
+export default NavigationBarLinks;
