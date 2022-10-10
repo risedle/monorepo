@@ -6,7 +6,9 @@
 import React from "react";
 import type { ReactNode } from "react";
 
-// Types
+/*****************************************************************************
+ * Box Props
+ ****************************************************************************/
 export interface BoxProps {
     as?: keyof HTMLElementTagNameMap;
     children?: ReactNode;
@@ -15,6 +17,8 @@ export interface BoxProps {
 
 // This is list of props that takes value either bool or breakpoint
 const boolOrBreakpointProps = ["container", "flex"];
+
+// Derivative props is props that map to specific key
 const derivativeProps: { [key: string]: string } = {
     direction: "flex",
     maxW: "max-w",
