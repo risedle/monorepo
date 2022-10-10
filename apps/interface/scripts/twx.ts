@@ -1,55 +1,43 @@
-// Pre-render all the templates to HTML then feed up to TailwindCSS
-import tailwindcss from "tailwindcss";
-import postcss from "postcss";
+import fs from "fs";
+import esbuild from "esbuild";
+import fg from "fast-glob";
+import React from "react";
+import ReactDOMServer from "react-dom/server";
 
-const finders = [
-    {
-        prefix: "px-",
-        pattern: /px="(?<value>.)"/gm,
-    },
-    {
-        prefix: "py-",
-        pattern: /py="(?<value>.)"/gm,
-    },
-];
+export const twx = (files: Array<string>) => {
+    return (content: string): string => {
+        // Find the path
+        const paths = fg.sync(files);
+        const path = paths.find((path) => {
+            const data = fs.readFileSync(path, "utf8");
+            return data == content;
+        });
+        if (!path) return content;
 
-/**
- * Convert props to utility class
- *
- * For example:
- *  px="4" -> px-4
- */
-function propsToUtilityClass(content: string): Array<string> {
-    console.log("propsToUtilityClass content", content);
-    const results = new Array<string>();
-    for (const finder of finders) {
-        const matches = content.matchAll(finder.pattern);
-        for (const match of matches) {
-            console.log(match);
-            const value = match.groups?.value;
-            results.push(`${finder.prefix}${value}`);
-        }
-    }
-    console.log("DEBUG: results", results);
-    return results;
-}
+        // Build the tsx as commonjs module
+        const buildOptions = {
+            bundle: true,
+            format: "cjs",
+            write: false,
+            minify: false,
+            entryPoints: [path],
+            target: ["chrome58", "firefox57", "safari11", "edge18"],
+            charset: "utf8",
+            outdir: "twx",
+            tsconfig: "tsconfig.exchange.json",
+        };
+        // @ts-ignore
+        const { outputFiles } = esbuild.buildSync(buildOptions);
+        const output = outputFiles.find(({ path }) => /\.m?js$/.test(path));
+        if (!output) return content;
 
-const config = {
-    content: {
-        files: [{ raw: `<Container px="4" py="4"></Container>` }],
-        extract: {
-            DEFAULT: propsToUtilityClass,
-        },
-    },
+        const Module = module.constructor;
+        // @ts-ignore
+        const Component = new Module();
+        Component._compile(output.text, "");
+        const renderedContent = ReactDOMServer.renderToStaticMarkup(
+            React.createElement(Component.exports.default, {})
+        );
+        return renderedContent;
+    };
 };
-
-async function main() {
-    const input = `
-        @tailwind components;
-        @tailwind utilities;
-    `;
-    const result = await postcss(tailwindcss(config)).process(input);
-    console.log("css output: ", result.css);
-}
-
-main();

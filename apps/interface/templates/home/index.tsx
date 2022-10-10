@@ -3,11 +3,6 @@ import React from "react";
 // Layouts
 import Container from "@/atoms/container";
 import Flex from "@/atoms/flex";
-import FlexItem from "@/atoms/flex/item";
-
-// Components
-import Interactive from "@/atoms/interactive";
-import ConnectButton from "@/molecules/connect-button";
 import Box from "@/atoms/box";
 
 interface TemplateProps {
@@ -28,16 +23,14 @@ const Template = (props: TemplateProps) => {
                 <title>{title}</title>
 
                 <link rel="stylesheet" href="/static/dist/global.css" />
-                <script defer src="/static/dist/client.home.js"></script>
             </head>
             <body>
                 <Container as="nav">
                     <Flex as="ul" justify="between">
-                        <FlexItem as="li">Logo test</FlexItem>
-                        <FlexItem as="li">Button</FlexItem>
+                        <Box as="li">Logo test</Box>
+                        <Box as="li">Button</Box>
                     </Flex>
                 </Container>
-                <Box>OK</Box>
             </body>
         </html>
     );

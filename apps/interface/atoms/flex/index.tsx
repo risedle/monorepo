@@ -7,52 +7,23 @@
  *
  * <Flex /> component is a parent element or the flex container.
  *
- * Resources:
+ * See Flex parent element visualization here:
  * https://css-tricks.com/snippets/css/a-guide-to-flexbox/
  */
 import React from "react";
 import type { ReactNode } from "react";
 
-// Types
-import type {
-    DivElement,
-    ContentSectioningElements,
-    ListElements,
-    AtomDataAttributes,
-} from "@/atoms/lib";
-type FlexDirection = "row" | "row-reverse" | "column" | "column-reverse";
-type JustifyContent =
-    | "start"
-    | "end"
-    | "center"
-    | "between"
-    | "around"
-    | "evenly";
+import type { BoxProps } from "@/atoms/box";
+import Box from "@/atoms/box";
 
-// Styles
-import "./style.css";
+const Flex = (props: BoxProps) => {
+    // Set container default value
+    const newProps = { ...props };
+    newProps["flex"] = true;
+    if (!newProps["direction"]) newProps["direction"] = "row";
+    if (!newProps["justify"]) newProps["justify"] = "start";
 
-export interface FlexProps {
-    as?: DivElement | ContentSectioningElements | ListElements;
-    direction?: FlexDirection;
-    justify?: JustifyContent;
-    children?: ReactNode;
-}
-
-const Flex = (props: FlexProps) => {
-    const { as, direction, justify, children } = props;
-
-    // Use <div> by default
-    let element = as;
-    if (element == null) element = "div";
-
-    // Build atrributes
-    const attrs: AtomDataAttributes = {};
-    attrs["data-atom"] = "Flex";
-    if (direction) attrs["data-direction"] = direction;
-    if (justify) attrs["data-justify"] = justify;
-
-    return React.createElement(element, attrs, children);
+    return <Box {...newProps}>{props.children}</Box>;
 };
 
 export default Flex;

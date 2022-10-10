@@ -39,73 +39,6 @@ const tailwind: Plugin = {
 };
 
 /**
- * esbuild-plugin-prerender
- *
- * esbuild plugin that used to pre-render react component to HTML
- */
-import React from "react";
-import ReactDOMServer from "react-dom/server";
-import type { OnResolveArgs, OnResolveResult } from "esbuild";
-
-const prerender: Plugin = {
-    name: "prerender",
-    setup: ({ initialOptions, onResolve, onLoad, esbuild }: PluginBuild) => {
-        const options = {
-            ...initialOptions,
-            bundle: true,
-            format: "cjs",
-            metafile: true,
-            minify: false,
-        };
-
-        onResolve(
-            {
-                filter: /[?&]prerender\b/,
-            },
-            (args: OnResolveArgs): OnResolveResult => {
-                const { path, resolveDir } = args;
-                const { pathname } = new URL(path, `file://${resolveDir}/`);
-                return { namespace: "prerender", path: pathname };
-            }
-        );
-
-        onLoad(
-            {
-                filter: /.*/,
-                namespace: "prerender",
-            },
-            async (args: OnLoadArgs): Promise<OnLoadResult> => {
-                const { path } = args;
-                // @ts-ignore
-                const { metafile } = await esbuild.build({
-                    // @ts-ignore
-                    ...options,
-                    entryPoints: { "prepare.temp": path },
-                });
-                const outputs = metafile?.outputs;
-                if (!outputs) return { loader: "js", contents: "" };
-
-                const file = Object.keys(outputs).find((path) =>
-                    /\.m?js$/.test(path)
-                );
-                console.log("DEBUG: file", file);
-                if (!file) return { loader: "js", contents: "" };
-                const component = await import(
-                    "/Users/pyk/github/risedle/monorepo/apps/interface/" + file
-                );
-                console.log("dEBUG: component", component);
-
-                const contents = await ReactDOMServer.renderToStaticMarkup(
-                    React.createElement(component.default, {})
-                );
-
-                return { loader: "file", contents };
-            }
-        );
-    },
-};
-
-/**
  * Bundle
  *
  * Script to bundle and minify the client-side JavaScript.
@@ -123,7 +56,7 @@ async function main() {
         global: "global.css",
         // "client.home": "clients/home/index.ts",
         // "server.home": "templates/home/index.tsx",
-        "prerender.home": "templates/home/index.tsx?prerender",
+        // "prerender.home": "templates/home/index.tsx?prerender",
     };
 
     const isProduction = process.env.NODE_ENV == "production" ? true : false;
@@ -138,7 +71,7 @@ async function main() {
         target: ["chrome58", "firefox57", "safari11", "edge18"],
         charset: "utf8",
         tsconfig: "tsconfig.exchange.json",
-        plugins: [tailwind, prerender],
+        plugins: [tailwind],
     });
 
     // Remove server side code

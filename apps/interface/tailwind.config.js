@@ -1,13 +1,13 @@
+const { twx } = require("./scripts/build/twx.js");
+
 /** @type {import('tailwindcss').Config} */
+const files = ["./templates/**/*.tsx"];
 module.exports = {
     content: {
-        files: ["./public/dist/**/*.tsx"],
+        files: files,
         transform: {
             // pre-render to html
-            tsx: (content) => {
-                // console.log(content);
-                return content;
-            },
+            tsx: twx(files),
         },
     },
     theme: {

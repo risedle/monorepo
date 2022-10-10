@@ -7,123 +7,94 @@ import React from "react";
 import type { ReactNode } from "react";
 
 // Types
-import type { DivElement, ContentSectioningElements } from "@/atoms/lib";
-
 export interface BoxProps {
-    as?: DivElement | ContentSectioningElements;
+    as?: keyof HTMLElementTagNameMap;
     children?: ReactNode;
-
-    // Container
-    container?: boolean;
-
-    /*************************************************************************
-     * Spacing
-     ************************************************************************/
-
-    // Padding
-    p?: string;
-    pt?: string;
-    pr?: string;
-    pb?: string;
-    pl?: string;
-    px?: string;
-    py?: string;
-
-    // Margin
-    m?: string;
-    mt?: string;
-    mr?: string;
-    mb?: string;
-    ml?: string;
-    mx?: string;
-    my?: string;
-
-    /*************************************************************************
-     * Sizing
-     ************************************************************************/
-    maxW: string;
+    [key: string]: any;
 }
 
-const boolProps = ["container"];
+// This is list of props that takes value either bool or breakpoint
+const boolOrBreakpointProps = ["container", "flex"];
+const derivativeProps: { [key: string]: string } = {
+    direction: "flex",
+    maxW: "max-w",
+};
 
-// Convert key props and value to class name
-const paddingProps = ["p", "pt", "pr", "pb", "pl", "px", "py"];
-const marginProps = ["m", "mt", "mr", "mb", "ml", "mx", "my"];
-const predefinedUnits = [
-    "auto",
-    "none",
-    "xs",
-    "sm",
-    "md",
-    "lg",
-    "xl",
-    "2xl",
-    "3xl",
-    "4xl",
-    "5xl",
-    "6xl",
-    "7xl",
-    "full",
-    "min",
-    "max",
-    "fit",
-    "prose",
-    "screen-sm",
-    "screen-md",
-    "screen-lg",
-    "screen-xl",
-    "screen-2xl",
+/*****************************************************************************
+ * CSS Units
+ ****************************************************************************/
+const absoluteUnits = ["cm", "mm", "Q", "in", "pc", "pt", "px"];
+const relativeUnits = [
+    "em",
+    "ex",
+    "ch",
+    "rem",
+    "lh",
+    "rlh",
+    "vw",
+    "vh",
+    "vmin",
+    "vmax",
+    "vb",
+    "vi",
+    "svw",
+    "svh",
+    "lvw",
+    "lvh",
+    "dvw",
+    "dvh",
 ];
+const percentageUnits = ["%"];
+const colorUnits = ["#", "rgb", "hsl"];
+const imageUnits = ["url"];
+const cssUnits = absoluteUnits
+    .concat(relativeUnits)
+    .concat(percentageUnits)
+    .concat(colorUnits)
+    .concat(imageUnits);
 
-const propsToClass = (key: string, size: string): string => {
-    // Handle multiple modifiers (e.g. px="4 darkmode:md:14px")
-    const modifiers = size.split(" ");
-    const results = [];
-    for (const modifier of modifiers) {
-        // Handle predefined units
-        if (predefinedUnits.includes(modifier)) {
-            results.push(`${key}-${modifier}`);
-            continue;
-        }
-
-        // either pre-defined (4) or custom value (14px)
-        if (!modifier.includes(":")) {
-            if (!isNaN(modifier)) {
-                results.push(`${key}-${modifier}`);
-                continue;
-            } else {
-                results.push(`${key}-[${modifier}]`);
-                continue;
-            }
-        }
-
-        // Handle modifier: md:4, darkmode:md:4 and so on
-        // Convert to md:px-4, darkmode:md:px-4 and so on
-        const prefixes = modifier.split(":");
+/*****************************************************************************
+ * Props value to class name converter
+ ****************************************************************************/
+/**
+ * propsValueToClass transform props (key,value) to class name.
+ *
+ * For example:
+ * ("container", "md")
+ * ("px", "4 md:5") -> "px-4 md:px-5"
+ */
+const propsValueToClass = (key: string, value: string): string => {
+    const inputs = value.split(" ");
+    const outputs = [];
+    for (const input of inputs) {
+        const prefixes = input.split(":");
         const lastValue = prefixes.pop();
-        // ['darkmode', 'md'] -> "darkmode:md"
-        if (prefixes.length >= 1) {
-            const prefix = prefixes.join(":");
-            if (!isNaN(lastValue)) {
-                results.push(`${prefix}:${key}-${lastValue}`);
-                continue;
+        if (!lastValue) continue;
+        const unit = cssUnits.find((unit) => lastValue.includes(unit));
+        const prefix = prefixes.join(":");
+
+        // Treat string that have css units as arbitary value
+        if (unit && unit != lastValue) {
+            if (prefix != "") {
+                outputs.push(`${prefix}:${key}-[${lastValue}]`);
             } else {
-                results.push(`${prefix}:${key}-[${lastValue}]`);
-                continue;
+                outputs.push(`${key}-[${lastValue}]`);
             }
         } else {
-            if (!isNaN(lastValue)) {
-                results.push(`${key}-${lastValue}`);
-                continue;
+            // Otherwise use the value directly
+            if (prefix != "") {
+                outputs.push(`${prefix}:${key}-${lastValue}`);
             } else {
-                results.push(`${key}-[${lastValue}]`);
-                continue;
+                outputs.push(`${key}-${lastValue}`);
             }
         }
     }
-    return results.join(" ");
+    return outputs.join(" ");
 };
 
+/*****************************************************************************
+ * Gedebox pisang
+ ****************************************************************************/
 const Box = (props: BoxProps) => {
     const { as, children } = props;
 
@@ -136,28 +107,35 @@ const Box = (props: BoxProps) => {
     for (const [key, value] of Object.entries(props)) {
         // Skip 'as' and 'children' props
         if (["as", "children"].includes(key)) continue;
-        if (boolProps.includes(key)) {
-            classNames.push(key);
+
+        // Handle bool or breakpoint props.
+        // Examples: container -> container, container="md" -> md:container
+        if (boolOrBreakpointProps.includes(key)) {
+            if (typeof value == "boolean") {
+                classNames.push(key);
+                continue;
+            }
+            if (typeof value == "string") {
+                classNames.push(`${value}:${key}`);
+                continue;
+            }
         }
-        if (marginProps.includes(key)) {
-            const className = propsToClass(key, value.trim());
+
+        // Handle derivative props (e.g. direction='row' -> flex-row)
+        if (Object.keys(derivativeProps).includes(key)) {
+            const className = propsValueToClass(derivativeProps[key], value);
             classNames.push(className);
             continue;
         }
-        if (paddingProps.includes(key)) {
-            const className = propsToClass(key, value.trim());
-            classNames.push(className);
-            continue;
-        }
-        if (key == "maxW") {
-            const className = propsToClass("max-w", value.trim());
-            classNames.push(className);
-            continue;
-        }
+
+        // Handle direct props.
+        // Examples: px="14px" -> px-[14px], mx="auto" ->  mx-auto
+        const className = propsValueToClass(key, value);
+        classNames.push(className);
     }
 
     // Set the className props
-    const attrs = {};
+    const attrs: { [key: string]: string } = {};
     const className = classNames.join(" ");
     if (className != "") attrs["className"] = className;
 
