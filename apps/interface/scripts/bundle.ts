@@ -53,9 +53,10 @@ async function main() {
     // TODO(pyk): we may use glob pattern here such as "client/*.ts" to
     // automatically bundle all entrypoints
     const entryPoints = {
-        "server.global": "global.css",
-        "client.home": "clients/home/index.ts",
-        "server.home": "templates/home/index.tsx",
+        global: "global.css",
+        // "client.home": "clients/home/index.ts",
+        // "server.home": "templates/home/index.tsx",
+        // "prerender.home": "templates/home/index.tsx?prerender",
     };
 
     const isProduction = process.env.NODE_ENV == "production" ? true : false;

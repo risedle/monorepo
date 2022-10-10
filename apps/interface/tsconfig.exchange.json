@@ -2,7 +2,7 @@
     "compilerOptions": {
         /* Language and Environment */
         "target": "es2021",
-        "lib": ["es2021"],
+        "lib": ["es2021", "dom"],
         "jsx": "react",
 
         /* Modules */
@@ -12,7 +12,6 @@
         "paths": {
             "@/*": ["*"]
         },
-        "types": ["@cloudflare/workers-types"],
         "resolveJsonModule": true,
 
         /* JavaScript Support */
