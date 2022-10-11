@@ -21,6 +21,7 @@
     },
     "include": [
         "next-env.d.ts",
+        "worker.d.ts",
         "pages/**/*.ts",
         "pages/**/*.tsx",
         "tests/**/*.ts",
