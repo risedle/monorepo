@@ -20,7 +20,7 @@ export interface PriceChartLineProps {
     prices: Array<{ timestamp: number; price: number }>;
 }
 
-export const PriceChartLine = (props: PriceChartLineProps) => {
+const PriceChartLine = (props: PriceChartLineProps) => {
     // Data
     const { prices } = props;
     const latest = prices.at(-1);

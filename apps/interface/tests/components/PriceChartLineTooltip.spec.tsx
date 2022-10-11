@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 
-import { PriceChartLineTooltip } from "@/components/PriceChart/Tooltip";
+import PriceChartLineTooltip from "@/components/PriceChart/Tooltip";
 
 describe("<PriceChartLineTooltip />", () => {
     it("should render price and timestamp", () => {
