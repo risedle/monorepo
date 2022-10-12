@@ -29,9 +29,7 @@ interface SwapCardSlippageToleranceProps {
     setSlippage: (slippage: string) => void;
 }
 
-export const SwapCardSlippageTolerance = (
-    props: SwapCardSlippageToleranceProps
-) => {
+const SwapCardSlippageTolerance = (props: SwapCardSlippageToleranceProps) => {
     // Data
     const { slippage, setSlippage } = props;
 
