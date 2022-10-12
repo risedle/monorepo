@@ -7,10 +7,10 @@
 import React from "react";
 import type { ReactNode } from "react";
 
-import type { BoxProps } from "@/atoms/box";
-import Box from "@/atoms/box";
+import type { BoxProps } from "~/atoms/box";
+import Box from "~/atoms/box";
 
-const Container = (props: BoxProps) => {
+export default function Container(props: BoxProps) {
     // Set container default value
     const newProps = { ...props };
     newProps["container"] = true;
@@ -19,6 +19,4 @@ const Container = (props: BoxProps) => {
     if (!newProps["maxW"]) newProps["maxW"] = "6xl";
 
     return <Box {...newProps}>{props.children}</Box>;
-};
-
-export default Container;
+}

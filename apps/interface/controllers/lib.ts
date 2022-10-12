@@ -1,10 +1,19 @@
 /**
  * Commonly used functions in controller implementation
  */
-import type { Env } from "@/env";
+import type { Env } from "~/env";
+
+export interface RequestParams {
+    [key: string]: string;
+}
 
 export interface Controller {
-    (req: Request, env: Env, ctx: ExecutionContext): Promise<Response>;
+    (
+        req: Request,
+        params: RequestParams,
+        env: Env,
+        ctx: ExecutionContext
+    ): Promise<Response>;
 }
 
 /**

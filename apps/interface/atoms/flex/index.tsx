@@ -13,10 +13,10 @@
 import React from "react";
 import type { ReactNode } from "react";
 
-import type { BoxProps } from "@/atoms/box";
-import Box from "@/atoms/box";
+import type { BoxProps } from "~/atoms/box";
+import Box from "~/atoms/box";
 
-const Flex = (props: BoxProps) => {
+export default function Flex(props: BoxProps) {
     // Set container default value
     const newProps = { ...props };
     newProps["flex"] = true;
@@ -24,6 +24,4 @@ const Flex = (props: BoxProps) => {
     if (!newProps["justify"]) newProps["justify"] = "start";
 
     return <Box {...newProps}>{props.children}</Box>;
-};
-
-export default Flex;
+}

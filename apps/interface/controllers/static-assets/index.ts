@@ -1,18 +1,21 @@
-/**
+/*****************************************************************************
  * StaticAssetsController get static asset from Cloudflare KV
- */
+ ****************************************************************************/
 import { getAssetFromKV } from "@cloudflare/kv-asset-handler";
 import manifestJSON from "__STATIC_CONTENT_MANIFEST";
+
+import type { Env } from "~/env";
+import type { RequestParams } from "~/controllers/lib";
+import { notfound } from "~/controllers/lib";
+
 const assetManifest = JSON.parse(manifestJSON);
 
-import type { Env } from "@/env";
-import { notfound } from "@/controllers/lib";
-
-const StaticAssetsController = async (
+export default async function controller(
     req: Request,
+    params: RequestParams,
     env: Env,
     ctx: ExecutionContext
-): Promise<Response> => {
+): Promise<Response> {
     const staticReq = new Request(req.url.replace("/static", ""), req);
     const event = {
         request: staticReq,
@@ -31,6 +34,4 @@ const StaticAssetsController = async (
         console.error("StaticAssetsController:", e);
         return notfound("Assets not found");
     }
-};
-
-export default StaticAssetsController;
+}

@@ -19,4 +19,10 @@ bucket = "./public"
 # Only upload the following files:
 # 1. JavaScript files to hydrate interactive components
 # 2. CSS files that generated via esbuild
-include = ["client.*.js", "global.css"]
+# 3. Pregenerated MDX files via esbuild
+include = [
+    "client.*.js",
+    "global.css",
+    "playground/**/*.json",
+    "playground/**/*.mjs"
+]

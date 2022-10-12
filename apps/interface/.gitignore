@@ -43,3 +43,4 @@ cypress/videos
 # scripts
 scripts/build
 public/dist
+public/playground
