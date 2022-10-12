@@ -29,8 +29,8 @@
     ],
     "exclude": [
         "node_modules",
-        "router/**/*.tsx",
-        "controllers/**/*.tsx",
+        "router/**/*.ts",
+        "controllers/**/*.ts",
         "templates/**/*.tsx",
         "atoms/**/*.tsx",
         "molecules/**/*.tsx",
