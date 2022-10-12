@@ -48,7 +48,7 @@ const ErrorMessageBox = ({ children }: { children?: React.ReactNode }) => {
     );
 };
 
-export const MySwapHistoryContainer = (props: MySwapHisotryContainerProps) => {
+const MySwapHistoryContainer = (props: MySwapHisotryContainerProps) => {
     const { symbol } = props;
     const { address } = useAccount();
     const { data, isLoaded } = useFuseLeveragedTokenMySwap(symbol, address);
