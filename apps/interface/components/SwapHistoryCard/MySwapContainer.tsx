@@ -62,7 +62,7 @@ const MySwapHistoryContainer = (props: MySwapHisotryContainerProps) => {
         }
         if (data?.user) {
             const mappedData: Array<FuseLeveragedTokenSwap> = data.user.map(
-                (userData) => ({
+                (userData: any) => ({
                     amountInUSD: userData.amountInUSD.toString(),
                     timestamp: userData.timestamp.toString(),
                     tokenIn: {
