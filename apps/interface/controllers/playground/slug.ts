@@ -15,6 +15,7 @@ import manifestJSON from "__STATIC_CONTENT_MANIFEST";
 import type { Env } from "~/env";
 import type { RequestParams } from "~/controllers/lib";
 import { notfound } from "~/controllers/lib";
+import type { TemplateProps } from "~/templates/playground/slug";
 import Template from "~/templates/playground/slug";
 
 export default async function controller(
@@ -27,10 +28,13 @@ export default async function controller(
     const slug = params.slug;
 
     // Fetch metadata from Cloudflare KV
-    const props = await env.__STATIC_CONTENT.get(`playground/${slug}.json`, {
-        type: "json",
-    });
-    console.log("DEBUG: props", props);
+    const props = await env.__STATIC_CONTENT.get<TemplateProps>(
+        `playground/${slug}.json`,
+        {
+            type: "json",
+            cacheTtl: 86400,
+        }
+    );
     if (!props) return notfound("Component not found");
 
     const element = React.createElement(Template, props);

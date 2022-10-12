@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 
-import { Env } from "~/env";
+import type { Env } from "~/env";
+import type { RequestParams } from "~/controllers/lib";
 import Template from "~/templates/playground";
 
 export default async function controller(
     req: Request,
+    params: RequestParams,
     env: Env,
     ctx: ExecutionContext
 ): Promise<Response> {

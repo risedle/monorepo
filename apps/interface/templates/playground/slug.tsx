@@ -15,7 +15,7 @@
 
 import React from "react";
 
-interface TemplateProps {
+export interface TemplateProps {
     title: string;
     description: string;
     content: string;
