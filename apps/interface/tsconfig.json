@@ -27,5 +27,13 @@
         "tests/**/*.ts",
         "tests/**/*.tsx"
     ],
-    "exclude": ["node_modules"]
+    "exclude": [
+        "node_modules",
+        "router/**/*.tsx",
+        "controllers/**/*.tsx",
+        "templates/**/*.tsx",
+        "atoms/**/*.tsx",
+        "molecules/**/*.tsx",
+        "organisms/**/*.tsx"
+    ]
 }
