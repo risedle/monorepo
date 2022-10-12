@@ -3,7 +3,7 @@ import { describe, it, beforeAll, afterAll, expect } from "vitest";
 // import type { UnstableDevWorker } from "wrangler";
 import { JSDOM } from "jsdom";
 
-import worker from "@/entrypoint.server";
+import worker from "~/entrypoint.server";
 
 describe("Given 'GET' HTTP request to '/'", () => {
     it("Should render HTML", async () => {
