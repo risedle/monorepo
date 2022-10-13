@@ -1,8 +1,8 @@
 import React from "react";
 
 // Components
-import Interactive from "@/atoms/interactive";
-import ConnectButton from "@/molecules/connect-button";
+import Interactive from "~/atoms/interactive";
+import ConnectButton from "~/molecules/connect-button";
 
 interface TemplateProps {
     title: string;

@@ -1,23 +1,20 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 
-import { Env } from "@/env";
-import Template from "@/templates/playground";
+import type { Env } from "~/env";
+import type { RequestParams } from "~/controllers/lib";
+import Template from "~/templates/playground";
 
-/**
- * PlaygroundController compose services call then return HTTP response
- */
-const PlaygroundController = async (
+export default async function controller(
     req: Request,
+    params: RequestParams,
     env: Env,
     ctx: ExecutionContext
-): Promise<Response> => {
+): Promise<Response> {
     const props = {
         title: "Risedle Components Playground",
     };
     const element = React.createElement(Template, props);
     const stream = await ReactDOMServer.renderToReadableStream(element);
     return new Response(stream);
-};
-
-export default PlaygroundController;
+}

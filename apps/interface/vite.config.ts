@@ -15,7 +15,7 @@ export default defineConfig({
     },
     resolve: {
         alias: {
-            "@": path.resolve(__dirname, "."),
+            "~": path.resolve(__dirname, "."),
             "react-dom/server": path.resolve(
                 __dirname,
                 "node_modules/react-dom/server.browser.js"
