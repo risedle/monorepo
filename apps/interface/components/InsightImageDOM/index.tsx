@@ -73,7 +73,6 @@ const InsightImageDOM = React.forwardRef(
         }
 
         if (isLoaded && data) {
-            console.log(data);
             return (
                 <>
                     <div data-testid="InsightGeneratorDiv" ref={imageRef}>
