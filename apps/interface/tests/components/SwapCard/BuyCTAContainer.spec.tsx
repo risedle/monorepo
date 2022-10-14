@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import * as wagmi from "wagmi";
-import { utils, constants } from "ethers";
+import { utils } from "ethers";
 
 afterEach(() => {
     // restore the spy created with spyOn
@@ -19,31 +19,52 @@ describe("<BuyCTAContainer />", () => {
             address: "addy",
         }));
 
+        const useBuyAmountStore = jest.spyOn(store, "useBuyAmountStore");
+        useBuyAmountStore.mockReturnValue("5");
+
+        const dummySmallNumber = utils.parseEther("1");
+        const dummyBigNumber = utils.parseEther("10");
+        const dummyBiggerNumber = utils.parseEther("20");
         const useContractReads = jest.spyOn(wagmi, "useContractReads");
         useContractReads.mockReturnValue({
-            data: null,
+            data: [
+                dummySmallNumber,
+                dummyBigNumber,
+                dummyBigNumber,
+                dummyBiggerNumber,
+                {
+                    1: dummyBigNumber,
+                    2: dummyBigNumber,
+                    _da: dummyBigNumber,
+                    _ca: dummyBigNumber,
+                },
+                dummyBigNumber,
+                dummyBigNumber,
+            ],
         });
 
         const usePrepareContractWrite = jest.spyOn(
             wagmi,
             "usePrepareContractWrite"
         );
-        usePrepareContractWrite.mockReturnValue({
-            data: null,
-        });
+        usePrepareContractWrite.mockImplementation((props) => ({
+            config: {
+                functionName: props.functionName,
+            },
+        }));
 
         const useContractWrite = jest.spyOn(wagmi, "useContractWrite");
-        useContractWrite.mockReturnValue({
-            data: null,
-        });
+        useContractWrite.mockImplementation((props) => ({
+            data: {
+                hash: props.functionName,
+            },
+        }));
 
         const useWaitForTransaction = jest.spyOn(
             wagmi,
             "useWaitForTransaction"
         );
-        useWaitForTransaction.mockReturnValue({
-            data: null,
-        });
+        useWaitForTransaction.mockReturnValue({ isLoading: false });
     });
     describe("Given amount is invalid", () => {
         it("Should render enter amount button", () => {
@@ -59,9 +80,6 @@ describe("<BuyCTAContainer />", () => {
 
     describe("Given invalid data", () => {
         it("Should render loading button", () => {
-            const useBuyAmountStore = jest.spyOn(store, "useBuyAmountStore");
-            useBuyAmountStore.mockReturnValue("");
-
             const useContractReads = jest.spyOn(wagmi, "useContractReads");
             useContractReads.mockReturnValue({
                 data: null,
@@ -80,7 +98,7 @@ describe("<BuyCTAContainer />", () => {
             const dummySmallNumber = utils.parseEther("1");
             const useContractReads = jest.spyOn(wagmi, "useContractReads");
             useContractReads.mockReturnValue({
-                data: [dummyBigNumber, dummySmallNumber, constants.MaxUint256],
+                data: [dummyBigNumber, dummySmallNumber],
             });
 
             render(<BuyCTAContainer />);
@@ -88,14 +106,12 @@ describe("<BuyCTAContainer />", () => {
             const balanceButton = screen.queryByTestId(
                 "CTANotEnoughBalanceButton"
             );
-            expect(balanceButton).toBeInTheDocument();
+            expect(balanceButton).toBeVisible();
         });
     });
 
     describe("Given waitApproval.isLoading", () => {
         it("Should render button with data-testid='CTAApprovingButton'", () => {
-            const useBuyAmountStore = jest.spyOn(store, "useBuyAmountStore");
-            useBuyAmountStore.mockReturnValue("");
             const useWaitForTransaction = jest.spyOn(
                 wagmi,
                 "useWaitForTransaction"
@@ -114,16 +130,25 @@ describe("<BuyCTAContainer />", () => {
 
     describe("Given quoteAmount.gt(allowanceAmount)", () => {
         it("Should render button with data-testid='CTAApprovalButton'", () => {
-            const useBuyAmountStore = jest.spyOn(store, "useBuyAmountStore");
-            useBuyAmountStore.mockReturnValue("5");
-
+            const dummySmallNumber = utils.parseEther("1");
             const dummyBigNumber = utils.parseEther("10");
-
-            // Mock allowance value to be equal to 0
             const useContractReads = jest.spyOn(wagmi, "useContractReads");
-            useContractReads.mockImplementation(() => ({
-                data: [dummyBigNumber, dummyBigNumber, utils.parseEther("0")],
-            }));
+            useContractReads.mockReturnValue({
+                data: [
+                    dummySmallNumber,
+                    dummyBigNumber,
+                    dummySmallNumber,
+                    dummyBigNumber,
+                    {
+                        1: dummyBigNumber,
+                        2: dummyBigNumber,
+                        _da: dummyBigNumber,
+                        _ca: dummyBigNumber,
+                    },
+                    dummyBigNumber,
+                    utils.parseEther("0"),
+                ],
+            });
 
             render(<BuyCTAContainer />);
 
@@ -132,17 +157,14 @@ describe("<BuyCTAContainer />", () => {
         });
     });
 
-    describe("Given buySell.isLoading", () => {
+    describe("Given waitBuy.isLoading", () => {
         it("Should render button with data-testid='CTASwappingButton'", () => {
-            const useBuyAmountStore = jest.spyOn(store, "useBuyAmountStore");
-            useBuyAmountStore.mockReturnValue("5");
-
             const useWaitForTransaction = jest.spyOn(
                 wagmi,
                 "useWaitForTransaction"
             );
             useWaitForTransaction.mockImplementation((props) => {
-                if (props?.hash === "swapExactFLTForTokens")
+                if (props?.hash === "swapTokensForExactFLT")
                     return { isLoading: true };
                 return { isLoading: false };
             });
@@ -157,7 +179,7 @@ describe("<BuyCTAContainer />", () => {
     describe("Given non of the case above happen", () => {
         it("render button with data-testid='CTASwapButton'", () => {
             const useBuyAmountStore = jest.spyOn(store, "useBuyAmountStore");
-            useBuyAmountStore.mockReturnValue("5");
+            useBuyAmountStore.mockReturnValue("1");
 
             render(<BuyCTAContainer />);
 
