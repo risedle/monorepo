@@ -4,11 +4,21 @@ import { create } from "react-test-renderer";
 
 import Link from "./index";
 
-// TODO(pyk): update test
 describe("Link", () => {
-    it("Should render with default class", () => {
+    it("Should render with default HTML tag", () => {
         const rendered = create(<Link>Hello</Link>);
         const component = rendered.toJSON();
-        expect(true).toBe(true);
+        expect(component.type).toBe("a");
+        expect(Object.keys(component.props).length).toBe(0);
+        expect(component.children[0]).toBe("Hello");
+    });
+
+    it("Should render with custom href", () => {
+        const rendered = create(<Link href="/">Hello</Link>);
+        const component = rendered.toJSON();
+        console.log(component);
+        expect(component.type).toBe("a");
+        expect(component.props.href).toBe("/");
+        expect(component.children[0]).toBe("Hello");
     });
 });

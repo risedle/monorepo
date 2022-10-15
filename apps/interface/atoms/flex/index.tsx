@@ -11,17 +11,22 @@
  * https://css-tricks.com/snippets/css/a-guide-to-flexbox/
  */
 import React from "react";
-import type { ReactNode } from "react";
 
-import type { BoxProps } from "~/atoms/box";
+import type { UtilityProps } from "~/atoms/box/utilities";
+import type { NativeProps } from "~/atoms/box";
 import Box from "~/atoms/box";
 
-export default function Flex(props: BoxProps) {
-    // Set container default value
-    const newProps = { ...props };
-    newProps["flex"] = true;
-    if (!newProps["direction"]) newProps["direction"] = "row";
-    if (!newProps["justify"]) newProps["justify"] = "start";
-
-    return <Box {...newProps}>{props.children}</Box>;
+export default function Flex<T extends React.ElementType = "div">({
+    direction,
+    justify,
+    ...props
+}: NativeProps<T> & Omit<UtilityProps, "flex">) {
+    return (
+        <Box
+            flex
+            direction={direction ? direction : "auto"}
+            justify={justify ? justify : "start"}
+            {...props}
+        />
+    );
 }

@@ -2,7 +2,6 @@
  * Router maps HTTP request to the controller
  */
 import type { Env } from "~/env";
-import type { Controller } from "~/controllers/lib";
 
 import { RouteRegistry } from "./lib";
 import "./registry";

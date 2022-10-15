@@ -5,18 +5,25 @@
  * breakpoint, while keeping it fluid.
  */
 import React from "react";
-import type { ReactNode } from "react";
 
-import type { BoxProps } from "~/atoms/box";
+import type { UtilityProps } from "~/atoms/box/utilities";
+import type { NativeProps } from "~/atoms/box";
 import Box from "~/atoms/box";
 
-export default function Container(props: BoxProps) {
-    // Set container default value
-    const newProps = { ...props };
-    newProps["container"] = true;
-    if (!newProps["mx"]) newProps["mx"] = "auto";
-    if (!newProps["px"]) newProps["px"] = "3";
-    if (!newProps["maxW"]) newProps["maxW"] = "6xl";
-
-    return <Box {...newProps}>{props.children}</Box>;
+export default function Container<T extends React.ElementType = "div">({
+    mx,
+    px,
+    maxW,
+    children,
+    ...props
+}: NativeProps<T> & Omit<UtilityProps, "container">) {
+    return (
+        <Box
+            container
+            mx={mx ? mx : "auto"}
+            px={px ? px : "3"}
+            maxW={maxW ? maxW : "6xl"}
+            {...props}
+        />
+    );
 }
