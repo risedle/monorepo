@@ -126,7 +126,10 @@ const parseClassFromString = (key: string, v: string): string => {
         const prefixes = input.split(":");
         const lastValue = prefixes.pop();
         if (!lastValue) continue;
-        const unit = cssUnits.find((unit) => lastValue.includes(unit));
+        const unit = cssUnits.find((unit) => {
+            if (lastValue == "min" && unit == "in") return false;
+            return lastValue.includes(unit);
+        });
         const prefix = prefixes.join(":");
 
         // Treat string that have css units as arbitary value

@@ -14,7 +14,6 @@ export default function Container<T extends React.ElementType = "div">({
     mx,
     px,
     maxW,
-    children,
     ...props
 }: NativeProps<T> & Omit<UtilityProps, "container">) {
     return (

@@ -24,7 +24,7 @@ export default function Flex<T extends React.ElementType = "div">({
     return (
         <Box
             flex
-            direction={direction ? direction : "auto"}
+            direction={direction ? direction : "row"}
             justify={justify ? justify : "start"}
             {...props}
         />

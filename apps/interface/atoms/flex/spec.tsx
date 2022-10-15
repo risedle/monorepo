@@ -22,7 +22,7 @@ describe("Flex", () => {
         );
         expect(component.type).toBe("div");
         expect(component.props["className"]).toBe(
-            "flex-col py-6 flex justify-start"
+            "flex flex-col justify-start py-6"
         );
         expect(component.children?.[0]).toBe("Hello");
     });

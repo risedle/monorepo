@@ -24,7 +24,7 @@ describe("Container", () => {
         );
         expect(component.type).toBe("div");
         expect(component.props["className"]).toBe(
-            "px-[16px] py-6 container mx-auto max-w-6xl"
+            "container mx-auto px-[16px] max-w-6xl py-6"
         );
         expect(component.children?.[0]).toBe("Hello");
     });

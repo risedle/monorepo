@@ -66,7 +66,7 @@ describe("Max Width", () => {
         );
 
         // Arbitary values
-        component = renderAsJSON(<Box w="md:12px lg:32rem">Hello</Box>);
+        component = renderAsJSON(<Box maxW="md:12px lg:32rem">Hello</Box>);
         expect(component.props["className"]).toBe(
             "md:max-w-[12px] lg:max-w-[32rem]"
         );
