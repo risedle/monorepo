@@ -27,14 +27,20 @@
         "forceConsistentCasingInFileNames": true,
 
         /* Type Checking */
-        "strict": true
+        "strict": true,
+        "noUnusedLocals": true
     },
     "include": [
         "worker.d.ts",
         "entrypoint.server.ts",
         "app/**/*.tsx",
         "route/**/*.ts",
-        "controller/**/*.ts"
+        "controller/**/*.ts",
+        "atoms/**/*.tsx",
+        "atoms/**/*.ts",
+        "molecules/**/*.tsx",
+        "organisms/**/*.tsx",
+        "templates/**/*.tsx"
     ],
     "exclude": ["node_modules"]
 }

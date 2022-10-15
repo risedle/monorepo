@@ -10,8 +10,6 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 
-import manifestJSON from "__STATIC_CONTENT_MANIFEST";
-
 import type { Env } from "~/env";
 import type { RequestParams } from "~/controllers/lib";
 import { notfound } from "~/controllers/lib";

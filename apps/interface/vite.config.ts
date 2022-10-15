@@ -7,7 +7,7 @@ export default defineConfig({
         environment: "miniflare",
         include: [
             "tests/integration/**/*.{test,spec}.{ts,tsx}",
-            "atoms/**/spec.tsx",
+            "atoms/**/*spec.tsx",
         ],
         coverage: {
             provider: "c8",
