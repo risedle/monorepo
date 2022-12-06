@@ -60,7 +60,7 @@
         "@mdx-js/esbuild": "2.1.5",
         "@next/bundle-analyzer": "12.2.2",
         "@risedle/eslint-config": "0.1.2",
-        "@risedle/prettier-config": "0.1.2",
+        "@risedle/prettier-config": "0.2.0",
         "@risedle/tsconfig": "1.0.1",
         "@testing-library/jest-dom": "5.16.4",
         "@testing-library/react": "13.3.0",

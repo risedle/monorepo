@@ -20,7 +20,7 @@
     },
     "devDependencies": {
         "@risedle/eslint-config": "0.1.2",
-        "@risedle/prettier-config": "0.1.2",
+        "@risedle/prettier-config": "0.2.0",
         "assemblyscript": "0.19.10",
         "eslint": "8.24.0",
         "matchstick-as": "0.5.0",

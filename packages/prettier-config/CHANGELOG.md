@@ -1,5 +1,11 @@
 # @risedle/prettier-config
 
+## 0.2.0
+
+### Minor Changes
+
+-   a870793: Set tabWidth=2 for json files
+
 ## 0.1.2
 
 ### Patch Changes

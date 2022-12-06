@@ -27,7 +27,7 @@
         "typescript": "4.8.2"
     },
     "devDependencies": {
-        "@risedle/prettier-config": "0.1.2",
+        "@risedle/prettier-config": "0.2.0",
         "prettier": "2.7.1"
     },
     "publishConfig": {
